@@ -511,12 +511,12 @@ tr:hover td { background: var(--bg-elevated); }
   <p class="section-subtitle">按"消失/新增/升级/回轻"四类，看清哪些必须做、哪些可以扔。多人文协作时哪些又"回轻了"。</p>
 
   <div class="tab-group">
-    <button class="tab-btn active" onclick="switchTab('tab-eliminated')">彻底消失</button>
-    <button class="tab-btn" onclick="switchTab('tab-new')">全新产出物</button>
-    <button class="tab-btn" onclick="switchTab('tab-upgraded')">升级进化</button>
-    <button class="tab-btn" onclick="switchTab('tab-lighter')">回轻了</button>
-    <button class="tab-btn" onclick="switchTab('tab-always')">三层分类</button>
-    <button class="tab-btn" onclick="switchTab('tab-density')">协作密度</button>
+    <button class="tab-btn active" onclick="switchTab(event, 'tab-eliminated')">彻底消失</button>
+    <button class="tab-btn" onclick="switchTab(event, 'tab-new')">全新产出物</button>
+    <button class="tab-btn" onclick="switchTab(event, 'tab-upgraded')">升级进化</button>
+    <button class="tab-btn" onclick="switchTab(event, 'tab-lighter')">回轻了</button>
+    <button class="tab-btn" onclick="switchTab(event, 'tab-always')">三层分类</button>
+    <button class="tab-btn" onclick="switchTab(event, 'tab-density')">协作密度</button>
   </div>
 
   <!-- Tab 1: 彻底消失 -->
