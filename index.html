@@ -1,0 +1,4129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>产品经理AI Coding工作手册 — 从传统PM到AI原生PM的转型指南</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-page: #faf8f5;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f5f3ef;
+  --bg-code: #f8f6f2;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --text-muted: #a8a29e;
+  --accent-amber: #c2410c;
+  --accent-amber-bright: #ea580c;
+  --accent-amber-light: #fed7aa;
+  --accent-amber-glow: rgba(194, 65, 12, 0.06);
+  --accent-teal: #0d9488;
+  --accent-teal-light: #ccfbf1;
+  --accent-teal-glow: rgba(13, 148, 136, 0.06);
+  --accent-rose: #be123c;
+  --accent-rose-light: #ffe4e6;
+  --accent-rose-glow: rgba(190, 18, 60, 0.05);
+  --accent-violet: #6366f1;
+  --accent-violet-light: #e0e7ff;
+  --accent-violet-glow: rgba(99, 102, 241, 0.05);
+  --border: #e7e5e4;
+  --border-strong: #d6d3d1;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+  --font-code: 'JetBrains Mono', 'Courier New', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg-page); color: var(--text-primary); font-family: var(--font-body); font-weight: 400; font-size: 17px; line-height: 1.8; overflow-x: hidden; }
+
+/* NAV */
+.nav-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250, 248, 245, 0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); height: 60px; display: flex; align-items: center; padding: 0 28px; }
+.nav-brand { font-family: var(--font-display); font-weight: 800; font-size: 17px; color: var(--accent-amber); margin-right: 36px; white-space: nowrap; }
+.nav-links { display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none; }
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--text-secondary); text-decoration: none; white-space: nowrap; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--accent-amber); }
+
+/* SECTION */
+.section { padding: 100px 32px; max-width: 1320px; margin: 0 auto; }
+.section-tag { font-family: var(--font-code); font-size: 14px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-teal); margin-bottom: 14px; display: inline-block; }
+.section-title { font-family: var(--font-display); font-weight: 800; font-size: clamp(32px, 4.5vw, 52px); line-height: 1.15; margin-bottom: 18px; color: var(--text-primary); }
+.section-subtitle { font-size: 18px; color: var(--text-secondary); margin-bottom: 52px; max-width: 820px; line-height: 1.7; }
+
+/* HERO */
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 28px 60px; background: radial-gradient(ellipse at 50% 0%, rgba(194,65,12,0.06) 0%, transparent 50%), radial-gradient(ellipse at 80% 50%, rgba(13,148,136,0.04) 0%, transparent 40%); position: relative; overflow: hidden; }
+.hero-eyebrow { font-family: var(--font-code); font-size: 14px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-teal); margin-bottom: 28px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+.hero h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(38px, 6.5vw, 76px); line-height: 1.05; margin-bottom: 28px; opacity: 0; animation: fadeUp 1s 0.4s forwards; background: linear-gradient(135deg, #1c1917 0%, #c2410c 50%, #0d9488 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero h1 .strike { text-decoration: line-through; text-decoration-color: var(--accent-rose); text-decoration-thickness: 4px; -webkit-text-fill-color: var(--text-muted); }
+.hero-subtitle { font-size: clamp(16px, 2vw, 20px); color: var(--text-secondary); max-width: 760px; margin: 0 auto 44px; line-height: 1.7; opacity: 0; animation: fadeUp 1s 0.6s forwards; }
+.hero-meta { display: flex; gap: 36px; font-size: 15px; color: var(--text-muted); font-family: var(--font-code); opacity: 0; animation: fadeUp 1s 0.8s forwards; }
+.hero-meta span { display: flex; align-items: center; gap: 8px; }
+.hero-meta .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-amber); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+
+/* COMPARE CARDS */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 44px; }
+@media (max-width: 820px) { .compare-grid { grid-template-columns: 1fr; } }
+.compare-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 32px; position: relative; overflow: hidden; }
+.compare-card.old { border-color: rgba(190, 18, 60, 0.2); }
+.compare-card.old::before { content: '旧范式'; position: absolute; top: 20px; right: 20px; font-family: var(--font-code); font-size: 14px; font-weight: 700; color: var(--accent-rose); background: var(--accent-rose-light); padding: 5px 12px; border-radius: 6px; }
+.compare-card.new { border-color: rgba(13, 148, 136, 0.2); }
+.compare-card.new::before { content: '新范式'; position: absolute; top: 20px; right: 20px; font-family: var(--font-code); font-size: 14px; font-weight: 700; color: var(--accent-teal); background: var(--accent-teal-light); padding: 5px 12px; border-radius: 6px; }
+.compare-card h3 { font-family: var(--font-display); font-size: 24px; font-weight: 600; margin-bottom: 20px; padding-right: 70px; }
+.compare-card ul { list-style: none; padding: 0; }
+.compare-card li { font-size: 16px; color: var(--text-secondary); padding: 10px 0; border-bottom: 1px solid var(--border); line-height: 1.6; }
+.compare-card li:last-child { border-bottom: none; }
+.compare-card li strong { color: var(--text-primary); font-weight: 600; }
+
+/* VALUE CARDS */
+.value-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 44px; }
+.value-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; }
+.value-card .vc-label { font-family: var(--font-code); font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+.value-card .vc-old .vc-label { color: var(--accent-rose); }
+.value-card .vc-new .vc-label { color: var(--accent-teal); }
+.value-card .vc-arrow { text-align: center; font-size: 22px; color: var(--accent-amber); margin: 14px 0; }
+.value-card .vc-old, .value-card .vc-new { padding: 14px 0; }
+.value-card .vc-old p, .value-card .vc-new p { font-size: 16px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 6px; }
+.value-card .vc-old p strong, .value-card .vc-new p strong { color: var(--text-primary); }
+
+/* TABLES */
+.table-container { overflow-x: auto; margin-bottom: 36px; border-radius: 14px; border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: 15px; background: var(--bg-surface); }
+th { text-align: left; padding: 16px 20px; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); background: var(--bg-elevated); border-bottom: 2px solid var(--border-strong); white-space: nowrap; }
+td { padding: 16px 20px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; line-height: 1.6; }
+td strong { color: var(--text-primary); }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--bg-elevated); }
+
+/* TAGS */
+.tag { display: inline-block; font-family: var(--font-code); font-size: 14px; font-weight: 700; padding: 4px 10px; border-radius: 6px; letter-spacing: 0.05em; }
+.tag-eliminated { background: var(--accent-rose-light); color: var(--accent-rose); }
+.tag-new { background: var(--accent-teal-light); color: var(--accent-teal); }
+.tag-upgraded { background: var(--accent-amber-light); color: var(--accent-amber); }
+.tag-anchor { background: var(--accent-amber-light); color: var(--accent-amber); }
+.tag-progress { background: var(--accent-teal-light); color: var(--accent-teal); }
+.tag-execution { background: var(--accent-violet-light); color: var(--accent-violet); }
+
+/* TABS */
+.tab-group { display: flex; gap: 6px; margin-bottom: 28px; flex-wrap: wrap; }
+.tab-btn { font-family: var(--font-body); font-size: 15px; font-weight: 600; padding: 10px 20px; border: 1px solid var(--border); background: var(--bg-surface); color: var(--text-secondary); border-radius: 10px; cursor: pointer; transition: all 0.2s; }
+.tab-btn:hover { border-color: var(--border-strong); color: var(--text-primary); }
+.tab-btn.active { background: var(--accent-amber); color: #fff; border-color: var(--accent-amber); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: fadeIn 0.4s; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* LAYERS */
+.layer-stack { display: flex; flex-direction: column; gap: 4px; margin-bottom: 44px; }
+.layer { border-radius: 14px; padding: 32px; position: relative; overflow: hidden; border: 1px solid var(--border); }
+.layer-anchor { background: linear-gradient(135deg, rgba(194,65,12,0.04), rgba(194,65,12,0.01)); border-color: rgba(194,65,12,0.2); }
+.layer-progress { background: linear-gradient(135deg, rgba(13,148,136,0.04), rgba(13,148,136,0.01)); border-color: rgba(13,148,136,0.15); }
+.layer-execution { background: linear-gradient(135deg, rgba(99,102,241,0.04), rgba(99,102,241,0.01)); border-color: rgba(99,102,241,0.12); }
+.layer-header { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.layer-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: var(--font-code); font-weight: 700; font-size: 16px; }
+.layer-anchor .layer-icon { background: var(--accent-amber-light); color: var(--accent-amber); }
+.layer-progress .layer-icon { background: var(--accent-teal-light); color: var(--accent-teal); }
+.layer-execution .layer-icon { background: var(--accent-violet-light); color: var(--accent-violet); }
+.layer h3 { font-family: var(--font-display); font-size: 24px; font-weight: 600; }
+.layer-meta { font-family: var(--font-code); font-size: 14px; color: var(--text-muted); margin-left: auto; }
+.layer-items { display: flex; flex-wrap: wrap; gap: 10px; }
+.layer-item { font-size: 14px; padding: 8px 14px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px; color: var(--text-secondary); }
+.info-box { margin-top: 18px; padding: 14px 18px; background: var(--bg-elevated); border-radius: 10px; font-size: 15px; color: var(--text-secondary); border: 1px solid var(--border); line-height: 1.6; }
+
+/* CALLOUT */
+.callout { background: linear-gradient(135deg, rgba(194,65,12,0.04), rgba(13,148,136,0.02)); border: 1px solid rgba(194,65,12,0.12); border-radius: 14px; padding: 28px 32px; margin: 36px 0; position: relative; }
+.callout::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(to bottom, var(--accent-amber), var(--accent-teal)); border-radius: 14px 0 0 14px; }
+.callout p { font-size: 17px; color: var(--text-primary); line-height: 1.7; }
+.callout p strong { color: var(--accent-amber); }
+
+/* DIVIDER */
+.divider { height: 1px; background: linear-gradient(to right, transparent, var(--border-strong), transparent); margin: 80px 0; }
+
+/* PRIORITY MODEL */
+.priority-model { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 36px; }
+@media (max-width: 820px) { .priority-model { grid-template-columns: 1fr; } }
+.priority-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; }
+.priority-card h4 { font-family: var(--font-display); font-size: 20px; font-weight: 600; margin-bottom: 18px; }
+.priority-card.old h4 { color: var(--accent-rose); }
+.priority-card.new h4 { color: var(--accent-teal); }
+.priority-formula { font-family: var(--font-code); font-size: 15px; background: var(--bg-code); padding: 14px 18px; border-radius: 10px; margin: 14px 0; color: var(--text-primary); border: 1px solid var(--border); }
+.priority-card ul { list-style: none; padding: 0; }
+.priority-card li { font-size: 16px; color: var(--text-secondary); padding: 8px 0; padding-left: 22px; position: relative; line-height: 1.6; }
+.priority-card li::before { content: '→'; position: absolute; left: 0; color: var(--text-muted); }
+
+/* FRAMEWORK CARDS */
+.framework-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 36px; }
+.framework-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; text-align: center; }
+.framework-card .fc-icon { font-family: var(--font-code); font-size: 28px; font-weight: 700; color: var(--accent-amber); margin-bottom: 14px; }
+.framework-card h4 { font-family: var(--font-display); font-size: 20px; font-weight: 600; margin-bottom: 10px; }
+.framework-card p { font-size: 16px; color: var(--text-secondary); line-height: 1.6; }
+
+/* COLLAB FLOW */
+.collab-flow { display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch; margin-bottom: 36px; }
+.collab-step { flex: 1; min-width: 220px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; }
+.collab-step .cs-num { font-family: var(--font-code); font-size: 14px; color: var(--accent-amber); margin-bottom: 10px; }
+.collab-step h5 { font-family: var(--font-display); font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+.collab-step p { font-size: 15px; color: var(--text-secondary); line-height: 1.5; }
+.collab-step .cs-roles { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+.collab-step .cs-role { font-family: var(--font-code); font-size: 14px; padding: 3px 8px; border-radius: 5px; background: var(--bg-elevated); color: var(--text-muted); }
+.collab-step .cs-role.ai { background: var(--accent-teal-light); color: var(--accent-teal); }
+
+/* ROLE DETAIL */
+.role-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 24px 0; }
+.role-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+.role-card h5 { font-family: var(--font-display); font-size: 18px; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.role-card .role-tag { font-family: var(--font-code); font-size: 14px; padding: 3px 8px; border-radius: 5px; }
+.role-card ul { list-style: none; padding: 0; }
+.role-card li { font-size: 15px; color: var(--text-secondary); padding: 5px 0; padding-left: 18px; position: relative; line-height: 1.5; }
+.role-card li::before { content: '·'; position: absolute; left: 4px; color: var(--text-muted); font-weight: 700; }
+.role-card .role-tag.pm { background: var(--accent-amber-light); color: var(--accent-amber); }
+.role-card .role-tag.tech { background: var(--accent-teal-light); color: var(--accent-teal); }
+.role-card .role-tag.ai { background: var(--accent-violet-light); color: var(--accent-violet); }
+.role-card .role-tag.qa { background: var(--accent-rose-light); color: var(--accent-rose); }
+
+/* WORKFLOW */
+.workflow-container { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 44px; }
+@media (max-width: 900px) { .workflow-container { grid-template-columns: 1fr; } }
+.workflow-box { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
+.workflow-box h3 { font-family: var(--font-display); font-size: 22px; font-weight: 600; margin-bottom: 24px; text-align: center; }
+.workflow-box.old h3 { color: var(--accent-rose); }
+.workflow-box.new h3 { color: var(--accent-teal); }
+.workflow-svg { width: 100%; height: auto; }
+.wf-label { font-family: var(--font-body); font-size: 14px; fill: var(--text-secondary); text-anchor: middle; }
+.wf-label-role { font-family: var(--font-code); font-size: 12px; fill: var(--text-muted); text-anchor: middle; }
+
+/* FORMULA BOX */
+.formula-box { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 32px; margin-bottom: 28px; }
+.formula-box .formula { font-family: var(--font-code); font-size: 18px; color: var(--accent-amber); text-align: center; margin-bottom: 20px; font-weight: 500; }
+.formula-box .formula-vars { font-size: 16px; color: var(--text-secondary); line-height: 1.8; }
+.formula-box .formula-vars strong { color: var(--text-primary); }
+
+/* TEMPLATES */
+.template-accordion { display: flex; flex-direction: column; gap: 10px; margin-bottom: 44px; }
+.template-item { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--bg-surface); }
+.template-header { padding: 18px 24px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: background 0.2s; user-select: none; }
+.template-header:hover { background: var(--bg-elevated); }
+.template-header .th-num { font-family: var(--font-code); font-size: 14px; font-weight: 700; color: var(--accent-amber); min-width: 30px; }
+.template-header .th-title { font-family: var(--font-display); font-size: 18px; font-weight: 600; flex: 1; }
+.template-header .th-tag { font-family: var(--font-code); font-size: 14px; padding: 4px 10px; border-radius: 6px; }
+.template-header .th-tag.anchor { background: var(--accent-amber-light); color: var(--accent-amber); }
+.template-header .th-tag.progress { background: var(--accent-teal-light); color: var(--accent-teal); }
+.template-header .th-tag.execution { background: var(--accent-violet-light); color: var(--accent-violet); }
+.template-header .th-chevron { color: var(--text-muted); transition: transform 0.3s; font-size: 16px; }
+.template-item.open .th-chevron { transform: rotate(90deg); }
+.template-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.template-item.open .template-body { max-height: 8000px; }
+.template-content { padding: 0 24px 24px; }
+.template-content pre { background: var(--bg-code); border: 1px solid var(--border); border-radius: 10px; padding: 22px; overflow-x: auto; font-family: var(--font-code); font-size: 14px; line-height: 1.65; color: var(--text-secondary); white-space: pre-wrap; word-break: break-word; }
+.template-content .tpl-desc { font-size: 16px; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.7; }
+.template-content .tpl-desc strong { color: var(--text-primary); }
+
+/* FOOTER */
+.footer { text-align: center; padding: 80px 28px 50px; border-top: 1px solid var(--border); margin-top: 40px; }
+.footer p { font-size: 15px; color: var(--text-muted); margin-bottom: 10px; }
+.footer-brand { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--accent-amber); margin-bottom: 20px; }
+
+/* SUBHEAD */
+.subhead { font-family: var(--font-display); font-size: 26px; font-weight: 600; margin: 48px 0 20px; }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav-bar">
+  <div class="nav-brand">AI PM 手册</div>
+    <div class="nav-links">
+    <a href="#hero" class="active">开篇</a>
+    <a href="#collaboration">协作</a>
+    <a href="#thinking">思维</a>
+    <a href="#deliverables">产出物</a>
+    <a href="#layers">管控</a>
+    <a href="#agent-memory">记忆</a>
+    <a href="#eval-system">Eval</a>
+    <a href="#workflows">工作流</a>
+    <a href="#multi-agent">Multi-Agent</a>
+    <a href="#action">实操</a>
+    <a href="#context-engineering">上下文</a>
+    <a href="#model-strategy">模型</a>
+    <a href="#hitl">HITL</a>
+    <a href="#production">部署</a>
+    <a href="#templates">模板</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-eyebrow">产品经理AI Coding转型 · 实操手册 v2.0</div>
+  <h1>产品经理<br>AI Coding 工作手册</h1>
+  <p class="hero-subtitle">本手册系统梳理了AI Coding时代产品经理的协作体系、思维范式、产出物体系和实操流程。<br>每个章节包含对照分析、操作指引和可直接复用的标准模板。<br>目标读者：正在从传统PM向AI原生PM转型的产品经理。</p>
+  <div class="hero-meta">
+    <span><span class="dot"></span> 8个章节</span>
+    <span><span class="dot"></span> 14个标准模板</span>
+    <span><span class="dot"></span> 工作流图解</span>
+    <span><span class="dot"></span> 2026 · v2.0</span>
+  </div>
+</section>
+
+<section class="section" id="collaboration">
+  <div class="section-tag">CHAPTER 01</div>
+  <h2 class="section-title">协作体系：从线性串联到并行AI增强</h2>
+  <p class="section-subtitle">协作的对象、结构、信息流和决策权在AI时代全部被重构。旧世界靠"信息传递"串联团队，新世界靠"约束对齐"并行多路产出。这一章梳理两种范式逐项对比，并给出每个变化背后的底层逻辑。</p>
+
+  <div class="compare-grid">
+    <div class="compare-card old">
+      <div class="compare-card-label">旧范式</div>
+      <ul>
+        <li><strong>协作对象：PM→设计师→前端→后端→QA逐级传递</strong>。产品经理写完PRD交给设计师，设计师出图交给前端，前端联调交给后端，后端提测给QA。每一环都是人传人，每个人只负责自己那段。</li>
+        <li><strong>协作结构：线性串联，上游完成才启动下游</strong>。整条链路像瀑布一样依次推进，前一个环节不交付后一个环节就无法开工，项目周期等于各环节时长之和。</li>
+        <li><strong>沟通方式：PRD文档→评审会→站会→1v1</strong>。信息靠会议和文档在人与人之间搬运，一份PRD要开评审会、站会、一对一对齐，沟通成本随人数线性增长。</li>
+        <li><strong>信息流：单向传递，每环都有损耗</strong>。需求从上游传到下游，每经过一次转述就丢失一次细节，最终QA拿到的理解和PM最初的想法常常差一大截。</li>
+        <li><strong>瓶颈：开发资源瓶颈，PM排队</strong>。研发产能是硬约束，PM的需求堆在排期队列里等开发档期，优先级本质是在抢有限的工程时间。</li>
+        <li><strong>决策权：PM提议，工程评估，多轮博弈</strong>。技术方案由工程师评估可行性，PM和工程来回拉扯，一个决策要经历提议-评估-反驳-妥协多个回合才能落地。</li>
+      </ul>
+    </div>
+    <div class="compare-card new">
+      <div class="compare-card-label">新范式</div>
+      <ul>
+        <li><strong>协作对象：PM↔AI Agent 为主，PM↔设计师↔工程师 为辅，都带AI</strong>。PM直接指挥自己的AI Agent产出，设计师和工程师也各自带着AI同时工作，人与人之间只在关键锚点上对齐。</li>
+        <li><strong>协作结构：并行展开，各自带AI同时产出，通过锚点层对齐</strong>。不再排队等上游，多路同时开工，靠AGENTS.md、Design Tokens、BDD场景这些约束文件在锚点层汇聚，保证产出能拼到一起。</li>
+        <li><strong>沟通方式：结构化约束文件（AGENTS.md / Design Tokens / BDD场景），AI直接消费</strong>。沟通从"人读文档开会讨论"变成"机器直接读取约束文件执行"，语义不再靠口头传递，而是落成可消费的约束。</li>
+        <li><strong>信息流：AI能秒读任何人代码，信息不对称降低，但产出不一致风险升高</strong>。任何人都能让AI读全仓代码理解上下文，信息壁垒被打破；代价是多路并行产出风格不统一，必须靠约束层管控一致性。</li>
+        <li><strong>瓶颈：对齐成本是瓶颈，多人AI产出必须能拼到一起</strong>。生成速度不再是问题，真正的瓶颈变成"多路AI产出能否对齐"——对齐不好就要返工，对齐成本取代了开发资源成为新约束。</li>
+        <li><strong>决策权：PM直接做技术决策，ADR记录，AI执行，PM验证</strong>。PM不再需要等工程评估，自己拍板技术方向，用ADR（架构决策记录）留痕，AI负责执行，PM验收产出是否符合预期。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>核心矛盾变化：</strong>旧范式核心矛盾是"信息不对称"——需求在传递中失真；新范式核心矛盾是"产出不一致"——多路AI各自生成、风格和逻辑可能对不上。协作重心从"信息传递"变成"约束对齐"。
+  </div>
+
+  <h3 class="subhead">目标优先级模型变化</h3>
+
+  <div class="priority-grid">
+    <div class="priority-card old">
+      <div class="priority-card-label">旧范式优先级公式</div>
+      <div class="formula">优先级 = 目标价值 ÷ (人天 × 实现时间)</div>
+      <ul>
+        <li><strong>成本固定</strong>：几个人、多少天，估算精度高，排期就是排人头。</li>
+        <li><strong>成本不需控制</strong>：申请→评审→达成一致即可，反正最终按人头计费。</li>
+        <li><strong>RICE / ICE 用于说服团队</strong>：优先级评分本质是向工程团队证明"为什么先做这个"。</li>
+        <li><strong>ROI 可预估</strong>：投入多少工时、预期产出多少功能，比值清晰可算。</li>
+      </ul>
+    </div>
+    <div class="priority-card new">
+      <div class="priority-card-label">新范式优先级公式</div>
+      <div class="formula">优先级 = 目标价值 ÷ (时间 + Token成本 + 对齐成本)</div>
+      <ul>
+        <li><strong>Token成本变动</strong>：一次生成可能$0.1，但迭代10次就是$10，成本随质量要求浮动，不再线性。</li>
+        <li><strong>对齐成本隐性</strong>：多人各自带AI产出不一致，返工的代价不显式但可能比生成成本高得多。</li>
+        <li><strong>成本难预估</strong>：AI产出速度和质量波动大，同一条任务可能5分钟也可能50分钟，估不准。</li>
+        <li><strong>新策略</strong>：方向大致正确，组织持续迭代活跃——只要团队在动、产出在迭代，方向可以边走边修。</li>
+        <li><strong>不再排人头</strong>：瓶颈从"几个人"变成"对齐质量+Token预算+上下文长度"，优先级是约束优化问题。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>类比：</strong>旧范式像建楼——精确计算、按图纸施工，每一层都定型；新范式像有机生长——方向大致正确、边长边调，关键是保持迭代活跃度，让组织一直在长。
+  </div>
+
+  <h3 class="subhead">不是单人闭环：AI时代依然有多人协作</h3>
+  <p>AI时代不是PM一个人+AI搞定一切。团队里依然有PM、设计师、前端工程师，每个人都带着自己的AI Agent。协作从"线性串联"变成"并行AI增强"——信息不对称降低了，但产出一致性要求升高了。下面的表梳理了哪些产出物被"回轻"（变轻但没消失），以及为什么多人协作仍然需要它们。</p>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>产出物</th>
+          <th>旧形态</th>
+          <th>新形态</th>
+          <th>变轻了多少</th>
+          <th>为什么多人协作仍需要</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sprint计划</td>
+          <td>每2周排Sprint + 估点 + 分配任务</td>
+          <td>里程碑看板（谁负责哪个模块 + AC完成率 + 依赖关系）</td>
+          <td>从精细排期 → 按模块分工 + 看AC完成率</td>
+          <td>多人各自带AI产出时仍需知道谁做哪个模块、依赖关系</td>
+        </tr>
+        <tr>
+          <td>站会纪要</td>
+          <td>定时开会口头同步 + 记录纪要</td>
+          <td>异步状态同步（看板上更新3行）</td>
+          <td>从开会+记录 → 看板3行，AI从代码diff自动提取</td>
+          <td>多人协作仍需知道彼此进度和blocker</td>
+        </tr>
+        <tr>
+          <td>需求评审纪要</td>
+          <td>开会评审 + 记录修改意见</td>
+          <td>对齐快照（锚点变更时各自确认不受影响）</td>
+          <td>从开会评审 → 自动影响检测+确认</td>
+          <td>锚点层变更时其他人需确认产出不受影响</td>
+        </tr>
+        <tr>
+          <td>Bug工单</td>
+          <td>所有Bug提Jira工单流转</td>
+          <td>跨模块Issue（只跨模块才提，模块内自闭环）</td>
+          <td>从所有Bug提工单 → 只有跨模块Bug才提</td>
+          <td>跨越多人的模块边界时仍需协调</td>
+        </tr>
+        <tr>
+          <td>API接口文档</td>
+          <td>手写文档给前端读</td>
+          <td>AI从代码自动生成的OpenAPI Spec</td>
+          <td>从手写 → 代码即文档、永远同步</td>
+          <td>不同人做前后端时仍需接口约定</td>
+        </tr>
+        <tr>
+          <td>设计交接文档</td>
+          <td>设计师写交接标注</td>
+          <td>Design Tokens JSON + BDD场景（AI直接消费）</td>
+          <td>从人写文档 → 机器可读约束</td>
+          <td>设计师和PM不同人时仍需交接</td>
+        </tr>
+        <tr>
+          <td>周报月报</td>
+          <td>每周手写 + 向上汇报</td>
+          <td>里程碑复盘摘要（AI从全链路数据自动生成）</td>
+          <td>从每周手写 → 里程碑AI生成+人判断</td>
+          <td>上级仍需了解整体进展</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>被淘汰产出物的共性：</strong>桥梁型（人给人传递信息的中间产物）、过程管理型（为了管理多人协作流程而存在）、重复描述型（被更高保真的产出物自动包含）。AI时代协作核心矛盾从"信息传递"变成"约束对齐"——回轻了的产出物，本质都变成了对齐工具。
+  </div>
+</section>
+
+
+<!-- ===== CH01: COLLABORATION ===== -->
+
+
+<!-- ===== CH02: THINKING ===== -->
+<section id="thinking" class="section">
+  <div class="section-tag">CHAPTER 02</div>
+  <h2 class="section-title">思维范式：价值模型、成本结构与资产定义的变迁</h2>
+  <p class="section-subtitle">本章节梳理6个维度的范式变化。每个维度按"旧范式→新范式"对照展开，帮助产品经理识别哪些思维惯性需要调整。</p>
+
+  <div class="value-grid">
+
+    <div class="value-card">
+      <div class="vc-old">
+        <div class="vc-label">旧 · 价值模型</div>
+        <p><strong>抓住用户心智入口 → 边际成本无限趋近0 → 后期商业化</strong></p>
+        <p>先免费做大用户量，用户即生产资料即资产，后期通过广告/增值服务/数据变现。规模效应是核心壁垒，DAU就是生命线。</p>
+      </div>
+      <div class="vc-arrow">↓</div>
+      <div class="vc-new">
+        <div class="vc-label">新 · 价值模型</div>
+        <p><strong>场景落地深度 → 边际成本正相关 → 即时价值交付</strong></p>
+        <p>AI调用是有成本的（Token），每多一个用户多一份成本。不能再用"先免费后变现"的逻辑。每个用户必须即时产生价值，或贡献数据/场景反哺模型。用户量不再是唯一目标。</p>
+      </div>
+    </div>
+
+    <div class="value-card">
+      <div class="vc-old">
+        <div class="vc-label">旧 · 边际成本</div>
+        <p><strong>边际成本 → 0</strong></p>
+        <p>软件开发一次，复制无限份，边际成本趋近0。用户越多，单位成本越低，规模效应越强。这是软件行业最根本的商业逻辑。</p>
+      </div>
+      <div class="vc-arrow">↓</div>
+      <div class="vc-new">
+        <div class="vc-label">新 · 边际成本</div>
+        <p><strong>边际成本 ∝ 使用量</strong></p>
+        <p>AI产品的每次调用都消耗Token/算力。用户越多，成本越高。必须确保每次调用的价值 > Token成本，否则用户越多亏越多。这是AI产品与传统软件最本质的商业差异。</p>
+      </div>
+    </div>
+
+    <div class="value-card">
+      <div class="vc-old">
+        <div class="vc-label">旧 · 资产定义</div>
+        <p><strong>用户量 = 资产</strong></p>
+        <p>DAU/MAU是核心指标。用户就是生产资料，用户数据可以后期变现。先圈地后赚钱，用户规模即护城河。</p>
+      </div>
+      <div class="vc-arrow">↓</div>
+      <div class="vc-new">
+        <div class="vc-label">新 · 资产定义</div>
+        <p><strong>数据 + 落地场景 = 资产</strong></p>
+        <p>用户量不再是唯一壁垒。真正的资产是：①独家数据（让AI越用越准）②落地场景（让AI嵌入不可替代的工作流）。没有场景的AI产品，用户随时可迁移。</p>
+      </div>
+    </div>
+
+    <div class="value-card">
+      <div class="vc-old">
+        <div class="vc-label">旧 · 壁垒来源</div>
+        <p><strong>网络效应 + 规模效应</strong></p>
+        <p>用户越多价值越高（网络效应），成本越低（规模效应），形成双轮飞轮。用户规模即壁垒。</p>
+      </div>
+      <div class="vc-arrow">↓</div>
+      <div class="vc-new">
+        <div class="vc-label">新 · 壁垒来源</div>
+        <p><strong>数据飞轮 + 场景嵌入深度 + 工作流锁定</strong></p>
+        <p>用户越用AI越懂用户（数据飞轮），AI嵌入越深切换成本越高（场景锁定）。没有数据和场景的AI产品，底层模型一升级就归零。</p>
+      </div>
+    </div>
+
+    <div class="value-card">
+      <div class="vc-old">
+        <div class="vc-label">旧 · PM核心能力</div>
+        <p><strong>需求洞察 + 沟通协调 + 项目管理</strong></p>
+        <p>PM的价值在于：发现用户需求、翻译给工程师、协调多角色推进、控制进度风险。核心是"描述+协调"。</p>
+      </div>
+      <div class="vc-arrow">↓</div>
+      <div class="vc-new">
+        <div class="vc-label">新 · PM核心能力</div>
+        <p><strong>问题框定 + 约束定义 + 验证判断 + 迭代节奏</strong></p>
+        <p>PM的价值在于：框定正确的问题、定义AI的约束边界、验证AI产出的质量和方向、控制迭代节奏防止偏移。核心是"约束+验证"。</p>
+      </div>
+    </div>
+
+    <div class="value-card">
+      <div class="vc-old">
+        <div class="vc-label">旧 · 思考模型</div>
+        <p><strong>描述型思维——"用户应该能做什么"</strong></p>
+        <p>PRD描述功能列表、用户故事描述需求、线框图描述布局。核心是"描述清楚让别人执行"，产出物是给人看的沟通文档。</p>
+      </div>
+      <div class="vc-arrow">↓</div>
+      <div class="vc-new">
+        <div class="vc-label">新 · 思考模型</div>
+        <p><strong>约束型思维——"系统不允许做什么 + 必须遵守什么"</strong></p>
+        <p>AGENTS.md定义技术约束、Design Tokens定义视觉约束、BDD定义行为边界。核心是"围栏比方向更重要"——AI自己会想怎么做，你定义什么不能做。</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===== CH03: DELIVERABLES ===== -->
+<section id="deliverables" class="section">
+  <div class="section-tag">CHAPTER 03</div>
+  <h2 class="section-title">产出物体系：淘汰 · 新增 · 升级 · 回轻</h2>
+  <p class="section-subtitle">按"消失/新增/升级/回轻"四类，看清哪些必须做、哪些可以扔。多人文协作时哪些又"回轻了"。</p>
+
+  <div class="tab-group">
+    <button class="tab-btn active" onclick="switchTab('tab-eliminated')">彻底消失</button>
+    <button class="tab-btn" onclick="switchTab('tab-new')">全新产出物</button>
+    <button class="tab-btn" onclick="switchTab('tab-upgraded')">升级进化</button>
+    <button class="tab-btn" onclick="switchTab('tab-lighter')">回轻了</button>
+    <button class="tab-btn" onclick="switchTab('tab-always')">三层分类</button>
+    <button class="tab-btn" onclick="switchTab('tab-density')">协作密度</button>
+  </div>
+
+  <!-- Tab 1: 彻底消失 -->
+  <div class="tab-panel active" id="tab-eliminated">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>被淘汰产出物</th>
+            <th>消失原因</th>
+            <th>替代产出物</th>
+            <th>多人协作也不需要</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>线框图Wireframe</strong></td>
+            <td>AI直接生成高保真可交互原型，信息量完全包含线框图，先画线框再让AI做等于多一道无用工序</td>
+            <td><span class="tag tag-new">AI高保真原型</span></td>
+            <td>10人各自用AI做原型也不需要先画线框——原型已包含全部布局信息</td>
+          </tr>
+          <tr>
+            <td><strong>测试用例文档(步骤表格)</strong></td>
+            <td>BDD场景→AI自动生成测试代码，"步骤1-2-3预期结果"的信息被完全包含且可执行</td>
+            <td><span class="tag tag-new">BDD→自动测试</span></td>
+            <td>每人写BDD场景AI各自生成测试，比手写表格效率高且无歧义</td>
+          </tr>
+          <tr>
+            <td><strong>几十页PRD</strong></td>
+            <td>功能描述被设计简报+BDD场景+Sitemap+Flow链式产出完全包含，长PRD是信息冗余</td>
+            <td><span class="tag tag-upgraded">简报+BDD链</span></td>
+            <td>每人从同一链式上下文各取所需，比读几十页文档高效</td>
+          </tr>
+          <tr>
+            <td><strong>燃尽图(Story Point估点)</strong></td>
+            <td>AI产出速度不可估且不可比，Story Point失去意义</td>
+            <td><span class="tag tag-new">AC Trace完成率</span></td>
+            <td>各人AI产出速度不同估点无法横向比较；AC完成率与人数无关</td>
+          </tr>
+          <tr>
+            <td><strong>Story Point估算</strong></td>
+            <td>AI生成代码速度与人工估点无关，估点前提是"人写代码速度可预估"</td>
+            <td><span class="tag tag-new">AC条目数+实际时间</span></td>
+            <td>多人协作时估点更没意义——无法横向比较</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tab 2: 全新产出物 -->
+  <div class="tab-panel" id="tab-new">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>新产出物</th>
+            <th>全称</th>
+            <th>给谁消费</th>
+            <th>核心价值</th>
+            <th>管控层级</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>AGENTS.md</strong></td>
+            <td>项目级AI指令文件</td>
+            <td>AI Agent</td>
+            <td>定义技术栈/编码规范/架构边界/命名规则/目录结构</td>
+            <td><span class="tag tag-anchor">锚点层</span></td>
+          </tr>
+          <tr>
+            <td><strong>ADR</strong></td>
+            <td>Architecture Decision Records</td>
+            <td>自己+AI</td>
+            <td>记录每个技术选型的决策+上下文+约束+后果</td>
+            <td><span class="tag tag-anchor">锚点层</span></td>
+          </tr>
+          <tr>
+            <td><strong>Design Brief</strong></td>
+            <td>设计简报</td>
+            <td>自己+AI+下游所有</td>
+            <td>一页纸：业务目标+用户+设计策略+成功标准</td>
+            <td><span class="tag tag-anchor">锚点层</span></td>
+          </tr>
+          <tr>
+            <td><strong>Problem Framing</strong></td>
+            <td>问题框定文档</td>
+            <td>自己+AI</td>
+            <td>定义"到底解决什么问题"+用户+成功定义</td>
+            <td><span class="tag tag-anchor">锚点层</span></td>
+          </tr>
+          <tr>
+            <td><strong>Design Tokens JSON</strong></td>
+            <td>机器可读设计规范</td>
+            <td>AI Agent</td>
+            <td>色彩/字体/间距/圆角/阴影/动效参数</td>
+            <td><span class="tag tag-anchor">锚点层</span></td>
+          </tr>
+          <tr>
+            <td><strong>BDD Scenarios</strong></td>
+            <td>Behavior Driven Development</td>
+            <td>AI+自己</td>
+            <td>Given/When/Then行为规格——可执行的PRD</td>
+            <td><span class="tag tag-progress">进度层</span></td>
+          </tr>
+          <tr>
+            <td><strong>Edge Case Matrix</strong></td>
+            <td>异常态矩阵</td>
+            <td>AI+自己</td>
+            <td>每屏×6状态穷举，防止AI只生成happy path</td>
+            <td><span class="tag tag-progress">进度层</span></td>
+          </tr>
+          <tr>
+            <td><strong>Data Model Spec</strong></td>
+            <td>数据模型定义</td>
+            <td>AI Agent</td>
+            <td>实体关系+字段+类型+约束规则</td>
+            <td><span class="tag tag-anchor">锚点层</span></td>
+          </tr>
+          <tr>
+            <td><strong>AC as Code</strong></td>
+            <td>可执行验收标准</td>
+            <td>AI Agent</td>
+            <td>断言式验收标准能直接跑</td>
+            <td><span class="tag tag-progress">进度层</span></td>
+          </tr>
+          <tr>
+            <td><strong>System Prompt Library</strong></td>
+            <td>场景化提示词模板库</td>
+            <td>自己</td>
+            <td>复用经验不重复造轮子</td>
+            <td><span class="tag tag-progress">进度层</span></td>
+          </tr>
+          <tr>
+            <td><strong>Design QA Report</strong></td>
+            <td>设计走查报告</td>
+            <td>自己</td>
+            <td>实现vs Tokens偏差清单</td>
+            <td><span class="tag tag-execution">执行层</span></td>
+          </tr>
+          <tr>
+            <td><strong>AC Trace Matrix</strong></td>
+            <td>验收标准追溯矩阵</td>
+            <td>自己</td>
+            <td>每功能×AC完成状态</td>
+            <td><span class="tag tag-progress">进度层</span></td>
+          </tr>
+          <tr>
+            <td><strong>Snapshot Diff</strong></td>
+            <td>快照对比报告</td>
+            <td>自己</td>
+            <td>里程碑间全链路状态变更审计</td>
+            <td><span class="tag tag-execution">执行层</span></td>
+          </tr>
+          <tr>
+            <td><strong>Conversation Log</strong></td>
+            <td>对话日志</td>
+            <td>自己(归档)</td>
+            <td>与AI交互过程+决策变更原因</td>
+            <td><span class="tag tag-execution">执行层</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tab 3: 升级进化 -->
+  <div class="tab-panel" id="tab-upgraded">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>传统产出物</th>
+            <th>传统方式</th>
+            <th>新范式方式</th>
+            <th>什么变了</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>PRD</strong></td>
+            <td>PM手写几十页Word</td>
+            <td>AI从简报+BDD+Sitemap+Flow自动整合生成</td>
+            <td>从"手写"→"AI生成+PM审查"</td>
+          </tr>
+          <tr>
+            <td><strong>用户故事</strong></td>
+            <td>"As a user I want…"贴Jira</td>
+            <td>JTBD格式+设计触点描述</td>
+            <td>从User Story→JTBD，不再贴Jira</td>
+          </tr>
+          <tr>
+            <td><strong>验收标准AC</strong></td>
+            <td>自然语言checklist给QA</td>
+            <td>Given/When/Then AI转测试断言</td>
+            <td>从自然语言→可执行格式</td>
+          </tr>
+          <tr>
+            <td><strong>用户流程图Flow</strong></td>
+            <td>Axure/Whimsical画图导出图片</td>
+            <td>AI从Sitemap+用户故事生成可交互HTML</td>
+            <td>从静态图→可交互HTML</td>
+          </tr>
+          <tr>
+            <td><strong>信息架构IA</strong></td>
+            <td>手画树状图</td>
+            <td>AI从简报+用户故事生成含路由命名</td>
+            <td>从自由排版→结构化JSON</td>
+          </tr>
+          <tr>
+            <td><strong>交互原型</strong></td>
+            <td>Axure/Figma搭建可点击原型</td>
+            <td>AI直接生成可运行代码原型</td>
+            <td>从模拟交互→真实可运行代码</td>
+          </tr>
+          <tr>
+            <td><strong>竞品分析</strong></td>
+            <td>几十页报告功能矩阵+SWOT</td>
+            <td>AI深度UX拆解提炼可借鉴交互模式</td>
+            <td>从市场战略→UX/交互/视觉</td>
+          </tr>
+          <tr>
+            <td><strong>用户调研报告</strong></td>
+            <td>问卷+访谈写几十页</td>
+            <td>5-8人深访AI做主题归纳几条洞察</td>
+            <td>从几十页→几条AI上下文</td>
+          </tr>
+          <tr>
+            <td><strong>数据复盘报告</strong></td>
+            <td>上线N天写复盘PPT</td>
+            <td>AI实时跑数据里程碑自动生成摘要</td>
+            <td>从事后N天→实时+里程碑</td>
+          </tr>
+          <tr>
+            <td><strong>发版说明</strong></td>
+            <td>PM手写变更列表</td>
+            <td>AI从git commit+AC Trace自动生成</td>
+            <td>从手写→AI自动提取</td>
+          </tr>
+          <tr>
+            <td><strong>设计规范文档</strong></td>
+            <td>设计师在Figma标注</td>
+            <td>AI提取Design Tokens JSON</td>
+            <td>从Figma注释→机器可读JSON</td>
+          </tr>
+          <tr>
+            <td><strong>测试用例</strong></td>
+            <td>QA手写步骤表格</td>
+            <td>AI从BDD场景自动生成测试代码</td>
+            <td>从QA手写→AI从BDD自动生成</td>
+          </tr>
+          <tr>
+            <td><strong>Bug工单</strong></td>
+            <td>QA提Jira工单流转</td>
+            <td>AI走查直接发现修复未修复固化为BDD</td>
+            <td>从三步流转→AI自闭环</td>
+          </tr>
+          <tr>
+            <td><strong>项目复盘</strong></td>
+            <td>组织复盘会团队回顾</td>
+            <td>AI读取全链路数据自动生成决策对照表</td>
+            <td>从团队开会→AI分析+PM判断</td>
+          </tr>
+          <tr>
+            <td><strong>路线图Roadmap</strong></td>
+            <td>维护版本计划表给团队</td>
+            <td>精简方向性路线图Sprint级排期消失</td>
+            <td>从Sprint精细排期→里程碑方向图</td>
+          </tr>
+          <tr>
+            <td><strong>用户旅程图</strong></td>
+            <td>手画全生命周期旅程图</td>
+            <td>AI从persona+简报自动生成HTML交互旅程图</td>
+            <td>从手画→AI生成HTML</td>
+          </tr>
+          <tr>
+            <td><strong>视觉情绪板</strong></td>
+            <td>收集参考图拼贴Mood Board</td>
+            <td>AI推导3-4套色彩方向输出HTML+Tokens</td>
+            <td>从图片拼贴→HTML+JSON</td>
+          </tr>
+          <tr>
+            <td><strong>动效规范</strong></td>
+            <td>Principle/AE做动效demo视频</td>
+            <td>AI按Three Pillars定义动效Personality+签名缓动</td>
+            <td>从demo视频→参数化规范</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tab 4: 回轻了 -->
+  <div class="tab-panel" id="tab-lighter">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>产出物</th>
+            <th>旧形态</th>
+            <th>新形态</th>
+            <th>变轻了多少</th>
+            <th>为什么多人协作仍需要</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Sprint计划</strong></td>
+            <td>每2周排Sprint+估点+分配任务</td>
+            <td>里程碑看板(谁负责哪个模块+AC完成率+依赖关系)</td>
+            <td>从精细排期→按模块分工+看AC完成率</td>
+            <td>多人各自带AI产出时仍需知道谁做哪个模块、依赖关系</td>
+          </tr>
+          <tr>
+            <td><strong>站会纪要</strong></td>
+            <td>定时开会口头同步+记录纪要</td>
+            <td>异步状态同步(看板上更新3行)</td>
+            <td>从开会+记录→看板3行</td>
+            <td>多人协作仍需知道彼此进度和blocker</td>
+          </tr>
+          <tr>
+            <td><strong>需求评审纪要</strong></td>
+            <td>开会评审+记录修改意见</td>
+            <td>对齐快照(锚点变更时各自确认不受影响)</td>
+            <td>从开会评审→自动影响检测+确认</td>
+            <td>锚点层变更时其他人需确认产出不受影响</td>
+          </tr>
+          <tr>
+            <td><strong>Bug工单</strong></td>
+            <td>所有Bug提Jira工单流转</td>
+            <td>跨模块Issue(只跨模块才提模块内自闭环)</td>
+            <td>从所有Bug提工单→只有跨模块Bug才提</td>
+            <td>跨越多人的模块边界时仍需协调</td>
+          </tr>
+          <tr>
+            <td><strong>API接口文档</strong></td>
+            <td>手写文档给前端读</td>
+            <td>AI从代码自动生成的OpenAPI Spec</td>
+            <td>从手写→代码即文档永远同步</td>
+            <td>不同人做前后端时仍需接口约定</td>
+          </tr>
+          <tr>
+            <td><strong>设计交接文档</strong></td>
+            <td>设计师写交接标注</td>
+            <td>Design Tokens JSON + BDD场景(AI直接消费)</td>
+            <td>从人写文档→机器可读约束</td>
+            <td>设计师和PM不同人时仍需交接</td>
+          </tr>
+          <tr>
+            <td><strong>周报月报</strong></td>
+            <td>每周手写+向上汇报</td>
+            <td>里程碑复盘摘要(AI从全链路数据自动生成)</td>
+            <td>从每周手写→里程碑AI生成+人判断</td>
+            <td>上级仍需了解整体进展</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tab 5: 三层分类 -->
+  <div class="tab-panel" id="tab-always">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>分类</th>
+            <th>特征</th>
+            <th>产出物</th>
+            <th>人数影响</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>彻底消失</strong></td>
+            <td>被更高保真产出物完全包含，信息冗余</td>
+            <td>线框图、测试用例表格、几十页PRD、燃尽图、Story Point估点</td>
+            <td>与人数无关，1人或100人都不需要</td>
+          </tr>
+          <tr>
+            <td><strong>回轻了</strong></td>
+            <td>多人协作时仍需某种形态，但从重文档变为轻同步</td>
+            <td>Sprint计划→里程碑看板、站会→异步看板、评审纪要→对齐快照、Bug工单→跨模块Issue、API文档→自动生成OpenAPI、交接文档→Tokens+BDD</td>
+            <td>协作人数越多越需要，但每个产出物重量大幅降低</td>
+          </tr>
+          <tr>
+            <td><strong>始终重要</strong></td>
+            <td>定义约束/标准/方向/验证，不因人数变化</td>
+            <td>设计简报、ADR、AGENTS.md、Design Tokens、BDD场景、Sitemap、Flow、异常态矩阵、数据模型、Design QA、AC Trace</td>
+            <td>与人数无关，1人或100人都需要</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tab 6: 协作密度 -->
+  <div class="tab-panel" id="tab-density">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>协作模式</th>
+            <th>典型场景</th>
+            <th>彻底消失的</th>
+            <th>回轻了的</th>
+            <th>始终重要的</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>单人PM+AI</strong></td>
+            <td>PM独自用AI做完整产品</td>
+            <td>全部不需要</td>
+            <td>全部不需要</td>
+            <td>全部需要</td>
+          </tr>
+          <tr>
+            <td><strong>PM+设计师(都带AI)</strong></td>
+            <td>PM做实现，设计师做视觉/交互</td>
+            <td>线框图、测试用例表、长PRD、燃尽图、估点</td>
+            <td>交接文档(→Tokens+BDD)、优先级看板、站会→异步同步</td>
+            <td>设计简报、ADR、Design Tokens、BDD、Sitemap、Flow、异常态矩阵</td>
+          </tr>
+          <tr>
+            <td><strong>PM+设计师+前端工程师(都带AI)</strong></td>
+            <td>小团队各自带AI产出</td>
+            <td>同上</td>
+            <td>+Sprint计划→里程碑看板、Bug工单→跨模块Issue、API文档→自动生成OpenAPI、评审纪要→对齐快照</td>
+            <td>+AGENTS.md(多人需统一技术约束)、AC Trace(多人需统一验收标准)</td>
+          </tr>
+          <tr>
+            <td><strong>多个PM+设计师+工程师(都带AI)</strong></td>
+            <td>大团队多个AI agent并行</td>
+            <td>同上</td>
+            <td>+周报→里程碑复盘、会议纪要→决策记录、签字确认→对齐快照确认、需求池→共享JTBD列表</td>
+            <td>+锚点层对齐机制(多人改同一锚点文件需版本管理+影响检测)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== CH04: LAYER MODEL ===== -->
+<!-- ===================== Chapter 04：三层管控模型 ===================== -->
+<section id="layers" class="section">
+  <span class="section-tag">CHAPTER 04</span>
+  <h2 class="section-title">变更管控：锚点层 · 进度层 · 执行层</h2>
+  <p class="section-subtitle">产出物按变更频率分三层管理。每层有不同的管控机制和防偏移策略。本章节还包含SDD/BDD/TDD/ADR四个概念在新范式中的具体角色。</p>
+
+  <div class="layer-stack">
+
+    <!-- 锚点层 -->
+    <div class="layer layer-anchor">
+      <div class="layer-header">
+        <span class="layer-icon">A</span>
+        <h3>锚点层 — 极少变动，一改全局对齐</h3>
+        <span class="layer-meta">变更频率 2-3次/项目</span>
+      </div>
+      <p>定义项目"身份"的产出物，是所有下游产出的参照系。变更触发全局重新校验——就像 git rebase，基准变了所有下游都要 rebase。</p>
+      <div class="layer-items">
+        <span class="layer-item">Problem Framing</span>
+        <span class="layer-item">设计简报</span>
+        <span class="layer-item">ADR</span>
+        <span class="layer-item">AGENTS.md</span>
+        <span class="layer-item">Design Tokens 基线</span>
+        <span class="layer-item">数据模型基线</span>
+      </div>
+      <div class="info-box">
+        <strong>管控机制：</strong>任何变更触发全局偏移检测 → AI 对照新锚点检查所有已完成代码/设计 → 输出 deviations 清单
+      </div>
+    </div>
+
+    <!-- 进度层 -->
+    <div class="layer layer-progress">
+      <div class="layer-header">
+        <span class="layer-icon">P</span>
+        <h3>进度层 — 随进度增长，增量变更为主</h3>
+        <span class="layer-meta">每迭代增量追加</span>
+      </div>
+      <p>随功能推进而增加，主要是"加法"不是"减法"。已有条目通常不改，只追加新条目。改存量 = 改需求。</p>
+      <div class="layer-items">
+        <span class="layer-item">用户故事 (JTBD)</span>
+        <span class="layer-item">Sitemap (增页面)</span>
+        <span class="layer-item">Flow 图 (增路径)</span>
+        <span class="layer-item">BDD 场景 (增行为)</span>
+        <span class="layer-item">异常态矩阵 (增状态)</span>
+        <span class="layer-item">TDD 测试</span>
+        <span class="layer-item">AC Trace Matrix</span>
+      </div>
+      <div class="info-box">
+        <strong>增量校验：</strong>与锚点层一致，不动存量。已有 BDD 场景和测试一旦写好不轻易改——改 BDD 场景 = 改需求，需同步更新代码和测试
+      </div>
+    </div>
+
+    <!-- 执行层 -->
+    <div class="layer layer-execution">
+      <div class="layer-header">
+        <span class="layer-icon">E</span>
+        <h3>执行层 — 持续变动，高频迭代</h3>
+        <span class="layer-meta">每 session</span>
+      </div>
+      <p>日常与 AI 交互的产物，变动频率最高。不需要严格管控，但需定期归档提炼有效信息到进度层。</p>
+      <div class="layer-items">
+        <span class="layer-item">对话日志</span>
+        <span class="layer-item">代码版本</span>
+        <span class="layer-item">临时上下文片段</span>
+        <span class="layer-item">Design QA 发现项</span>
+        <span class="layer-item">调试记录</span>
+      </div>
+      <div class="info-box">
+        <strong>定期归档：</strong>每完成一个功能模块，把执行层有效信息（新边界条件、QA 发现、调试经验）提炼固化为进度层条目
+      </div>
+    </div>
+
+  </div>
+
+  <h3 class="subhead">防止预期偏移的5个机制</h3>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>机制</th>
+          <th>作用层</th>
+          <th>触发时机</th>
+          <th>具体做法</th>
+          <th>检测什么偏移</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>锚点校验</td>
+          <td>锚点层→全链路</td>
+          <td>锚点层任何文件变更时</td>
+          <td>让 AI 读取新锚点文件逐项检查所有已完成代码/设计是否符合新约束，输出 deviations 清单</td>
+          <td>约束偏移（技术栈/架构/视觉规范）</td>
+        </tr>
+        <tr>
+          <td>BDD 回归测试</td>
+          <td>进度层→执行层</td>
+          <td>每次代码变更后</td>
+          <td>BDD 场景转化的测试自动运行，失败即偏移</td>
+          <td>行为偏移（功能行为变了）</td>
+        </tr>
+        <tr>
+          <td>快照对比</td>
+          <td>全层</td>
+          <td>每个里程碑</td>
+          <td>保存全链路快照（简报+ADR+Tokens+Sitemap+Flow+BDD+代码），下个里程碑对比变更</td>
+          <td>任何层面的偏移</td>
+        </tr>
+        <tr>
+          <td>Design QA</td>
+          <td>执行层</td>
+          <td>每屏/每组件完成后</td>
+          <td>对照 Design Tokens 逐项检查间距/颜色/字体/圆角/阴影/图标/交互态/状态完整性</td>
+          <td>视觉偏移</td>
+        </tr>
+        <tr>
+          <td>AC 追溯</td>
+          <td>进度层</td>
+          <td>每功能完成后</td>
+          <td>读取该功能 BDD 场景，逐条标注已实现/未实现/部分实现</td>
+          <td>功能完整度偏移</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subhead">SDD / BDD / TDD / ADR 在新范式中的角色</h3>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>概念</th>
+          <th>全称</th>
+          <th>传统角色</th>
+          <th>新范式角色</th>
+          <th>变更层级</th>
+          <th>防偏移作用</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SDD</td>
+          <td>Spec Driven Development</td>
+          <td>规格先行，代码跟着规格走</td>
+          <td>规格即源头：设计简报+ADR+Design Tokens+BDD 场景共同构成 spec，AI 从 spec 生成代码</td>
+          <td>锚点层+进度层</td>
+          <td>spec 不变则产出不变，spec 变了则产出跟着变</td>
+        </tr>
+        <tr>
+          <td>BDD</td>
+          <td>Behavior Driven Development</td>
+          <td>PM/Dev/QA 协作写 Given/When/Then</td>
+          <td>PM 独自写 BDD 场景，AI 转化为测试+代码，BDD 场景 = 可执行的 PRD</td>
+          <td>进度层</td>
+          <td>测试挂了 = 行为偏移了</td>
+        </tr>
+        <tr>
+          <td>TDD</td>
+          <td>Test Driven Development</td>
+          <td>先写测试再写代码</td>
+          <td>PM 定义测试意图 → AI 生成测试 → AI 生成代码让测试通过</td>
+          <td>进度层</td>
+          <td>测试是行为契约的守护者</td>
+        </tr>
+        <tr>
+          <td>ADR</td>
+          <td>Architecture Decision Records</td>
+          <td>工程团队记录架构决策</td>
+          <td>PM 自己记录每个技术选型的决策+上下文+约束+后果</td>
+          <td>锚点层</td>
+          <td>防止"忘了当初为什么这么选"，防止随手改技术栈</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>防偏移本质：</strong>确保流动的东西不侵蚀增长的边界，确保增长的东西不偏离不变的基准。锚点层定义"不变的"，进度层定义"在增长的"，执行层定义"在流动的"。
+  </div>
+</section>
+
+<!-- ===================== Chapter 04b：Agent记忆与状态管理 ===================== -->
+<section id="agent-memory" class="section">
+  <span class="section-tag">CHAPTER 04b</span>
+  <h2 class="section-title">Agent记忆与状态管理</h2>
+  <p class="section-subtitle">Agent跨session如何保持状态？静态文件（AGENTS.md/ADR）覆盖了一部分，但不够。Agent需要三类记忆系统。</p>
+
+  <div class="layer-stack">
+
+    <!-- 短期记忆 -->
+    <div class="layer layer-execution">
+      <div class="layer-header">
+        <span class="layer-icon">S</span>
+        <h3>短期记忆 — 当前session的上下文</h3>
+        <span class="layer-meta">生命周期：单次session</span>
+      </div>
+      <p>Agent在单次对话中积累的上下文。包括当前正在做的功能、已生成的代码、已发现的问题。session结束后清除。对应执行层的对话日志。</p>
+      <div class="layer-items">
+        <span class="layer-item">当前功能上下文</span>
+        <span class="layer-item">已生成代码片段</span>
+        <span class="layer-item">本次session的调试记录</span>
+        <span class="layer-item">临时约束提醒</span>
+      </div>
+      <div class="info-box">
+        <strong>管控：</strong>不需要持久化。但如果session中做了重要决策，应在结束前提炼到ADR或BDD场景中。
+      </div>
+    </div>
+
+    <!-- 长期记忆 -->
+    <div class="layer layer-anchor">
+      <div class="layer-header">
+        <span class="layer-icon">L</span>
+        <h3>长期记忆 — 跨session的项目决策历史</h3>
+        <span class="layer-meta">生命周期：永久</span>
+      </div>
+      <p>跨session保持的项目级决策和约束。AGENTS.md（技术约束）、ADR（架构决策记录）、Design Tokens（视觉规范）共同构成Agent的长期记忆。每次新session启动时，Agent优先加载这些文件。</p>
+      <div class="layer-items">
+        <span class="layer-item">AGENTS.md</span>
+        <span class="layer-item">ADR记录</span>
+        <span class="layer-item">Design Tokens基线</span>
+        <span class="layer-item">数据模型基线</span>
+        <span class="layer-item">Problem Framing</span>
+      </div>
+      <div class="info-box">
+        <strong>管控：</strong>对应锚点层。变更频率极低，变更触发全局校验。关键是：Agent每次新session必须重新读取这些文件，不能假设"上次的记忆还在"。
+      </div>
+    </div>
+
+    <!-- 工作记忆 -->
+    <div class="layer layer-progress">
+      <div class="layer-header">
+        <span class="layer-icon">W</span>
+        <h3>工作记忆 — 当前项目做到哪了</h3>
+        <span class="layer-meta">生命周期：跨session但动态更新</span>
+      </div>
+      <p>记录项目的进度状态。哪些功能已完成、哪些BDD场景已通过、哪些异常态已覆盖。AC Trace Matrix是工作记忆的核心载体——它告诉Agent"接下来该做什么"。</p>
+      <div class="layer-items">
+        <span class="layer-item">AC Trace Matrix</span>
+        <span class="layer-item">BDD场景完成状态</span>
+        <span class="layer-item">Sitemap页面完成状态</span>
+        <span class="layer-item">异常态矩阵覆盖状态</span>
+      </div>
+      <div class="info-box">
+        <strong>管控：</strong>对应进度层。每次session开始时Agent读取工作记忆确定当前进度，每次session结束时更新工作记忆。
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout">
+    <strong>Agent记忆与三层管控模型的映射：</strong>短期记忆=执行层、长期记忆=锚点层、工作记忆=进度层。Agent不需要额外的记忆系统，但需要确保每类记忆有明确的加载时机和更新规则。
+  </div>
+</section>
+
+<!-- ===================== Chapter 04c：Eval体系 ===================== -->
+<section id="eval-system" class="section">
+  <span class="section-tag">CHAPTER 04c</span>
+  <h2 class="section-title">Eval体系：AI产出质量评估</h2>
+  <p class="section-subtitle">BDD/TDD是功能测试（pass/fail），但AI产出还有大量质量维度无法用pass/fail衡量。需要建立多维Eval体系。</p>
+
+  <h3 class="subhead">Eval维度矩阵</h3>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>评估维度</th>
+          <th>评估方式</th>
+          <th>工具/方法</th>
+          <th>频率</th>
+          <th>pass标准</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>代码质量</td>
+          <td>AI静态分析（ESLint/SonarQube）+ 复杂度检查</td>
+          <td>ESLint规则集+圈复杂度阈值</td>
+          <td>每次代码生成</td>
+          <td>0 error, complexity &lt; 15</td>
+        </tr>
+        <tr>
+          <td>UI还原度</td>
+          <td>Design QA对照Design Tokens逐项检查</td>
+          <td>Design QA Checklist</td>
+          <td>每屏完成后</td>
+          <td>偏差 &lt; 3项/屏</td>
+        </tr>
+        <tr>
+          <td>交互体验</td>
+          <td>可用性测试（原型验证）</td>
+          <td>5人可用性测试</td>
+          <td>每里程碑</td>
+          <td>完成率 &gt; 80%, 无严重问题</td>
+        </tr>
+        <tr>
+          <td>安全性</td>
+          <td>自动化安全扫描</td>
+          <td>npm audit + 代码模式匹配</td>
+          <td>每次代码生成</td>
+          <td>0 高危漏洞</td>
+        </tr>
+        <tr>
+          <td>一致性</td>
+          <td>锚点校验（代码是否符合AGENTS.md）</td>
+          <td>AI对照AGENTS.md逐项检查</td>
+          <td>锚点变更时</td>
+          <td>0 deviations</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subhead">Eval流水线设计</h3>
+  <p>Eval不是一次性检查，而是贯穿整个开发流程的自动化流水线。每次Agent生成代码后自动触发功能测试（BDD/TDD）+ 代码质量扫描；每屏完成后触发Design QA；每个里程碑触发全量Eval（含交互体验和安全扫描）。</p>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>阶段</th>
+          <th>触发时机</th>
+          <th>自动化项</th>
+          <th>人工项</th>
+          <th>产出物</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>即时Eval</td>
+          <td>每次代码生成</td>
+          <td>BDD测试+ESLint+安全扫描</td>
+          <td>无</td>
+          <td>测试报告+代码质量报告</td>
+        </tr>
+        <tr>
+          <td>屏级Eval</td>
+          <td>每屏完成后</td>
+          <td>Design QA自动化检查</td>
+          <td>视觉走查确认</td>
+          <td>Design QA Report</td>
+        </tr>
+        <tr>
+          <td>里程碑Eval</td>
+          <td>每个里程碑</td>
+          <td>全量回归+安全扫描+性能检测</td>
+          <td>交互体验测试+复盘</td>
+          <td>Snapshot Diff+Retro Report</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>Eval体系的核心原则：</strong>功能测试自动化（BDD/TDD），质量评估半自动化（Design QA自动检查+人工确认），体验评估人工为主（可用性测试）。不要试图把所有Eval都自动化，也不要完全依赖人工检查。
+  </div>
+</section>
+
+
+
+<!-- ===================== Chapter 05：工作流对比 ===================== -->
+<section id="workflows" class="section">
+  <span class="section-tag">CHAPTER 05</span>
+  <h2 class="section-title">工作流：线性瀑布与并行AI增强的对照</h2>
+  <p class="section-subtitle">本章节用图解方式对照旧范式和新范式的工作流，展示协作结构、信息流和产出方式的具体差异。</p>
+
+  <div class="workflow-container">
+
+    <!-- 旧范式 -->
+    <div class="workflow-box old">
+      <h3>旧范式：线性瀑布</h3>
+      <svg viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="旧范式线性瀑布工作流">
+        <defs>
+          <marker id="arrowOld" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(190,18,60,0.5)"/>
+          </marker>
+        </defs>
+
+        <!-- 左侧标注 -->
+        <text x="20" y="260" class="wf-label" text-anchor="middle" transform="rotate(-90 20 260)">串行等待</text>
+        <!-- 右侧标注 -->
+        <text x="380" y="260" class="wf-label" text-anchor="middle" transform="rotate(90 380 260)">信息逐级损耗</text>
+
+        <!-- 节点 1 -->
+        <rect x="80" y="20" width="240" height="50" rx="10" ry="10" class="wf-node" fill="#f5f3ef" stroke="rgba(190,18,60,0.3)"/>
+        <text x="200" y="50" class="wf-label" text-anchor="middle">PM 写 PRD</text>
+        <line x1="200" y1="70" x2="200" y2="95" stroke="rgba(190,18,60,0.5)" stroke-width="2" marker-end="url(#arrowOld)"/>
+
+        <!-- 节点 2 -->
+        <rect x="80" y="100" width="240" height="50" rx="10" ry="10" class="wf-node" fill="#f5f3ef" stroke="rgba(190,18,60,0.3)"/>
+        <text x="200" y="130" class="wf-label" text-anchor="middle">需求评审会</text>
+        <line x1="200" y1="150" x2="200" y2="175" stroke="rgba(190,18,60,0.5)" stroke-width="2" marker-end="url(#arrowOld)"/>
+
+        <!-- 节点 3 -->
+        <rect x="80" y="180" width="240" height="50" rx="10" ry="10" class="wf-node" fill="#f5f3ef" stroke="rgba(190,18,60,0.3)"/>
+        <text x="200" y="210" class="wf-label" text-anchor="middle">设计师做视觉</text>
+        <line x1="200" y1="230" x2="200" y2="255" stroke="rgba(190,18,60,0.5)" stroke-width="2" marker-end="url(#arrowOld)"/>
+
+        <!-- 节点 4 -->
+        <rect x="80" y="260" width="240" height="50" rx="10" ry="10" class="wf-node" fill="#f5f3ef" stroke="rgba(190,18,60,0.3)"/>
+        <text x="200" y="290" class="wf-label" text-anchor="middle">前端开发</text>
+        <line x1="200" y1="310" x2="200" y2="335" stroke="rgba(190,18,60,0.5)" stroke-width="2" marker-end="url(#arrowOld)"/>
+
+        <!-- 节点 5 -->
+        <rect x="80" y="340" width="240" height="50" rx="10" ry="10" class="wf-node" fill="#f5f3ef" stroke="rgba(190,18,60,0.3)"/>
+        <text x="200" y="370" class="wf-label" text-anchor="middle">后端开发</text>
+        <line x1="200" y1="390" x2="200" y2="415" stroke="rgba(190,18,60,0.5)" stroke-width="2" marker-end="url(#arrowOld)"/>
+
+        <!-- 节点 6 -->
+        <rect x="80" y="420" width="240" height="50" rx="10" ry="10" class="wf-node" fill="#f5f3ef" stroke="rgba(190,18,60,0.3)"/>
+        <text x="200" y="450" class="wf-label" text-anchor="middle">QA 测试</text>
+        <line x1="200" y1="470" x2="200" y2="475" stroke="rgba(190,18,60,0.5)" stroke-width="2" marker-end="url(#arrowOld)"/>
+
+        <!-- 节点 7 上线 -->
+        <rect x="80" y="475" width="240" height="40" rx="10" ry="10" class="wf-node" fill="#be123c" stroke="rgba(190,18,60,0.6)"/>
+        <text x="200" y="500" class="wf-label" text-anchor="middle" style="fill:#fff">上线</text>
+
+        <!-- 流动粒子 -->
+        <circle r="4" fill="#be123c">
+          <animate attributeName="cy" from="10" to="510" dur="4s" repeatCount="indefinite"/>
+          <animate attributeName="cx" from="200" to="200" dur="4s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+      <p>6 个角色串联 · 每级等待 · 信息逐级损耗 · 周期 2-4 周</p>
+    </div>
+
+    <!-- 新范式 -->
+    <div class="workflow-box new">
+      <h3>新范式：并行 AI 增强</h3>
+      <svg viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="新范式并行AI增强工作流">
+        <defs>
+          <marker id="arrowNew" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(13,148,136,0.7)"/>
+          </marker>
+          <marker id="arrowOrange" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(234,88,12,0.8)"/>
+          </marker>
+        </defs>
+
+        <!-- 顶部横条：锚点层 -->
+        <rect x="40" y="10" width="320" height="44" rx="8" ry="8" fill="rgba(234,88,12,0.18)" stroke="rgba(234,88,12,0.6)" stroke-width="1.5"/>
+        <text x="200" y="37" class="wf-label" text-anchor="middle">锚点层：Brief + ADR + Tokens + AGENTS.md</text>
+
+        <!-- 分叉线 -->
+        <line x1="120" y1="54" x2="120" y2="80" stroke="rgba(13,148,136,0.6)" stroke-width="2" marker-end="url(#arrowNew)"/>
+        <line x1="280" y1="54" x2="280" y2="80" stroke="rgba(234,88,12,0.7)" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+        <!-- 左线 第一段 -->
+        <rect x="30" y="84" width="180" height="44" rx="8" ry="8" class="wf-node" fill="#f5f3ef" stroke="rgba(13,148,136,0.4)"/>
+        <text x="120" y="110" class="wf-label-role" text-anchor="middle">PM + AI 做设计</text>
+        <text x="120" y="124" class="wf-label" text-anchor="middle" style="font-size:10px">Flow · Sitemap · BDD</text>
+        <line x1="120" y1="128" x2="120" y2="160" stroke="rgba(13,148,136,0.6)" stroke-width="2" marker-end="url(#arrowNew)"/>
+
+        <!-- 右线 第一段 -->
+        <rect x="220" y="84" width="150" height="44" rx="8" ry="8" class="wf-node" fill="#f5f3ef" stroke="rgba(234,88,12,0.4)"/>
+        <text x="295" y="110" class="wf-label-role" text-anchor="middle">设计师 + AI 视觉</text>
+        <text x="295" y="124" class="wf-label" text-anchor="middle" style="font-size:10px">情绪板 · 设计系统</text>
+        <line x1="295" y1="128" x2="295" y2="160" stroke="rgba(234,88,12,0.7)" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+        <!-- 左线 第二段 -->
+        <rect x="30" y="164" width="180" height="44" rx="8" ry="8" class="wf-node" fill="#f5f3ef" stroke="rgba(13,148,136,0.4)"/>
+        <text x="120" y="190" class="wf-label-role" text-anchor="middle">PM + AI 写代码</text>
+        <text x="120" y="204" class="wf-label" text-anchor="middle" style="font-size:10px">前端 · 后端 · 数据</text>
+
+        <!-- 右线 第二段 -->
+        <rect x="220" y="164" width="150" height="44" rx="8" ry="8" class="wf-node" fill="#f5f3ef" stroke="rgba(234,88,12,0.4)"/>
+        <text x="295" y="190" class="wf-label-role" text-anchor="middle">设计师 + AI 走查</text>
+        <text x="295" y="204" class="wf-label" text-anchor="middle" style="font-size:10px">Design QA · AC Trace</text>
+
+        <!-- 合并线 -->
+        <path d="M 120 208 L 120 235 L 200 235 L 200 250" fill="none" stroke="rgba(13,148,136,0.6)" stroke-width="2" marker-end="url(#arrowNew)"/>
+        <path d="M 295 208 L 295 235 L 200 235" fill="none" stroke="rgba(234,88,12,0.7)" stroke-width="2"/>
+
+        <!-- 合并节点：对齐校验+集成 -->
+        <rect x="60" y="254" width="280" height="46" rx="8" ry="8" class="wf-node" fill="#f5f3ef" stroke="rgba(190,18,60,0.4)"/>
+        <text x="200" y="280" class="wf-label" text-anchor="middle">对齐校验 + 集成</text>
+        <text x="200" y="294" class="wf-label" text-anchor="middle" style="font-size:10px">锚点校验 · BDD 回归 · Design QA</text>
+
+        <!-- 迭代循环框（虚线） -->
+        <rect x="60" y="312" width="280" height="70" rx="10" ry="10" fill="none" stroke="rgba(13,148,136,0.5)" stroke-width="1.5" stroke-dasharray="6 4"/>
+        <text x="200" y="332" class="wf-label" text-anchor="middle">迭代循环</text>
+        <text x="200" y="350" class="wf-label" text-anchor="middle" style="font-size:11px">偏移检测 → 调整 prompt</text>
+        <text x="200" y="366" class="wf-label" text-anchor="middle" style="font-size:11px">→ 重新生成 → 验证</text>
+
+        <!-- 循环箭头 -->
+        <path d="M 80 340 C 50 340 50 380 80 380" fill="none" stroke="rgba(13,148,136,0.6)" stroke-width="1.5" marker-end="url(#arrowNew)" stroke-dasharray="4 3"/>
+        <path d="M 320 380 C 350 380 350 340 320 340" fill="none" stroke="rgba(13,148,136,0.6)" stroke-width="1.5" marker-end="url(#arrowNew)" stroke-dasharray="4 3"/>
+
+        <!-- 从循环框到上线 -->
+        <line x1="200" y1="382" x2="200" y2="425" stroke="rgba(13,148,136,0.6)" stroke-width="2" marker-end="url(#arrowNew)"/>
+
+        <!-- 底部：上线+实时复盘 -->
+        <rect x="60" y="430" width="280" height="46" rx="10" ry="10" class="wf-node" fill="rgba(13,148,136,0.15)" stroke="rgba(13,148,136,0.6)"/>
+        <text x="200" y="458" class="wf-label" text-anchor="middle" style="fill:#0f766e">上线 + 实时复盘</text>
+
+        <!-- 并行流动粒子 1（青绿） -->
+        <circle r="4" fill="#0d9488">
+          <animate attributeName="cy" values="60;110;190;280;455" keyTimes="0;0.25;0.5;0.75;1" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="cx" values="120;120;120;200;200" keyTimes="0;0.25;0.5;0.75;1" dur="3s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- 并行流动粒子 2（橙色） -->
+        <circle r="4" fill="#ea580c">
+          <animate attributeName="cy" values="60;110;190;280;455" keyTimes="0;0.25;0.5;0.75;1" dur="3.5s" begin="0.5s" repeatCount="indefinite"/>
+          <animate attributeName="cx" values="280;295;295;200;200" keyTimes="0;0.25;0.5;0.75;1" dur="3.5s" begin="0.5s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- 并行流动粒子 3（青绿） -->
+        <circle r="3" fill="#0d9488">
+          <animate attributeName="cy" from="316" to="380" dur="1.2s" repeatCount="indefinite"/>
+          <animate attributeName="cx" from="120" to="120" dur="1.2s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+      <p>2-3 条并行线 · AI 秒级产出 · 迭代循环校准 · 周期 1-3 天</p>
+    </div>
+
+  </div>
+
+  <div class="callout">
+    旧范式：6 个角色串联，每个环节等上游，信息逐级损耗，周期 2-4 周。新范式：2-3 条并行线同时产出，锚点层一次性定义约束，迭代循环持续校准，周期 1-3 天。速度提升 10 倍以上，前提是锚点层必须先定义清楚。
+  </div>
+</section>
+
+<section id="multi-agent" class="section">
+  <div class="section-tag">CHAPTER 05b</div>
+  <h2 class="section-title">Multi-Agent编排：何时用单Agent vs 多Agent</h2>
+  <p class="section-subtitle">手册前面的工作流假设PM+单个AI Agent。但实际项目中多Agent系统往往更高效。本章节给出单/多Agent的决策框架和编排模式。</p>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>场景</th>
+          <th>推荐模式</th>
+          <th>原因</th>
+          <th>编排复杂度</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>单功能模块开发（1-3屏）</td>
+          <td>单Agent</td>
+          <td>上下文简单，单Agent足够，多Agent反而增加协调成本</td>
+          <td>低</td>
+        </tr>
+        <tr>
+          <td>多功能并行开发（3+模块）</td>
+          <td>多Agent（并行）</td>
+          <td>模块间独立，并行产出效率高</td>
+          <td>中</td>
+        </tr>
+        <tr>
+          <td>复杂功能需多步推理</td>
+          <td>多Agent（流水线）</td>
+          <td>规划→编码→审查→测试，每步由专门Agent负责</td>
+          <td>中高</td>
+        </tr>
+        <tr>
+          <td>大型项目全栈开发</td>
+          <td>多Agent（并行+流水线）</td>
+          <td>前端/后端/数据并行，每条线内部流水线</td>
+          <td>高</td>
+        </tr>
+        <tr>
+          <td>探索性原型/MVP</td>
+          <td>单Agent</td>
+          <td>快速试错，不需要分工</td>
+          <td>低</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subhead">多Agent编排的三种模式</h3>
+
+  <div class="compare-card" style="border:1px solid var(--border,#444); border-radius:8px; padding:16px; margin-bottom:16px;">
+    <h4 style="margin-top:0;">模式1：流水线编排</h4>
+    <p><strong>结构：</strong>Planner Agent → Coder Agent → Reviewer Agent → Tester Agent</p>
+    <p><strong>适用：</strong>复杂功能需多步推理</p>
+    <p><strong>上下文传递：</strong>上游Agent的产出作为下游Agent的输入。关键是：每个Agent只接收它需要的上下文片段，不是全量传递。</p>
+    <p><strong>风险：</strong>上下文在传递中丢失。对策：用结构化文件（BDD场景/ADR）作为Agent间的交接物，不依赖对话传递。</p>
+  </div>
+
+  <div class="compare-card" style="border:1px solid var(--border,#444); border-radius:8px; padding:16px; margin-bottom:16px;">
+    <h4 style="margin-top:0;">模式2：并行编排</h4>
+    <p><strong>结构：</strong>Agent A做前端 + Agent B做后端 + Agent C做数据层，同时进行</p>
+    <p><strong>适用：</strong>多功能并行开发</p>
+    <p><strong>上下文传递：</strong>所有Agent共享锚点层（AGENTS.md/Design Tokens/ADR），各自独立工作。</p>
+    <p><strong>风险：</strong>产出不一致。对策：锚点层必须先定义清楚，定期对齐校验。</p>
+  </div>
+
+  <div class="compare-card" style="border:1px solid var(--border,#444); border-radius:8px; padding:16px; margin-bottom:16px;">
+    <h4 style="margin-top:0;">模式3：混合编排</h4>
+    <p><strong>结构：</strong>先并行（多个模块同时做），再流水线（每个模块内部规划→编码→测试）</p>
+    <p><strong>适用：</strong>大型项目</p>
+    <p><strong>上下文传递：</strong>并行阶段共享锚点层，流水线阶段用结构化文件传递。</p>
+    <p><strong>风险：</strong>复杂度高，协调成本大。对策：用AC Trace Matrix跟踪所有Agent的进度。</p>
+  </div>
+
+  <div class="callout">
+    Multi-Agent编排的核心不是“用几个Agent”，而是“上下文怎么在Agent之间传递”。最佳实践：用文件传递（BDD/ADR/AGENTS.md），不用对话传递。文件是Agent间的通信协议。
+  </div>
+</section>
+
+
+
+
+<!-- ===== CH05: WORKFLOW ===== -->
+
+
+<!-- ===== CH06: ACTION ===== -->
+<!-- ===================== Chapter 06：立即行动 ===================== -->
+<section id="action" class="section">
+  <span class="section-tag">CHAPTER 06</span>
+  <h2 class="section-title">实操启动：最小化必备清单</h2>
+  <p class="section-subtitle">以下三件事是启动AI Coding的最小化必备项。缺少任何一个会导致产出质量不可控。</p>
+
+  <h3 class="subhead">1. 最佳实践协作流程</h3>
+  <div class="collab-flow">
+
+    <div class="collab-step">
+      <div class="cs-head">
+        <span class="cs-step">STEP 1</span>
+        <span class="cs-title">锚点层定义</span>
+      </div>
+      <p class="cs-desc">PM写设计简报+ADR+AGENTS.md，设计师做情绪板→选定Design Tokens。一次性定义所有约束。</p>
+      <div class="cs-roles">角色：<span class="cs-role">PM</span> <span class="cs-role">DESIGNER</span> <span class="cs-role ai">AI</span></div>
+    </div>
+
+    <div class="collab-step">
+      <div class="cs-head">
+        <span class="cs-step">STEP 2</span>
+        <span class="cs-title">进度层拆解</span>
+      </div>
+      <p class="cs-desc">PM拆用户故事(JTBD)+Sitemap+Flow+BDD场景+异常态矩阵。设计师做视觉系统。并行展开。</p>
+      <div class="cs-roles">角色：<span class="cs-role">PM</span> <span class="cs-role">DESIGNER</span> <span class="cs-role ai">AI</span></div>
+    </div>
+
+    <div class="collab-step">
+      <div class="cs-head">
+        <span class="cs-step">STEP 3</span>
+        <span class="cs-title">并行AI Coding</span>
+      </div>
+      <p class="cs-desc">PM用AI生成前端+后端代码，设计师用AI做走查。BDD场景自动转测试。持续迭代。</p>
+      <div class="cs-roles">角色：<span class="cs-role">PM</span> <span class="cs-role">DESIGNER</span> <span class="cs-role ai">AI</span></div>
+    </div>
+
+    <div class="collab-step">
+      <div class="cs-head">
+        <span class="cs-step">STEP 4</span>
+        <span class="cs-title">校验+集成</span>
+      </div>
+      <p class="cs-desc">锚点校验→BDD回归测试→Design QA→AC追溯。偏移项修复或固化为新BDD场景。</p>
+      <div class="cs-roles">角色：<span class="cs-role ai">AI</span> <span class="cs-role">PM</span></div>
+    </div>
+
+    <div class="collab-step">
+      <div class="cs-head">
+        <span class="cs-step">STEP 5</span>
+        <span class="cs-title">上线+复盘</span>
+      </div>
+      <p class="cs-desc">AI生成发版说明。上线后AI实时数据追踪。里程碑做快照对比+Retro Report。</p>
+      <div class="cs-roles">角色：<span class="cs-role ai">AI</span> <span class="cs-role">PM</span></div>
+    </div>
+
+  </div>
+
+  <h3 class="subhead">2. PM思维架构</h3>
+  <div class="framework-grid">
+
+    <div class="framework-card">
+      <div class="fc-head">
+        <span class="fc-num">01</span>
+        <span class="fc-title">约束型思维</span>
+      </div>
+      <p>不再描述"做什么"，而是定义"不做什么"和"必须遵守什么"。围栏比方向更重要——AI自己会想怎么做，你定义什么不能做。</p>
+    </div>
+
+    <div class="framework-card">
+      <div class="fc-head">
+        <span class="fc-num">02</span>
+        <span class="fc-title">验证型思维</span>
+      </div>
+      <p>不再靠"沟通消除歧义"，而是靠"测试+QA+校验"确保产出质量。验证比描述更重要——BDD测试挂了=偏移了。</p>
+    </div>
+
+    <div class="framework-card">
+      <div class="fc-head">
+        <span class="fc-num">03</span>
+        <span class="fc-title">迭代型思维</span>
+      </div>
+      <p>不再"写完PRD锁定"，而是"持续对话迭代"。文档是活的不锁定，但靠三层管控防偏移。</p>
+    </div>
+
+    <div class="framework-card">
+      <div class="fc-head">
+        <span class="fc-num">04</span>
+        <span class="fc-title">价值&gt;成本思维</span>
+      </div>
+      <p>每次AI调用的Token成本必须小于它创造的价值。用户量不再是唯一目标，场景深度才是。</p>
+    </div>
+
+    <div class="framework-card">
+      <div class="fc-head">
+        <span class="fc-num">05</span>
+        <span class="fc-title">数据飞轮思维</span>
+      </div>
+      <p>产品设计要内置数据回流——用户越用AI越准。没有数据飞轮的AI产品，模型一升级就归零。</p>
+    </div>
+
+    <div class="framework-card">
+      <div class="fc-head">
+        <span class="fc-num">06</span>
+        <span class="fc-title">场景锁定思维</span>
+      </div>
+      <p>AI嵌入用户工作流越深，切换成本越高。追求"不可替代的工作流嵌入"而非"功能堆砌"。</p>
+    </div>
+
+  </div>
+
+  <h3 class="subhead">3. 价值公式</h3>
+  <div class="formula-box">
+    <p class="formula">产品价值 = (场景嵌入深度 × 数据飞轮强度) ÷ (Token成本 + 对齐成本)</p>
+    <div class="formula-vars">
+      <p><strong>场景嵌入深度：</strong>AI嵌入用户工作流的深度，越深切换成本越高</p>
+      <p><strong>数据飞轮强度：</strong>用户使用产生数据→数据提升AI→AI提升体验→用户更多使用的循环强度</p>
+      <p><strong>Token成本：</strong>AI每次调用的算力消耗，随用户量线性增长</p>
+      <p><strong>对齐成本：</strong>多人AI协作时产出不一致的返工成本</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>核心结论：</strong>旧范式追求"用户量最大化"（用户=资产，边际成本→0）。新范式追求"场景深度×数据飞轮最大化 + Token成本最小化"（场景+数据=资产，边际成本正相关）。这是产品经理需要内化的根本性思维转变。
+  </div>
+
+  <h3 class="subhead">4. 最佳实践协作流程详解（产品/技术/AI/测试如何协作）</h3>
+  <div class="role-grid">
+
+    <div class="role-card">
+      <div class="rc-head">
+        <h5>产品（PM）</h5>
+        <span class="role-tag pm">PM</span>
+      </div>
+      <ul>
+        <li>定义问题（Problem Framing）</li>
+        <li>定义约束（AGENTS.md、Design Tokens、BDD场景）</li>
+        <li>做技术决策（ADR）</li>
+        <li>验证产出（AC Trace、Design QA）</li>
+        <li>控制迭代节奏（三层管控）</li>
+      </ul>
+    </div>
+
+    <div class="role-card">
+      <div class="rc-head">
+        <h5>技术（工程师）</h5>
+        <span class="role-tag tech">TECH</span>
+      </div>
+      <ul>
+        <li>AI从约束文件读取规范，在框架内生成代码</li>
+        <li>工程师（如有）做架构Review和关键逻辑把关</li>
+        <li>负责部署和基础设施</li>
+        <li>AI从BDD场景自动生成测试</li>
+      </ul>
+    </div>
+
+    <div class="role-card">
+      <div class="rc-head">
+        <h5>AI（Agent）</h5>
+        <span class="role-tag ai">AI</span>
+      </div>
+      <ul>
+        <li>从锚点层文件读取约束，在框架内生成代码</li>
+        <li>从BDD场景自动生成测试断言</li>
+        <li>从Design Tokens生成视觉一致的UI</li>
+        <li>执行偏移检测（对照锚点检查已完成的代码）</li>
+      </ul>
+    </div>
+
+    <div class="role-card">
+      <div class="rc-head">
+        <h5>测试（QA/自动化）</h5>
+        <span class="role-tag qa">QA</span>
+      </div>
+      <ul>
+        <li>BDD场景→AI自动生成测试代码→自动执行</li>
+        <li>Design QA走查→AI对照Design Tokens检查</li>
+        <li>AC Trace Matrix自动更新完成状态</li>
+        <li>偏移项修复或固化为新BDD场景（防止复发）</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section id="context-engineering" class="section">
+  <div class="section-tag">CHAPTER 06b</div>
+  <h2 class="section-title">上下文工程：如何把产出物喂给Agent</h2>
+  <p class="section-subtitle">手册讲了14种产出物，但没讲怎么把它们塞进Agent的上下文窗口。一个项目的AGENTS.md+ADR+Design Tokens+BDD+Sitemap+Flow+异常态矩阵加起来可能超过20K tokens。需要上下文工程。</p>
+
+  <h3 class="subhead">上下文预算分配</h3>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>上下文层</th>
+          <th>加载策略</th>
+          <th>内容</th>
+          <th>估算Token</th>
+          <th>加载时机</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>always-in（常驻上下文）</td>
+          <td>每次对话都加载</td>
+          <td>AGENTS.md + Design Brief + 当前功能的BDD场景</td>
+          <td>3-5K</td>
+          <td>session开始时自动加载</td>
+        </tr>
+        <tr>
+          <td>on-demand（按需加载）</td>
+          <td>Agent判断需要时加载</td>
+          <td>Sitemap + Flow + 异常态矩阵 + 其他功能BDD</td>
+          <td>5-10K</td>
+          <td>Agent在生成代码时按需读取</td>
+        </tr>
+        <tr>
+          <td>RAG检索</td>
+          <td>向量检索相关片段</td>
+          <td>ADR库 + 历史对话日志 + 调试记录</td>
+          <td>1-2K/次</td>
+          <td>Agent需要回溯决策时检索</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subhead">上下文优先级矩阵</h3>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>产出物</th>
+          <th>优先级</th>
+          <th>加载策略</th>
+          <th>备注</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>AGENTS.md</td>
+          <td>P0 必须常驻</td>
+          <td>always-in</td>
+          <td>Agent每次生成代码的约束框架</td>
+        </tr>
+        <tr>
+          <td>Design Brief</td>
+          <td>P0 必须常驻</td>
+          <td>always-in</td>
+          <td>方向锚点，防止跑偏</td>
+        </tr>
+        <tr>
+          <td>当前功能BDD场景</td>
+          <td>P0 必须常驻</td>
+          <td>always-in</td>
+          <td>当前功能的行为规格</td>
+        </tr>
+        <tr>
+          <td>Design Tokens</td>
+          <td>P1 生成UI时加载</td>
+          <td>on-demand</td>
+          <td>只在生成/修改UI时需要</td>
+        </tr>
+        <tr>
+          <td>Sitemap</td>
+          <td>P1 生成路由时加载</td>
+          <td>on-demand</td>
+          <td>只在生成/修改页面结构时需要</td>
+        </tr>
+        <tr>
+          <td>Flow图</td>
+          <td>P1 生成多屏时加载</td>
+          <td>on-demand</td>
+          <td>只在生成/修改交互流程时需要</td>
+        </tr>
+        <tr>
+          <td>异常态矩阵</td>
+          <td>P1 生成异常态时加载</td>
+          <td>on-demand</td>
+          <td>只在生成空/错误/加载等状态时需要</td>
+        </tr>
+        <tr>
+          <td>ADR库</td>
+          <td>P2 按需检索</td>
+          <td>RAG</td>
+          <td>只在需要回溯技术决策时检索</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subhead">上下文压缩策略</h3>
+
+  <p>当BDD场景列表超过50条时，全部加载到上下文中不现实。需要压缩策略：</p>
+  <ul>
+    <li><strong>摘要压缩：</strong>将已完成功能的BDD场景压缩为一行摘要（“登录功能：5个BDD场景已全部通过”），只展开当前正在做的功能</li>
+    <li><strong>分区加载：</strong>按模块分区，只加载当前模块的BDD场景</li>
+    <li><strong>递进加载：</strong>先加载BDD场景标题列表，Agent需要细节时再展开具体场景</li>
+  </ul>
+
+  <h3 class="subhead">跨模型适配</h3>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>模型</th>
+          <th>上下文窗口</th>
+          <th>always-in容量</th>
+          <th>策略</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GPT-4o</td>
+          <td>128K</td>
+          <td>可放全部产出物</td>
+          <td>但仍建议只放always-in，剩余on-demand减少干扰</td>
+        </tr>
+        <tr>
+          <td>Claude 3.5 Sonnet</td>
+          <td>200K</td>
+          <td>可放全部产出物</td>
+          <td>同上，上下文越长不代表效果越好</td>
+        </tr>
+        <tr>
+          <td>Qwen-max</td>
+          <td>32K</td>
+          <td>只能放AGENTS.md+Brief+当前BDD</td>
+          <td>需要更积极的压缩和RAG</td>
+        </tr>
+        <tr>
+          <td>本地开源模型</td>
+          <td>4K-8K</td>
+          <td>只能放AGENTS.md摘要</td>
+          <td>必须用RAG，且AGENTS.md需压缩</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    上下文工程的核心原则——不是“把所有东西都塞进去”，而是“在正确的时机加载正确的上下文”。上下文越长不代表效果越好，无关上下文反而会干扰Agent判断。always-in最小化，on-demand+RAG覆盖其余。
+  </div>
+</section>
+
+<!-- ===================== Chapter 06c：模型选择与Token经济学 ===================== -->
+<section id="model-strategy" class="section">
+  <span class="section-tag">CHAPTER 06c</span>
+  <h2 class="section-title">模型选择与Token经济学</h2>
+  <p class="section-subtitle">手册全程说"AI"但没区分模型。不同模型的成本、质量、延迟差异巨大。PM需要模型选择策略和Token成本管理方法。</p>
+
+  <h3 class="subhead">模型选择矩阵</h3>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>任务类型</th>
+          <th>推荐模型档位</th>
+          <th>成本量级</th>
+          <th>质量要求</th>
+          <th>延迟要求</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>代码生成（核心逻辑）</td>
+          <td>前沿模型（GPT-4o/Claude 3.5/Qwen-max）</td>
+          <td>$0.01-0.05/次</td>
+          <td>高</td>
+          <td>可接受5-10s</td>
+        </tr>
+        <tr>
+          <td>代码生成（样式/布局）</td>
+          <td>中等模型</td>
+          <td>$0.002-0.01/次</td>
+          <td>中</td>
+          <td>&lt;5s</td>
+        </tr>
+        <tr>
+          <td>测试生成（BDD→测试代码）</td>
+          <td>中等模型</td>
+          <td>$0.002-0.01/次</td>
+          <td>中</td>
+          <td>&lt;5s</td>
+        </tr>
+        <tr>
+          <td>Design QA（视觉检查）</td>
+          <td>多模态模型</td>
+          <td>$0.01-0.03/次</td>
+          <td>高</td>
+          <td>可接受10s</td>
+        </tr>
+        <tr>
+          <td>偏移检测（对照锚点检查）</td>
+          <td>前沿模型（需长上下文）</td>
+          <td>$0.02-0.08/次</td>
+          <td>高</td>
+          <td>可接受15s</td>
+        </tr>
+        <tr>
+          <td>文档/发版说明</td>
+          <td>轻量模型</td>
+          <td>$0.001-0.005/次</td>
+          <td>低</td>
+          <td>&lt;3s</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subhead">模型路由策略</h3>
+
+  <p>模型路由的核心思想——简单任务用便宜模型，复杂任务用贵模型。在AGENTS.md中定义路由规则，让Agent（或编排层）根据任务类型自动选择模型。</p>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>任务特征</th>
+          <th>路由到</th>
+          <th>判断依据</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>涉及核心业务逻辑/架构决策</td>
+          <td>前沿模型</td>
+          <td>影响范围大，质量要求高</td>
+        </tr>
+        <tr>
+          <td>涉及UI样式/布局调整</td>
+          <td>中等模型</td>
+          <td>有Design Tokens约束，质量要求中等</td>
+        </tr>
+        <tr>
+          <td>涉及测试/文档/简单CRUD</td>
+          <td>轻量模型</td>
+          <td>模式化任务，不需要强推理</td>
+        </tr>
+        <tr>
+          <td>需要视觉理解（Design QA）</td>
+          <td>多模态模型</td>
+          <td>需要图片输入能力</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subhead">Token经济学</h3>
+
+  <div class="info-box">
+    <strong>策略1：Token预算分配</strong><br>
+    每个功能模块分配Token预算。例如：简单页面2K tokens预算，复杂功能5K tokens预算。超出预算时暂停迭代，评估是否方向跑偏。
+  </div>
+
+  <div class="info-box">
+    <strong>策略2：缓存策略</strong><br>
+    AI生成的Design Tokens解析结果、BDD场景到测试代码的转换结果、Sitemap到路由代码的转换结果——这些是确定性的，可以缓存。同一个BDD场景不需要每次都重新生成测试代码。
+  </div>
+
+  <div class="info-box">
+    <strong>策略3：Prompt优化</strong><br>
+    AGENTS.md和BDD场景用结构化格式（JSON/YAML）而非自然语言段落，减少Token消耗。一个结构化的BDD场景约200 tokens，自然语言描述同一行为可能500+ tokens。
+  </div>
+
+  <div class="info-box">
+    <strong>策略4：增量生成</strong><br>
+    不要每次让Agent从头生成整个文件。用Edit模式修改现有文件，而不是Write模式重写。增量修改的Token消耗是全量生成的1/5到1/10。
+  </div>
+
+  <div class="callout">
+    <strong>Token经济学的核心原则</strong>——不是"省Token"，而是"每个Token创造的价值最大化"。用便宜模型处理简单任务省下的预算，留给前沿模型处理复杂任务。预算控制的目标是防止无限迭代（屎山循环），不是压缩质量。
+  </div>
+</section>
+
+<!-- ===================== Chapter 06d：Human-in-the-loop ===================== -->
+<section id="hitl" class="section">
+  <span class="section-tag">CHAPTER 06d</span>
+  <h2 class="section-title">Human-in-the-loop：人工介入节点设计</h2>
+  <p class="section-subtitle">不是所有环节都应该自动化。PM需要明确哪些环节必须人工审查、审查什么、何时审查。</p>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>节点</th>
+          <th>触发条件</th>
+          <th>审查内容</th>
+          <th>人工/自动</th>
+          <th>不审查的风险</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>锚点层变更</td>
+          <td>AGENTS.md/ADR/Design Tokens修改</td>
+          <td>变更影响范围评估</td>
+          <td>人工必须审查</td>
+          <td>变更影响下游全部产出，不审查=全局偏移</td>
+        </tr>
+        <tr>
+          <td>代码生成后</td>
+          <td>每次Agent生成代码</td>
+          <td>BDD测试是否通过+安全扫描</td>
+          <td>自动检查+人工确认</td>
+          <td>自动检查能覆盖功能和安全，但无法判断代码是否"优雅"</td>
+        </tr>
+        <tr>
+          <td>每屏完成后</td>
+          <td>Design QA触发</td>
+          <td>视觉还原度+状态完整性</td>
+          <td>自动检查+人工走查</td>
+          <td>自动检查能对齐Design Tokens，但无法判断交互体验</td>
+        </tr>
+        <tr>
+          <td>里程碑处</td>
+          <td>快照对比触发</td>
+          <td>全量回归+交互体验+方向校准</td>
+          <td>人工必须审查</td>
+          <td>方向是否偏移只有人能判断，AI无法自评方向</td>
+        </tr>
+        <tr>
+          <td>上线前</td>
+          <td>发版前</td>
+          <td>安全审计+合规检查+用户数据保护</td>
+          <td>人工必须审查</td>
+          <td>安全和合规问题AI可能遗漏</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subhead">自动化边界：什么该自动，什么必须人工</h3>
+
+  <div class="compare-card">
+    <h4>应该自动化的</h4>
+    <ul>
+      <li>BDD场景→测试代码生成（模式化，AI擅长）</li>
+      <li>Design Tokens对齐检查（规则明确，适合自动化）</li>
+      <li>代码安全扫描（规则明确）</li>
+      <li>AC Trace Matrix状态更新（数据聚合，适合自动化）</li>
+      <li>发版说明生成（从git log提取）</li>
+    </ul>
+  </div>
+
+  <div class="compare-card">
+    <h4>必须人工的</h4>
+    <ul>
+      <li>锚点层变更影响评估（需要判断力，AI无法自评）</li>
+      <li>交互体验走查（"感觉对不对"AI判断不了）</li>
+      <li>方向校准（"我们在做对的事吗"只有人能判断）</li>
+      <li>安全合规审查（风险高，不能全靠AI）</li>
+      <li>优先级决策（资源分配需要人的判断）</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <strong>Human-in-the-loop的设计原则</strong>——自动化"规则明确的重复劳动"，人工保留"需要判断力的决策点"。不要试图自动化一切，也不要过度依赖人工。关键是找到每类任务的"自动化边界"。
+  </div>
+</section>
+
+<!-- ===================== Chapter 06e：生产部署与运维 ===================== -->
+<section id="production" class="section">
+  <span class="section-tag">CHAPTER 06e</span>
+  <h2 class="section-title">生产部署与运维：Agent工作流的CI/CD</h2>
+  <p class="section-subtitle">Agent工作流也需要持续集成/持续部署。Prompt变更如何灰度？Agent行为如何回归测试？如何监控偏移？如何回滚？</p>
+
+  <h3 class="subhead">Agent工作流的CI/CD流水线</h3>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>阶段</th>
+          <th>触发</th>
+          <th>自动化内容</th>
+          <th>人工确认</th>
+          <th>产出物</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>代码提交</td>
+          <td>git push</td>
+          <td>BDD测试+ESLint+安全扫描</td>
+          <td>无</td>
+          <td>测试报告</td>
+        </tr>
+        <tr>
+          <td>Design QA</td>
+          <td>每屏完成</td>
+          <td>Design Tokens对齐检查</td>
+          <td>视觉走查</td>
+          <td>Design QA Report</td>
+        </tr>
+        <tr>
+          <td>锚点变更</td>
+          <td>AGENTS.md/ADR修改</td>
+          <td>全局偏移检测+影响范围分析</td>
+          <td>影响评估确认</td>
+          <td>偏移报告</td>
+        </tr>
+        <tr>
+          <td>里程碑</td>
+          <td>预设节点</td>
+          <td>全量回归+快照对比+交互测试</td>
+          <td>方向校准确认</td>
+          <td>Snapshot Diff</td>
+        </tr>
+        <tr>
+          <td>上线</td>
+          <td>发版触发</td>
+          <td>发版说明生成+安全审计</td>
+          <td>上线审批</td>
+          <td>Release Notes</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subhead">版本管理</h3>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>版本化对象</th>
+          <th>策略</th>
+          <th>工具</th>
+          <th>回滚方式</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>AGENTS.md/Prompt</td>
+          <td>git版本控制+变更评审</td>
+          <td>Git branch+PR</td>
+          <td>git revert回滚到上一版</td>
+        </tr>
+        <tr>
+          <td>Design Tokens</td>
+          <td>git版本控制</td>
+          <td>Git branch</td>
+          <td>回滚Tokens+重新生成受影响UI</td>
+        </tr>
+        <tr>
+          <td>BDD场景</td>
+          <td>git版本控制+测试结果绑定</td>
+          <td>Git branch+CI</td>
+          <td>回滚BDD+重新生成测试</td>
+        </tr>
+        <tr>
+          <td>Agent配置</td>
+          <td>配置文件版本化</td>
+          <td>JSON/YAML+git</td>
+          <td>切换到上一版配置</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subhead">监控与告警</h3>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>监控项</th>
+          <th>指标</th>
+          <th>告警阈值</th>
+          <th>告警方式</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Token消耗异常</td>
+          <td>每功能模块Token消耗</td>
+          <td>超预算150%</td>
+          <td>通知PM暂停迭代</td>
+        </tr>
+        <tr>
+          <td>测试通过率下降</td>
+          <td>BDD测试通过率</td>
+          <td>连续3次&lt;90%</td>
+          <td>通知PM检查代码质量</td>
+        </tr>
+        <tr>
+          <td>AC完成率停滞</td>
+          <td>AC Trace完成率</td>
+          <td>连续2天无进展</td>
+          <td>通知PM检查blocker</td>
+        </tr>
+        <tr>
+          <td>偏移检测</td>
+          <td>锚点校验deviation数</td>
+          <td>&gt;5项/次</td>
+          <td>通知PM做全局校验</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="subhead">回滚策略</h3>
+
+  <p>回滚策略按影响范围分三级：</p>
+  <ul>
+    <li><strong>功能级回滚：</strong>单个功能模块有问题→git revert该功能代码+BDD场景，不影响其他模块</li>
+    <li><strong>屏级回滚：</strong>某屏Design QA不通过→回滚该屏代码+重新生成，不影响其他屏</li>
+    <li><strong>锚点级回滚：</strong>锚点层变更有问题→回滚锚点文件+全量重新校验+受影响模块全部重做</li>
+  </ul>
+
+  <div class="callout">
+    <strong>生产部署的核心原则</strong>——把Agent工作流当作软件工程对待，用CI/CD的纪律管理Prompt/Token/产出版本。不要因为"AI生成的"就放松工程标准。Agent不是人，不会自觉遵守规范——你需要CI/CD来强制。
+  </div>
+</section>
+
+
+
+
+<!-- ===== CH07: TEMPLATES ===== -->
+<section class="section" id="templates">
+  <div class="section-tag">CHAPTER 07</div>
+  <h2 class="section-title">标准模板：14个必备产出物格式</h2>
+  <p class="section-subtitle">以下14个模板每个都包含完整的格式和字段说明，可直接复制使用。按管控层级（锚点层/进度层/执行层）分类。点击展开查看完整内容。</p>
+
+<div class="template-accordion">
+
+  <!-- ==================== Template 01 ==================== -->
+  <div class="template-item" data-layer="anchor">
+    <div class="template-header" onclick="toggleTemplate(this)">
+      <span class="th-num">01</span>
+      <span class="th-title">Problem Framing — 问题框定文档</span>
+      <span class="th-tag anchor">锚点层</span>
+      <span class="th-chevron">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </span>
+    </div>
+    <div class="template-body">
+      <div class="template-content">
+        <p class="tpl-desc">在设计启动前定义"我们在解决什么问题、为谁解决、成功长什么样"。它是整个链式上下文的根锚点——所有下游产出物都从此处继承问题定义与约束条件，避免设计偏离业务意图。</p>
+<pre># Problem Framing Document
+
+## 1. Problem Statement
+| Field | Content |
+|------|---------|
+| 一句话定义 | 作为 [用户角色]，当 [触发场景] 时，我无法 [当前痛点]，导致 [业务/体验影响] |
+| 量化影响 | 当前影响 [N] 用户/月，造成 [损失/流失率/效率下降指标] |
+| 时间窗口 | 问题首次观察到 [日期]，持续 [时长] |
+
+## 2. Target Persona
+- 角色名称：[Persona Name]
+- 核心目标（JTBD）：[用户要完成的任务，动词开头]
+- 当前替代方案：[用户现在怎么凑合解决的]
+- 替代方案缺陷：[为什么不满意]
+- 行为特征：[3-5 条可观察行为]
+- 技术熟练度：[低 / 中 / 高]
+
+## 3. Root Cause Analysis (5 Whys)
+| Why # | Question | Answer |
+|-------|----------|--------|
+| Why 1 | 为什么用户会遇到这个问题？ | [答案] |
+| Why 2 | 为什么会这样？ | [答案] |
+| Why 3 | 为什么没有被发现？ | [答案] |
+| Why 4 | 为什么没修复？ | [答案] |
+| Why 5 | 根因是什么？ | [根因陈述] |
+
+根因总结：[一句话]
+
+## 4. Scope Definition
+### In Scope
+- [功能边界 1]
+- [功能边界 2]
+- [功能边界 3]
+
+### Out of Scope
+- [排除项 1] — 理由：[为什么不做]
+- [排除项 2] — 理由：[为什么不做]
+
+## 5. Success Criteria
+| 指标 | 当前基线 | 目标值 | 度量方式 |
+|------|---------|--------|---------|
+| 北极星指标 | [当前值] | [目标值] | [埋点/问卷/行为数据] |
+| 护栏指标 | [当前值] | [不低于] | [度量方式] |
+| 体验指标 | [当前值] | [目标值] | [SUS / NPS / 任务完成率] |
+
+## 6. Constraints
+- 技术约束：[平台/框架/兼容性]
+- 资源约束：[人力 / 时间 / 预算]
+- 合规约束：[隐私 / 法规 / 审批]
+- 品牌约束：[设计风格 / 语气要求]
+
+## 7. Assumptions & Risks
+| # | 假设/风险 | 类型 | 验证方式 | 影响（如不成立） |
+|---|---------|------|---------|----------------|
+| 1 | [假设陈述] | 假设 | [验证方法] | [影响描述] |
+| 2 | [风险陈述] | 风险 | [缓解措施] | [影响描述] |
+
+## 8. Stakeholders
+| 角色 | 姓名 | 关注点 | 决策权 |
+|------|------|--------|--------|
+| 产品负责人 | [Name] | [关注] | [是/否] |
+| 设计负责人 | [Name] | [关注] | [是/否] |
+| 技术负责人 | [Name] | [关注] | [是/否] |
+
+---
+> 本文档经 [日期] 评审通过，作为下游 Design Brief / AGENTS.md / 数据模型 的上下文锚点。
+</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Template 02 ==================== -->
+  <div class="template-item" data-layer="anchor">
+    <div class="template-header" onclick="toggleTemplate(this)">
+      <span class="th-num">02</span>
+      <span class="th-title">Design Brief — 设计简报</span>
+      <span class="th-tag anchor">锚点层</span>
+      <span class="th-chevron">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </span>
+    </div>
+    <div class="template-body">
+      <div class="template-content">
+        <p class="tpl-desc">一页纸级别的设计方向对齐文档。把业务目标翻译成设计语言，让设计师和 AI Agent 都能从同一份上下文出发。下游所有设计 Skill（/用户故事、/站点地图、/用户旅程）自动读取此文件作为输入。</p>
+<pre># Design Brief
+
+## Project Identity
+| Field | Value |
+|-------|-------|
+| 项目名称 | [Project Name] |
+| 版本 | v1.0 |
+| 日期 | [YYYY-MM-DD] |
+| 负责设计师 | [Name] |
+| 关联 Problem Framing | [link/doc id] |
+
+## 1. Business Context
+- 产品类型：[B2C SaaS / B2B 平台 / 内部工具 / 电商 / 其他]
+- 业务阶段：[探索期 / 成长期 / 成熟期 / 转型期]
+- 核心商业模式：[收入来源一句话]
+
+## 2. Design Objective (max 3)
+1. [目标 1 — 动词开头，可度量] — 衡量：[指标]
+2. [目标 2] — 衡量：[指标]
+3. [目标 3] — 衡量：[指标]
+
+## 3. Target Audience
+| Persona | 核心 JTBD | 场景频率 | 技术水平 |
+|---------|---------|---------|---------|
+| [P1] | [任务] | [日/周/月 N次] | [低/中/高] |
+| [P2] | [任务] | [频率] | [水平] |
+
+## 4. Design Principles (pick 3-5)
+- [ ] Clarity first — 信息层级清晰，降低认知负荷
+- [ ] Progressive disclosure — 复杂功能分层呈现
+- [ ] Consistent mental model — 全局统一交互模式
+- [ ] Feedback rich — 每个操作有即时视觉反馈
+- [ ] Error prevention > recovery — 优先防错，其次恢复
+- [ ] Inclusive by default — 无障碍作为默认要求
+
+选中并排序：1.___  2.___  3.___
+
+## 5. Design Standards
+### Color
+- 主色：[#hex] — 语义：[品牌/行动/强调]
+- 辅色：[#hex] — 语义：[成功/警告/危险]
+- 背景层级：[浅色 3 层 / 深色 3 层]
+
+### Typography
+| 用途 | 字体 | 字号 | 字重 | 行高 |
+|------|------|------|------|------|
+| Display | [Family] | [px] | [weight] | [ratio] |
+| Heading | [Family] | [px] | [weight] | [ratio] |
+| Body | [Family] | [px] | [weight] | [ratio] |
+| Caption | [Family] | [px] | [weight] | [ratio] |
+| Code | [Family] | [px] | [weight] | [ratio] |
+
+### Spacing Scale
+[4 / 8 / 12 / 16 / 24 / 32 / 48 / 64] px — 基准 [4px]
+
+### Radius Scale
+[0 / 4 / 8 / 12 / 16 / 24 / full]
+
+## 6. Key Flows (prioritized)
+| # | Flow 名称 | 入口 | 目标 | 优先级 |
+|---|---------|------|------|--------|
+| 1 | [Flow A] | [入口] | [终点] | P0 |
+| 2 | [Flow B] | [入口] | [终点] | P1 |
+| 3 | [Flow C] | [入口] | [终点] | P2 |
+
+## 7. Platform & Constraints
+- 目标平台：[Web / iOS / Android / 微信 H5]
+- 断点：[xs/sm/md/lg/xl] 具体值
+- 最低支持：[浏览器/系统版本]
+- 性能预算：[首屏 LCP ≤ Ns / 交互延迟 ≤ Nms]
+
+## 8. Deliverables & Timeline
+| 产出物 | 格式 | 截止日 | 负责人 | 交付对象 |
+|--------|------|--------|--------|---------|
+| [产出物 1] | [Figma/HTML/JSON] | [date] | [Name] | [who] |
+| [产出物 2] | [format] | [date] | [Name] | [who] |
+
+---
+> 本 Brief 经 [日期] 确认，作为设计阶段上下文锚点。变更须经 stakeholder 同意。
+</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Template 03 ==================== -->
+  <div class="template-item" data-layer="anchor">
+    <div class="template-header" onclick="toggleTemplate(this)">
+      <span class="th-num">03</span>
+      <span class="th-title">ADR — 架构决策记录</span>
+      <span class="th-tag anchor">锚点层</span>
+      <span class="th-chevron">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </span>
+    </div>
+    <div class="template-body">
+      <div class="template-content">
+        <p class="tpl-desc">捕获关键架构决策的上下文、理由与权衡。每个 ADR 是不可变的历史快照——当下游开发者或 AI Agent 疑问"为什么这样选"时，ADR 提供可追溯的决策脉络，避免反复重新论证。</p>
+<pre># ADR-{编号}: {决策标题}
+
+- **Status**: Proposed | Accepted | Deprecated | Superseded by ADR-{N}
+- **Date**: {YYYY-MM-DD}
+- **Deciders**: {姓名/角色列表}
+- **Tags**: {architecture | frontend | backend | data | security}
+
+## Context（背景与触发条件）
+当前系统状况：
+- [现状描述 1]
+- [现状描述 2]
+
+触发此决策的问题：
+- [问题陈述]
+
+相关约束：
+- [技术约束]
+- [团队约束]
+- [时间约束]
+
+## Decision（决策内容）
+我们决定：[一句话决策陈述]
+
+具体方案：
+1. [方案细节 1]
+2. [方案细节 2]
+3. [方案细节 3]
+
+涉及组件/模块：
+- [模块 A] → [变更说明]
+- [模块 B] → [变更说明]
+
+## Alternatives Considered（备选方案）
+
+### Option A: [方案名]
+- 描述：[2-3 句]
+- 优点：[列举]
+- 缺点：[列举]
+- 适用场景：[何时更优]
+
+### Option B: [方案名]
+- 描述：[2-3 句]
+- 优点：[列举]
+- 缺点：[列举]
+- 适用场景：[何时更优]
+
+## Consequences（后果与影响）
+
+### Positive
+- [正面影响 1]
+- [正面影响 2]
+
+### Negative
+- [负面影响 / 代价 1]
+- [负面影响 / 代价 2]
+
+### Neutral
+- [中性影响 / 需关注的趋势]
+
+## Trade-off Analysis
+| 维度 | Option A | Option B | 选定方案 |
+|------|---------|---------|---------|
+| 开发成本 | [评] | [评] | [评] |
+| 性能 | [评] | [评] | [评] |
+| 可维护性 | [评] | [评] | [评] |
+| 扩展性 | [评] | [评] | [评] |
+| 团队熟悉度 | [评] | [评] | [评] |
+
+## Validation（验证方式）
+- [ ] 原型验证：[方法]
+- [ ] 性能测试：[指标与阈值]
+- [ ] 代码评审：[检查点]
+- [ ] 上线灰度：[策略]
+
+## Related
+- Supersedes: ADR-{N}（如适用）
+- References: [外部链接 / 内部文档]
+- Follow-up: [需要后续创建的 ADR / Task]
+
+---
+> ADR 一旦 Accepted 即不可修改；需变更请创建新 ADR 并标记 Superseded。
+</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Template 04 ==================== -->
+  <div class="template-item" data-layer="anchor">
+    <div class="template-header" onclick="toggleTemplate(this)">
+      <span class="th-num">04</span>
+      <span class="th-title">AGENTS.md — 项目级 AI 指令文件</span>
+      <span class="th-tag anchor">锚点层</span>
+      <span class="th-chevron">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </span>
+    </div>
+    <div class="template-body">
+      <div class="template-content">
+        <p class="tpl-desc">放置在项目根目录的 Markdown 文件，为 Cursor / Claude Code / Windsurf 等 AI Coding Agent 提供项目上下文、编码规范、架构约束与常见陷阱。是让 AI Agent "像团队成员一样理解项目"的核心指令文件。</p>
+<pre># AGENTS.md
+> Project-level instructions for AI coding agents.
+> This file is read automatically by Cursor, Claude Code, and Windsurf.
+
+## Project Overview
+- **Name**: {project-name}
+- **Type**: {Next.js App / React SPA / Express API / Monorepo}
+- **Description**: {1-2 sentences}
+- **Repository**: {repo URL}
+
+## Tech Stack
+- **Framework**: {Next.js 15 / React 19 / Vue 3 / Express}
+- **Language**: {TypeScript 5.x strict}
+- **Styling**: {Tailwind CSS 4 / CSS Modules / Styled Components}
+- **State**: {Zustand / Redux Toolkit / Jotai}
+- **Data fetching**: {TanStack Query / SWR / fetch}
+- **Testing**: {Vitest + Testing Library / Playwright}
+- **Package manager**: {pnpm / npm / yarn}
+
+## Directory Structure
+```
+src/
+├── app/           # Next.js App Router pages & layouts
+├── components/
+│   ├── ui/        # Primitives (Button, Input, Modal)
+│   ├── shared/    # Composite components
+│   └── features/  # Feature-scoped components
+├── lib/           # Utilities, hooks, constants
+├── services/      # API layer (one file per resource)
+├── stores/        # Global state stores
+├── types/         # Shared TypeScript types
+└── styles/        # Global styles & tokens
+```
+
+## Coding Conventions
+
+### TypeScript
+- Always use `type` for object shapes, `interface` only for class implementations.
+- No `any`. Use `unknown` + type narrowing when type is genuinely unknown.
+- Prefer `as const` over `enum`.
+- Function return types must be explicit for exported functions.
+
+### Naming
+- Components: PascalCase — `UserProfile.tsx`
+- Hooks: camelCase prefixed with `use` — `useAuth.ts`
+- Utils: camelCase — `formatDate.ts`
+- Constants: UPPER_SNAKE_CASE — `MAX_RETRY_COUNT`
+- CSS classes: kebab-case — `user-profile-card`
+
+### React Patterns
+- Prefer function components with hooks. No class components.
+- Server Components by default; add `"use client"` only when needed.
+- Co-locate tests next to source: `Button.test.tsx` next to `Button.tsx`.
+- Props interface named `{Component}Props`.
+
+### API Layer
+- One file per resource in `src/services/`.
+- All API calls return `{ data, error, status }` tuple shape.
+- Never call `fetch` directly in components — use the service layer.
+
+## Critical Rules (DO NOT VIOLATE)
+1. **Never** import from `src/app` in `src/lib` or `src/services`.
+2. **Never** use inline styles. Use Tailwind classes or CSS modules.
+3. **Never** hardcode API URLs. Use `NEXT_PUBLIC_API_URL` env var.
+4. **Always** handle loading and error states in components.
+5. **Always** write tests for hooks and utility functions.
+6. **Always** use the design tokens from `src/styles/tokens.css`. Do not hardcode colors.
+
+## Common Tasks
+
+### Adding a new page
+1. Create `src/app/{route}/page.tsx` (Server Component by default).
+2. Add metadata export: `export const metadata = { title, description }`.
+3. If interactivity needed, create `{route}/components/` with `"use client"` components.
+4. Add navigation link in `src/components/shared/Nav.tsx`.
+
+### Adding a new API service
+1. Create `src/services/{resource}.ts`.
+2. Define types in `src/types/{resource}.ts`.
+3. Export typed functions: `get{Resource}`, `create{Resource}`, etc.
+4. Add corresponding hooks in `src/lib/hooks/` using TanStack Query.
+
+### Adding a UI component
+1. Create `src/components/ui/{Name}.tsx`.
+2. Define `{Name}Props` interface.
+3. Use tokens from `src/styles/tokens.css` via Tailwind config.
+4. Add to barrel export `src/components/ui/index.ts`.
+5. Write `src/components/ui/{Name}.test.tsx`.
+
+## Known Issues & Gotchas
+- `next/image` requires `width` and `height` for remote images. Always provide both.
+- WebSocket reconnection may fire duplicate messages. Use `useRef` to guard.
+- `zustand` store updates are shallow — nested object mutations need spread.
+
+## Environment Variables
+| Var Name | Required | Description |
+|----------|----------|-------------|
+| `DATABASE_URL` | Yes | PostgreSQL connection string |
+| `NEXT_PUBLIC_API_URL` | Yes | Backend API base URL |
+| `AUTH_SECRET` | Yes | JWT signing secret |
+| `SENTRY_DSN` | No | Error tracking |
+
+## Commands
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Start dev server (port 3000) |
+| `pnpm build` | Production build |
+| `pnpm test` | Run unit tests |
+| `pnpm test:e2e` | Run Playwright E2E tests |
+| `pnpm lint` | ESLint + check formatting |
+| `pnpm typecheck` | TypeScript type check only |
+
+## When Making Changes
+1. Run `pnpm typecheck` — must pass with 0 errors.
+2. Run `pnpm lint` — must pass with 0 errors.
+3. Run `pnpm test` — all existing tests must pass.
+4. Add tests for new logic.
+5. Update this file if architecture changes.
+</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Template 05 ==================== -->
+  <div class="template-item" data-layer="anchor">
+    <div class="template-header" onclick="toggleTemplate(this)">
+      <span class="th-num">05</span>
+      <span class="th-title">Design Tokens JSON</span>
+      <span class="th-tag anchor">锚点层</span>
+      <span class="th-chevron">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </span>
+    </div>
+    <div class="template-body">
+      <div class="template-content">
+        <p class="tpl-desc">机器可读的设计令牌文件，是 Design System 的 single source of truth。Tailwind 配置、CSS 变量、Figma Token Studio 均从此文件同步。保证设计师与 AI Agent 引用的视觉值永远一致。</p>
+<pre>{
+  "$schema": "https://design-tokens.org/schema",
+  "$meta": {
+    "project": "project-name",
+    "version": "1.0.0",
+    "updated": "2025-01-15",
+    "maintainer": "design-systems@company.com"
+  },
+  "color": {
+    "primitive": {
+      "amber": { "50": "#fffbeb", "100": "#fef3c7", "500": "#f59e0b", "600": "#d97706", "700": "#b45309" },
+      "teal":  { "50": "#f0fdfa", "100": "#ccfbf1", "500": "#2dd4bf", "600": "#0d9488", "700": "#0f766e" },
+      "violet":{ "50": "#f5f3ff", "100": "#ede9fe", "500": "#818cf8", "600": "#6366f1", "700": "#4f46e5" },
+      "red":   { "50": "#fef2f2", "500": "#ef4444", "600": "#dc2626" },
+      "gray":  { "50": "#f9fafb", "100": "#f3f4f6", "400": "#9ca3af", "600": "#4b5563", "800": "#1f2937" }
+    },
+    "semantic": {
+      "bg": {
+        "deep":     { "value": "{color.primitive.gray.800}", "comment": "app background" },
+        "surface":  { "value": "#131825", "comment": "card background" },
+        "elevated": { "value": "#1a2030", "comment": "modal/popover" },
+        "card":     { "value": "#1e2538" }
+      },
+      "text": {
+        "primary":   { "value": "#f0f4f8" },
+        "secondary": { "value": "#9ca3b4" },
+        "muted":     { "value": "#5c6578" }
+      },
+      "border": {
+        "subtle": { "value": "#2a3548" },
+        "strong": { "value": "#3d4a63" }
+      },
+      "accent": {
+        "primary":  { "value": "{color.primitive.amber.500}", "comment": "CTA / links" },
+        "secondary":{ "value": "{color.primitive.teal.500}", "comment": "progress / info" },
+        "tertiary": { "value": "{color.primitive.violet.500}", "comment": "execution layer" }
+      },
+      "feedback": {
+        "success": { "value": "{color.primitive.teal.500}" },
+        "warning": { "value": "{color.primitive.amber.500}" },
+        "error":   { "value": "{color.primitive.red.500}" }
+      }
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "display": { "value": "'Fraunces', Georgia, serif" },
+      "body":    { "value": "'Manrope', system-ui, sans-serif" },
+      "code":    { "value": "'JetBrains Mono', monospace" }
+    },
+    "fontSize": {
+      "xs":   { "value": "0.75rem",  "px": 12 },
+      "sm":   { "value": "0.875rem", "px": 14 },
+      "base": { "value": "1rem",     "px": 16 },
+      "lg":   { "value": "1.125rem", "px": 18 },
+      "xl":   { "value": "1.25rem",  "px": 20 },
+      "2xl":  { "value": "1.5rem",   "px": 24 },
+      "3xl":  { "value": "1.875rem", "px": 30 },
+      "4xl":  { "value": "2.25rem",  "px": 36 },
+      "5xl":  { "value": "3rem",     "px": 48 }
+    },
+    "fontWeight": {
+      "normal":  { "value": 400 },
+      "medium":  { "value": 500 },
+      "semibold":{ "value": 600 },
+      "bold":    { "value": 700 }
+    },
+    "lineHeight": {
+      "tight":   { "value": 1.25 },
+      "normal":  { "value": 1.5 },
+      "relaxed": { "value": 1.75 }
+    },
+    "letterSpacing": {
+      "tight": { "value": "-0.02em" },
+      "normal":{ "value": "0" },
+      "wide":  { "value": "0.05em" }
+    }
+  },
+  "spacing": {
+    "scale": [0, 2, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128],
+    "base": 4
+  },
+  "radius": {
+    "none":   { "value": 0 },
+    "sm":     { "value": "4px" },
+    "md":     { "value": "8px" },
+    "lg":     { "value": "12px" },
+    "xl":     { "value": "16px" },
+    "2xl":    { "value": "24px" },
+    "full":   { "value": "9999px" }
+  },
+  "shadow": {
+    "sm":  { "value": "0 1px 2px rgba(0,0,0,0.15)" },
+    "md":  { "value": "0 4px 12px rgba(0,0,0,0.25)" },
+    "lg":  { "value": "0 8px 32px rgba(0,0,0,0.35)" },
+    "glow-amber": { "value": "0 0 0 1px rgba(245,158,11,0.3), 0 8px 32px rgba(0,0,0,0.3)" }
+  },
+  "motion": {
+    "duration": {
+      "instant": { "value": "100ms" },
+      "fast":    { "value": "150ms" },
+      "normal":  { "value": "250ms" },
+      "slow":    { "value": "400ms" }
+    },
+    "easing": {
+      "standard":  { "value": "cubic-bezier(0.4, 0, 0.2, 1)" },
+      "decelerate":{ "value": "cubic-bezier(0, 0, 0.2, 1)" },
+      "accelerate":{ "value": "cubic-bezier(0.4, 0, 1, 1)" },
+      "spring":    { "value": "cubic-bezier(0.34, 1.56, 0.64, 1)" }
+    }
+  },
+  "breakpoint": {
+    "sm": { "value": 640 },
+    "md": { "value": 768 },
+    "lg": { "value": 1024 },
+    "xl": { "value": 1280 },
+    "2xl":{ "value": 1536 }
+  },
+  "zIndex": {
+    "base":     { "value": 0 },
+    "dropdown": { "value": 1000 },
+    "sticky":   { "value": 1100 },
+    "modal":    { "value": 1300 },
+    "toast":    { "value": 1400 }
+  }
+}
+</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Template 06 ==================== -->
+  <div class="template-item" data-layer="anchor">
+    <div class="template-header" onclick="toggleTemplate(this)">
+      <span class="th-num">06</span>
+      <span class="th-title">Data Model Spec — 数据模型定义</span>
+      <span class="th-tag anchor">锚点层</span>
+      <span class="th-chevron">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </span>
+    </div>
+    <div class="template-body">
+      <div class="template-content">
+        <p class="tpl-desc">定义系统中的核心实体、字段类型、关系和约束。让前端、后端、AI Agent 对"数据长什么样"有统一理解，消除接口联调时才发现字段不一致的问题。</p>
+<pre># Data Model Specification
+
+## Entity Relationship Overview
+```
+User 1───* Project *───* Member
+  │                     │
+  *                     *
+  Session             Issue
+```
+
+## Entity: User
+| Field | Type | Required | Default | Validation | Description |
+|-------|------|----------|---------|------------|-------------|
+| id | UUID | Yes | generated | UUID v4 | Primary key |
+| email | string(254) | Yes | — | RFC 5322 compliant | Unique, case-insensitive |
+| displayName | string(50) | Yes | derived from email | 2-50 chars | Shown in UI |
+| avatarUrl | string(url) | No | null | https only | CDN-hosted |
+| role | enum | Yes | "member" | [admin, member, viewer] | Permission level |
+| status | enum | Yes | "active" | [active, suspended, deleted] | Account state |
+| createdAt | timestamp | Yes | now() | ISO 8601 UTC | |
+| updatedAt | timestamp | Yes | now() | auto on modify | |
+
+### Indexes
+- `idx_users_email` UNIQUE(email) — login lookup
+- `idx_users_status` (status) WHERE status = 'active' — active user queries
+
+### Relationships
+- User **1:N** Project (via `projects.ownerId`)
+- User **1:N** Session (via `sessions.userId`)
+- User **N:M** Project (via `members` join table)
+
+---
+
+## Entity: Project
+| Field | Type | Required | Default | Validation | Description |
+|-------|------|----------|---------|------------|-------------|
+| id | UUID | Yes | generated | UUID v4 | Primary key |
+| ownerId | UUID | Yes | — | FK → users.id | Project owner |
+| name | string(100) | Yes | — | 1-100 chars | Display name |
+| slug | string(40) | Yes | derived | [a-z0-9-]{3,40} | URL path segment |
+| description | text | No | null | max 2000 chars | |
+| status | enum | Yes | "draft" | [draft, active, archived] | Lifecycle |
+| visibility | enum | Yes | "private" | [private, team, public] | Access scope |
+| settings | jsonb | Yes | {} | schema below | Project config |
+| createdAt | timestamp | Yes | now() | | |
+| updatedAt | timestamp | Yes | now() | | |
+
+### settings JSON schema
+```json
+{
+  "defaultAssignee": "UUID | null",
+  "issuePrefix": "string(4) | null",
+  "autoArchiveDays": "number | null"
+}
+```
+
+---
+
+## Entity: Issue
+| Field | Type | Required | Default | Validation | Description |
+|-------|------|----------|---------|------------|-------------|
+| id | UUID | Yes | generated | UUID v4 | Primary key |
+| projectId | UUID | Yes | — | FK → projects.id | |
+| number | integer | Yes | auto-increment per project | | Human-friendly ID |
+| title | string(200) | Yes | — | 1-200 chars | |
+| description | text | No | null | markdown supported | |
+| type | enum | Yes | "task" | [bug, task, story, epic] | |
+| priority | enum | Yes | "medium" | [low, medium, high, urgent] | |
+| status | enum | Yes | "backlog" | [backlog, todo, in_progress, in_review, done] | |
+| assigneeId | UUID | No | null | FK → users.id | Current assignee |
+| reporterId | UUID | Yes | — | FK → users.id | Creator |
+| labels | string[] | No | [] | each ≤ 30 chars | |
+| estimateHours | decimal(4,1) | No | null | 0-999.9 | Story points |
+| dueDate | date | No | null | ISO 8601 | |
+| createdAt | timestamp | Yes | now() | | |
+| updatedAt | timestamp | Yes | now() | | |
+| closedAt | timestamp | No | null | set on status → done | |
+
+### Business Rules
+1. `number` auto-increments within a project, starting at 1.
+2. `assigneeId` must be a member of the project.
+3. Transition to `done` requires `closedAt` to be set.
+4. `urgent` priority triggers notification to all project members.
+
+---
+
+## Entity: Member (Join Table)
+| Field | Type | Required | Default | Validation |
+|-------|------|----------|---------|------------|
+| projectId | UUID | Yes | — | FK → projects.id |
+| userId | UUID | Yes | — | FK → users.id |
+| role | enum | Yes | "member" | [owner, admin, member, viewer] |
+| joinedAt | timestamp | Yes | now() | |
+
+### Constraints
+- PRIMARY KEY (projectId, userId)
+- Only one `owner` per project.
+
+---
+
+## API Contract Conventions
+- All timestamps in UTC ISO 8601: `2025-01-15T10:30:00Z`
+- Pagination: `?page=1&limit=20` → `{ data: [...], pagination: { page, limit, total, totalPages } }`
+- Error shape: `{ error: { code: string, message: string, details?: object } }`
+- Nullable fields return `null`, never `undefined` or omitted.
+</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Template 07 ==================== -->
+  <div class="template-item" data-layer="progress">
+    <div class="template-header" onclick="toggleTemplate(this)">
+      <span class="th-num">07</span>
+      <span class="th-title">BDD Scenarios — 行为驱动开发场景</span>
+      <span class="th-tag progress">进度层</span>
+      <span class="th-chevron">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </span>
+    </div>
+    <div class="template-body">
+      <div class="template-content">
+        <p class="tpl-desc">用 Given-When-Then 语法描述功能行为，让产品经理、设计师、工程师共享同一份可执行规格。可直接被自动化测试框架（Cucumber / Playwright）消费，消除"需求与实现脱节"。</p>
+<pre>Feature: 用户登录与认证
+  作为已注册用户
+  我希望使用邮箱密码登录系统
+  以便访问我的工作空间
+
+  Background:
+    Given 系统中存在以下用户:
+      | email          | password    | status   |
+      | alice@test.com | ValidPass1! | active   |
+      | bob@test.com   | ValidPass2! | suspended|
+
+  @smoke @auth
+  Scenario: 使用有效凭据成功登录
+    Given 用户在登录页面
+    And 用户输入邮箱 "alice@test.com"
+    And 用户输入密码 "ValidPass1!"
+    When 用户点击"登录"按钮
+    Then 系统验证凭据成功
+    And 用户被重定向到 "/dashboard"
+    And 页面显示用户名 "Alice"
+    And 响应头包含有效的 JWT token
+    And 会话在数据库中创建，过期时间为 24 小时后
+
+  @auth @negative
+  Scenario: 使用错误密码登录失败
+    Given 用户在登录页面
+    And 用户输入邮箱 "alice@test.com"
+    And 用户输入密码 "WrongPassword!"
+    When 用户点击"登录"按钮
+    Then 系统返回错误码 "AUTH_INVALID_CREDENTIALS"
+    And 页面显示提示 "邮箱或密码不正确"
+    And 用户停留在登录页面
+    And 数据库中未创建新会话
+    And 失败登录计数加 1
+
+  @auth @negative
+  Scenario: 被封禁用户尝试登录
+    Given 用户在登录页面
+    And 用户输入邮箱 "bob@test.com"
+    And 用户输入密码 "ValidPass2!"
+    When 用户点击"登录"按钮
+    Then 系统返回错误码 "AUTH_ACCOUNT_SUSPENDED"
+    And 页面显示提示 "该账户已被暂停，请联系管理员"
+    And 用户停留在登录页面
+
+  @auth @security
+  Scenario: 连续 5 次失败后触发速率限制
+    Given 用户在登录页面
+    And 用户已连续 4 次输入错误密码
+    And 用户输入邮箱 "alice@test.com"
+    And 用户输入密码 "AnotherWrong!"
+    When 用户点击"登录"按钮
+    Then 系统返回错误码 "AUTH_RATE_LIMITED"
+    And 页面显示提示 "尝试次数过多，请 15 分钟后再试"
+    And 该 IP 被标记限流 15 分钟
+
+  @auth @accessibility
+  Scenario: 使用键盘完整登录流程
+    Given 用户在登录页面
+    When 用户按 Tab 键聚焦到邮箱输入框
+    And 用户输入 "alice@test.com"
+    And 用户按 Tab 键聚焦到密码输入框
+    And 用户输入 "ValidPass1!"
+    And 用户按 Tab 键聚焦到"登录"按钮
+    And 用户按 Enter 键
+    Then 用户被重定向到 "/dashboard"
+
+---
+
+Feature: 项目看板 — 拖拽排序 Issue
+  作为项目管理者
+  我希望通过拖拽调整 Issue 顺序和状态
+  以便直观地管理项目进度
+
+  Background:
+    Given 用户 "Alice" 已登录
+    And 用户是项目 "Alpha" 的 owner
+    And 项目 "Alpha" 看板有 3 列：Todo / In Progress / Done
+    And Todo 列有以下 Issue:
+      | number | title            |
+      | 1      | 修复登录闪烁     |
+      | 2      | 添加暗色模式     |
+      | 3      | 优化加载速度     |
+
+  @board @drag-drop
+  Scenario: 拖拽 Issue 从 Todo 到 In Progress
+    Given 用户在看板页面
+    When 用户拖拽 Issue #2 "添加暗色模式" 从 "Todo" 列到 "In Progress" 列
+    Then Issue #2 出现在 "In Progress" 列中
+    And Issue #2 的状态更新为 "in_progress"
+    And "Todo" 列剩余 Issue #1 和 #3
+    And 操作记录写入 Issue #2 的活动日志
+    And WebSocket 广播更新给其他在线成员
+
+  @board @drag-drop @order
+  Scenario: 在同列内重新排序
+    Given 用户在看板页面
+    When 用户拖拽 Issue #3 到 Issue #1 上方
+    Then "Todo" 列顺序变为 #3, #1, #2
+    And 排序持久化到数据库
+    And 刷新页面后顺序保持不变
+
+  @board @edge-case
+  Scenario: 拖拽过程中网络断开
+    Given 用户在看板页面
+    And 用户开始拖拽 Issue #2
+    When 网络连接断开
+    Then Issue #2 回到原始位置 "Todo" 列
+    And 页面显示 toast 提示 "操作失败，网络已断开"
+    And 页面右上角显示离线状态指示器
+</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Template 08 ==================== -->
+  <div class="template-item" data-layer="progress">
+    <div class="template-header" onclick="toggleTemplate(this)">
+      <span class="th-num">08</span>
+      <span class="th-title">Sitemap / IA — 站点地图</span>
+      <span class="th-tag progress">进度层</span>
+      <span class="th-chevron">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </span>
+    </div>
+    <div class="template-body">
+      <div class="template-content">
+        <p class="tpl-desc">结构化定义页面层级、路由命名与导航组织。是 Flow 设计的前置步骤——先确定"有哪些页面、怎么命名"，再设计页面间的流转逻辑。可直接指导前端路由实现。</p>
+<pre># Sitemap / Information Architecture
+
+## Project: {Project Name}
+## Version: {1.0}
+## Date: {YYYY-MM-DD}
+
+## Navigation Structure (Tree)
+
+```
+Root (/)
+├── Public
+│   ├── /                       → Landing / 首页
+│   ├── /pricing                → 定价页
+│   ├── /docs                   → 文档站
+│   │   ├── /docs/getting-started
+│   │   ├── /docs/api-reference
+│   │   └── /docs/faq
+│   ├── /blog                   → 博客列表
+│   │   └── /blog/{slug}        → 博客详情
+│   ├── /about                  → 关于我们
+│   └── /contact                → 联系我们
+│
+├── Auth
+│   ├── /login                  → 登录
+│   ├── /register               → 注册
+│   ├── /forgot-password        → 忘记密码
+│   ├── /reset-password          → 重置密码（邮件链接落地）
+│   └── /verify-email           → 邮箱验证
+│
+├── App (auth required)
+│   ├── /dashboard              → 工作台首页
+│   │
+│   ├── /projects               → 项目列表
+│   │   ├── /projects/new        → 新建项目
+│   │   └── /projects/{id}
+│   │       ├── /projects/{id}              → 看板视图
+│   │       ├── /projects/{id}/list          → 列表视图
+│   │       ├── /projects/{id}/timeline      → 时间线
+│   │       ├── /projects/{id}/settings      → 项目设置
+│   │       │   ├── /projects/{id}/settings/general
+│   │       │   ├── /projects/{id}/settings/members
+│   │       │   └── /projects/{id}/settings/integrations
+│   │       └── /projects/{id}/issues/{number}  → Issue 详情
+│   │
+│   ├── /notifications          → 通知中心
+│   │   └── /notifications/{id}  → 通知详情
+│   │
+│   ├── /search                 → 全局搜索
+│   │
+│   ├── /settings               → 个人设置
+│   │   ├── /settings/profile    → 个人资料
+│   │   ├── /settings/account    → 账户安全
+│   │   ├── /settings/appearance → 外观偏好
+│   │   └── /settings/billing    → 订阅与账单
+│   │
+│   └── /admin (role: admin only)
+│       ├── /admin/users         → 用户管理
+│       ├── /admin/projects      → 全局项目
+│       └── /admin/logs          → 操作日志
+│
+└── Error
+    ├── /403                     → 无权限
+    ├── /404                     → 页面不存在
+    └── /500                     → 服务异常
+```
+
+## Page Metadata
+
+| Route | Page Title | Auth | Role | Primary CTA | Entry Points |
+|-------|-----------|------|------|------------|-------------|
+| / | 首页 - {Brand} | Public | — | 注册 / 试试看 | 导航 / 直接访问 |
+| /pricing | 定价 - {Brand} | Public | — | 联系销售 | 导航 / 首页 CTA |
+| /dashboard | 工作台 | Required | any | 新建项目 | 登录后默认跳转 |
+| /projects | 项目列表 | Required | any | 新建项目 | 导航 / Dashboard |
+| /projects/{id} | {Project.name} | Required | member+ | 新建 Issue | 项目列表 / 搜索 |
+| /settings/profile | 个人资料 | Required | any | 保存 | 导航菜单 |
+
+## Navigation Design
+
+### Primary Nav (Top Bar)
+[Logo] [Dashboard] [Projects] [Search] [Notifications] [Avatar Menu]
+
+### Secondary Nav (Project scoped)
+[Board] [List] [Timeline] | [Settings] [Members] [Integrations]
+
+### Footer Nav (Public pages only)
+[Pricing] [Docs] [Blog] [About] [Contact] [Privacy] [Terms]
+
+## Access Control Matrix
+
+| Page Group | Public | Logged-in Viewer | Member | Owner | Admin |
+|-----------|--------|-----------------|--------|-------|-------|
+| Public pages | ✅ | ✅ | ✅ | ✅ | ✅ |
+| /dashboard | ❌ | ✅ | ✅ | ✅ | ✅ |
+| /projects/{id} | ❌ | ✅ if member | ✅ | ✅ | ✅ |
+| /projects/{id}/settings | ❌ | ❌ | ❌ | ✅ | ✅ |
+| /admin/* | ❌ | ❌ | ❌ | ❌ | ✅ |
+
+## Responsive Behavior
+
+| Breakpoint | Nav Style | Notes |
+|-----------|-----------|-------|
+| Desktop (≥1024px) | Full top bar + secondary nav | 7+ items visible |
+| Tablet (768-1023px) | Top bar collapses to hamburger | Secondary nav as tabs |
+| Mobile (<768px) | Bottom tab bar (5 items) + hamburger menu | Prioritized: Dashboard, Projects, Search, Notif, Profile |
+</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Template 09 ==================== -->
+  <div class="template-item" data-layer="progress">
+    <div class="template-header" onclick="toggleTemplate(this)">
+      <span class="th-num">09</span>
+      <span class="th-title">Flow Diagram — 用户流程图</span>
+      <span class="th-tag progress">进度层</span>
+      <span class="th-chevron">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </span>
+    </div>
+    <div class="template-body">
+      <div class="template-content">
+        <p class="tpl-desc">用 Mermaid 语法描述页面间的流转逻辑、分支条件与循环。文本可被版本管理工具追踪，也能直接渲染为可视化流程图，让工程师与 AI Agent 同时理解导航逻辑。</p>
+<pre># User Flow: {Flow Name}
+
+## Flow: 新用户注册到首次创建项目
+
+```mermaid
+flowchart TD
+    A([用户访问 Landing 页]) --> B{已登录?}
+    B -- 是 --> Z([跳转 Dashboard])
+    B -- 否 --> C[点击 注册 按钮]
+    C --> D[注册页 /register]
+    D --> E{填写表单}
+    E -->|邮箱+密码+验证码| F{服务端验证}
+    E -->|字段为空| E1[显示必填提示] --> E
+    E -->|邮箱格式错误| E2[显示格式错误] --> E
+    E -->|密码强度不足| E3[显示强度要求] --> E
+
+    F -->|验证通过| G[发送验证邮件]
+    F -->|邮箱已注册| F1[提示邮箱已存在] --> E
+    F -->|验证码错误| F2[提示验证码错误] --> E
+
+    G --> H[显示 验证邮箱 页 /verify-email]
+    H --> I{用户操作}
+    I -->|点击邮件链接| J[验证成功]
+    I -->|重新发送| G
+    I -->|等待超时 5min| I1[提示验证码过期] --> E
+
+    J --> K[自动登录]
+    K --> L[Onboarding 引导页]
+    L --> M{选择操作}
+    M -->|创建空项目| N[项目创建表单]
+    M -->|从模板创建| O[模板选择页]
+    M -->|跳过| Z
+
+    N --> P{填写项目信息}
+    P -->|名称+描述| Q[创建项目 API]
+    Q -->|成功| R[跳转 /projects/{id} 看板页]
+    Q -->|失败| P1[显示错误 toast] --> P
+
+    R --> S[显示 Onboarding 引导提示]
+    S --> T([用户完成首次体验])
+```
+
+## Flow: 已有用户创建 Issue（从看板）
+
+```mermaid
+flowchart TD
+    A([用户在 Dashboard]) --> B[点击项目卡片]
+    B --> C[跳转 /projects/{id} 看板]
+    C --> D[点击 +新建 Issue 按钮]
+    D --> E[打开 Issue 创建 Modal/抽屉]
+
+    E --> F{填写 Issue}
+    F -->|标题+类型+优先级| G[点击 创建 按钮]
+    F -->|分配负责人| G
+    F -->|选择标签| G
+
+    G --> H{API 请求}
+    H -->|成功| I[Issue 出现在看板 Todo 列]
+    H -->|网络失败| J[显示重试 toast] --> G
+    H -->|权限不足| K[显示权限错误] --> E
+
+    I --> L{是否继续创建?}
+    L -->|是| D
+    L -->|否| M([完成])
+```
+
+## Flow: 异常态 — 网络断开时的看板操作
+
+```mermaid
+flowchart TD
+    A([用户在看板页]) --> B[拖拽 Issue 到新列]
+    B --> C[前端乐观更新 UI]
+    C --> D{API 请求}
+    D -->|网络断开| E[保持乐观 UI]
+    E --> F[显示离线指示器]
+    F --> G[操作存入本地队列]
+    G --> H{网络恢复?}
+    H -->|是| I[批量重放队列]
+    I -->|全部成功| J[移除离线指示器]
+    I -->|部分失败| K[显示冲突提示]
+    K --> L[用户选择 覆盖 / 保留原始 / 放弃]
+    H -->|否| M[等待恢复，最多保留 50 条]
+    H -->|用户手动刷新| N[丢弃本地队列，从服务端重载]
+```
+
+## Screen Inventory Referenced
+
+| Screen | Route | Components | States to Design |
+|--------|-------|------------|-----------------|
+| Landing | / | HeroCard, CTASection | default, scroll-animated |
+| Register | /register | RegisterForm, PasswordStrengthMeter | empty, error, loading, success |
+| Verify Email | /verify-email | CountdownTimer, ResendButton | waiting, success, expired |
+| Onboarding | /onboarding | StepIndicator, TemplateGallery | step-1 through step-3 |
+| Kanban Board | /projects/{id} | BoardColumn, IssueCard, DragOverlay | empty, loading, online, offline |
+</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Template 10 ==================== -->
+  <div class="template-item" data-layer="progress">
+    <div class="template-header" onclick="toggleTemplate(this)">
+      <span class="th-num">10</span>
+      <span class="th-title">Edge Case Matrix — 异常态矩阵</span>
+      <span class="th-tag progress">进度层</span>
+      <span class="th-chevron">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </span>
+    </div>
+    <div class="template-body">
+      <div class="template-content">
+        <p class="tpl-desc">按六类状态（空、加载、错误、边界数据、权限、离线）穷举每个屏幕需要设计的异常态。避免到 QA 阶段才发现"忘了空状态设计"或"错误态没考虑"的返工。</p>
+<pre># Edge Case Matrix
+
+## Screen: {Page Name} — {Route}
+
+| State Type | Trigger Condition | Visual | Copy | Interaction | Priority |
+|-----------|-------------------|--------|------|-------------|----------|
+| **Empty** | 无任何数据（首次使用） | 插画 + CTA 按钮 | "还没有项目，创建你的第一个项目吧" | 点击 CTA → /projects/new | P0 |
+| **Empty (filtered)** | 筛选后无结果 | 搜索空状态插画 | "没有找到匹配「{筛选词}」的项目" | "清除筛选" 按钮 | P1 |
+| **Loading (initial)** | 首次加载数据 | 骨架屏 3 列 | — | 禁用所有交互 | P0 |
+| **Loading (refetch)** | 数据更新中 | 内容保留 + 顶部进度条 | — | 内容可读但不可编辑 | P0 |
+| **Loading (action)** | 点击提交后 | 按钮 spinner + 禁用 | "创建中..." | 禁止重复提交 | P0 |
+| **Error (network)** | 请求超时/断网 | 错误插画 | "网络连接失败，请检查网络后重试" | "重试" 按钮 | P0 |
+| **Error (403)** | 无权限访问 | 锁图标 | "你没有访问此项目的权限" | "返回 Dashboard" 链接 | P0 |
+| **Error (500)** | 服务端异常 | 通用错误插画 | "服务器开小差了，请稍后再试" | "刷新" + "联系支持" | P1 |
+| **Error (validation)** | 表单字段不合规 | 输入框红色边框 + 错误提示 | 各字段具体提示文案 | 聚焦到第一个错误字段 | P0 |
+| **Boundary (max items)** | 列表项达到上限（如 500 条） | 列表正常 + 底部提示条 | "已加载全部 {N} 条，使用搜索查看更多" | 隐藏加载更多 | P2 |
+| **Boundary (long text)** | 标题超长 | 文本截断 + tooltip | 显示... 完整文本在 hover tooltip 中 | tooltip 可复制 | P1 |
+| **Boundary (special chars)** | 输入含表情/HTML | 正常显示已转义内容 | — | 输入时实时转义 | P1 |
+| **Permission (read-only)** | viewer 角色访问编辑页 | 编辑按钮禁用/隐藏 | "你对此项目为只读权限" | 禁用编辑入口 | P1 |
+| **Permission (expired)** | 会话过期，操作中触发 | Modal 弹窗 | "登录已过期，请重新登录" | "重新登录" → /login 保存当前路径 | P0 |
+| **Offline** | 断网状态 | 离线 banner + 内容保留 | "你当前处于离线状态，部分功能不可用" | 禁用需要网络的操作 | P1 |
+| **Offline (recover)** | 网络恢复 | 绿色 toast 消失 | "网络已恢复" | 自动刷新数据 | P1 |
+| **Conflict** | 乐观更新与服务端冲突 | 冲突提示 Modal | "此内容已被其他人修改，是否刷新？" | "刷新" / "覆盖" / "取消" | P2 |
+
+---
+
+## Screen: {Issue Detail Page} — /projects/{id}/issues/{number}
+
+| State Type | Trigger | Visual | Copy | Interaction | Priority |
+|-----------|---------|--------|------|-------------|----------|
+| **Empty (comments)** | Issue 无评论 | 居中插画 + 引导文字 | "还没有评论，留下第一条吧" | 评论框自动聚焦 | P1 |
+| **Empty (attachments)** | Issue 无附件 | 拖拽区虚线框 | "拖拽文件到此处或点击上传" | 点击/拖拽触发上传 | P1 |
+| **Loading (detail)** | 打开 Issue 详情 | 骨架屏（标题+描述+评论区） | — | — | P0 |
+| **Error (not found)** | Issue 不存在或已删除 | 404 插画 | "该 Issue 不存在或已被删除" | "返回看板" 按钮 | P0 |
+| **Error (comment submit)** | 评论提交失败 | 评论框保留输入 + 红色边框 | "评论发送失败，点击重试" | "重试" 按钮内联 | P0 |
+| **Boundary (comment length)** | 评论超过 5000 字 | 字符计数变红 | "评论不能超过 5000 字（当前 {N} 字）" | 禁止继续输入 | P1 |
+| **Boundary (upload size)** | 文件超过 10MB | 上传进度条变红 | "文件超过 10MB 限制" | 自动移除，允许重选 | P0 |
+| **Boundary (upload count)** | 附件达上限 20 个 | 上传按钮禁用 | "每个 Issue 最多 20 个附件" | — | P2 |
+| **Permission (no edit)** | 非成员查看他人 Issue | 编辑按钮隐藏 | — | 仅可查看+评论 | P1 |
+| **Conflict (concurrent edit)** | 两人同时编辑描述 | 顶部黄色提示条 | "其他人正在编辑此 Issue 的描述" | 编辑区只读 + "强制编辑" 按钮 | P2 |
+
+---
+
+## Coverage Checklist
+
+- [ ] 每个 P0 页面都有 Empty state 设计
+- [ ] 每个 P0 页面都有 Loading state（骨架屏，非 spinner）
+- [ ] 每个表单都有 inline validation error 设计
+- [ ] 每个列表页都有空筛选结果设计
+- [ ] 全局 403 / 404 / 500 页面已设计
+- [ ] 离线 banner 组件已在全局 Layout 设计
+- [ ] 会话过期 Modal 已设计
+- [ ] 上传组件有大文件/数量限制处理
+</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Template 11 ==================== -->
+  <div class="template-item" data-layer="progress">
+    <div class="template-header" onclick="toggleTemplate(this)">
+      <span class="th-num">11</span>
+      <span class="th-title">AC as Code — 可执行验收标准</span>
+      <span class="th-tag progress">进度层</span>
+      <span class="th-chevron">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </span>
+    </div>
+    <div class="template-body">
+      <div class="template-content">
+        <p class="tpl-desc">将验收标准写成 YAML 格式的机器可读规范，配合自动化测试框架直接执行。让"验收标准"从文档变成可运行的防线，而非交付后才发现的清单。</p>
+<pre># Acceptance Criteria as Code
+# File: ac/project-board.ac.yml
+# Consumable by: Playwright test runner + Vitest unit tests
+
+meta:
+  feature: "项目看板 — Issue 管理"
+  story_id: "PROJ-001"
+  version: "1.0.0"
+  owner: "alice@team.com"
+
+preconditions:
+  - name: "用户已登录"
+    type: auth
+    fixture: "authenticated-user"
+    data:
+      email: "test.user@example.com"
+      role: "member"
+      project_role: "owner"
+
+  - name: "项目已创建"
+    type: state
+    fixture: "project-with-3-issues"
+    data:
+      project:
+        name: "Test Project"
+        slug: "test-project"
+      issues:
+        - number: 1
+          title: "First issue"
+          status: "todo"
+        - number: 2
+          title: "Second issue"
+          status: "todo"
+        - number: 3
+          title: "Third issue"
+          status: "in_progress"
+
+acceptance_criteria:
+
+  - id: AC-001
+    title: "创建新 Issue"
+    severity: critical
+    type: functional
+
+    given:
+      - "用户在看板页面 /projects/test-project"
+      - "看板有 Todo 列含 2 个 Issue"
+
+    when:
+      - "用户点击 +新建 Issue 按钮"
+      - "用户在抽屉表单中输入标题 'New Test Issue'"
+      - "用户选择类型为 'Task'"
+      - "用户选择优先级为 'High'"
+      - "用户点击 创建 按钮"
+
+    then:
+      - assert: "Issue 抽屉关闭"
+      - assert: "看板 Todo 列新增一张 Issue 卡片"
+      - assert: "卡片标题显示 'New Test Issue'"
+      - assert: "Issue 编号为 #4"
+      - assert: "卡片角标显示 High 优先级颜色"
+      - assert: "API 请求 POST /issues 返回 201"
+      - assert: "活动日志记录 'Issue #4 created by {user}'"
+      - assert: "WebSocket 广播 issue_created 事件"
+
+    accessibility:
+      - "新建按钮可通过 Tab 键聚焦"
+      - "抽屉可通过 Escape 键关闭"
+      - "表单字段有关联的 label 元素"
+      - "优先级选择器使用 select 元素或 ARIA role='listbox'"
+
+    performance:
+      - "从点击创建到卡片出现在看板 ≤ 500ms"
+      - "API 请求响应 ≤ 200ms (p95)"
+
+  - id: AC-002
+    title: "拖拽 Issue 切换状态列"
+    severity: critical
+    type: functional
+
+    given:
+      - "用户在看板页面"
+      - "Todo 列有 Issue #1 和 Issue #2"
+      - "In Progress 列有 Issue #3"
+
+    when:
+      - "用户拖拽 Issue #2 从 Todo 列"
+      - "用户释放在 In Progress 列"
+
+    then:
+      - assert: "Issue #2 出现在 In Progress 列"
+      - assert: "Issue #2 不再在 Todo 列"
+      - assert: "Issue #2 status 更新为 in_progress"
+      - assert: "数据库 issues 表 status 字段 = 'in_progress'"
+      - assert: "WebSocket 广播 issue_moved 事件"
+      - assert: "Issue #2 活动日志新增 'moved to In Progress'"
+
+    accessibility:
+      - "Issue 卡片可通过键盘聚焦 (tabindex=0)"
+      - "聚焦后按 Enter 进入拖拽模式"
+      - "方向键左右在列之间移动"
+      - "Enter 键释放并确认位置"
+      - "屏幕阅读器播报 'Issue #2 moved to In Progress'"
+
+  - id: AC-003
+    title: "拖拽失败时回滚"
+    severity: high
+    type: error-handling
+
+    given:
+      - "用户在看板页面"
+      - "网络已模拟断开 (navigator.onLine = false)"
+
+    when:
+      - "用户拖拽 Issue #1 从 Todo 到 In Progress"
+
+    then:
+      - assert: "Issue #1 视觉短暂出现在 In Progress 列（乐观更新）"
+      - assert: "300ms 后 Issue #1 回到 Todo 列原始位置"
+      - assert: "页面顶部显示离线 banner"
+      - assert: "显示 toast '操作失败，网络已断开'"
+      - assert: "操作存入离线队列"
+
+  - id: AC-004
+    title: "Issue 数量上限"
+    severity: medium
+    type: boundary
+
+    given:
+      - "项目已包含 500 个 Issue（上限）"
+
+    when:
+      - "用户点击 +新建 Issue"
+
+    then:
+      - assert: "抽屉显示但 创建 按钮禁用"
+      - assert: "显示提示 '该项目已达到 Issue 上限 500'"
+      - assert: "提供 升级套餐 链接"
+
+cleanup:
+  - "删除测试项目及所有关联 Issue"
+  - "清除测试用户会话"
+</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Template 12 ==================== -->
+  <div class="template-item" data-layer="execution">
+    <div class="template-header" onclick="toggleTemplate(this)">
+      <span class="th-num">12</span>
+      <span class="th-title">Design QA Checklist — 设计走查清单</span>
+      <span class="th-tag execution">执行层</span>
+      <span class="th-chevron">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </span>
+    </div>
+    <div class="template-body">
+      <div class="template-content">
+        <p class="tpl-desc">设计稿交付前的系统性自检清单。按视觉规范、交互状态、响应式、无障碍、一致性五大维度逐项核查，确保交付物不存在"设计师自己都知道但忘了修"的问题。</p>
+<pre># Design QA Checklist
+
+## Project: {Project Name}    Screen: {Screen Name}    Date: {YYYY-MM-DD}
+## Reviewer: {Name}           Status: [ ] Pass  [ ] Pass w/ Notes  [ ] Fail
+
+---
+
+## 1. Visual Standards — 视觉规范 (20 items)
+
+### 1.1 Color
+- [ ] 所有颜色值来自 design-tokens.json，无硬编码 hex
+- [ ] 文字与背景对比度 ≥ 4.5:1（正文）/ ≥ 3:1（大字 ≥18px bold）
+- [ ] 功能色（success/warning/error）语义一致，无混用
+- [ ] 深色/浅色模式下均可读，无低对比区域
+- [ ] 品牌色用于 CTA 和强调，不用于普通正文
+
+### 1.2 Typography
+- [ ] 字体 family 全部来自 token 定义（display/body/code）
+- [ ] 字号使用 token scale 值，无任意 px
+- [ ] 行高、字距使用 token 中定义的比例
+- [ ] 中英文混排无基线错位
+- [ ] 长文本有截断/换行策略，不撑破容器
+
+### 1.3 Spacing & Layout
+- [ ] 间距使用 token spacing scale（4 的倍数体系）
+- [ ] 卡片/容器内 padding 一致（同级组件统一）
+- [ ] 元素间水平间距和垂直间距遵循同一节奏
+- [ ] 页面最大宽度与安全边距符合断点定义
+
+### 1.4 Components
+- [ ] 圆角使用 token radius scale
+- [ ] 阴影使用 token shadow scale
+- [ ] 图标尺寸统一（16/20/24），来自同一 icon set
+- [ ] 按钮高度/padding 在同一 size 级别内一致
+
+---
+
+## 2. Interaction States — 交互状态 (15 items)
+
+### 2.1 Interactive Elements
+- [ ] 每个 interactive 元素设计了 hover 状态
+- [ ] 每个 interactive 元素设计了 active/pressed 状态
+- [ ] 每个 interactive 元素设计了 focus-visible 状态（非仅 focus）
+- [ ] 每个 interactive 元素设计了 disabled 状态
+- [ ] 表单输入框设计了 placeholder / filled / error / success 状态
+
+### 2.2 Loading & Async
+- [ ] 首次加载有骨架屏设计（非 spinner）
+- [ ] 按钮提交有 loading spinner + 文案变化 + 禁用
+- [ ] 图片/媒体有加载占位或 blur-up
+- [ ] 数据刷新有顶部进度条或 pull-to-refresh（mobile）
+
+### 2.3 Feedback
+- [ ] 操作成功有 toast 反馈（含自动消失时间）
+- [ ] 操作失败有错误提示（含重试入口）
+- [ ] 危险操作有二次确认 Modal
+- [ ] 批量操作有进度反馈
+- [ ] 空状态有插画 + CTA，非纯文字
+
+---
+
+## 3. Responsive — 响应式 (10 items)
+
+- [ ] 在最小断点（375px）下内容无横向滚动
+- [ ] 导航在移动端有适配方案（汉堡 / 底部 tab）
+- [ ] 表格/列表在移动端有替代展示（卡片 / 折叠）
+- [ ] Modal 在移动端从底部滑出，非居中弹窗
+- [ ] 手势操作（如拖拽）在移动端有 fallback（长按/按钮）
+- [ ] 字号在移动端不小于 14px（正文）
+- [ ] 可点击区域不小于 44×44px（iOS HIG）
+- [ ] 横屏模式布局不崩溃
+- [ ] 大屏（1440px+）有最大宽度限制或自适应填充
+- [ ] 触摸与鼠标交互模式均已覆盖
+
+---
+
+## 4. Accessibility — 无障碍 (12 items)
+
+- [ ] 所有图片有 alt text（装饰性图片 alt=""）
+- [ ] 表单字段有关联的 label
+- [ ] 错误提示用 aria-live="assertive" 或 role="alert"
+- [ ] Modal 打开时焦点陷阱生效，关闭后焦点回归
+- [ ] 所有功能可用键盘完成（Tab 顺序合理）
+- [ ] 跳过链接（Skip to main content）存在
+- [ ] 颜色不作为唯一信息传递（图标 + 文字）
+- [ ] 动画可被 prefers-reduced-motion 禁用
+- [ ] 链接文案可理解，非 "点击这里"
+- [ ] 标题层级（h1 → h2 → h3）无跳级
+- [ ] 语义化标签（nav/main/section/article）使用正确
+- [ ] WCAG 2.1 AA 对照通过（自动化扫描 + 人工核验）
+
+---
+
+## 5. Consistency — 一致性 (8 items)
+
+- [ ] 与已有页面的组件用法一致（同一组件不造新变体）
+- [ ] 图标风格一致（线条 vs 实心不混用）
+- [ ] 空状态/错误态插画风格一致
+- [ ] 文案语气一致（参考 voice & tone guide）
+- [ ] 日期/时间格式全局一致（如 YYYY-MM-DD HH:mm）
+- [ ] 数字格式一致（千分位、小数位）
+- [ ] 图标与文字间距一致
+- [ ] 同类操作的确认/反馈模式一致
+
+---
+
+## Summary
+
+| Category | Total | Passed | Failed | N/A |
+|----------|-------|--------|--------|-----|
+| Visual Standards | 20 | __ | __ | __ |
+| Interaction States | 15 | __ | __ | __ |
+| Responsive | 10 | __ | __ | __ |
+| Accessibility | 12 | __ | __ | __ |
+| Consistency | 8 | __ | __ | __ |
+| **Total** | **65** | **__** | **__** | **__** |
+
+## Failures & Action Items
+
+| # | Category | Issue Description | Screen Ref | Severity | Owner | Due Date |
+|---|----------|-------------------|------------|----------|-------|----------|
+| 1 | | | | | | |
+| 2 | | | | | | |
+| 3 | | | | | | |
+</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Template 13 ==================== -->
+  <div class="template-item" data-layer="progress">
+    <div class="template-header" onclick="toggleTemplate(this)">
+      <span class="th-num">13</span>
+      <span class="th-title">AC Trace Matrix — 验收追溯矩阵</span>
+      <span class="th-tag progress">进度层</span>
+      <span class="th-chevron">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </span>
+    </div>
+    <div class="template-body">
+      <div class="template-content">
+        <p class="tpl-desc">将需求 → 验收标准 → 测试用例 → 实现代码四层链路双向追溯。确保没有需求被遗漏、没有验收标准没有测试、没有测试脱离需求，形成闭环可审计的开发证据链。</p>
+<pre># Acceptance Criteria Traceability Matrix
+
+## Project: {Project Name}    Sprint: {Sprint N}    Date: {YYYY-MM-DD}
+
+## Legend
+- Status: ✅ Passed | ⚠️ Blocked | ❌ Failed | ⏳ Pending | ◻ Not Started
+- Coverage: Full | Partial | None
+
+---
+
+## Trace Matrix
+
+| Req ID | Requirement | AC ID | Acceptance Criteria | Test ID | Test Case | Test Status | Implementation | Code Link | Coverage |
+|--------|-------------|-------|---------------------|---------|-----------|-------------|----------------|------------|----------|
+| REQ-01 | 用户可创建项目 | AC-01 | 点击"新建项目"→ 表单 → 提交 → 跳转看板 | T-001 | test_create_project_happy_path | ✅ Passed | ✅ Done | src/services/project.ts | Full |
+| REQ-01 | | AC-02 | 项目名称为空时提交 → 显示错误 | T-002 | test_create_project_empty_name | ✅ Passed | ✅ Done | src/components/ProjectForm.tsx | Full |
+| REQ-01 | | AC-03 | 名称超 100 字 → 显示错误 | T-003 | test_create_project_name_too_long | ⏳ Pending | ✅ Done | src/components/ProjectForm.tsx | Partial |
+| REQ-01 | | AC-04 | slug 已存在 → 显示错误 | T-004 | test_create_project_slug_conflict | ◻ Not Started | ⚠️ Partial | — | None |
+| REQ-02 | 用户可邀请成员 | AC-05 | 输入邮箱 → 发送邀请 → 成员出现在列表 | T-005 | test_invite_member_success | ✅ Passed | ✅ Done | src/services/invite.ts | Full |
+| REQ-02 | | AC-06 | 邀请已存在成员 → 提示已加入 | T-006 | test_invite_existing_member | ❌ Failed | ✅ Done | src/services/invite.ts | Partial |
+| REQ-02 | | AC-07 | 无权限用户尝试邀请 → 403 | T-007 | test_invite_no_permission | ⏳ Pending | ◻ Not Started | — | None |
+| REQ-03 | 看板拖拽排序 | AC-08 | 拖 Issue Todo→InProgress → 状态更新 | T-008 | test_drag_issue_status_change | ✅ Passed | ✅ Done | src/features/board/ | Full |
+| REQ-03 | | AC-09 | 同列内排序 → 持久化 | T-009 | test_drag_issue_reorder | ✅ Passed | ✅ Done | src/features/board/ | Full |
+| REQ-03 | | AC-10 | 网络断开 → 回滚 + 离线提示 | T-010 | test_drag_offline_rollback | ⚠️ Blocked | ⚠️ Partial | src/features/board/offline.ts | Partial |
+| REQ-04 | Issue 详情页 | AC-11 | 点击 Issue → 打开详情抽屉 | T-011 | test_open_issue_detail | ✅ Passed | ✅ Done | src/components/IssueDrawer.tsx | Full |
+| REQ-04 | | AC-12 | 添加评论 → 实时显示 | T-012 | test_add_comment_realtime | ✅ Passed | ✅ Done | src/features/comments/ | Full |
+| REQ-04 | | AC-13 | 评论超长 → 截断 + 展开 | T-013 | test_long_comment_truncate | ◻ Not Started | ◻ Not Started | — | None |
+
+---
+
+## Coverage Summary
+
+### By Requirement
+| Req ID | Requirement | Total ACs | Passed | Failed | Pending | Not Started | Coverage % |
+|--------|-------------|-----------|--------|--------|---------|-------------|-----------|
+| REQ-01 | 创建项目 | 4 | 2 | 0 | 1 | 1 | 50% |
+| REQ-02 | 邀请成员 | 3 | 1 | 1 | 1 | 0 | 33% |
+| REQ-03 | 看板拖拽 | 3 | 2 | 0 | 0 | 1 | 67% |
+| REQ-04 | Issue 详情 | 3 | 2 | 0 | 0 | 1 | 67% |
+| **Total** | | **13** | **7** | **1** | **2** | **3** | **54%** |
+
+### By Layer
+| Layer | Requirements | ACs | Tests | Implementation |
+|-------|-------------|-----|-------|---------------|
+| Need → Requirement | 4 defined | — | — | — |
+| Requirement → AC | — | 13 defined | — | — |
+| AC → Test Case | — | — | 13 written (10 with code) | — |
+| AC → Code | — | 10 implemented | — | 10/13 done |
+
+### Gap Analysis
+| Gap Type | Count | Items | Action |
+|----------|-------|-------|--------|
+| AC without Test | 0 | — | — |
+| AC without Implementation | 3 | AC-04, AC-07, AC-13 | Assign to dev sprint |
+| Test Failed | 1 | T-006 (invite existing member) | Bug ticket BUG-045 |
+| Test Blocked | 1 | T-010 (offline drag) | Need mock-service-worker setup |
+| Requirement without any AC | 0 | — | — |
+
+---
+
+## Defect Log (linked to failed tests)
+
+| Defect ID | Test ID | AC ID | Description | Severity | Status | Assignee |
+|-----------|---------|-------|-------------|----------|--------|----------|
+| BUG-045 | T-006 | AC-06 | 邀请已存在成员时返回 500 而非友好提示 | High | Open | @dev-alice |
+| BUG-046 | T-010 | AC-10 | 离线回滚延迟过长（>1s），用户感知卡顿 | Medium | Open | @dev-bob |
+
+---
+
+## Sign-off
+
+| Role | Name | Date | Decision |
+|------|------|------|----------|
+| Product Owner | | | Approve / Reject / Conditional |
+| Tech Lead | | | Approve / Reject / Conditional |
+| QA Lead | | | Approve / Reject / Conditional |
+| Design Lead | | | Approve / Reject / Conditional |
+</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Template 14 ==================== -->
+  <div class="template-item" data-layer="progress">
+    <div class="template-header" onclick="toggleTemplate(this)">
+      <span class="th-num">14</span>
+      <span class="th-title">System Prompt Library — 提示词模板库</span>
+      <span class="th-tag progress">进度层</span>
+      <span class="th-chevron">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </span>
+    </div>
+    <div class="template-body">
+      <div class="template-content">
+        <p class="tpl-desc">沉淀项目过程中反复使用的 AI 提示词模板。按场景分类管理，每个模板含角色设定、上下文注入点、输出格式约束，确保团队成员调用 AI 时输出一致、可复现。</p>
+<pre># System Prompt Library
+# Version: 1.0.0
+# Maintained by: {team/process lead}
+# Usage: 复制对应 prompt → 替换 {占位符} → 发送给 AI Agent
+
+---
+
+## Category: 需求分析 (Requirement Analysis)
+
+### Prompt: REQ-001 需求拆解
+---
+**Role**: 你是一位资深产品经理，精通 JTBD（Jobs to be Done）框架和 INVEST 原则。
+
+**Context**:
+- 项目背景：{插入 Problem Framing 摘要}
+- 当前 Feature 描述：{粘贴需求描述}
+- 目标用户：{Persona 名称与核心 JTBD}
+
+**Task**:
+将以上 Feature 拆解为独立的 User Story，每个 Story 需满足 INVEST 原则。
+
+**Output Format** (严格遵循):
+```
+## Story {N}: {Story Title}
+- **As a** {角色}
+- **I want** {功能}
+- **So that** {价值/目的}
+- **Priority**: {P0|P1|P2}
+- **Story Points**: {1|2|3|5|8|13}
+- **Acceptance Criteria**:
+  - Given {前置条件}
+  - When {触发动作}
+  - Then {预期结果}
+- **Design Touchpoints**: {涉及哪些页面/组件}
+- **Dependencies**: {依赖的其他 Story ID}
+```
+
+**Constraints**:
+- 每个 Story 必须可独立交付和测试
+- AC 至少 2 条（正常路径 + 1 条异常路径）
+- 如 Story 不可拆小，标注 "Epic" 并进一步拆分
+- 输出中文
+---
+
+### Prompt: REQ-002 需求优先级排序
+---
+**Role**: 你是一位产品经理，熟悉 RICE 和 ICE 优先级框架。
+
+**Context**:
+- 以下是需要排序的需求列表：
+{粘贴需求列表}
+
+- 产品阶段：{探索期/成长期/成熟期}
+- 团队规模：{N 人，N 周期}
+- 北极星指标：{指标名称}
+
+**Task**:
+使用 RICE 框架对以上需求排序，输出排序表和推荐 sprint 分配。
+
+**Output Format**:
+| Rank | Story | Reach | Impact | Confidence | Effort | RICE Score | Sprint |
+|------|-------|-------|--------|-----------|--------|------------|--------|
+| 1 | ... | N users/月 | 3(高)/2(中)/1(低) | 100%→0% | person-months | (R×I×C)/E | N |
+
+**Constraints**:
+- Impact 和 Confidence 必须给出评分依据（1-2 句话）
+- 如数据不足，Confidence 不超过 50%，并标注"需验证"
+- Sprint 容量按 {团队人数} × {每期周数} × 0.7（扣除 overhead）计算
+---
+
+
+## Category: 设计产出 (Design Generation)
+
+### Prompt: DES-001 页面设计指令
+---
+**Role**: 你是一位高级 UI/UX 设计师，精通现代 Web 设计系统。
+
+**Context**:
+- 设计简报：{粘贴 Design Brief 关键字段}
+- Design Tokens：{粘贴 design-tokens.json 中 color/typography/spacing 部分}
+- 页面信息：
+  - 路由：{/route/path}
+  - 页面标题：{Title}
+  - 主要功能：{功能描述}
+  - 包含组件：{Component List}
+
+**Task**:
+设计此页面的完整布局，输出可直接编码的 HTML + Tailwind CSS。
+
+**Design Constraints**:
+- 严格使用提供的 design tokens（颜色、字号、间距）
+- 桌面优先（1024px+），给出移动端适配方案
+- 包含以下状态：默认 / hover / loading / empty / error
+- 每个可交互元素必须有 focus-visible 样式
+- 遵守 WCAG 2.1 AA 标准
+
+**Output**:
+1. 布局结构说明（2-3 句）
+2. 完整 HTML 代码（自包含，内联 CSS 变量）
+3. 移动端适配说明（列表形式）
+4. 状态变体说明（每种状态如何切换）
+
+**Constraints**:
+- 不使用外部 CSS 框架（仅 Tailwind utility classes 或内联 style）
+- 图标使用 inline SVG
+- 图片使用 placeholder.com 占位
+- 所有文案使用中文
+---
+
+### Prompt: DES-002 异常态穷举
+---
+**Role**: 你是一位注重细节的设计师，专门负责边缘状态设计。
+
+**Context**:
+- 页面名称：{Screen Name}
+- 路由：{/route}
+- 主功能：{功能描述}
+- 已知状态：{列出已设计的状态}
+
+**Task**:
+按以下 6 个维度穷举此页面所有可能需要设计的异常态：
+1. Empty（空数据/首次使用/筛选无结果）
+2. Loading（首次加载/刷新/操作中）
+3. Error（网络/服务端/权限/表单校验）
+4. Boundary（数据量上限/文本超长/特殊字符）
+5. Permission（只读/无权限/会话过期）
+6. Offline（断网/恢复/离线操作队列）
+
+**Output Format**:
+| State Type | Trigger | Visual Description | Copy | Interaction | Priority |
+|------------|---------|--------------------|------|-------------|----------|
+
+**Constraints**:
+- 每个 Category 至少 1 条，不可遗漏
+- Priority 用 P0（必须）/ P1（应该）/ P2（可以）
+- Copy 必须是最终文案，非占位符
+- 如某状态不适用此页面，标注 "N/A — 理由"
+---
+
+
+## Category: 代码生成 (Code Generation)
+
+### Prompt: DEV-001 组件实现
+---
+**Role**: 你是一位高级前端工程师，精通 React 19 + TypeScript 5 + Tailwind CSS 4。
+
+**Context**:
+- 项目规范：{粘贴 AGENTS.md 核心规则}
+- Design Tokens：{引用 tokens 文件路径}
+- 组件规格：
+  - 名称：{ComponentName}
+  - Props 接口：{列出 Props}
+  - 使用场景：{描述}
+  - 设计稿描述：{文字描述视觉规格}
+
+**Task**:
+实现此 React 组件，输出完整可运行代码。
+
+**Code Requirements**:
+- 使用 TypeScript，Props 接口命名为 {ComponentName}Props
+- 使用 Tailwind classes，颜色/间距/圆角引用 token 对应的 CSS 变量
+- 包含以下状态的样式：default / hover / focus-visible / disabled / loading
+- 添加 aria-label 或关联 label（如有交互）
+- 支持键盘操作（如适用）
+- 导出为 named export
+
+**Output**:
+1. {ComponentName}.tsx — 组件实现
+2. {ComponentName}.test.tsx — Vitest + Testing Library 测试（至少 3 个用例）
+
+**Constraints**:
+- 不使用 any 类型
+- 不使用 inline style，全部 Tailwind classes
+- 组件文件 ≤ 150 行（如超长说明需要拆分）
+- 测试覆盖：渲染 / 交互 / 无障碍
+---
+
+### Prompt: DEV-002 API Service 生成
+---
+**Role**: 你是一位后端/全栈工程师，精通 REST API 设计与 TypeScript。
+
+**Context**:
+- 数据模型定义：{粘贴 Data Model Spec 中相关 Entity}
+- API 约定：{粘贴 AGENTS.md 中 API Layer 规则}
+- 需要实现的资源：{Resource Name}
+
+**Task**:
+为此资源生成完整的 CRUD service 层 + 类型定义。
+
+**Output**:
+1. src/types/{resource}.ts — 类型定义
+2. src/services/{resource}.ts — API service 层
+
+**Service 函数签名**:
+- get{Resource}(id): Promise<Result<{Resource}>>
+- list{Resource}(params): Promise<PaginatedResult<{Resource}[]>>
+- create{Resource}(input): Promise<Result<{Resource}>>
+- update{Resource}(id, patch): Promise<Result<{Resource}>>
+- delete{Resource}(id): Promise<Result<void>>
+
+**Result type**: `{ data: T | null; error: { code: string; message: string } | null; status: number }`
+
+**Constraints**:
+- 使用项目统一的 fetch wrapper（import from src/lib/http）
+- 所有函数有 JSDoc 注释
+- 输入参数做运行时校验（用 zod schema）
+- 错误码使用大写蛇形命名（如 RESOURCE_NOT_FOUND）
+---
+
+
+## Category: 测试与验收 (Testing & QA)
+
+### Prompt: QA-001 测试用例生成
+---
+**Role**: 你是一位 QA 工程师，精通 Playwright E2E 测试和 Vitest 单元测试。
+
+**Context**:
+- AC 文件：{粘贴 AC as Code YAML}
+- 组件/页面路由：{Route or Component path}
+
+**Task**:
+根据以上验收标准生成可执行的 Playwright E2E 测试文件。
+
+**Output**: src/e2e/{feature}.spec.ts
+
+**Constraints**:
+- 每个 AC ID 对应一个 test.describe block
+- 使用 Page Object Model 模式
+- 每个 test 有清晰的描述
+- 包含 setup（登录/数据准备）和 teardown
+- 断言使用 expect + Playwright auto-waiting
+- 测试数据使用 fixtures，不硬编码
+- 标注 @smoke / @regression 标签
+---
+
+## Usage Guide
+
+1. **选择 Category**：根据当前任务阶段选择对应分类
+2. **复制 Prompt**：完整复制 --- 之间的内容
+3. **替换占位符**：所有 {花括号} 内容替换为实际上下文
+4. **检查 Constraints**：确保 AI 输出符合约束
+5. **验证 Output Format**：对照模板中的格式要求检查输出
+6. **归档结果**：将 AI 输出与原始 Prompt 一起存入项目文档
+
+## Maintenance
+
+- 每次使用后如有改进，更新此文件并 bump version
+- 低效 Prompt（输出不符合预期 > 2 次）应标注并优化
+- 新增场景按 Category 归档，ID 格式：{CATEGORY}-{NNN}
+</pre>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<!-- ===== FOOTER ===== -->
+</section>
+
+<footer class="footer">
+  <div class="footer-brand">AI PM 工作手册</div>
+  <p>产品经理AI Coding工作手册 · 2026</p>
+  <p>本手册内容基于实操经验整理，覆盖协作体系、思维范式、产出物体系、变更管控和标准模板。</p>
+</footer>
+
+
+<script>
+function switchTab(e, panelId) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  e.currentTarget.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+function toggleTemplate(headerEl) {
+  const item = headerEl.closest('.template-item');
+  if (!item) return;
+  item.classList.toggle('open');
+}
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 80;
+    if (window.scrollY >= top) current = sec.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
