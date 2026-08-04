@@ -3,177 +3,164 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>产品经理 AI Coding 工作手册 · 大白话版（v3 预览）</title>
+<meta name="description" content="产品经理AI Coding实操手册 — 六大场景、完整示例、可直接复用的项目模板。覆盖从项目启动到验收上线的全流程，面向人与AI双读者设计。">
+<meta name="theme-color" content="#fff">
+<meta property="og:title" content="产品经理AI Coding实操手册 · v3.0">
+<meta property="og:description" content="六大实操场景、完整示例、可直接复用的项目模板。面向人与AI双读者设计。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ikevss.github.io/ai-pm-handbook/v3/">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ikevss.github.io/ai-pm-handbook/v3/">
+<title>产品经理AI Coding实操手册 · v3.0</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg-page: #faf8f5;
-  --bg-surface: #ffffff;
-  --bg-elevated: #f5f3ef;
-  --bg-code: #f8f6f2;
-  --text-primary: #1c1917;
-  --text-secondary: #57534e;
-  --text-muted: #a8a29e;
-  --accent-amber: #c2410c;
-  --accent-amber-bright: #ea580c;
-  --accent-amber-light: #fed7aa;
-  --accent-amber-glow: rgba(194, 65, 12, 0.06);
-  --accent-teal: #0d9488;
-  --accent-teal-light: #ccfbf1;
-  --accent-teal-glow: rgba(13, 148, 136, 0.06);
-  --accent-rose: #be123c;
-  --accent-rose-light: #ffe4e6;
-  --accent-rose-glow: rgba(190, 18, 60, 0.05);
-  --accent-violet: #6366f1;
-  --accent-violet-light: #e0e7ff;
-  --accent-violet-glow: rgba(99, 102, 241, 0.05);
-  --border: #e7e5e4;
-  --border-strong: #d6d3d1;
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Manrope', system-ui, sans-serif;
-  --font-code: 'JetBrains Mono', 'Courier New', monospace;
+  --ink: #1f2937;
+  --muted: #6b7280;
+  --bg: #fff;
+  --card: #f8f9fa;
+  --line: #e5e7eb;
+  --blue: #2563eb;
+  --green: #16a34a;
+  --orange: #d97706;
+  --red: #dc2626;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { background: var(--bg-page); color: var(--text-primary); font-family: var(--font-body); font-weight: 400; font-size: 17px; line-height: 1.8; overflow-x: hidden; }
+body { background: var(--bg); color: var(--ink); font-family: -apple-system,"Segoe UI","Microsoft YaHei",Roboto,sans-serif; font-weight: 400; font-size: .95rem; line-height: 1.7; overflow-x: hidden; }
 
 /* NAV */
-.nav-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250, 248, 245, 0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); height: 60px; display: flex; align-items: center; padding: 0 28px; }
-.nav-brand { font-family: var(--font-display); font-weight: 800; font-size: 17px; color: var(--accent-amber); margin-right: 36px; white-space: nowrap; text-decoration: none; }
-.nav-links { display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none; flex: 1; }
+.nav-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); height: 56px; display: flex; align-items: center; padding: 0 28px; }
+.nav-brand { font-weight: 700; font-size: 16px; color: var(--blue); margin-right: 32px; white-space: nowrap; text-decoration: none; }
+.nav-links { display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none; flex: 1; }
 .nav-links::-webkit-scrollbar { display: none; }
-.nav-links a { font-size: 14px; font-weight: 500; color: var(--text-secondary); text-decoration: none; white-space: nowrap; transition: color 0.2s; }
-.nav-links a:hover, .nav-links a.active { color: var(--accent-amber); }
-.nav-links a.nav-old { color: var(--text-muted); font-family: var(--font-code); font-size: 13px; }
-.nav-links a.nav-old:hover { color: var(--accent-amber); }
+.nav-links a { font-size: 13.5px; font-weight: 500; color: var(--muted); text-decoration: none; white-space: nowrap; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--blue); }
+.nav-links a.nav-old { color: #9ca3af; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; }
 
-/* SECTION */
-.section { padding: 90px 32px; max-width: 1080px; margin: 0 auto; }
-.section-tag { font-family: var(--font-code); font-size: 14px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-teal); margin-bottom: 14px; display: inline-block; }
-.section-title { font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 4vw, 46px); line-height: 1.15; margin-bottom: 18px; color: var(--text-primary); }
-.section-subtitle { font-size: 18px; color: var(--text-secondary); margin-bottom: 44px; max-width: 820px; line-height: 1.7; }
-.section p { margin-bottom: 14px; color: var(--text-secondary); }
-.section p strong, .section li strong { color: var(--text-primary); }
-.section ul, .section ol { margin: 0 0 18px 24px; color: var(--text-secondary); }
-.section li { margin: 8px 0; line-height: 1.7; }
+/* SECTIONS */
+.section { padding: 64px 32px; max-width: 1040px; margin: 0 auto; }
+.section-tag { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+.section-title { font-weight: 800; font-size: clamp(26px, 3.8vw, 40px); line-height: 1.2; margin-bottom: 14px; color: var(--ink); }
+.section-subtitle { font-size: .95rem; color: var(--muted); margin-bottom: 36px; max-width: 780px; line-height: 1.7; }
+.section p { margin-bottom: 12px; color: var(--muted); }
+.section ul, .section ol { margin: 0 0 16px 24px; color: var(--muted); }
+.section li { margin: 6px 0; }
 
 /* HERO */
-.hero { min-height: 92vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 28px 60px; background: radial-gradient(ellipse at 50% 0%, rgba(194,65,12,0.06) 0%, transparent 50%), radial-gradient(ellipse at 80% 50%, rgba(13,148,136,0.04) 0%, transparent 40%); position: relative; overflow: hidden; }
-.hero-eyebrow { font-family: var(--font-code); font-size: 14px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-teal); margin-bottom: 28px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
-.hero h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(36px, 6vw, 70px); line-height: 1.08; margin-bottom: 28px; opacity: 0; animation: fadeUp 1s 0.4s forwards; background: linear-gradient(135deg, #1c1917 0%, #c2410c 50%, #0d9488 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.hero-subtitle { font-size: clamp(16px, 2vw, 19px); color: var(--text-secondary); max-width: 720px; margin: 0 auto 44px; line-height: 1.8; opacity: 0; animation: fadeUp 1s 0.6s forwards; }
-.hero-meta { display: flex; gap: 36px; font-size: 15px; color: var(--text-muted); font-family: var(--font-code); opacity: 0; animation: fadeUp 1s 0.8s forwards; flex-wrap: wrap; justify-content: center; }
+.hero { padding: 130px 32px 80px; text-align: center; background: linear-gradient(180deg, #f8fafc, #fff); position: relative; overflow: hidden; }
+.hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--blue); margin-bottom: 24px; }
+.hero h1 { font-weight: 900; font-size: clamp(34px, 5.5vw, 62px); line-height: 1.12; margin-bottom: 22px; color: var(--ink); }
+.hero-subtitle { font-size: clamp(.9rem, 1.8vw, 1.05rem); color: var(--muted); max-width: 680px; margin: 0 auto 36px; line-height: 1.8; }
+.hero-meta { display: flex; gap: 32px; font-size: 14px; color: #9ca3af; font-family: 'JetBrains Mono', monospace; flex-wrap: wrap; justify-content: center; }
 .hero-meta span { display: flex; align-items: center; gap: 8px; }
-.hero-meta .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-amber); }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+.hero-meta .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
+
+/* CARD */
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 24px; margin: 16px 0; }
 
 /* KEY NUMBERS */
-.key-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 36px; }
-.key-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; text-align: center; }
-.key-card .kc-num { font-family: var(--font-display); font-size: 44px; font-weight: 900; color: var(--accent-amber); line-height: 1; margin-bottom: 10px; }
-.key-card .kc-label { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
-.key-card .kc-label strong { color: var(--text-primary); }
+.key-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin: 16px 0 28px; }
+.key-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 28px; text-align: center; }
+.key-card .kc-num { font-weight: 800; font-size: 38px; color: var(--blue); line-height: 1; margin-bottom: 10px; }
+.key-card .kc-label { font-size: 14px; color: var(--muted); line-height: 1.65; }
 
-/* STORY TIMELINE */
-.timeline { display: flex; flex-direction: column; gap: 0; margin: 8px 0 8px 8px; border-left: 2px solid var(--border-strong); }
-.tl-item { position: relative; padding: 0 0 30px 32px; }
+/* TIMELINE */
+.timeline { display: flex; flex-direction: column; gap: 0; margin: 8px 0 8px 8px; border-left: 2px solid var(--line); }
+.tl-item { position: relative; padding: 0 0 22px 32px; }
 .tl-item:last-child { padding-bottom: 0; }
-.tl-item::before { content: attr(data-day); position: absolute; left: -44px; top: 2px; width: 72px; text-align: right; font-family: var(--font-code); font-size: 13px; font-weight: 700; color: var(--accent-teal); }
-.tl-item::after { content: ''; position: absolute; left: -8px; top: 8px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg-page); border: 3px solid var(--accent-amber); }
-.tl-item h4 { font-family: var(--font-display); font-size: 20px; font-weight: 600; margin-bottom: 6px; }
-.tl-item p { font-size: 16px; color: var(--text-secondary); line-height: 1.7; margin: 0; }
-.tl-item p strong { color: var(--accent-amber); }
+.tl-item::before { content: attr(data-day); position: absolute; left: -44px; top: 0; width: 72px; text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: var(--blue); }
+.tl-item::after { content: ''; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2.5px solid var(--blue); }
+.tl-item h4 { font-weight: 700; font-size: 17px; margin-bottom: 4px; }
+.tl-item p { font-size: .9rem; color: var(--muted); line-height: 1.7; margin: 0; }
 @media (max-width: 640px) { .timeline { margin-left: 56px; } }
 
 /* TABLES */
-.table-container { overflow-x: auto; margin-bottom: 28px; border-radius: 14px; border: 1px solid var(--border); }
-table { width: 100%; border-collapse: collapse; font-size: 15.5px; background: var(--bg-surface); }
-th { text-align: left; padding: 15px 20px; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); background: var(--bg-elevated); border-bottom: 2px solid var(--border-strong); white-space: nowrap; }
-td { padding: 15px 20px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; line-height: 1.65; }
-td strong { color: var(--text-primary); }
+.table-container { overflow-x: auto; margin-bottom: 24px; border-radius: 12px; border: 1px solid var(--line); }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; background: var(--bg); }
+th { text-align: left; padding: 14px 18px; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); background: var(--card); border-bottom: 2px solid var(--line); white-space: nowrap; }
+td { padding: 14px 18px; border-bottom: 1px solid var(--line); color: var(--muted); vertical-align: top; line-height: 1.65; }
 tr:last-child td { border-bottom: none; }
-tr:hover td { background: var(--bg-elevated); }
+tr:hover td { background: #fafbfc; }
 
 /* TAGS */
-.tag { display: inline-block; font-family: var(--font-code); font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 6px; letter-spacing: 0.05em; white-space: nowrap; }
-.tag-amber { background: var(--accent-amber-light); color: var(--accent-amber); }
-.tag-teal { background: var(--accent-teal-light); color: var(--accent-teal); }
-.tag-rose { background: var(--accent-rose-light); color: var(--accent-rose); }
-.tag-violet { background: var(--accent-violet-light); color: var(--accent-violet); }
+.tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 6px; letter-spacing: .05em; white-space: nowrap; }
+.tag-blue { background: #dbeafe; color: var(--blue); }
+.tag-green { background: #dcfce7; color: var(--green); }
+.tag-orange { background: #fef3c7; color: var(--orange); }
+.tag-red { background: #fee2e2; color: var(--red); }
 
-/* COMPARE (before/after) */
-.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 30px; }
+/* COMPARE */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin: 8px 0 20px; }
 @media (max-width: 820px) { .compare-grid { grid-template-columns: 1fr; } }
-.compare-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 30px 28px; position: relative; overflow: hidden; }
-.compare-card.old { border-color: rgba(190, 18, 60, 0.22); }
-.compare-card.old::before { content: '以前'; position: absolute; top: 18px; right: 18px; font-family: var(--font-code); font-size: 13px; font-weight: 700; color: var(--accent-rose); background: var(--accent-rose-light); padding: 4px 12px; border-radius: 6px; }
-.compare-card.new { border-color: rgba(13, 148, 136, 0.22); }
-.compare-card.new::before { content: '现在'; position: absolute; top: 18px; right: 18px; font-family: var(--font-code); font-size: 13px; font-weight: 700; color: var(--accent-teal); background: var(--accent-teal-light); padding: 4px 12px; border-radius: 6px; }
-.compare-card h3 { font-family: var(--font-display); font-size: 21px; font-weight: 600; margin-bottom: 16px; padding-right: 64px; }
-.compare-card p { font-size: 16px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
-.compare-card .verdict { font-size: 15px; padding: 12px 16px; border-radius: 10px; line-height: 1.65; margin-top: 6px; }
-.compare-card.old .verdict { background: var(--accent-rose-glow); color: var(--accent-rose); }
-.compare-card.new .verdict { background: var(--accent-teal-glow); color: var(--accent-teal); }
-.gwt { font-family: var(--font-code); font-size: 14.5px; background: var(--bg-code); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; line-height: 1.9; color: var(--text-primary); margin-bottom: 14px; }
-.gwt b { color: var(--accent-amber); font-weight: 700; }
+.compare-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 28px 26px; position: relative; overflow: hidden; }
+.compare-card.old { border-color: rgba(220,38,38,.2); }
+.compare-card.old::before { content: '传统方式'; position: absolute; top: 16px; right: 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: var(--red); background: #fee2e2; padding: 3px 10px; border-radius: 5px; }
+.compare-card.new { border-color: rgba(22,163,74,.2); }
+.compare-card.new::before { content: '当前方法'; position: absolute; top: 16px; right: 16px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: var(--green); background: #dcfce7; padding: 3px 10px; border-radius: 5px; }
+.compare-card h3 { font-weight: 700; font-size: 19px; margin-bottom: 14px; padding-right: 72px; }
+.compare-card p { font-size: .9rem; color: var(--muted); line-height: 1.7; margin-bottom: 10px; }
+.compare-card .verdict { font-size: 14px; padding: 10px 14px; border-radius: 9px; line-height: 1.6; margin-top: 6px; }
+.compare-card.old .verdict { background: rgba(220,38,38,.05); color: var(--red); }
+.compare-card.new .verdict { background: rgba(22,163,74,.05); color: #16a34a; }
 
-/* CALLOUT */
-.callout { background: linear-gradient(135deg, rgba(194,65,12,0.04), rgba(13,148,136,0.02)); border: 1px solid rgba(194,65,12,0.12); border-radius: 14px; padding: 26px 32px; margin: 30px 0; position: relative; }
-.callout::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(to bottom, var(--accent-amber), var(--accent-teal)); border-radius: 14px 0 0 14px; }
-.callout p { font-size: 16.5px; color: var(--text-primary); line-height: 1.75; margin: 0; }
-.callout p strong { color: var(--accent-amber); }
-.callout .term { font-family: var(--font-code); font-size: 0.9em; background: var(--bg-code); padding: 2px 7px; border-radius: 5px; border: 1px solid var(--border); }
+/* GWT block */
+.gwt { font-family: 'JetBrains Mono', monospace; font-size: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 9px; padding: 14px 16px; line-height: 1.9; color: var(--ink); margin-bottom: 12px; }
 
-/* PRE (inline code block) */
-.code-block { position: relative; margin: 18px 0 26px; }
-.code-block pre { background: var(--bg-code); border: 1px solid var(--border); border-radius: 12px; padding: 22px; overflow-x: auto; font-family: var(--font-code); font-size: 14px; line-height: 1.7; color: var(--text-secondary); white-space: pre; }
-.copy-btn { position: absolute; top: 10px; right: 10px; font-family: var(--font-code); font-size: 12.5px; font-weight: 700; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--border-strong); background: var(--bg-surface); color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
-.copy-btn:hover { border-color: var(--accent-amber); color: var(--accent-amber); }
+/* CALLOUT — no border-radius when border-left present */
+.callout { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--blue); padding: 20px 28px; margin: 24px 0; }
+.callout p { font-size: .95rem; color: var(--ink); line-height: 1.75; margin: 0; }
+.callout p strong { color: var(--blue); }
+.callout .term { font-family: 'JetBrains Mono', monospace; font-size: .88em; background: #fff; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--line); }
+
+/* CODE BLOCK */
+.code-block { position: relative; margin: 14px 0 22px; }
+.code-block pre { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; line-height: 1.7; color: var(--muted); white-space: pre; }
+.copy-btn { position: absolute; top: 8px; right: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 7px; border: 1px solid var(--line); background: var(--bg); color: var(--muted); cursor: pointer; transition: all .2s; }
+.copy-btn:hover { border-color: var(--blue); color: var(--blue); }
 
 /* FLOW */
-.flow-strip { display: flex; flex-wrap: wrap; gap: 12px; margin: 8px 0 26px; align-items: stretch; }
-.flow-step { flex: 1; min-width: 150px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
-.flow-step .fs-num { font-family: var(--font-code); font-size: 13px; font-weight: 700; color: var(--accent-teal); margin-bottom: 6px; }
-.flow-step h5 { font-family: var(--font-display); font-size: 17px; font-weight: 600; margin-bottom: 6px; }
-.flow-step p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; margin: 0; }
-.flow-step p strong { color: var(--accent-amber); }
-@media (max-width: 900px) { .flow-step { min-width: calc(50% - 12px); } }
+.flow-strip { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 22px; align-items: stretch; }
+.flow-step { flex: 1; min-width: 144px; background: var(--card); border: 1px solid var(--line); border-radius: 11px; padding: 16px; }
+.flow-step .fs-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: var(--blue); margin-bottom: 5px; }
+.flow-step h5 { font-weight: 700; font-size: 15.5px; margin-bottom: 5px; }
+.flow-step p { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 0; }
 
 /* SUBHEAD */
-.subhead { font-family: var(--font-display); font-size: 25px; font-weight: 600; margin: 44px 0 18px; }
+.subhead { font-weight: 700; font-size: 21px; margin: 36px 0 14px; }
 
-/* ACCORDION (AI KIT) */
-.template-accordion { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
-.template-item { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--bg-surface); }
-.template-header { padding: 18px 24px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: background 0.2s; user-select: none; }
-.template-header:hover { background: var(--bg-elevated); }
-.template-header .th-num { font-family: var(--font-code); font-size: 14px; font-weight: 700; color: var(--accent-amber); min-width: 34px; }
-.template-header .th-title { font-family: var(--font-display); font-size: 18px; font-weight: 600; flex: 1; }
-.template-header .th-tag { font-family: var(--font-code); font-size: 12.5px; padding: 4px 10px; border-radius: 6px; white-space: nowrap; }
-.template-header .th-chevron { color: var(--text-muted); transition: transform 0.3s; font-size: 16px; }
+/* ACCORDION */
+.template-accordion { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; max-width: 960px; }
+.template-item { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--bg); }
+.template-header { padding: 16px 22px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: background .2s; user-select: none; }
+.template-header:hover { background: var(--card); }
+.template-header .th-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--blue); min-width: 28px; }
+.template-header .th-title { font-weight: 700; font-size: 16px; flex: 1; }
+.template-header .th-tag { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 3px 9px; border-radius: 5px; white-space: nowrap; }
+.template-header .th-chevron { color: var(--muted); transition: transform .3s; font-size: 15px; }
 .template-item.open .th-chevron { transform: rotate(90deg); }
-.template-body { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+.template-body { max-height: 0; overflow: hidden; transition: max-height .5s ease; }
 .template-item.open .template-body { max-height: 4000px; }
-.template-content { padding: 0 24px 24px; }
-.template-content .tpl-desc { font-size: 15.5px; color: var(--text-secondary); margin-bottom: 14px; line-height: 1.7; }
-.template-content .tpl-desc strong { color: var(--text-primary); }
-.template-content pre { background: var(--bg-code); border: 1px solid var(--border); border-radius: 10px; padding: 22px; overflow-x: auto; font-family: var(--font-code); font-size: 13.5px; line-height: 1.7; color: var(--text-secondary); white-space: pre; }
+.template-content { padding: 0 22px 22px; }
+.template-content .tpl-desc { font-size: .88rem; color: var(--muted); margin-bottom: 12px; line-height: 1.7; }
+.template-content pre { background: var(--card); border: 1px solid var(--line); border-radius: 9px; padding: 18px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.7; color: var(--muted); white-space: pre; }
 
-/* DEEP DIVE LINKS */
-.deep-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-bottom: 30px; }
-.deep-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; text-decoration: none; transition: all 0.2s; display: block; }
-.deep-card:hover { border-color: var(--accent-amber); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(194,65,12,0.08); }
-.deep-card .dc-title { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
-.deep-card .dc-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.55; }
+/* DEEP DIVE */
+.deep-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; margin: 8px 0 16px; }
+.deep-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; text-decoration: none; transition: all .2s; display: block; }
+.deep-card:hover { border-color: var(--blue); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(37,99,235,.08); }
+.deep-card .dc-title { font-weight: 700; font-size: 15.5px; color: var(--ink); margin-bottom: 3px; }
+.deep-card .dc-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
 
 /* FOOTER */
-.footer { text-align: center; padding: 80px 28px 50px; border-top: 1px solid var(--border); margin-top: 40px; }
-.footer p { font-size: 15px; color: var(--text-muted); margin-bottom: 10px; }
-.footer-brand { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--accent-amber); margin-bottom: 18px; }
-.footer a { color: var(--accent-teal); text-decoration: none; }
+.footer { text-align: center; padding: 60px 28px 40px; border-top: 1px solid var(--line); margin-top: 20px; }
+.footer p { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+.footer-brand { font-weight: 700; font-size: 17px; color: var(--blue); margin-bottom: 16px; }
+.footer a { color: var(--blue); text-decoration: none; }
 .footer a:hover { text-decoration: underline; }
 </style>
 </head>
@@ -181,96 +168,85 @@ tr:hover td { background: var(--bg-elevated); }
 
 <!-- ===== NAV ===== -->
 <nav class="nav-bar">
-  <a class="nav-brand" href="#hero">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 8px;">
-      <rect width="24" height="24" rx="5" fill="#c2410c"/>
-      <rect x="5" y="4" width="14" height="16" rx="2" fill="#faf8f5" opacity="0.95"/>
-      <rect x="7" y="7" width="10" height="1.5" rx="0.75" fill="#c2410c" opacity="0.8"/>
-      <rect x="7" y="10" width="8" height="1.5" rx="0.75" fill="#c2410c" opacity="0.6"/>
-      <rect x="7" y="13" width="9" height="1.5" rx="0.75" fill="#c2410c" opacity="0.4"/>
-      <rect x="14" y="14" width="7" height="7" rx="1.5" fill="#0d9488"/>
-      <text x="17.5" y="19.5" font-family="Arial, sans-serif" font-size="5" font-weight="bold" fill="#faf8f5" text-anchor="middle">AI</text>
-    </svg>
-    AI PM 手册 · 大白话版
-  </a>
+  <a class="nav-brand" href="#hero">AI PM 手册</a>
   <div class="nav-links">
-    <a href="#story" class="active">一个例子</a>
-    <a href="#scene-1">六个场景</a>
+    <a href="#overview">概要</a>
+    <a href="#example">完整示例</a>
+    <a href="#scene-1">场景</a>
     <a href="#map">全流程</a>
-    <a href="#onboarding">一周上手</a>
-    <a href="#glossary">术语表</a>
-    <a href="#ai-kit">AI 套件</a>
-    <a href="#deep-dive">深度参考</a>
-    <a href="../index.html" class="nav-old">← v2 旧版</a>
+    <a href="#glossary">术语</a>
+    <a href="#ai-kit">模板套件</a>
+    <a href="#deep-dive">参考</a>
+    <a href="../index.html" class="nav-old">&larr; v2</a>
   </div>
 </nav>
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="hero">
-  <div class="hero-eyebrow">大白话版 · v3 预览 · 不需要会写代码</div>
-  <h1>AI 写代码<br>你定验收标准</h1>
-  <p class="hero-subtitle">AI 能帮你写代码、做原型、出报告了，但它会忘事、会跑偏、会只做一半。<br>这份手册用大白话讲清楚三件事：怎么给 AI 定验收标准、怎么检查 AI 的活、<br>怎么让项目越做越顺而不是越改越乱。</p>
+  <div class="hero-eyebrow">产品经理 AI Coding 转型 · 实操手册</div>
+  <h1>产品经理<br>AI Coding 工作手册</h1>
+  <p class="hero-subtitle">系统梳理 AI 编程时代产品经理的工作方式转变：如何定义产品、如何与 AI 协作、如何验收产出。<br>覆盖从项目启动到上线的完整流程，每项操作配备可直接复用的模板。</p>
   <div class="hero-meta">
-    <span><span class="dot"></span> 6 个真实场景</span>
-    <span><span class="dot"></span> 6 个现成模板</span>
-    <span><span class="dot"></span> 人和 AI 都能读</span>
-    <span><span class="dot"></span> 2026 · v3</span>
+    <span><span class="dot"></span> 六大实操场景</span>
+    <span><span class="dot"></span> 完整项目示例</span>
+    <span><span class="dot"></span> 6 套项目模板</span>
+    <span><span class="dot"></span> 面向人与 AI 双读者</span>
   </div>
 </section>
 
-<!-- ===== 3秒区 ===== -->
-<section class="section" id="key">
-  <div class="section-tag">3 SECONDS</div>
-  <h2 class="section-title">三秒看懂这份手册</h2>
-  <p class="section-subtitle">你的工作从"写需求文档给人读"，变成"给 AI 定验收标准 + 检查 AI 的活"。记住三个数字就够了：</p>
+<!-- ===== OVERVIEW ===== -->
+<section class="section" id="overview">
+  <div class="section-tag">OVERVIEW</div>
+  <h2 class="section-title">核心概要</h2>
+  <p class="section-subtitle">AI 编程工具改变了产品经理与代码之间的关系。定义产品的方式从撰写供人阅读的需求文档，转变为建立可被机器消费的规格与约束。三组核心变化：</p>
   <div class="key-grid">
     <div class="key-card">
-      <div class="kc-num">2 份</div>
-      <div class="kc-label">你亲手写的材料：<br><strong>项目简介</strong>（半页纸）+ <strong>需求清单</strong>（每条一句话）</div>
+      <div class="kc-num">定义方式</div>
+      <div class="kc-label">从单一 PRD 文档，转变为<strong>项目简介（半页）+ 需求清单（逐条一句话）+ 可自动验收的三句话场景</strong>。文档变薄，可执行性增强。</div>
     </div>
     <div class="key-card">
-      <div class="kc-num">3 关</div>
-      <div class="kc-label">检查 AI 的活：<br><strong>机器查</strong> · <strong>自己试</strong> · <strong>逐条对</strong>，任一关不过就打回</div>
+      <div class="kc-num">验收机制</div>
+      <div class="kc-label">从开发完成后人工对照 PRD 验收，转变为<strong>三道关卡</strong>：自动检查全部通过 → 亲手试用原型 → 验收标准逐条打勾。任一关不过即打回。</div>
     </div>
     <div class="key-card">
-      <div class="kc-num">1 本</div>
-      <div class="kc-label"><strong>项目规则本</strong>：AI 每次干活前必读的"家规"，<br>被同一个错误烦到第二次才加一条</div>
+      <div class="kc-num">持续积累</div>
+      <div class="kc-label">从每次做完就忘、下次重新踩坑，转变为<strong>项目规则持续生长</strong>。同类错误第二次出现即写入规则文件，AI 每次启动时自动加载。</div>
     </div>
   </div>
   <div class="callout">
-    <p>你在新工作方式里唯一的 KPI：<strong>方向不偏，验收过硬。</strong>你不用真的会写代码、会设计——AI 负责执行，你负责定标准和验收。一个人 + AI，就能同时顶 PM、设计师、工程师、测试四个岗位的产出，但你的重心始终只有两个：目标和验收。</p>
+    <p><strong>核心矛盾变化：</strong>传统开发的核心问题是"信息在传递中失真"；AI 编程时代，信息可被机器直接读取，但多轮、多路生成产出的<strong>一致性与可验证性</strong>成为新瓶颈。定义、约束、验收——三项能力的重心从"写得详细"转为"写得可执行"。</p>
   </div>
 </section>
 
-<!-- ===== STORY ===== -->
-<section class="section" id="story">
-  <div class="section-tag">STORY</div>
-  <h2 class="section-title">先看一个完整例子：小林做"手机号登录"</h2>
-  <p class="section-subtitle">小林是产品经理，不会写代码。她要给产品加"手机号登录"，她的一周是这样过的——后面六节就是把这六件事拆开讲。</p>
+<!-- ===== EXAMPLE ===== -->
+<section class="section" id="example">
+  <div class="section-tag">EXAMPLE</div>
+  <h2 class="section-title">完整示例：手机号登录功能——从零到上线</h2>
+  <p class="section-subtitle">以下是一个产品经理使用 AI 编程工具完成"手机号登录"功能的完整过程。该示例贯穿后续六大场景，每一步的动作与产出均可在实际工作中复现。</p>
   <div class="timeline">
-    <div class="tl-item" data-day="周一上午">
-      <h4>开项目：写两样东西，共 30 分钟</h4>
-      <p>半页"项目简介"（解决什么问题、什么算成功、不做什么）+ 5 行"项目规则"（用什么技术、AI 绝不能犯的错）。</p>
+    <div class="tl-item" data-day="项目启动">
+      <h4>建立项目基准：半页简介 + 5 行规则</h4>
+      <p>定义问题、目标、用户、成功标准与边界约束（半页）；声明技术栈和两条硬规则（"禁止改动现有密码登录"、"验证码固定 6 位"）。30 分钟完成，后续随项目推进增量追加。</p>
     </div>
-    <div class="tl-item" data-day="周一下午">
-      <h4>提需求：三句话讲清登录这件事</h4>
-      <p>"假设用户在登录页，当输入正确的手机号和验证码，那么进入首页。"AI 把这句话变成一张机器能自动检查的"验收卡"，小林看了 <strong>5 分钟</strong>，通过。</p>
+    <div class="tl-item" data-day="需求定义">
+      <h4>三句话描述需求，AI 转写为可自动验收的场景</h4>
+      <p>将"手机号登录"描述为一条可执行场景——<em>假设用户在登录页，当输入正确手机号和验证码，那么进入首页</em>。AI 将其转化为机器可自动检查的验收卡片，产品经理裁决通过后冻结。边界情况（验证码错误、过期、断网等）由 AI 以选择题形式列出，逐项确认后各形成一张独立卡片。</p>
     </div>
-    <div class="tl-item" data-day="周二">
-      <h4>功能变大了：先出施工图纸</h4>
-      <p>登录要连着注册、找回密码一起做。AI 组装了一份"施工图纸"：怎么盖、分几步。小林审图纸 <strong>20 分钟</strong>——以前这个环节是 2 小时的需求评审会。</p>
+    <div class="tl-item" data-day="开工前">
+      <h4>组装施工图纸，审图代替评审</h4>
+      <p>登录模块涉及登录、注册、找回密码三个子功能，一轮对话无法完成。AI 将需求段（已有）、设计段（结构/数据/接口）、任务段（可打勾清单）组装为一份施工图纸。审图 20 分钟——传统需求评审会通常需要 2 小时。</p>
     </div>
-    <div class="tl-item" data-day="周四">
-      <h4>验收：过三关</h4>
-      <p>机器检查全部通过 ✓、自己上手试了一遍挺顺 ✓、对着三句话逐条打勾 ✓。上线。</p>
+    <div class="tl-item" data-day="实现完成">
+      <h4>三关验收后上线</h4>
+      <p>第一关自动检查全部通过；第二关亲手试用原型，交互流畅；第三关验收标准逐条打勾。三关全部通过，上线。</p>
     </div>
-    <div class="tl-item" data-day="两周后">
-      <h4>AI 又错了：加一条规则</h4>
-      <p>AI 又把验证码长度搞错，这已经是<strong>第二次</strong>。小林往"项目规则"里加了一行："验证码固定 6 位"。从此 AI 每次干活前都会读到这条，再没犯过。</p>
+    <div class="tl-item" data-day="迭代中">
+      <h4>同类错误第二次出现时，写入项目规则</h4>
+      <p>AI 两次将验证码长度设错。第二次发生后，在项目规则中追加一条——"验证码固定 6 位数字"。此后 AI 每次启动自动读取该规则，同类问题不再重现。</p>
     </div>
     <div class="tl-item" data-day="月底">
-      <h4>老板要进展：AI 起草，她写判断</h4>
-      <p>AI 从项目数据自动起草了报告，小林只补了一段话："登录已上线，下月做第三方登录，暂缓原因是……"。发出。</p>
+      <h4>AI 起草汇报，人工补充方向判断</h4>
+      <p>进展报告由 AI 从项目数据自动生成。产品经理仅补充一段——本月为什么优先做登录、下月方向与风险。格式随组织要求，方向判断由人完成。</p>
     </div>
   </div>
 </section>
@@ -278,497 +254,430 @@ tr:hover td { background: var(--bg-elevated); }
 <!-- ===== SCENE 1 ===== -->
 <section class="section" id="scene-1">
   <div class="section-tag">SCENE 01</div>
-  <h2 class="section-title">场景一：新开项目——先写两样东西</h2>
-  <p class="section-subtitle">开新项目（或新功能）时，你只需要写两样东西。它们本来就是你以前写在 PRD 里的内容，只是变薄了，并且放到 AI 能读到的地方。</p>
+  <h2 class="section-title">项目启动：两份基准文件</h2>
+  <p class="section-subtitle">新项目启动时需建立两份文件：项目简介（产品定义的源头）和项目规则（AI 的行为约束）。后续所有产出均从这两份文件派生。</p>
 
-  <h3 class="subhead">第一样：项目简介（半页纸，回答六个问题）</h3>
+  <h3 class="subhead">项目简介（半页，六个维度）</h3>
   <div class="table-container">
     <table>
-      <tr><th style="width:26%;">问题</th><th>示例（小林的项目）</th></tr>
-      <tr><td><strong>解决什么问题</strong></td><td>新用户注册流程太长，一半人中途放弃</td></tr>
-      <tr><td><strong>目标</strong></td><td>用手机号一键登录，把注册流失降下来</td></tr>
-      <tr><td><strong>给谁用</strong></td><td>第一次使用 App 的新用户</td></tr>
-      <tr><td><strong>大概做成什么样</strong></td><td>一个页面、两个输入框、一次点击，风格跟现有页面一致</td></tr>
-      <tr><td><strong>什么算成功</strong></td><td>注册完成率从 50% 提到 70%</td></tr>
-      <tr><td><strong>明确不做什么</strong></td><td>不做人脸识别登录；不做海外手机号；不改动现有的密码登录</td></tr>
+      <tr><th style="width:24%;">维度</th><th>示例</th></tr>
+      <tr><td>问题定义</td><td>新用户注册流程过长，中途放弃率达 50%</td></tr>
+      <tr><td>目标</td><td>以手机号一键登录替代现有流程，将注册完成率提升至 70%</td></tr>
+      <tr><td>用户</td><td>首次使用产品的新用户</td></tr>
+      <tr><td>设计策略</td><td>单页面、双输入框、单次点击，视觉风格与现有页面一致</td></tr>
+      <tr><td>成功标准</td><td>注册完成率从 50% 提升至 70%（可度量，不超过 3 条）</td></tr>
+      <tr><td>边界约束</td><td>不做人脸识别登录；不做海外手机号；不改动现有密码登录功能</td></tr>
     </table>
   </div>
   <div class="callout">
-    <p>最后一个问题（<strong>不做什么</strong>）最容易被漏掉，但对 AI 最重要——AI 不会自己猜边界，你不说，它就自由发挥。</p>
+    <p>边界约束（明确<strong>不做什么</strong>）是最容易被遗漏但对 AI 最重要的维度——AI 不会自行推断边界，未声明的范围即为可自由发挥的空间。</p>
   </div>
 
-  <h3 class="subhead">第二样：项目规则本（5 行起步）</h3>
-  <p>这是给 AI 看的"家规"。AI 每次开始干活前都会先读它。一开始只写 5 行：</p>
+  <h3 class="subhead">项目规则（5 行起步，按需追加）</h3>
+  <p>AI 在每次启动会话时自动读取该文件。初始版本仅需声明技术栈和少量硬规则，后续每遇到同类错误第二次出现时追加一条——它并非开工前一次写全，而是随项目一起生长。</p>
   <div class="code-block">
     <button class="copy-btn">复制</button>
     <pre>项目：手机号登录
-技术：微信小程序 + 云开发
-绝不能犯的错：
-  1. 不许改动现有的密码登录功能
+技术：小程序 + 云开发
+硬规则：
+  1. 禁止改动现有密码登录功能的任何代码
   2. 验证码固定 6 位数字
-怎么跑起来：[运行命令]</pre>
+运行命令：[ ]</pre>
   </div>
-  <p><strong>规则本不用提前写全</strong>——被 AI 的同一个错误烦到第二次，就加一条进去（详见场景五）。它是越用越好用的，不是开工前憋出来的。</p>
   <div class="callout">
-    <p>给 AI 看的项目规则文件，在各类 AI 编程工具里有个通用文件名叫 <span class="term">AGENTS.md</span>（Claude Code 里叫 CLAUDE.md）。你不需要记这个名字，只需要知道：<strong>项目文件夹里放一份规则文件，AI 工具会自动读</strong>。</p>
+    <p>该文件在各类 AI 编程工具中的通用名称为 <span class="term">AGENTS.md</span>（Claude Code 中为 CLAUDE.md，Cursor、Copilot 等多款工具均支持自动读取）。置于项目根目录即可。</p>
   </div>
 </section>
 
 <!-- ===== SCENE 2 ===== -->
 <section class="section" id="scene-2">
   <div class="section-tag">SCENE 02</div>
-  <h2 class="section-title">场景二：给 AI 提需求——三句话讲清一件事</h2>
-  <p class="section-subtitle">这是整个新工作方式里你最需要掌握的一件事，一分钟能学会。</p>
+  <h2 class="section-title">需求定义：可自动验收的三句话场景</h2>
+  <p class="section-subtitle">将功能需求从一段自然语言描述，转变为机器可自动检查的 Given/When/Then 格式。产品经理负责描述场景和裁决转写结果，AI 负责转写和执行。</p>
 
   <div class="compare-grid">
     <div class="compare-card old">
-      <h3>写一段 PRD 描述</h3>
-      <p>"登录模块应支持手机验证码登录，验证码通过短信下发，有效期 5 分钟，用户输入验证码校验通过后进入系统……"</p>
-      <div class="verdict">一段描述。开发按自己的理解做，验收时各执一词、来回扯皮；文档写完就开始和实际功能脱节。</div>
+      <h3>自然语言描述（传统 PRD 方式）</h3>
+      <p>"登录模块应支持手机验证码登录，验证码通过短信下发，有效期 5 分钟，用户输入验证码校验通过后进入系统。"</p>
+      <div class="verdict">一段描述，多义性不可避免。开发按各自理解实现，验收时围绕"是否符合描述"反复沟通。文档从完成那一刻起即与实现开始漂移。</div>
     </div>
     <div class="compare-card new">
-      <h3>说三句话</h3>
-      <div class="gwt"><b>假设</b> 用户在登录页<br><b>当</b>　 输入正确的手机号和验证码，点击登录<br><b>那么</b> 进入首页</div>
-      <div class="verdict">这三句话能被机器自动执行、自动判断对错。做没做到，跑一下就知道，不用吵架，半年后回来改也不会乱。</div>
+      <h3>Given / When / Then 格式（当前方法）</h3>
+      <div class="gwt"><b>假设</b> 用户在登录页<br><b>当</b>　 输入正确手机号与验证码，点击登录<br><b>那么</b> 进入首页</div>
+      <div class="verdict">三句话构成一条可被自动执行的验收场景。通过或未通过由机器判断，不依赖人工解释。半年后修改其他模块时，已有场景仍作为回归保险自动运行。</div>
     </div>
   </div>
 
-  <h3 class="subhead">你不需要会写，只需要会说</h3>
+  <h3 class="subhead">实际操作流程</h3>
   <ul>
-    <li>你说大白话，让 AI 转写成三句话，你检查对不对——<strong>你维护的是判断力，不是打字量</strong>。</li>
-    <li>边界情况不用你自己想全：让 AI 出<strong>选择题</strong>给你勾。"验证码输错怎么办？过期怎么办？短信发送失败怎么办？"——你勾选，AI 把每个勾选也写成一张卡。</li>
-    <li>每张三句话卡片只增不改。要改？那是改需求，回到项目简介重新想清楚再动。</li>
+    <li>产品经理以自然语言描述场景，AI 转写为 Given/When/Then 格式。产品经理<strong>裁决转写是否正确</strong>——这是核心判断环节，不是打字环节。</li>
+    <li>边界情况由 AI 以选择题形式列出（验证码错误？过期？断网？无权限？），产品经理逐项确认或补充。每项确认后各形成一张独立的验收场景卡。</li>
+    <li>已定稿的场景卡片<strong>只增不改</strong>。若需求变更，先回到项目简介重新评估方向，再增量追加新场景。直接修改旧卡片会导致验收基准漂移。</li>
   </ul>
   <div class="callout">
-    <p>这种"三句话验收卡"在行业里有个术语叫 <span class="term">BDD</span>（行为驱动开发）。<strong>你不需要记这个词</strong>——它就是你一直在写的"验收标准"，只是从 Word 里的一段话，变成了机器能自动检查的格式。</p>
+    <p>这种格式在行业中的术语为 <span class="term">BDD</span>（行为驱动开发），其核心主张 <span class="term">ATDD</span>（验收测试驱动开发）强调验收标准在需求定义阶段即已确定——这正是将"验收标准"从 PRD 中的一段文字升级为可自动执行规格的本质。</p>
   </div>
 </section>
 
 <!-- ===== SCENE 3 ===== -->
 <section class="section" id="scene-3">
   <div class="section-tag">SCENE 03</div>
-  <h2 class="section-title">场景三：大功能开工——先出"施工图纸"</h2>
-  <p class="section-subtitle">小事不用图纸，改个文案、调个颜色，直接跟 AI 说就行。但一个完整功能（好几个页面、跨好几天、一次对话做不完），开工前要先组装一份"施工图纸"。</p>
+  <h2 class="section-title">大型功能：开工前组装施工图纸</h2>
+  <p class="section-subtitle">单次对话可完成的小改动（修正文案、调整样式、探索原型方向）不需图纸。跨多页、跨多天、跨多次会话的完整功能，开工前需将已有产物组装为一份施工图纸——在图纸上发现错误只需改一行字，在代码上发现则需推翻重来。</p>
 
-  <h3 class="subhead">什么时候需要图纸？一条判断标准</h3>
   <div class="table-container">
     <table>
-      <tr><th>不用图纸</th><th>需要图纸</th></tr>
-      <tr>
-        <td>试方向、做原型（本来就边聊边改）<br>改一句话、调一个样式<br>一轮对话就能做完的小事</td>
-        <td>一个完整功能（多页面、多接口）<br>一次对话做不完、要分好几天<br>担心 AI 做一半、忘一半、跑偏</td>
-      </tr>
+      <tr><th>不需图纸的场景</th><th>需要图纸的场景</th></tr>
+      <tr><td>方向探索与原型试错（边聊边改）</td><td>跨多个页面的完整功能</td></tr>
+      <tr><td>单次对话可完成的文案/样式修正</td><td>一次对话做不完、需分多次会话推进</td></tr>
+      <tr><td>即席小调整</td><td>存在 AI 遗忘前置信息或跑偏方向的风险</td></tr>
     </table>
   </div>
 
-  <h3 class="subhead">图纸三段，两段是 AI 写的</h3>
+  <h3 class="subhead">图纸三段结构</h3>
   <div class="table-container">
     <table>
-      <tr><th style="width:16%;">段</th><th>内容</th><th style="width:34%;">谁负责</th></tr>
-      <tr><td><strong>① 需求</strong></td><td>做什么、验收标准</td><td>直接复制你已有的项目简介和三句话卡片</td></tr>
-      <tr><td><strong>② 怎么盖</strong></td><td>结构、数据、影响哪些现有功能</td><td><span class="tag tag-teal">AI 起草</span> 你（或技术同事）审</td></tr>
-      <tr><td><strong>③ 任务清单</strong></td><td>拆成一条条可打勾的步骤</td><td><span class="tag tag-teal">AI 拆</span> 你确认</td></tr>
+      <tr><th style="width:16%;">段落</th><th>内容</th><th style="width:32%;">职责</th></tr>
+      <tr><td>需求段</td><td>做什么、验收标准</td><td>直接复用已有的项目简介与场景卡片</td></tr>
+      <tr><td>设计段</td><td>结构、数据、接口、对现有功能的影响范围</td><td><span class="tag tag-blue">AI 起草</span>，产品经理或技术角色裁决</td></tr>
+      <tr><td>任务段</td><td>可逐条打勾的执行清单</td><td><span class="tag tag-blue">AI 拆解</span>，产品经理确认</td></tr>
     </table>
   </div>
-  <p><strong>审图纸就是新的"需求评审"</strong>——区别是：在图纸上发现错误，改一行字就行；等代码写完才发现，就要推翻重来。先审后做，是把纠错挪到最便宜的环节。</p>
+  <p>审图即新的需求评审——将纠错动作前移至成本最低的环节。图纸为任务级产物：一个功能一份，完成后归档，无需日常维护。</p>
   <div class="callout">
-    <p>图纸是"任务级"的：一个功能一份，做完就归档，不用维护。需求变了？改图纸重新生成，不要在旧代码上打补丁——<strong>补丁打多了，就是人们说的"屎山"</strong>。</p>
+    <p>需求变更时，<strong>修改图纸后重新生成，不在旧代码上打补丁</strong>。累积的补丁是项目可维护性下降的核心原因。</p>
   </div>
 </section>
 
 <!-- ===== SCENE 4 ===== -->
 <section class="section" id="scene-4">
   <div class="section-tag">SCENE 04</div>
-  <h2 class="section-title">场景四：检查 AI 的活——三关验收</h2>
-  <p class="section-subtitle">AI 说"我做完了"不算完。过三关才算完：</p>
+  <h2 class="section-title">验收：三道关卡</h2>
+  <p class="section-subtitle">AI 完成实现后，通过三道关卡确认产出质量：</p>
   <div class="table-container">
     <table>
-      <tr><th style="width:22%;">关卡</th><th>查什么</th><th style="width:30%;">谁来查</th></tr>
-      <tr><td><span class="tag tag-teal">第一关 机器查</span></td><td>三句话卡片的自动检查全部通过，没有报错</td><td>机器自动跑</td></tr>
-      <tr><td><span class="tag tag-amber">第二关 自己试</span></td><td>亲手用一遍：跟项目简介里"大概做成什么样"一致吗？有没有别扭的地方？</td><td>你（AI 判断不了"方向对不对"，这关必须是人）</td></tr>
-      <tr><td><span class="tag tag-rose">第三关 逐条对</span></td><td>验收标准逐条打勾：过 / 不过 / 部分</td><td>你对着清单</td></tr>
+      <tr><th style="width:22%;">关卡</th><th>检查内容</th><th style="width:28%;">执行方</th></tr>
+      <tr><td><span class="tag tag-green">第一关：自动检查</span></td><td>全部三句话场景的自动测试通过；构建与代码检查无报错</td><td>机器自动执行</td></tr>
+      <tr><td><span class="tag tag-orange">第二关：体验验证</span></td><td>亲手使用原型：是否符合项目简介中的设计策略？交互是否存在不流畅之处？</td><td>人（方向是否正确只能由人判断）</td></tr>
+      <tr><td><span class="tag tag-red">第三关：逐条核对</span></td><td>验收标准逐条打勾，逐项标记通过 / 未通过 / 部分通过</td><td>人对照清单执行</td></tr>
     </table>
   </div>
   <ul>
-    <li><strong>任何一关不过 → 打回重做</strong>，不要凑合上线。</li>
-    <li><strong>方向不对 → 回到项目简介重新想</strong>，不要在错误的方向上修修补补。</li>
-    <li>上线前的检查记录不用手写——机器检查的结果自动生成看板，"哪条需求过了没"一眼可见。</li>
+    <li>任一关未通过即打回实现阶段，不在验收环节凑合放行。</li>
+    <li>方向存疑时回到项目简介重新评估，不在错误方向上逐项修补。</li>
+    <li>验收结果由自动化工具生成看板，无需手工维护跟踪矩阵。</li>
   </ul>
 </section>
 
 <!-- ===== SCENE 5 ===== -->
 <section class="section" id="scene-5">
   <div class="section-tag">SCENE 05</div>
-  <h2 class="section-title">场景五：AI 做错了——三步处理</h2>
-  <p class="section-subtitle">AI 一定会犯错。错误是宝贵的——每一次犯错都是把项目规则补完善的机会。</p>
+  <h2 class="section-title">错误处理：三次机会，逐级升级</h2>
+  <p class="section-subtitle">AI 在实现过程中必然出错。每一次出错的正确处理方式不是简单修正——而是将错误转化为项目知识，防止同类问题重现。</p>
   <div class="key-grid">
     <div class="key-card" style="text-align:left;">
-      <div class="kc-num" style="font-size:26px; margin-bottom:12px;">错一次</div>
-      <div class="kc-label" style="text-align:left;"><strong>直接指出来让它改</strong>。不用做任何记录。</div>
+      <div style="font-weight:800; font-size:21px; color:var(--green); margin-bottom:10px;">第一次出错</div>
+      <div class="kc-label" style="text-align:left; font-size:14px;">直接指出并修正。不做额外记录。</div>
     </div>
     <div class="key-card" style="text-align:left;">
-      <div class="kc-num" style="font-size:26px; margin-bottom:12px;">错两次</div>
-      <div class="kc-label" style="text-align:left;">同类错误第二次出现，<strong>往项目规则本里加一条</strong>。从此 AI 每次开工都读这条，同一个坑不踩第三次。</div>
+      <div style="font-weight:800; font-size:21px; color:var(--orange); margin-bottom:10px;">同类型第二次出错</div>
+      <div class="kc-label" style="text-align:left; font-size:14px;">在项目规则文件中追加一条硬规则。此后 AI 每次启动都会读取，同一问题不再出现。</div>
     </div>
     <div class="key-card" style="text-align:left;">
-      <div class="kc-num" style="font-size:26px; margin-bottom:12px;">怕忘决策</div>
-      <div class="kc-label" style="text-align:left;">写一张<strong>防坑备忘</strong>，三句话：当时什么情况 → 我们决定怎么做 → 换来什么、代价是什么。</div>
+      <div style="font-weight:800; font-size:21px; color:var(--blue); margin-bottom:10px;">怕遗忘的决策</div>
+      <div class="kc-label" style="text-align:left; font-size:14px;">写一条决策备忘，三要素：当时背景、所做决定、换来与代价。写完即归档，零维护成本。</div>
     </div>
   </div>
-  <h3 class="subhead">防坑备忘长什么样</h3>
+
+  <h3 class="subhead">决策备忘示例</h3>
   <div class="code-block">
     <button class="copy-btn">复制</button>
-    <pre>备忘：为什么用 X 云存储
-- 当时什么情况：要支持海外用户访问，对比了 X 和 Y
-- 我们决定：选 X
-- 换来与代价：成本高 30%，换来海外可用
-- 什么时候重新考虑：海外用户占比低于 5% 时</pre>
+    <pre>备忘：选用 X 云存储
+- 背景：需支持海外用户访问，候选方案为 X 与 Y
+- 决定：选择 X
+- 交换：成本上升约 30%，换取海外可用性
+- 复看条件：海外用户占比低于 5% 时重新评估</pre>
   </div>
-  <p>半年后谁问"为什么用这么贵的方案"，一眼就有答案。一人做事时它还有第二个作用：<strong>防止你三个月后忘了理由，把自己当初正确的决定推翻重来</strong>。</p>
+  <p>决策备忘（行业术语 <span class="term">ADR</span>）的核心价值在于防止团队或个体在数月后遗忘原始决策背景，将正确的决定推翻重来。</p>
 </section>
 
 <!-- ===== SCENE 6 ===== -->
 <section class="section" id="scene-6">
   <div class="section-tag">SCENE 06</div>
-  <h2 class="section-title">场景六：给老板汇报——AI 起草，你写判断</h2>
+  <h2 class="section-title">进展同步：汇报与复盘</h2>
   <ul>
-    <li><strong>进展类汇报（周报/月报/复盘/发版说明）由 AI 起草</strong>——项目数据它全知道（哪些需求过了、改了什么），你省下的是打字时间。</li>
-    <li><strong>你只补机器给不了的那一段</strong>：方向判断（为什么做这个不做那个）、风险提示、需要什么支持。这一段才是老板真正要看的东西。</li>
-    <li><strong>能演示就别用 PPT</strong>：给老板看能跑的原型 + 一页判断，胜过 20 页胶片。但如果组织习惯要文档，就用 AI 起草的文档——格式随组织，判断必须是你写的。</li>
+    <li>周报、月报、发版说明、项目复盘——以上四类常规汇报由 AI 从项目数据（已通过的场景、提交记录、变更范围）自动起草。打字工作交给工具。</li>
+    <li>产品经理补充的内容仅一项：<strong>方向判断</strong>。为什么当前阶段做 A 而非 B，下一阶段的优先级与风险。这是 AI 无法替代的部分，也是汇报中上级真正关心的内容。</li>
+    <li>优先以可运行原型进行演示，辅以简要判断，效果优于静态文档。若组织流程要求 PPT 或 Word，可在此基础上由 AI 导出；格式随组织，方向判断由人完成。</li>
   </ul>
 </section>
 
 <!-- ===== MAP ===== -->
 <section class="section" id="map">
   <div class="section-tag">MAP</div>
-  <h2 class="section-title">全流程地图：六步走完一个项目</h2>
+  <h2 class="section-title">全流程地图</h2>
   <div class="flow-strip">
-    <div class="flow-step"><div class="fs-num">STEP 1</div><h5>开项目</h5><p>项目简介 + 5 行规则本。先做原型试方向，<strong>方向没确认前写的东西都算草稿</strong>。</p></div>
-    <div class="flow-step"><div class="fs-num">STEP 2</div><h5>提需求</h5><p>三句话讲一件事，AI 转成验收卡，你裁决 + 勾边界选择题。</p></div>
-    <div class="flow-step"><div class="fs-num">STEP 3</div><h5>出图纸</h5><p>大功能才需要。你审 AI 起草的"怎么盖 + 任务清单"。</p></div>
-    <div class="flow-step"><div class="fs-num">STEP 4</div><h5>AI 干活</h5><p>规矩：先写检查、再写实现。错两次 → 加规则。</p></div>
-    <div class="flow-step"><div class="fs-num">STEP 5</div><h5>三关验收</h5><p>机器查 / 自己试 / 逐条对。任一关不过打回。</p></div>
-    <div class="flow-step"><div class="fs-num">STEP 6</div><h5>上线汇报</h5><p>AI 起草报告，你补判断；图纸归档；重要决策写防坑备忘。</p></div>
+    <div class="flow-step"><div class="fs-num">STEP 1</div><h5>项目启动</h5><p>项目简介 + 规则文件。方向未经验证前，全部文档视为草稿。</p></div>
+    <div class="flow-step"><div class="fs-num">STEP 2</div><h5>需求定义</h5><p>三句话场景 + AI 转写验收卡 + 边界选择题确认。</p></div>
+    <div class="flow-step"><div class="fs-num">STEP 3</div><h5>组装图纸</h5><p>大功能才需图纸。审 AI 起草的设计段与任务段。</p></div>
+    <div class="flow-step"><div class="fs-num">STEP 4</div><h5>AI 实现</h5><p>先写测试再写实现。同类型错误第二次出现时追加规则。</p></div>
+    <div class="flow-step"><div class="fs-num">STEP 5</div><h5>三关验收</h5><p>自动检查 → 亲手试用 → 逐条打勾。任一关未通过即打回。</p></div>
+    <div class="flow-step"><div class="fs-num">STEP 6</div><h5>上线归档</h5><p>AI 起草报告，补充方向判断。重要决策写备忘。</p></div>
   </div>
   <div class="callout">
-    <p>第 1 步有个重要护栏：<strong>先探索、后定稿</strong>。方向没验证之前，让 AI 多出几版原型去试，这时写的所有文档都是草稿；等原型能让别人 30 秒看懂"这东西解决什么问题"了，再把简介定稿。别反过来——方向没定就先写一堆文档，是旧工作方式最容易犯的错。</p>
+    <p><strong>关键护栏：先探索，后定稿。</strong>方向未经原型验证前，所有文档均为草稿。待原型能在 30 秒内让目标对象理解"解决什么问题"时，方将项目简介定稿固化。传统方式最常见的错误是在方向未确认时过度投入文档——AI 编程时代试错成本极低，应先利用这一优势，再将方向确认的结果固化为锚点。</p>
   </div>
 
-  <h3 class="subhead">你写什么，AI 写什么（一张表说清）</h3>
+  <h3 class="subhead">产出物归属：手写 vs AI 生成 vs 无需存在</h3>
   <div class="table-container">
     <table>
-      <tr><th style="width:20%;">分类</th><th>内容</th></tr>
+      <tr><th style="width:22%;">分类</th><th>内容</th></tr>
       <tr>
-        <td><strong>你亲手写</strong><br><span style="color:var(--text-muted); font-size:13px;">共 4 样</span></td>
-        <td>项目简介（半页）· 需求三句话清单（每条一句话）· 项目规则的追加（被错误烦到才加）· 防坑备忘（怕忘才写）</td>
+        <td>手写维护<br><span style="color:#9ca3af; font-size:12px;">共 4 项</span></td>
+        <td>项目简介（半页，极少改动）· 需求场景清单（逐条一句话，只增不改）· 项目规则追加（同类错误第二次触发时才加）· 决策备忘（怕遗忘时才写，写完不碰）</td>
       </tr>
       <tr>
-        <td><strong>AI 写，你检查</strong></td>
-        <td>验收卡（三句话的机器可读版）· 原型 · 施工图纸 · 周报月报复盘发版说明</td>
+        <td>AI 生成，人工裁决<br><span style="color:#9ca3af; font-size:12px;">裁决后冻结，不手改</span></td>
+        <td>验收场景卡（Given/When/Then）· 交互原型 · 施工图纸 · 各类汇报文档（周报/月报/发版说明/复盘）</td>
       </tr>
       <tr>
-        <td><strong>不用写</strong><br><span style="color:var(--text-muted); font-size:13px;">自动生成或取消</span></td>
-        <td>完成进度（机器检查结果自动生成）· 对话记录（工具自动存档）· 边界情况表（并入三句话卡片）· 页面结构图（小项目写进简介即可）· 数据表说明（住在代码里）· 提示词收藏（AI 工具自己管理）</td>
+        <td>无需作为文档存在<br><span style="color:#9ca3af; font-size:12px;">自动生成或已合并</span></td>
+        <td>进度看板（测试结果自动生成视图）· 对话记录（工具自动存档）· 边界情况矩阵（已并入验收场景卡）· 页面结构图（小项目写入项目简介即可）· 数据模型文档（表结构随代码，业务规则在场景卡中）· 提示词收藏（工具自行管理）</td>
       </tr>
     </table>
   </div>
   <div class="callout">
-    <p><strong>核心原则：你只写"源头"，AI 写的东西你只检查、不亲手改。</strong>需求变了，改你写的源头，让 AI 重新生成——亲手去改 AI 的产出，改着改着两边就对不上了。</p>
-  </div>
-</section>
-
-<!-- ===== ONBOARDING ===== -->
-<section class="section" id="onboarding">
-  <div class="section-tag">ONBOARDING</div>
-  <h2 class="section-title">写了十年 PRD？一周上手路径</h2>
-  <p class="section-subtitle">不需要一夜之间全改。每一步都是"换"，不是"加"，而且当周见效：</p>
-  <div class="table-container">
-    <table>
-      <tr><th style="width:18%;">阶段</th><th style="width:40%;">只改一件事</th><th>当周到手的好处</th></tr>
-      <tr>
-        <td><span class="tag tag-teal">第 1 周</span></td>
-        <td>文档照写，只是写薄：PRD → 半页项目简介；验收标准那一节改写成三句话，放到 AI 能读到的地方</td>
-        <td>AI 做出来的东西立刻更像你要的；白得一套自动检查</td>
-      </tr>
-      <tr>
-        <td><span class="tag tag-amber">做完一个项目</span></td>
-        <td>按痛点补：被同类错误烦到 → 项目规则加一条；界面风格乱 → 定一页视觉规范；怕忘决策 → 写防坑备忘</td>
-        <td>每补一样都对应一个真实止血点，不做无用功</td>
-      </tr>
-      <tr>
-        <td><span class="tag tag-violet">团队变大后</span></td>
-        <td>统一验收流水线、多 AI 分工等进阶内容</td>
-        <td>那是团队级能力，个人阶段完全可以不碰</td>
-      </tr>
-    </table>
-  </div>
-  <div class="callout">
-    <p>提醒带团队推这件事的人：<strong>不要说"PRD 过时了"</strong>。PRD 是传统 PM 的职业身份，这句话只会激起抵触。要说："你的 PRD 还有用，只是把它变薄，再让 AI 替你干两件新事。"</p>
+    <p>核心原则：<strong>只维护源头文件，不亲手修改 AI 生成物。</strong>需求变更时修改源头（项目简介或场景清单），由 AI 重新生成下游产物——人工手动修改 AI 的生成物是文档漂移的首要原因。</p>
   </div>
 </section>
 
 <!-- ===== GLOSSARY ===== -->
 <section class="section" id="glossary">
   <div class="section-tag">GLOSSARY</div>
-  <h2 class="section-title">术语速查表（不用背，遇到再查）</h2>
-  <p class="section-subtitle">行业里缩写很多，一半是真概念，一半是公司黑话。正文里我们都用了大白话，这张表只是让你遇到术语时不发懵。</p>
+  <h2 class="section-title">术语速查</h2>
+  <p class="section-subtitle">正文中已使用自然语言描述全部操作。以下对照表用于遇到行业缩写时快速查询，无需记忆。</p>
   <div class="table-container">
     <table>
-      <tr><th style="width:16%;">术语</th><th>大白话</th><th style="width:32%;">在手册里对应什么</th></tr>
-      <tr><td><strong>PRD</strong></td><td>产品需求文档</td><td>你熟悉的老文档；现在变薄为"项目简介 + 三句话清单"</td></tr>
-      <tr><td><strong>PSD</strong></td><td>产品规格文档（各公司叫法不一）</td><td>≈ PRD 的定稿版，不用单独维护</td></tr>
-      <tr><td><strong>BDD</strong></td><td>用"假设/当/那么"三句话写验收标准，机器能自动检查</td><td>场景二的"三句话验收卡"</td></tr>
-      <tr><td><strong>ATDD</strong></td><td>"验收标准在提需求时就定死"的主张</td><td>已经包含在 BDD 里，不用单独了解</td></tr>
-      <tr><td><strong>TDD</strong></td><td>先写检查、再写实现的干活纪律</td><td>AI 的纪律，你只需在项目规则里要求它这么做</td></tr>
-      <tr><td><strong>SDD</strong></td><td>先定规格、再让 AI 实现的工作方法</td><td>本手册的整体工作方式。另有一个同名的旧文档"软件设计说明书"，已淘汰</td></tr>
-      <tr><td><strong>Spec</strong></td><td>开工前的施工图纸</td><td>场景三</td></tr>
-      <tr><td><strong>ADR</strong></td><td>防坑备忘（当时情况 / 决定 / 代价）</td><td>场景五</td></tr>
-      <tr><td><strong>AGENTS.md</strong></td><td>项目规则文件的标准文件名，AI 工具自动读取</td><td>场景一</td></tr>
-      <tr><td><strong>Eval</strong></td><td>质量评估体系</td><td>你的版本就是"三关验收"，不需要搭系统</td></tr>
+      <tr><th style="width:15%;">缩写</th><th>含义</th><th style="width:36%;">在本手册中的对应</th></tr>
+      <tr><td>PRD</td><td>产品需求文档</td><td>原文档；现拆分为项目简介 + 需求场景清单 + 原型</td></tr>
+      <tr><td>PSD</td><td>产品规格文档（各公司定义不一）</td><td>≈ PRD 的定稿版本；不单独维护</td></tr>
+      <tr><td>BDD</td><td>行为驱动开发：用 Given/When/Then 格式书写验收条件</td><td>场景二中的"三句话验收场景"</td></tr>
+      <tr><td>ATDD</td><td>验收测试驱动开发：验收标准在需求定义时确定</td><td>已内置于 BDD 中，不单独区分</td></tr>
+      <tr><td>TDD</td><td>测试驱动开发：先写测试再写实现</td><td>AI 的工作纪律（在项目规则中要求），产品经理不直接执行</td></tr>
+      <tr><td>SDD</td><td>规格驱动开发：先定规格，再让 AI 实现</td><td>本手册的整体工作流。另有同名旧文档"软件设计说明书"，已被替代</td></tr>
+      <tr><td>Spec</td><td>规格文档（施工图纸）</td><td>场景三</td></tr>
+      <tr><td>ADR</td><td>架构决策记录</td><td>场景五中的"决策备忘"</td></tr>
+      <tr><td>AGENTS.md</td><td>AI 工具自动读取的项目规则文件</td><td>场景一中的项目规则文件</td></tr>
+      <tr><td>Eval</td><td>评估体系</td><td>场景四中的"三关验收"</td></tr>
     </table>
   </div>
 </section>
 
 <!-- ===== AI KIT ===== -->
 <section class="section" id="ai-kit">
-  <div class="section-tag">AI KIT</div>
-  <h2 class="section-title">给 AI 的交接套件（原样粘贴）</h2>
-  <p class="section-subtitle">这一节的用法：新开项目时，把下面几个模板填好，放进项目文件夹（规则文件命名为 <strong>AGENTS.md</strong>，主流 AI 编程工具会自动读取；Claude Code 可在 CLAUDE.md 里写一行 <strong>@AGENTS.md</strong> 引用）。AI 读完就知道：这个项目是什么、规矩在哪、该怎么配合你。<br><strong>这一节同时也是写给 AI 的</strong>——AI 读到此处，请按模板中的"配合规矩"与产品经理协作。</p>
+  <div class="section-tag">TOOLKIT</div>
+  <h2 class="section-title">项目模板套件</h2>
+  <p class="section-subtitle">以下 6 份模板用于新项目初始化。填入对应内容后，将规则文件（AGENTS.md）置于项目根目录，主流 AI 编程工具启动时会自动读取。模板中的"协作规则"部分同时面向 AI 与人类读者——AI 读取后可据此调整协作方式。</p>
 
   <div class="template-accordion">
     <div class="template-item">
       <div class="template-header">
         <span class="th-num">A1</span>
         <span class="th-title">项目规则文件（AGENTS.md）</span>
-        <span class="th-tag tag-amber">AI 必读</span>
+        <span class="th-tag tag-blue">必读</span>
         <button class="copy-btn" style="position:static;">复制</button>
         <span class="th-chevron">›</span>
       </div>
-      <div class="template-body">
-        <div class="template-content">
-          <p class="tpl-desc">项目的"家规"。<strong>这是全套件里最重要的一个文件</strong>——AI 每次开工前必读，规则越用越完善。</p>
-          <pre># 项目规则（AI 每次开始工作前必读）
+      <div class="template-body"><div class="template-content">
+        <p class="tpl-desc">项目的核心约束文件。AI 每次启动会话时自动加载。初始版本仅填写基本信息和少量硬规则，后续按场景五的机制逐次追加。</p>
+        <pre># 项目规则（AI 每次启动时读取）
 
-## 这个项目是什么
-- 一句话：[解决什么问题]
+## 项目信息
+- 简述：[本项目解决什么问题]
 - 成功标准：[从项目简介原文复制，验收以此为准]
 
-## 技术与结构
-- 技术栈：[语言/框架/关键库]
-- 目录：src/ 源码 · docs/ 项目简介与清单 · specs/ 图纸归档
+## 技术栈与目录
+- 技术：[语言 / 框架 / 关键依赖]
+- 目录：src/ 源码 · docs/ 简介与清单 · specs/ 图纸归档
 
-## 绝不能犯的错（违反任何一条，先停下来问人）
-1. 不许改动已定稿的验收卡和对应测试；要改先说明源头变了
-2. 不许引入本文件没列出的新依赖
-3. 改动要匹配现有代码风格，不顺手重构无关代码
+## 硬规则（违反任一条必须先停止并确认）
+1. 禁止修改已定稿的验收场景及对应测试；如需变更，先声明源头发生改变
+2. 禁止引入本文件未列出的新依赖
+3. 变更必须匹配现有代码风格，不附带无关重构
 4. [踩坑后追加]
 
 ## 常用命令
-- 安装：[ ] 运行：[ ] 测试：[ ]
+- 安装：[ ] 启动：[ ] 测试：[ ]
 
-## 和产品经理的配合规矩
-1. 你写的是草稿，人是裁判：交付时明确说"待裁决"，不要当成定稿
-2. 边界情况出选择题：把空数据/断网/无权限/超限等列成选项请 PM 勾选，
-   绝不替 PM 默默做产品假设
-3. 每次开工先对照"成功标准"，发现偏离先停下来指出
-4. 干活顺序：先找到对应的验收卡 → 没有就先补一张请 PM 裁决 → 先写检查再写实现
-5. 验收走三关：自动检查全过 / 请 PM 亲手试用 / 验收标准逐条对照
-6. 同类错误出现第二次，主动建议写进"绝不能犯的错"
-7. 裁决通过的东西（验收卡、图纸）即冻结：只改源头，不手改产物
+## 与产品经理的协作规则
+1. 生成内容均为草稿，交付时明确标注"待裁决"；不自行认定为终稿
+2. 涉及边界情况时以选择题形式列出选项（空数据/断网/无权限/超限等），
+   不替产品经理做出产品决策
+3. 每次任务开始前对照"成功标准"，发现偏离先指出、后执行
+4. 实现流程：定位对应验收场景 → 不存在则先生成并请裁决 →
+   先写测试再写实现（TDD）
+5. 验收标准：自动检查全部通过 → 产品经理亲手试用 →
+   验收标准逐条打勾（Eval 三关）
+6. 同类错误第二次出现时主动建议追加硬规则
+7. 裁决通过的内容（验收场景、图纸设计段）即冻结：
+   只变更源头，不手动修改已冻结的产物
 
 ## 已知问题
 - [踩坑后追加]</pre>
-        </div>
-      </div>
+      </div></div>
     </div>
 
     <div class="template-item">
       <div class="template-header">
-        <span class="th-num">A2</span>
-        <span class="th-title">项目简介（六问半页纸）</span>
-        <span class="th-tag tag-amber">你写</span>
+        <span class="th-num">A2</span><span class="th-title">项目简介（六个维度）</span>
+        <span class="th-tag tag-blue">手写</span>
         <button class="copy-btn" style="position:static;">复制</button>
         <span class="th-chevron">›</span>
       </div>
-      <div class="template-body">
-        <div class="template-content">
-          <p class="tpl-desc">项目的"源头"。方向没验证前算草稿，验证后定稿，<strong>极少改动</strong>。</p>
-          <pre># 项目简介 — [项目/功能名]
-- 问题：[谁，在什么情况下，遇到什么问题]
-- 目标：[做这件事要达成什么，一句话]
-- 用户：[具体是谁，典型场景]
-- 设计策略：[体验和界面大概做成什么样，为什么]
+      <div class="template-body"><div class="template-content">
+        <p class="tpl-desc">产品定义的源头。方向验证前视为草稿，验证后定稿，极少改动。</p>
+        <pre># 项目简介
+- 问题：[谁在什么情况下遇到什么问题]
+- 目标：[一句话，达成什么]
+- 用户：[具体是谁，典型使用场景]
+- 设计策略：[体验与界面的整体思路及理由]
 - 成功标准：[可度量，不超过 3 条]
-- 边界约束：[明确不做什么，至少 3 条]</pre>
-        </div>
-      </div>
+- 边界约束：[明确不做什么，不少于 3 条]</pre>
+      </div></div>
     </div>
 
     <div class="template-item">
       <div class="template-header">
-        <span class="th-num">A3</span>
-        <span class="th-title">需求清单 + 三句话验收卡</span>
-        <span class="th-tag tag-teal">AI 转写 · 你裁决</span>
+        <span class="th-num">A3</span><span class="th-title">需求清单 + 验收场景卡</span>
+        <span class="th-tag tag-green">AI 转写 / 人工裁决</span>
         <button class="copy-btn" style="position:static;">复制</button>
         <span class="th-chevron">›</span>
       </div>
-      <div class="template-body">
-        <div class="template-content">
-          <p class="tpl-desc">你说大白话，AI 转写成三句话卡片。<strong>只增不改</strong>；边界情况各写一张卡。</p>
-          <pre># 需求清单（每条一句话，只增不改）
-- S001 [谁] 想要 [做什么]，以便 [得到什么价值]
-  - 验收：[什么结果算成功，一句话]
+      <div class="template-body"><div class="template-content">
+        <p class="tpl-desc">需求清单由产品经理撰写（每条一句话）；验收场景由 AI 转写为 Given/When/Then 格式后人工裁决，通过后冻结。</p>
+        <pre># 需求清单（每条一句话，只增不改）
+- S001 [角色] 想要 [做什么]，以便 [获得什么价值]
+  - 验收标准：[一句话，什么结果算通过]
 
-# 三句话验收卡（AI 转写，PM 裁决后定稿）
+# 验收场景（AI 转写，裁决后冻结）
 场景: S001 用户手机号登录
   假设 用户在登录页
-  当   输入正确手机号和验证码，点击登录
+  当   输入正确手机号与验证码，点击登录
   那么 进入首页
-# 边界情况各写一张卡：验证码错误 / 过期 / 断网 / 无权限</pre>
-        </div>
-      </div>
+# 边界场景各为独立卡片：验证码错误 / 验证码过期 / 网络中断 / 无权限</pre>
+      </div></div>
     </div>
 
     <div class="template-item">
       <div class="template-header">
-        <span class="th-num">A4</span>
-        <span class="th-title">施工图纸（一个功能一份）</span>
-        <span class="th-tag tag-teal">AI 起草 · 你审</span>
+        <span class="th-num">A4</span><span class="th-title">施工图纸（一个功能一份）</span>
+        <span class="th-tag tag-green">AI 起草 / 人工审</span>
         <button class="copy-btn" style="position:static;">复制</button>
         <span class="th-chevron">›</span>
       </div>
-      <div class="template-body">
-        <div class="template-content">
-          <p class="tpl-desc">大功能开工前的图纸。<strong>做完归档，不用维护</strong>；需求变了改图纸重新生成。</p>
-          <pre># 图纸 — [功能名]
-## 1. 需求（从项目简介 + 需求清单复制）
-- 关联场景：S001、S003
-- 验收标准：…
-## 2. 怎么盖（AI 起草，人裁决）
-- 结构 / 数据 / 接口 / 影响哪些现有功能
-- 遵循：项目规则"绝不能犯的错"
-## 3. 任务清单（AI 拆，人确认）
+      <div class="template-body"><div class="template-content">
+        <p class="tpl-desc">跨多次会话的大型功能开工前使用。完成后归档，不日常维护。</p>
+        <pre># 图纸
+## 1. 需求（复用已有产物）
+- 关联场景：S001, S003
+- 验收标准：[从项目简介与场景清单复制]
+
+## 2. 设计（AI 起草，人工裁决）
+- 结构 / 数据 / 接口 / 影响范围
+- 约束依据：项目规则"硬规则"
+
+## 3. 任务（AI 拆解，人工确认）
 - [ ] T1 …
 - [ ] T2 …</pre>
-        </div>
-      </div>
+      </div></div>
     </div>
 
     <div class="template-item">
       <div class="template-header">
-        <span class="th-num">A5</span>
-        <span class="th-title">三关验收清单</span>
-        <span class="th-tag tag-rose">质量底线</span>
+        <span class="th-num">A5</span><span class="th-title">三关验收清单</span>
+        <span class="th-tag tag-red">质量底线</span>
         <button class="copy-btn" style="position:static;">复制</button>
         <span class="th-chevron">›</span>
       </div>
-      <div class="template-body">
-        <div class="template-content">
-          <p class="tpl-desc">"AI 说做完了"不算完，<strong>过三关才算完</strong>。</p>
-          <pre># 三关验收
-第一关（机器查）：验收卡自动检查全部通过，构建无报错
-第二关（自己试）：亲手用一遍——符合项目简介里的设计策略吗？有无别扭处？
-第三关（逐条对）：验收标准逐条打勾（过 / 不过 / 部分）
-规则：任一关不过 → 打回重做；方向存疑 → 回项目简介重新想</pre>
-        </div>
-      </div>
+      <div class="template-body"><div class="template-content">
+        <p class="tpl-desc">验收时逐关确认，三关全部通过方可上线。</p>
+        <pre># 三关验收
+第一关（自动检查）：验收场景自动测试全部通过，构建无误
+第二关（体验验证）：亲手使用原型——符合设计策略？是否存在不流畅之处？
+第三关（逐条核对）：验收标准逐条标记（通过 / 未通过 / 部分通过）
+判定规则：任一关未通过即打回；方向存疑则返回项目简介重新评估</pre>
+      </div></div>
     </div>
 
     <div class="template-item">
       <div class="template-header">
-        <span class="th-num">A6</span>
-        <span class="th-title">防坑备忘</span>
-        <span class="th-tag tag-violet">怕忘才写</span>
+        <span class="th-num">A6</span><span class="th-title">决策备忘（ADR）</span>
+        <span class="th-tag tag-orange">怕遗忘时再写</span>
         <button class="copy-btn" style="position:static;">复制</button>
         <span class="th-chevron">›</span>
       </div>
-      <div class="template-body">
-        <div class="template-content">
-          <p class="tpl-desc">给未来的自己留三句话。<strong>写完不碰</strong>，零维护成本。</p>
-          <pre># 备忘-001 [决策标题]
-- 日期 · 拍板人 · 状态：已采纳
-- 当时什么情况：[为什么会有这个决策点]
-- 我们决定：[选了什么]
-- 换来与代价：[得到什么，付出什么]
-- 什么时候重新考虑：[复看条件]</pre>
-        </div>
-      </div>
+      <div class="template-body"><div class="template-content">
+        <p class="tpl-desc">记录关键决策的背景与交换，防止遗忘。写完即归档。</p>
+        <pre># 备忘-[编号] [决策标题]
+- 日期 · 决策人 · 状态：已采纳
+- 背景：[当时为什么会有这个决策点]
+- 决定：[选择了什么方案]
+- 交换：[得到了什么，付出了什么代价]
+- 复看条件：[何时重新评估此决策]</pre>
+      </div></div>
     </div>
   </div>
 </section>
 
 <!-- ===== DEEP DIVE ===== -->
 <section class="section" id="deep-dive">
-  <div class="section-tag">DEEP DIVE</div>
-  <h2 class="section-title">深度参考（v2 旧版章节）</h2>
-  <p class="section-subtitle">想深挖某个主题（三层管控的原理、上下文工程、价值公式等），旧版章节仍然完整可用。这些章节将在后续版本中逐步消化合并进主轴。</p>
+  <div class="section-tag">REFERENCE</div>
+  <h2 class="section-title">深度参考</h2>
+  <p class="section-subtitle">以下章节来自 v2 版本，涵盖三层管控模型、上下文工程、Multi-Agent 编排等进阶主题。本页已包含核心操作内容，以下链接供按需深入查阅。</p>
   <div class="deep-grid">
-    <a class="deep-card" href="../index.html#collaboration"><div class="dc-title">01 协作体系</div><div class="dc-desc">从线性串联到并行 AI 增强，两种范式逐项对比</div></a>
-    <a class="deep-card" href="../index.html#thinking"><div class="dc-title">02 思维范式</div><div class="dc-desc">价值公式、成本结构与"资产"定义的变迁</div></a>
-    <a class="deep-card" href="../index.html#deliverables"><div class="dc-title">03 产出物体系</div><div class="dc-desc">哪些淘汰、哪些新增、哪些升级、哪些回轻</div></a>
+    <a class="deep-card" href="../index.html#collaboration"><div class="dc-title">01 协作体系</div><div class="dc-desc">线性串联与并行 AI 增强的范式对比</div></a>
+    <a class="deep-card" href="../index.html#thinking"><div class="dc-title">02 思维范式</div><div class="dc-desc">价值公式、成本结构与资产定义的重构</div></a>
+    <a class="deep-card" href="../index.html#deliverables"><div class="dc-title">03 产出物体系</div><div class="dc-desc">淘汰、新增、升级、回轻的逐项对照</div></a>
     <a class="deep-card" href="../index.html#layers"><div class="dc-title">04 三层管控</div><div class="dc-desc">锚点层 · 进度层 · 执行层的变更管理</div></a>
-    <a class="deep-card" href="../index.html#agent-memory"><div class="dc-title">04b Agent 记忆</div><div class="dc-desc">短期 / 工作 / 长期记忆与三层管控的对应</div></a>
-    <a class="deep-card" href="../index.html#eval-system"><div class="dc-title">04c Eval 体系</div><div class="dc-desc">AI 产出质量评估的五个维度（进阶）</div></a>
-    <a class="deep-card" href="../index.html#workflows"><div class="dc-title">05 工作流</div><div class="dc-desc">线性瀑布与并行 AI 增强的对照图解</div></a>
-    <a class="deep-card" href="../index.html#multi-agent"><div class="dc-title">05b Multi-Agent</div><div class="dc-desc">单 Agent vs 多 Agent 决策框架（进阶）</div></a>
-    <a class="deep-card" href="../index.html#action"><div class="dc-title">06 实操启动</div><div class="dc-desc">最小化必备清单与五步启动顺序</div></a>
-    <a class="deep-card" href="../index.html#context-engineering"><div class="dc-title">06b 上下文工程</div><div class="dc-desc">如何把产出物喂给 Agent：常驻 / 按需 / 检索</div></a>
-    <a class="deep-card" href="../index.html#hitl"><div class="dc-title">06d HITL</div><div class="dc-desc">哪些环节必须由人拍板</div></a>
-    <a class="deep-card" href="../index.html#templates"><div class="dc-title">07 标准模板</div><div class="dc-desc">14 个产出物模板全集（本页已精选 6 个）</div></a>
+    <a class="deep-card" href="../index.html#agent-memory"><div class="dc-title">04b Agent 记忆</div><div class="dc-desc">短期 / 工作 / 长期记忆与管控分层的映射</div></a>
+    <a class="deep-card" href="../index.html#eval-system"><div class="dc-title">04c Eval 体系（进阶）</div><div class="dc-desc">AI 产出质量评估的五维框架</div></a>
+    <a class="deep-card" href="../index.html#workflows"><div class="dc-title">05 工作流</div><div class="dc-desc">线性瀑布与并行 AI 增强的图解对照</div></a>
+    <a class="deep-card" href="../index.html#multi-agent"><div class="dc-title">05b Multi-Agent（进阶）</div><div class="dc-desc">单 Agent 与多 Agent 的编排决策框架</div></a>
+    <a class="deep-card" href="../index.html#action"><div class="dc-title">06 实操启动</div><div class="dc-desc">v2 版本的最小化必备清单与启动步骤</div></a>
+    <a class="deep-card" href="../index.html#context-engineering"><div class="dc-title">06b 上下文工程</div><div class="dc-desc">常驻 / 按需 / 检索三层上下文分配策略</div></a>
+    <a class="deep-card" href="../index.html#hitl"><div class="dc-title">06d HITL</div><div class="dc-desc">人工介入节点的设计原则</div></a>
+    <a class="deep-card" href="../index.html#templates"><div class="dc-title">07 标准模板（14 项）</div><div class="dc-desc">v2 版本的全量模板集</div></a>
   </div>
 </section>
 
 <!-- ===== FOOTER ===== -->
 <div class="footer">
-  <div class="footer-brand">AI PM 手册 · 大白话版 v3 预览</div>
-  <p>一句话收尾：<strong style="color:var(--text-secondary);">你不用变成工程师——AI 负责干活，你负责定标准、验收、和判断方向。</strong></p>
-  <p>完整版（含深度章节）：<a href="../index.html">v2 旧版入口</a> · 本页为 v3 新版预览，内容持续迭代</p>
-  <p style="margin-top:18px; font-size:13px;">2026 · ikevss</p>
+  <div class="footer-brand">AI PM 手册 · v3.0</div>
+  <p>AI 编程时代产品经理的工作方式参考</p>
+  <p><a href="../index.html">v2 版本</a> · <a href="https://github.com/ikevss/ai-pm-handbook">GitHub</a></p>
 </div>
 
 <script>
-// 手风琴
 document.querySelectorAll('.template-header').forEach(function(h){
   h.addEventListener('click', function(e){
     if (e.target.closest('.copy-btn')) return;
     h.parentElement.classList.toggle('open');
   });
 });
-// 复制按钮
-document.querySelectorAll('.copy-btn').forEach(function(btn){
-  btn.addEventListener('click', function(e){
+document.querySelectorAll('.copy-btn').forEach(function(b){
+  b.addEventListener('click', function(e){
     e.stopPropagation();
-    var item = btn.closest('.template-item') || btn.closest('.code-block');
-    var pre = item.querySelector('pre');
+    var pre = (b.closest('.template-item')||b.closest('.code-block')).querySelector('pre');
     if (!pre) return;
-    var text = pre.innerText;
-    function done(ok){
-      btn.textContent = ok ? '已复制 ✓' : '复制失败';
-      setTimeout(function(){ btn.textContent = '复制'; }, 2000);
-    }
+    var ok = function(v){ b.textContent = v ? '已复制' : '失败'; setTimeout(function(){ b.textContent = '复制'; }, 2000); };
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function(){ done(true); }, function(){ fallback(); });
+      navigator.clipboard.writeText(pre.innerText).then(function(){ ok(true); }, function(){ fallback(); });
     } else { fallback(); }
     function fallback(){
-      var r = document.createRange(); r.selectNodeContents(pre);
-      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      try { document.execCommand('copy'); done(true); } catch(err) { done(false); }
-      s.removeAllRanges();
+      try { var r = document.createRange(), s = window.getSelection(); r.selectNodeContents(pre); s.removeAllRanges(); s.addRange(r); document.execCommand('copy'); s.removeAllRanges(); ok(true); } catch(e) { ok(false); }
     }
   });
 });
-// 导航高亮
-var sections = document.querySelectorAll('section[id]');
-var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-window.addEventListener('scroll', function(){
-  var pos = window.scrollY + 120;
-  var current = '';
-  sections.forEach(function(s){ if (s.offsetTop <= pos) current = s.id; });
-  navLinks.forEach(function(a){
-    a.classList.remove('active');
-    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
-  });
-}, { passive: true });
 </script>
 
 </body>
