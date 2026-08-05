@@ -229,6 +229,15 @@ tr:hover td { background: var(--bg-elevated); }
 
 /* SUBHEAD */
 .subhead { font-family: var(--font-display); font-size: 26px; font-weight: 600; margin: 48px 0 20px; }
+
+/* KIT COPY BUTTON */
+.template-header { position: relative; }
+.kit-copy-btn { position: absolute; top: 14px; right: 48px; font-family: var(--font-code); font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 7px; border: 1px solid var(--border-strong); background: var(--bg-surface); color: var(--text-muted); cursor: pointer; transition: all .2s; }
+.kit-copy-btn:hover { border-color: var(--accent-amber); color: var(--accent-amber); }
+.kit-intro { background: linear-gradient(135deg, rgba(194,65,12,0.04), rgba(13,148,136,0.02)); border: 1px solid rgba(194,65,12,0.12); border-radius: 14px; padding: 22px 28px; margin-bottom: 20px; }
+.kit-intro p { font-size: 16px; color: var(--text-primary); line-height: 1.75; margin: 0; }
+.kit-intro p strong { color: var(--accent-amber); }
+.kit-intro .term { font-family: var(--font-code); font-size: .88em; background: var(--bg-code); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border); }
 </style>
 </head>
 <body>
@@ -2311,1791 +2320,196 @@ tr:hover td { background: var(--bg-elevated); }
 <section class="section" id="templates">
   <div class="section-tag">CHAPTER 07</div>
   <h2 class="section-title">标准模板：14个必备产出物格式</h2>
-  <p class="section-subtitle">以下14个模板每个都包含完整的格式和字段说明，可直接复制使用。按管控层级（锚点层/进度层/执行层）分类。点击展开查看完整内容。</p>
+  <p class="section-subtitle">已精简为 6 份可直接复用的项目模板，完整覆盖六个场景的每份产出。每份模板配备一键复制按钮。模板中的"与产品经理的协作规则"同时面向 AI 与人类读者。</p>
+
+<div class="kit-intro">
+  <p><strong>用法：</strong>新开项目时，将规则文件（<span class="term">AGENTS.md</span>）置于项目根目录，主流 AI 编程工具（Claude Code / Cursor / Copilot 等）启动时会自动读取。</p>
+</div>
 
 <div class="template-accordion">
 
-  <!-- ==================== Template 01 ==================== -->
-  <div class="template-item" data-layer="anchor">
+  <!-- KIT 01 -->
+  <div class="template-item">
     <div class="template-header" onclick="toggleTemplate(this)">
       <span class="th-num">01</span>
-      <span class="th-title">Problem Framing — 问题框定文档</span>
-      <span class="th-tag anchor">锚点层</span>
+      <span class="th-title">项目规则文件（AGENTS.md）</span>
+      <span class="th-tag anchor">必读</span>
+      <button class="kit-copy-btn" onclick="event.stopPropagation(); kitCopy(this)">复制</button>
       <span class="th-chevron">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </span>
     </div>
     <div class="template-body">
       <div class="template-content">
-        <p class="tpl-desc">在设计启动前定义"我们在解决什么问题、为谁解决、成功长什么样"。它是整个链式上下文的根锚点——所有下游产出物都从此处继承问题定义与约束条件，避免设计偏离业务意图。</p>
-<pre># Problem Framing Document
+        <p class="tpl-desc">项目的核心约束文件。AI 每次启动会话时自动加载。初始版本仅填写基本信息和少量硬规则，后续随项目推进增量追加。</p>
+<pre># 项目规则（AI 每次启动时读取）
 
-## 1. Problem Statement
-| Field | Content |
-|------|---------|
-| 一句话定义 | 作为 [用户角色]，当 [触发场景] 时，我无法 [当前痛点]，导致 [业务/体验影响] |
-| 量化影响 | 当前影响 [N] 用户/月，造成 [损失/流失率/效率下降指标] |
-| 时间窗口 | 问题首次观察到 [日期]，持续 [时长] |
+## 项目信息
+- 简述：[本项目解决什么问题]
+- 成功标准：[从项目简介原文复制，验收以此为准]
 
-## 2. Target Persona
-- 角色名称：[Persona Name]
-- 核心目标（JTBD）：[用户要完成的任务，动词开头]
-- 当前替代方案：[用户现在怎么凑合解决的]
-- 替代方案缺陷：[为什么不满意]
-- 行为特征：[3-5 条可观察行为]
-- 技术熟练度：[低 / 中 / 高]
+## 技术栈与目录
+- 技术：[语言 / 框架 / 关键依赖]
+- 目录：src/ 源码 · docs/ 简介与清单 · specs/ 图纸归档
 
-## 3. Root Cause Analysis (5 Whys)
-| Why # | Question | Answer |
-|-------|----------|--------|
-| Why 1 | 为什么用户会遇到这个问题？ | [答案] |
-| Why 2 | 为什么会这样？ | [答案] |
-| Why 3 | 为什么没有被发现？ | [答案] |
-| Why 4 | 为什么没修复？ | [答案] |
-| Why 5 | 根因是什么？ | [根因陈述] |
+## 硬规则（违反任一条必须先停止并确认）
+1. 禁止修改已定稿的验收场景及对应测试；如需变更，先声明源头发生改变
+2. 禁止引入本文件未列出的新依赖
+3. 变更必须匹配现有代码风格，不附带无关重构
+4. [踩坑后追加]
 
-根因总结：[一句话]
+## 常用命令
+- 安装：[ ] 启动：[ ] 测试：[ ]
 
-## 4. Scope Definition
-### In Scope
-- [功能边界 1]
-- [功能边界 2]
-- [功能边界 3]
+## 与产品经理的协作规则
+1. 生成内容均为草稿，交付时明确标注"待裁决"；不自行认定为终稿
+2. 涉及边界情况时以选择题形式列出选项（空数据/断网/无权限/超限等），
+   不替产品经理做出产品决策
+3. 每次任务开始前对照"成功标准"，发现偏离先指出、后执行
+4. 实现流程：定位对应验收场景 → 不存在则先生成并请裁决 →
+   先写测试再写实现（TDD）
+5. 验收标准：自动检查全部通过 → 亲自试用 → 验收标准逐条打勾
+6. 同类错误第二次出现时主动建议追加硬规则
+7. 裁决通过的内容（验收场景、图纸设计段）即冻结：
+   只变更源头，不手动修改已冻结的产物
 
-### Out of Scope
-- [排除项 1] — 理由：[为什么不做]
-- [排除项 2] — 理由：[为什么不做]
-
-## 5. Success Criteria
-| 指标 | 当前基线 | 目标值 | 度量方式 |
-|------|---------|--------|---------|
-| 北极星指标 | [当前值] | [目标值] | [埋点/问卷/行为数据] |
-| 护栏指标 | [当前值] | [不低于] | [度量方式] |
-| 体验指标 | [当前值] | [目标值] | [SUS / NPS / 任务完成率] |
-
-## 6. Constraints
-- 技术约束：[平台/框架/兼容性]
-- 资源约束：[人力 / 时间 / 预算]
-- 合规约束：[隐私 / 法规 / 审批]
-- 品牌约束：[设计风格 / 语气要求]
-
-## 7. Assumptions & Risks
-| # | 假设/风险 | 类型 | 验证方式 | 影响（如不成立） |
-|---|---------|------|---------|----------------|
-| 1 | [假设陈述] | 假设 | [验证方法] | [影响描述] |
-| 2 | [风险陈述] | 风险 | [缓解措施] | [影响描述] |
-
-## 8. Stakeholders
-| 角色 | 姓名 | 关注点 | 决策权 |
-|------|------|--------|--------|
-| 产品负责人 | [Name] | [关注] | [是/否] |
-| 设计负责人 | [Name] | [关注] | [是/否] |
-| 技术负责人 | [Name] | [关注] | [是/否] |
-
----
-> 本文档经 [日期] 评审通过，作为下游 Design Brief / AGENTS.md / 数据模型 的上下文锚点。
-</pre>
+## 已知问题
+- [踩坑后追加]</pre>
       </div>
     </div>
   </div>
 
-  <!-- ==================== Template 02 ==================== -->
-  <div class="template-item" data-layer="anchor">
+  <!-- KIT 02 -->
+  <div class="template-item">
     <div class="template-header" onclick="toggleTemplate(this)">
       <span class="th-num">02</span>
-      <span class="th-title">Design Brief — 设计简报</span>
-      <span class="th-tag anchor">锚点层</span>
+      <span class="th-title">项目简介（六个维度）</span>
+      <span class="th-tag anchor">手写</span>
+      <button class="kit-copy-btn" onclick="event.stopPropagation(); kitCopy(this)">复制</button>
       <span class="th-chevron">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </span>
     </div>
     <div class="template-body">
       <div class="template-content">
-        <p class="tpl-desc">一页纸级别的设计方向对齐文档。把业务目标翻译成设计语言，让设计师和 AI Agent 都能从同一份上下文出发。下游所有设计 Skill（/用户故事、/站点地图、/用户旅程）自动读取此文件作为输入。</p>
-<pre># Design Brief
-
-## Project Identity
-| Field | Value |
-|-------|-------|
-| 项目名称 | [Project Name] |
-| 版本 | v1.0 |
-| 日期 | [YYYY-MM-DD] |
-| 负责设计师 | [Name] |
-| 关联 Problem Framing | [link/doc id] |
-
-## 1. Business Context
-- 产品类型：[B2C SaaS / B2B 平台 / 内部工具 / 电商 / 其他]
-- 业务阶段：[探索期 / 成长期 / 成熟期 / 转型期]
-- 核心商业模式：[收入来源一句话]
-
-## 2. Design Objective (max 3)
-1. [目标 1 — 动词开头，可度量] — 衡量：[指标]
-2. [目标 2] — 衡量：[指标]
-3. [目标 3] — 衡量：[指标]
-
-## 3. Target Audience
-| Persona | 核心 JTBD | 场景频率 | 技术水平 |
-|---------|---------|---------|---------|
-| [P1] | [任务] | [日/周/月 N次] | [低/中/高] |
-| [P2] | [任务] | [频率] | [水平] |
-
-## 4. Design Principles (pick 3-5)
-- [ ] Clarity first — 信息层级清晰，降低认知负荷
-- [ ] Progressive disclosure — 复杂功能分层呈现
-- [ ] Consistent mental model — 全局统一交互模式
-- [ ] Feedback rich — 每个操作有即时视觉反馈
-- [ ] Error prevention > recovery — 优先防错，其次恢复
-- [ ] Inclusive by default — 无障碍作为默认要求
-
-选中并排序：1.___  2.___  3.___
-
-## 5. Design Standards
-### Color
-- 主色：[#hex] — 语义：[品牌/行动/强调]
-- 辅色：[#hex] — 语义：[成功/警告/危险]
-- 背景层级：[浅色 3 层 / 深色 3 层]
-
-### Typography
-| 用途 | 字体 | 字号 | 字重 | 行高 |
-|------|------|------|------|------|
-| Display | [Family] | [px] | [weight] | [ratio] |
-| Heading | [Family] | [px] | [weight] | [ratio] |
-| Body | [Family] | [px] | [weight] | [ratio] |
-| Caption | [Family] | [px] | [weight] | [ratio] |
-| Code | [Family] | [px] | [weight] | [ratio] |
-
-### Spacing Scale
-[4 / 8 / 12 / 16 / 24 / 32 / 48 / 64] px — 基准 [4px]
-
-### Radius Scale
-[0 / 4 / 8 / 12 / 16 / 24 / full]
-
-## 6. Key Flows (prioritized)
-| # | Flow 名称 | 入口 | 目标 | 优先级 |
-|---|---------|------|------|--------|
-| 1 | [Flow A] | [入口] | [终点] | P0 |
-| 2 | [Flow B] | [入口] | [终点] | P1 |
-| 3 | [Flow C] | [入口] | [终点] | P2 |
-
-## 7. Platform & Constraints
-- 目标平台：[Web / iOS / Android / 微信 H5]
-- 断点：[xs/sm/md/lg/xl] 具体值
-- 最低支持：[浏览器/系统版本]
-- 性能预算：[首屏 LCP ≤ Ns / 交互延迟 ≤ Nms]
-
-## 8. Deliverables & Timeline
-| 产出物 | 格式 | 截止日 | 负责人 | 交付对象 |
-|--------|------|--------|--------|---------|
-| [产出物 1] | [Figma/HTML/JSON] | [date] | [Name] | [who] |
-| [产出物 2] | [format] | [date] | [Name] | [who] |
-
----
-> 本 Brief 经 [日期] 确认，作为设计阶段上下文锚点。变更须经 stakeholder 同意。
-</pre>
+        <p class="tpl-desc">产品定义的源头。方向验证前视为草稿，验证后定稿，极少改动。</p>
+<pre># 项目简介
+- 问题：[谁在什么情况下遇到什么问题]
+- 目标：[一句话，达成什么]
+- 用户：[具体是谁，典型使用场景]
+- 设计策略：[体验与界面的整体思路及理由]
+- 成功标准：[可度量，不超过 3 条]
+- 边界约束：[明确不做什么，不少于 3 条]</pre>
       </div>
     </div>
   </div>
 
-  <!-- ==================== Template 03 ==================== -->
-  <div class="template-item" data-layer="anchor">
+  <!-- KIT 03 -->
+  <div class="template-item">
     <div class="template-header" onclick="toggleTemplate(this)">
       <span class="th-num">03</span>
-      <span class="th-title">ADR — 架构决策记录</span>
-      <span class="th-tag anchor">锚点层</span>
+      <span class="th-title">需求清单 + 验收场景卡</span>
+      <span class="th-tag progress">AI 转写 / 人工裁决</span>
+      <button class="kit-copy-btn" onclick="event.stopPropagation(); kitCopy(this)">复制</button>
       <span class="th-chevron">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </span>
     </div>
     <div class="template-body">
       <div class="template-content">
-        <p class="tpl-desc">捕获关键架构决策的上下文、理由与权衡。每个 ADR 是不可变的历史快照——当下游开发者或 AI Agent 疑问"为什么这样选"时，ADR 提供可追溯的决策脉络，避免反复重新论证。</p>
-<pre># ADR-{编号}: {决策标题}
+        <p class="tpl-desc">需求清单由产品经理撰写（每条一句话）；验收场景由 AI 转写为 Given/When/Then 格式后人工裁决，通过后冻结。</p>
+<pre># 需求清单（每条一句话，只增不改）
+- S001 [角色] 想要 [做什么]，以便 [获得什么价值]
+  - 验收标准：[一句话，什么结果算通过]
 
-- **Status**: Proposed | Accepted | Deprecated | Superseded by ADR-{N}
-- **Date**: {YYYY-MM-DD}
-- **Deciders**: {姓名/角色列表}
-- **Tags**: {architecture | frontend | backend | data | security}
-
-## Context（背景与触发条件）
-当前系统状况：
-- [现状描述 1]
-- [现状描述 2]
-
-触发此决策的问题：
-- [问题陈述]
-
-相关约束：
-- [技术约束]
-- [团队约束]
-- [时间约束]
-
-## Decision（决策内容）
-我们决定：[一句话决策陈述]
-
-具体方案：
-1. [方案细节 1]
-2. [方案细节 2]
-3. [方案细节 3]
-
-涉及组件/模块：
-- [模块 A] → [变更说明]
-- [模块 B] → [变更说明]
-
-## Alternatives Considered（备选方案）
-
-### Option A: [方案名]
-- 描述：[2-3 句]
-- 优点：[列举]
-- 缺点：[列举]
-- 适用场景：[何时更优]
-
-### Option B: [方案名]
-- 描述：[2-3 句]
-- 优点：[列举]
-- 缺点：[列举]
-- 适用场景：[何时更优]
-
-## Consequences（后果与影响）
-
-### Positive
-- [正面影响 1]
-- [正面影响 2]
-
-### Negative
-- [负面影响 / 代价 1]
-- [负面影响 / 代价 2]
-
-### Neutral
-- [中性影响 / 需关注的趋势]
-
-## Trade-off Analysis
-| 维度 | Option A | Option B | 选定方案 |
-|------|---------|---------|---------|
-| 开发成本 | [评] | [评] | [评] |
-| 性能 | [评] | [评] | [评] |
-| 可维护性 | [评] | [评] | [评] |
-| 扩展性 | [评] | [评] | [评] |
-| 团队熟悉度 | [评] | [评] | [评] |
-
-## Validation（验证方式）
-- [ ] 原型验证：[方法]
-- [ ] 性能测试：[指标与阈值]
-- [ ] 代码评审：[检查点]
-- [ ] 上线灰度：[策略]
-
-## Related
-- Supersedes: ADR-{N}（如适用）
-- References: [外部链接 / 内部文档]
-- Follow-up: [需要后续创建的 ADR / Task]
-
----
-> ADR 一旦 Accepted 即不可修改；需变更请创建新 ADR 并标记 Superseded。
-</pre>
+# 验收场景（AI 转写，裁决后冻结）
+场景: S001 用户手机号登录
+  假设 用户在登录页
+  当   输入正确手机号与验证码，点击登录
+  那么 进入首页
+# 边界场景各为独立卡片：验证码错误 / 验证码过期 / 网络中断 / 无权限</pre>
       </div>
     </div>
   </div>
 
-  <!-- ==================== Template 04 ==================== -->
-  <div class="template-item" data-layer="anchor">
+  <!-- KIT 04 -->
+  <div class="template-item">
     <div class="template-header" onclick="toggleTemplate(this)">
       <span class="th-num">04</span>
-      <span class="th-title">AGENTS.md — 项目级 AI 指令文件</span>
-      <span class="th-tag anchor">锚点层</span>
+      <span class="th-title">施工图纸（一个功能一份）</span>
+      <span class="th-tag progress">AI 起草 / 人工审</span>
+      <button class="kit-copy-btn" onclick="event.stopPropagation(); kitCopy(this)">复制</button>
       <span class="th-chevron">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </span>
     </div>
     <div class="template-body">
       <div class="template-content">
-        <p class="tpl-desc">放置在项目根目录的 Markdown 文件，为 Cursor / Claude Code / Windsurf 等 AI Coding Agent 提供项目上下文、编码规范、架构约束与常见陷阱。是让 AI Agent "像团队成员一样理解项目"的核心指令文件。</p>
-<pre># AGENTS.md
-> Project-level instructions for AI coding agents.
-> This file is read automatically by Cursor, Claude Code, and Windsurf.
+        <p class="tpl-desc">跨多次会话的大型功能开工前使用。完成后归档，不日常维护。</p>
+<pre># 图纸
+## 1. 需求（复用已有产物）
+- 关联场景：S001, S003
+- 验收标准：[从项目简介与场景清单复制]
 
-## Project Overview
-- **Name**: {project-name}
-- **Type**: {Next.js App / React SPA / Express API / Monorepo}
-- **Description**: {1-2 sentences}
-- **Repository**: {repo URL}
+## 2. 设计（AI 起草，人工裁决）
+- 结构 / 数据 / 接口 / 影响范围
+- 约束依据：项目规则"硬规则"
 
-## Tech Stack
-- **Framework**: {Next.js 15 / React 19 / Vue 3 / Express}
-- **Language**: {TypeScript 5.x strict}
-- **Styling**: {Tailwind CSS 4 / CSS Modules / Styled Components}
-- **State**: {Zustand / Redux Toolkit / Jotai}
-- **Data fetching**: {TanStack Query / SWR / fetch}
-- **Testing**: {Vitest + Testing Library / Playwright}
-- **Package manager**: {pnpm / npm / yarn}
-
-## Directory Structure
-```
-src/
-├── app/           # Next.js App Router pages & layouts
-├── components/
-│   ├── ui/        # Primitives (Button, Input, Modal)
-│   ├── shared/    # Composite components
-│   └── features/  # Feature-scoped components
-├── lib/           # Utilities, hooks, constants
-├── services/      # API layer (one file per resource)
-├── stores/        # Global state stores
-├── types/         # Shared TypeScript types
-└── styles/        # Global styles & tokens
-```
-
-## Coding Conventions
-
-### TypeScript
-- Always use `type` for object shapes, `interface` only for class implementations.
-- No `any`. Use `unknown` + type narrowing when type is genuinely unknown.
-- Prefer `as const` over `enum`.
-- Function return types must be explicit for exported functions.
-
-### Naming
-- Components: PascalCase — `UserProfile.tsx`
-- Hooks: camelCase prefixed with `use` — `useAuth.ts`
-- Utils: camelCase — `formatDate.ts`
-- Constants: UPPER_SNAKE_CASE — `MAX_RETRY_COUNT`
-- CSS classes: kebab-case — `user-profile-card`
-
-### React Patterns
-- Prefer function components with hooks. No class components.
-- Server Components by default; add `"use client"` only when needed.
-- Co-locate tests next to source: `Button.test.tsx` next to `Button.tsx`.
-- Props interface named `{Component}Props`.
-
-### API Layer
-- One file per resource in `src/services/`.
-- All API calls return `{ data, error, status }` tuple shape.
-- Never call `fetch` directly in components — use the service layer.
-
-## Critical Rules (DO NOT VIOLATE)
-1. **Never** import from `src/app` in `src/lib` or `src/services`.
-2. **Never** use inline styles. Use Tailwind classes or CSS modules.
-3. **Never** hardcode API URLs. Use `NEXT_PUBLIC_API_URL` env var.
-4. **Always** handle loading and error states in components.
-5. **Always** write tests for hooks and utility functions.
-6. **Always** use the design tokens from `src/styles/tokens.css`. Do not hardcode colors.
-
-## Common Tasks
-
-### Adding a new page
-1. Create `src/app/{route}/page.tsx` (Server Component by default).
-2. Add metadata export: `export const metadata = { title, description }`.
-3. If interactivity needed, create `{route}/components/` with `"use client"` components.
-4. Add navigation link in `src/components/shared/Nav.tsx`.
-
-### Adding a new API service
-1. Create `src/services/{resource}.ts`.
-2. Define types in `src/types/{resource}.ts`.
-3. Export typed functions: `get{Resource}`, `create{Resource}`, etc.
-4. Add corresponding hooks in `src/lib/hooks/` using TanStack Query.
-
-### Adding a UI component
-1. Create `src/components/ui/{Name}.tsx`.
-2. Define `{Name}Props` interface.
-3. Use tokens from `src/styles/tokens.css` via Tailwind config.
-4. Add to barrel export `src/components/ui/index.ts`.
-5. Write `src/components/ui/{Name}.test.tsx`.
-
-## Known Issues & Gotchas
-- `next/image` requires `width` and `height` for remote images. Always provide both.
-- WebSocket reconnection may fire duplicate messages. Use `useRef` to guard.
-- `zustand` store updates are shallow — nested object mutations need spread.
-
-## Environment Variables
-| Var Name | Required | Description |
-|----------|----------|-------------|
-| `DATABASE_URL` | Yes | PostgreSQL connection string |
-| `NEXT_PUBLIC_API_URL` | Yes | Backend API base URL |
-| `AUTH_SECRET` | Yes | JWT signing secret |
-| `SENTRY_DSN` | No | Error tracking |
-
-## Commands
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Start dev server (port 3000) |
-| `pnpm build` | Production build |
-| `pnpm test` | Run unit tests |
-| `pnpm test:e2e` | Run Playwright E2E tests |
-| `pnpm lint` | ESLint + check formatting |
-| `pnpm typecheck` | TypeScript type check only |
-
-## When Making Changes
-1. Run `pnpm typecheck` — must pass with 0 errors.
-2. Run `pnpm lint` — must pass with 0 errors.
-3. Run `pnpm test` — all existing tests must pass.
-4. Add tests for new logic.
-5. Update this file if architecture changes.
-</pre>
+## 3. 任务（AI 拆解，人工确认）
+- [ ] T1 …
+- [ ] T2 …</pre>
       </div>
     </div>
   </div>
 
-  <!-- ==================== Template 05 ==================== -->
-  <div class="template-item" data-layer="anchor">
+  <!-- KIT 05 -->
+  <div class="template-item">
     <div class="template-header" onclick="toggleTemplate(this)">
       <span class="th-num">05</span>
-      <span class="th-title">Design Tokens JSON</span>
-      <span class="th-tag anchor">锚点层</span>
+      <span class="th-title">三关验收清单</span>
+      <span class="th-tag execution">质量底线</span>
+      <button class="kit-copy-btn" onclick="event.stopPropagation(); kitCopy(this)">复制</button>
       <span class="th-chevron">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </span>
     </div>
     <div class="template-body">
       <div class="template-content">
-        <p class="tpl-desc">机器可读的设计令牌文件，是 Design System 的 single source of truth。Tailwind 配置、CSS 变量、Figma Token Studio 均从此文件同步。保证设计师与 AI Agent 引用的视觉值永远一致。</p>
-<pre>{
-  "$schema": "https://design-tokens.org/schema",
-  "$meta": {
-    "project": "project-name",
-    "version": "1.0.0",
-    "updated": "2025-01-15",
-    "maintainer": "design-systems@company.com"
-  },
-  "color": {
-    "primitive": {
-      "amber": { "50": "#fffbeb", "100": "#fef3c7", "500": "#f59e0b", "600": "#d97706", "700": "#b45309" },
-      "teal":  { "50": "#f0fdfa", "100": "#ccfbf1", "500": "#2dd4bf", "600": "#0d9488", "700": "#0f766e" },
-      "violet":{ "50": "#f5f3ff", "100": "#ede9fe", "500": "#818cf8", "600": "#6366f1", "700": "#4f46e5" },
-      "red":   { "50": "#fef2f2", "500": "#ef4444", "600": "#dc2626" },
-      "gray":  { "50": "#f9fafb", "100": "#f3f4f6", "400": "#9ca3af", "600": "#4b5563", "800": "#1f2937" }
-    },
-    "semantic": {
-      "bg": {
-        "deep":     { "value": "{color.primitive.gray.800}", "comment": "app background" },
-        "surface":  { "value": "#131825", "comment": "card background" },
-        "elevated": { "value": "#1a2030", "comment": "modal/popover" },
-        "card":     { "value": "#1e2538" }
-      },
-      "text": {
-        "primary":   { "value": "#f0f4f8" },
-        "secondary": { "value": "#9ca3b4" },
-        "muted":     { "value": "#5c6578" }
-      },
-      "border": {
-        "subtle": { "value": "#2a3548" },
-        "strong": { "value": "#3d4a63" }
-      },
-      "accent": {
-        "primary":  { "value": "{color.primitive.amber.500}", "comment": "CTA / links" },
-        "secondary":{ "value": "{color.primitive.teal.500}", "comment": "progress / info" },
-        "tertiary": { "value": "{color.primitive.violet.500}", "comment": "execution layer" }
-      },
-      "feedback": {
-        "success": { "value": "{color.primitive.teal.500}" },
-        "warning": { "value": "{color.primitive.amber.500}" },
-        "error":   { "value": "{color.primitive.red.500}" }
-      }
-    }
-  },
-  "typography": {
-    "fontFamily": {
-      "display": { "value": "'Fraunces', Georgia, serif" },
-      "body":    { "value": "'Manrope', system-ui, sans-serif" },
-      "code":    { "value": "'JetBrains Mono', monospace" }
-    },
-    "fontSize": {
-      "xs":   { "value": "0.75rem",  "px": 12 },
-      "sm":   { "value": "0.875rem", "px": 14 },
-      "base": { "value": "1rem",     "px": 16 },
-      "lg":   { "value": "1.125rem", "px": 18 },
-      "xl":   { "value": "1.25rem",  "px": 20 },
-      "2xl":  { "value": "1.5rem",   "px": 24 },
-      "3xl":  { "value": "1.875rem", "px": 30 },
-      "4xl":  { "value": "2.25rem",  "px": 36 },
-      "5xl":  { "value": "3rem",     "px": 48 }
-    },
-    "fontWeight": {
-      "normal":  { "value": 400 },
-      "medium":  { "value": 500 },
-      "semibold":{ "value": 600 },
-      "bold":    { "value": 700 }
-    },
-    "lineHeight": {
-      "tight":   { "value": 1.25 },
-      "normal":  { "value": 1.5 },
-      "relaxed": { "value": 1.75 }
-    },
-    "letterSpacing": {
-      "tight": { "value": "-0.02em" },
-      "normal":{ "value": "0" },
-      "wide":  { "value": "0.05em" }
-    }
-  },
-  "spacing": {
-    "scale": [0, 2, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128],
-    "base": 4
-  },
-  "radius": {
-    "none":   { "value": 0 },
-    "sm":     { "value": "4px" },
-    "md":     { "value": "8px" },
-    "lg":     { "value": "12px" },
-    "xl":     { "value": "16px" },
-    "2xl":    { "value": "24px" },
-    "full":   { "value": "9999px" }
-  },
-  "shadow": {
-    "sm":  { "value": "0 1px 2px rgba(0,0,0,0.15)" },
-    "md":  { "value": "0 4px 12px rgba(0,0,0,0.25)" },
-    "lg":  { "value": "0 8px 32px rgba(0,0,0,0.35)" },
-    "glow-amber": { "value": "0 0 0 1px rgba(245,158,11,0.3), 0 8px 32px rgba(0,0,0,0.3)" }
-  },
-  "motion": {
-    "duration": {
-      "instant": { "value": "100ms" },
-      "fast":    { "value": "150ms" },
-      "normal":  { "value": "250ms" },
-      "slow":    { "value": "400ms" }
-    },
-    "easing": {
-      "standard":  { "value": "cubic-bezier(0.4, 0, 0.2, 1)" },
-      "decelerate":{ "value": "cubic-bezier(0, 0, 0.2, 1)" },
-      "accelerate":{ "value": "cubic-bezier(0.4, 0, 1, 1)" },
-      "spring":    { "value": "cubic-bezier(0.34, 1.56, 0.64, 1)" }
-    }
-  },
-  "breakpoint": {
-    "sm": { "value": 640 },
-    "md": { "value": 768 },
-    "lg": { "value": 1024 },
-    "xl": { "value": 1280 },
-    "2xl":{ "value": 1536 }
-  },
-  "zIndex": {
-    "base":     { "value": 0 },
-    "dropdown": { "value": 1000 },
-    "sticky":   { "value": 1100 },
-    "modal":    { "value": 1300 },
-    "toast":    { "value": 1400 }
-  }
-}
-</pre>
+        <p class="tpl-desc">验收时逐关确认，三关全部通过方可上线。</p>
+<pre># 三关验收
+第一关（自动检查）：验收场景自动测试全部通过，构建无误
+第二关（体验验证）：亲手使用原型——符合设计策略？是否存在不流畅之处？
+第三关（逐条核对）：验收标准逐条标记（通过 / 未通过 / 部分通过）
+判定规则：任一关未通过即打回；方向存疑则返回项目简介重新评估</pre>
       </div>
     </div>
   </div>
 
-  <!-- ==================== Template 06 ==================== -->
-  <div class="template-item" data-layer="anchor">
+  <!-- KIT 06 -->
+  <div class="template-item">
     <div class="template-header" onclick="toggleTemplate(this)">
       <span class="th-num">06</span>
-      <span class="th-title">Data Model Spec — 数据模型定义</span>
-      <span class="th-tag anchor">锚点层</span>
+      <span class="th-title">决策备忘（ADR）</span>
+      <span class="th-tag execution">怕遗忘时再写</span>
+      <button class="kit-copy-btn" onclick="event.stopPropagation(); kitCopy(this)">复制</button>
       <span class="th-chevron">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </span>
     </div>
     <div class="template-body">
       <div class="template-content">
-        <p class="tpl-desc">定义系统中的核心实体、字段类型、关系和约束。让前端、后端、AI Agent 对"数据长什么样"有统一理解，消除接口联调时才发现字段不一致的问题。</p>
-<pre># Data Model Specification
-
-## Entity Relationship Overview
-```
-User 1───* Project *───* Member
-  │                     │
-  *                     *
-  Session             Issue
-```
-
-## Entity: User
-| Field | Type | Required | Default | Validation | Description |
-|-------|------|----------|---------|------------|-------------|
-| id | UUID | Yes | generated | UUID v4 | Primary key |
-| email | string(254) | Yes | — | RFC 5322 compliant | Unique, case-insensitive |
-| displayName | string(50) | Yes | derived from email | 2-50 chars | Shown in UI |
-| avatarUrl | string(url) | No | null | https only | CDN-hosted |
-| role | enum | Yes | "member" | [admin, member, viewer] | Permission level |
-| status | enum | Yes | "active" | [active, suspended, deleted] | Account state |
-| createdAt | timestamp | Yes | now() | ISO 8601 UTC | |
-| updatedAt | timestamp | Yes | now() | auto on modify | |
-
-### Indexes
-- `idx_users_email` UNIQUE(email) — login lookup
-- `idx_users_status` (status) WHERE status = 'active' — active user queries
-
-### Relationships
-- User **1:N** Project (via `projects.ownerId`)
-- User **1:N** Session (via `sessions.userId`)
-- User **N:M** Project (via `members` join table)
-
----
-
-## Entity: Project
-| Field | Type | Required | Default | Validation | Description |
-|-------|------|----------|---------|------------|-------------|
-| id | UUID | Yes | generated | UUID v4 | Primary key |
-| ownerId | UUID | Yes | — | FK → users.id | Project owner |
-| name | string(100) | Yes | — | 1-100 chars | Display name |
-| slug | string(40) | Yes | derived | [a-z0-9-]{3,40} | URL path segment |
-| description | text | No | null | max 2000 chars | |
-| status | enum | Yes | "draft" | [draft, active, archived] | Lifecycle |
-| visibility | enum | Yes | "private" | [private, team, public] | Access scope |
-| settings | jsonb | Yes | {} | schema below | Project config |
-| createdAt | timestamp | Yes | now() | | |
-| updatedAt | timestamp | Yes | now() | | |
-
-### settings JSON schema
-```json
-{
-  "defaultAssignee": "UUID | null",
-  "issuePrefix": "string(4) | null",
-  "autoArchiveDays": "number | null"
-}
-```
-
----
-
-## Entity: Issue
-| Field | Type | Required | Default | Validation | Description |
-|-------|------|----------|---------|------------|-------------|
-| id | UUID | Yes | generated | UUID v4 | Primary key |
-| projectId | UUID | Yes | — | FK → projects.id | |
-| number | integer | Yes | auto-increment per project | | Human-friendly ID |
-| title | string(200) | Yes | — | 1-200 chars | |
-| description | text | No | null | markdown supported | |
-| type | enum | Yes | "task" | [bug, task, story, epic] | |
-| priority | enum | Yes | "medium" | [low, medium, high, urgent] | |
-| status | enum | Yes | "backlog" | [backlog, todo, in_progress, in_review, done] | |
-| assigneeId | UUID | No | null | FK → users.id | Current assignee |
-| reporterId | UUID | Yes | — | FK → users.id | Creator |
-| labels | string[] | No | [] | each ≤ 30 chars | |
-| estimateHours | decimal(4,1) | No | null | 0-999.9 | Story points |
-| dueDate | date | No | null | ISO 8601 | |
-| createdAt | timestamp | Yes | now() | | |
-| updatedAt | timestamp | Yes | now() | | |
-| closedAt | timestamp | No | null | set on status → done | |
-
-### Business Rules
-1. `number` auto-increments within a project, starting at 1.
-2. `assigneeId` must be a member of the project.
-3. Transition to `done` requires `closedAt` to be set.
-4. `urgent` priority triggers notification to all project members.
-
----
-
-## Entity: Member (Join Table)
-| Field | Type | Required | Default | Validation |
-|-------|------|----------|---------|------------|
-| projectId | UUID | Yes | — | FK → projects.id |
-| userId | UUID | Yes | — | FK → users.id |
-| role | enum | Yes | "member" | [owner, admin, member, viewer] |
-| joinedAt | timestamp | Yes | now() | |
-
-### Constraints
-- PRIMARY KEY (projectId, userId)
-- Only one `owner` per project.
-
----
-
-## API Contract Conventions
-- All timestamps in UTC ISO 8601: `2025-01-15T10:30:00Z`
-- Pagination: `?page=1&limit=20` → `{ data: [...], pagination: { page, limit, total, totalPages } }`
-- Error shape: `{ error: { code: string, message: string, details?: object } }`
-- Nullable fields return `null`, never `undefined` or omitted.
-</pre>
+        <p class="tpl-desc">记录关键决策的背景与交换，防止遗忘。写完即归档。</p>
+<pre># 备忘-[编号] [决策标题]
+- 日期 · 决策人 · 状态：已采纳
+- 背景：[当时为什么会有这个决策点]
+- 决定：[选择了什么方案]
+- 交换：[得到了什么，付出了什么代价]
+- 复看条件：[何时重新评估此决策]</pre>
       </div>
     </div>
   </div>
 
-  <!-- ==================== Template 07 ==================== -->
-  <div class="template-item" data-layer="progress">
-    <div class="template-header" onclick="toggleTemplate(this)">
-      <span class="th-num">07</span>
-      <span class="th-title">BDD Scenarios — 行为驱动开发场景</span>
-      <span class="th-tag progress">进度层</span>
-      <span class="th-chevron">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </span>
-    </div>
-    <div class="template-body">
-      <div class="template-content">
-        <p class="tpl-desc">用 Given-When-Then 语法描述功能行为，让产品经理、设计师、工程师共享同一份可执行规格。可直接被自动化测试框架（Cucumber / Playwright）消费，消除"需求与实现脱节"。</p>
-<pre>Feature: 用户登录与认证
-  作为已注册用户
-  我希望使用邮箱密码登录系统
-  以便访问我的工作空间
-
-  Background:
-    Given 系统中存在以下用户:
-      | email          | password    | status   |
-      | alice@test.com | ValidPass1! | active   |
-      | bob@test.com   | ValidPass2! | suspended|
-
-  @smoke @auth
-  Scenario: 使用有效凭据成功登录
-    Given 用户在登录页面
-    And 用户输入邮箱 "alice@test.com"
-    And 用户输入密码 "ValidPass1!"
-    When 用户点击"登录"按钮
-    Then 系统验证凭据成功
-    And 用户被重定向到 "/dashboard"
-    And 页面显示用户名 "Alice"
-    And 响应头包含有效的 JWT token
-    And 会话在数据库中创建，过期时间为 24 小时后
-
-  @auth @negative
-  Scenario: 使用错误密码登录失败
-    Given 用户在登录页面
-    And 用户输入邮箱 "alice@test.com"
-    And 用户输入密码 "WrongPassword!"
-    When 用户点击"登录"按钮
-    Then 系统返回错误码 "AUTH_INVALID_CREDENTIALS"
-    And 页面显示提示 "邮箱或密码不正确"
-    And 用户停留在登录页面
-    And 数据库中未创建新会话
-    And 失败登录计数加 1
-
-  @auth @negative
-  Scenario: 被封禁用户尝试登录
-    Given 用户在登录页面
-    And 用户输入邮箱 "bob@test.com"
-    And 用户输入密码 "ValidPass2!"
-    When 用户点击"登录"按钮
-    Then 系统返回错误码 "AUTH_ACCOUNT_SUSPENDED"
-    And 页面显示提示 "该账户已被暂停，请联系管理员"
-    And 用户停留在登录页面
-
-  @auth @security
-  Scenario: 连续 5 次失败后触发速率限制
-    Given 用户在登录页面
-    And 用户已连续 4 次输入错误密码
-    And 用户输入邮箱 "alice@test.com"
-    And 用户输入密码 "AnotherWrong!"
-    When 用户点击"登录"按钮
-    Then 系统返回错误码 "AUTH_RATE_LIMITED"
-    And 页面显示提示 "尝试次数过多，请 15 分钟后再试"
-    And 该 IP 被标记限流 15 分钟
-
-  @auth @accessibility
-  Scenario: 使用键盘完整登录流程
-    Given 用户在登录页面
-    When 用户按 Tab 键聚焦到邮箱输入框
-    And 用户输入 "alice@test.com"
-    And 用户按 Tab 键聚焦到密码输入框
-    And 用户输入 "ValidPass1!"
-    And 用户按 Tab 键聚焦到"登录"按钮
-    And 用户按 Enter 键
-    Then 用户被重定向到 "/dashboard"
-
----
-
-Feature: 项目看板 — 拖拽排序 Issue
-  作为项目管理者
-  我希望通过拖拽调整 Issue 顺序和状态
-  以便直观地管理项目进度
-
-  Background:
-    Given 用户 "Alice" 已登录
-    And 用户是项目 "Alpha" 的 owner
-    And 项目 "Alpha" 看板有 3 列：Todo / In Progress / Done
-    And Todo 列有以下 Issue:
-      | number | title            |
-      | 1      | 修复登录闪烁     |
-      | 2      | 添加暗色模式     |
-      | 3      | 优化加载速度     |
-
-  @board @drag-drop
-  Scenario: 拖拽 Issue 从 Todo 到 In Progress
-    Given 用户在看板页面
-    When 用户拖拽 Issue #2 "添加暗色模式" 从 "Todo" 列到 "In Progress" 列
-    Then Issue #2 出现在 "In Progress" 列中
-    And Issue #2 的状态更新为 "in_progress"
-    And "Todo" 列剩余 Issue #1 和 #3
-    And 操作记录写入 Issue #2 的活动日志
-    And WebSocket 广播更新给其他在线成员
-
-  @board @drag-drop @order
-  Scenario: 在同列内重新排序
-    Given 用户在看板页面
-    When 用户拖拽 Issue #3 到 Issue #1 上方
-    Then "Todo" 列顺序变为 #3, #1, #2
-    And 排序持久化到数据库
-    And 刷新页面后顺序保持不变
-
-  @board @edge-case
-  Scenario: 拖拽过程中网络断开
-    Given 用户在看板页面
-    And 用户开始拖拽 Issue #2
-    When 网络连接断开
-    Then Issue #2 回到原始位置 "Todo" 列
-    And 页面显示 toast 提示 "操作失败，网络已断开"
-    And 页面右上角显示离线状态指示器
-</pre>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== Template 08 ==================== -->
-  <div class="template-item" data-layer="progress">
-    <div class="template-header" onclick="toggleTemplate(this)">
-      <span class="th-num">08</span>
-      <span class="th-title">Sitemap / IA — 站点地图</span>
-      <span class="th-tag progress">进度层</span>
-      <span class="th-chevron">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </span>
-    </div>
-    <div class="template-body">
-      <div class="template-content">
-        <p class="tpl-desc">结构化定义页面层级、路由命名与导航组织。是 Flow 设计的前置步骤——先确定"有哪些页面、怎么命名"，再设计页面间的流转逻辑。可直接指导前端路由实现。</p>
-<pre># Sitemap / Information Architecture
-
-## Project: {Project Name}
-## Version: {1.0}
-## Date: {YYYY-MM-DD}
-
-## Navigation Structure (Tree)
-
-```
-Root (/)
-├── Public
-│   ├── /                       → Landing / 首页
-│   ├── /pricing                → 定价页
-│   ├── /docs                   → 文档站
-│   │   ├── /docs/getting-started
-│   │   ├── /docs/api-reference
-│   │   └── /docs/faq
-│   ├── /blog                   → 博客列表
-│   │   └── /blog/{slug}        → 博客详情
-│   ├── /about                  → 关于我们
-│   └── /contact                → 联系我们
-│
-├── Auth
-│   ├── /login                  → 登录
-│   ├── /register               → 注册
-│   ├── /forgot-password        → 忘记密码
-│   ├── /reset-password          → 重置密码（邮件链接落地）
-│   └── /verify-email           → 邮箱验证
-│
-├── App (auth required)
-│   ├── /dashboard              → 工作台首页
-│   │
-│   ├── /projects               → 项目列表
-│   │   ├── /projects/new        → 新建项目
-│   │   └── /projects/{id}
-│   │       ├── /projects/{id}              → 看板视图
-│   │       ├── /projects/{id}/list          → 列表视图
-│   │       ├── /projects/{id}/timeline      → 时间线
-│   │       ├── /projects/{id}/settings      → 项目设置
-│   │       │   ├── /projects/{id}/settings/general
-│   │       │   ├── /projects/{id}/settings/members
-│   │       │   └── /projects/{id}/settings/integrations
-│   │       └── /projects/{id}/issues/{number}  → Issue 详情
-│   │
-│   ├── /notifications          → 通知中心
-│   │   └── /notifications/{id}  → 通知详情
-│   │
-│   ├── /search                 → 全局搜索
-│   │
-│   ├── /settings               → 个人设置
-│   │   ├── /settings/profile    → 个人资料
-│   │   ├── /settings/account    → 账户安全
-│   │   ├── /settings/appearance → 外观偏好
-│   │   └── /settings/billing    → 订阅与账单
-│   │
-│   └── /admin (role: admin only)
-│       ├── /admin/users         → 用户管理
-│       ├── /admin/projects      → 全局项目
-│       └── /admin/logs          → 操作日志
-│
-└── Error
-    ├── /403                     → 无权限
-    ├── /404                     → 页面不存在
-    └── /500                     → 服务异常
-```
-
-## Page Metadata
-
-| Route | Page Title | Auth | Role | Primary CTA | Entry Points |
-|-------|-----------|------|------|------------|-------------|
-| / | 首页 - {Brand} | Public | — | 注册 / 试试看 | 导航 / 直接访问 |
-| /pricing | 定价 - {Brand} | Public | — | 联系销售 | 导航 / 首页 CTA |
-| /dashboard | 工作台 | Required | any | 新建项目 | 登录后默认跳转 |
-| /projects | 项目列表 | Required | any | 新建项目 | 导航 / Dashboard |
-| /projects/{id} | {Project.name} | Required | member+ | 新建 Issue | 项目列表 / 搜索 |
-| /settings/profile | 个人资料 | Required | any | 保存 | 导航菜单 |
-
-## Navigation Design
-
-### Primary Nav (Top Bar)
-[Logo] [Dashboard] [Projects] [Search] [Notifications] [Avatar Menu]
-
-### Secondary Nav (Project scoped)
-[Board] [List] [Timeline] | [Settings] [Members] [Integrations]
-
-### Footer Nav (Public pages only)
-[Pricing] [Docs] [Blog] [About] [Contact] [Privacy] [Terms]
-
-## Access Control Matrix
-
-| Page Group | Public | Logged-in Viewer | Member | Owner | Admin |
-|-----------|--------|-----------------|--------|-------|-------|
-| Public pages | ✅ | ✅ | ✅ | ✅ | ✅ |
-| /dashboard | ❌ | ✅ | ✅ | ✅ | ✅ |
-| /projects/{id} | ❌ | ✅ if member | ✅ | ✅ | ✅ |
-| /projects/{id}/settings | ❌ | ❌ | ❌ | ✅ | ✅ |
-| /admin/* | ❌ | ❌ | ❌ | ❌ | ✅ |
-
-## Responsive Behavior
-
-| Breakpoint | Nav Style | Notes |
-|-----------|-----------|-------|
-| Desktop (≥1024px) | Full top bar + secondary nav | 7+ items visible |
-| Tablet (768-1023px) | Top bar collapses to hamburger | Secondary nav as tabs |
-| Mobile (<768px) | Bottom tab bar (5 items) + hamburger menu | Prioritized: Dashboard, Projects, Search, Notif, Profile |
-</pre>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== Template 09 ==================== -->
-  <div class="template-item" data-layer="progress">
-    <div class="template-header" onclick="toggleTemplate(this)">
-      <span class="th-num">09</span>
-      <span class="th-title">Flow Diagram — 用户流程图</span>
-      <span class="th-tag progress">进度层</span>
-      <span class="th-chevron">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </span>
-    </div>
-    <div class="template-body">
-      <div class="template-content">
-        <p class="tpl-desc">用 Mermaid 语法描述页面间的流转逻辑、分支条件与循环。文本可被版本管理工具追踪，也能直接渲染为可视化流程图，让工程师与 AI Agent 同时理解导航逻辑。</p>
-<pre># User Flow: {Flow Name}
-
-## Flow: 新用户注册到首次创建项目
-
-```mermaid
-flowchart TD
-    A([用户访问 Landing 页]) --> B{已登录?}
-    B -- 是 --> Z([跳转 Dashboard])
-    B -- 否 --> C[点击 注册 按钮]
-    C --> D[注册页 /register]
-    D --> E{填写表单}
-    E -->|邮箱+密码+验证码| F{服务端验证}
-    E -->|字段为空| E1[显示必填提示] --> E
-    E -->|邮箱格式错误| E2[显示格式错误] --> E
-    E -->|密码强度不足| E3[显示强度要求] --> E
-
-    F -->|验证通过| G[发送验证邮件]
-    F -->|邮箱已注册| F1[提示邮箱已存在] --> E
-    F -->|验证码错误| F2[提示验证码错误] --> E
-
-    G --> H[显示 验证邮箱 页 /verify-email]
-    H --> I{用户操作}
-    I -->|点击邮件链接| J[验证成功]
-    I -->|重新发送| G
-    I -->|等待超时 5min| I1[提示验证码过期] --> E
-
-    J --> K[自动登录]
-    K --> L[Onboarding 引导页]
-    L --> M{选择操作}
-    M -->|创建空项目| N[项目创建表单]
-    M -->|从模板创建| O[模板选择页]
-    M -->|跳过| Z
-
-    N --> P{填写项目信息}
-    P -->|名称+描述| Q[创建项目 API]
-    Q -->|成功| R[跳转 /projects/{id} 看板页]
-    Q -->|失败| P1[显示错误 toast] --> P
-
-    R --> S[显示 Onboarding 引导提示]
-    S --> T([用户完成首次体验])
-```
-
-## Flow: 已有用户创建 Issue（从看板）
-
-```mermaid
-flowchart TD
-    A([用户在 Dashboard]) --> B[点击项目卡片]
-    B --> C[跳转 /projects/{id} 看板]
-    C --> D[点击 +新建 Issue 按钮]
-    D --> E[打开 Issue 创建 Modal/抽屉]
-
-    E --> F{填写 Issue}
-    F -->|标题+类型+优先级| G[点击 创建 按钮]
-    F -->|分配负责人| G
-    F -->|选择标签| G
-
-    G --> H{API 请求}
-    H -->|成功| I[Issue 出现在看板 Todo 列]
-    H -->|网络失败| J[显示重试 toast] --> G
-    H -->|权限不足| K[显示权限错误] --> E
-
-    I --> L{是否继续创建?}
-    L -->|是| D
-    L -->|否| M([完成])
-```
-
-## Flow: 异常态 — 网络断开时的看板操作
-
-```mermaid
-flowchart TD
-    A([用户在看板页]) --> B[拖拽 Issue 到新列]
-    B --> C[前端乐观更新 UI]
-    C --> D{API 请求}
-    D -->|网络断开| E[保持乐观 UI]
-    E --> F[显示离线指示器]
-    F --> G[操作存入本地队列]
-    G --> H{网络恢复?}
-    H -->|是| I[批量重放队列]
-    I -->|全部成功| J[移除离线指示器]
-    I -->|部分失败| K[显示冲突提示]
-    K --> L[用户选择 覆盖 / 保留原始 / 放弃]
-    H -->|否| M[等待恢复，最多保留 50 条]
-    H -->|用户手动刷新| N[丢弃本地队列，从服务端重载]
-```
-
-## Screen Inventory Referenced
-
-| Screen | Route | Components | States to Design |
-|--------|-------|------------|-----------------|
-| Landing | / | HeroCard, CTASection | default, scroll-animated |
-| Register | /register | RegisterForm, PasswordStrengthMeter | empty, error, loading, success |
-| Verify Email | /verify-email | CountdownTimer, ResendButton | waiting, success, expired |
-| Onboarding | /onboarding | StepIndicator, TemplateGallery | step-1 through step-3 |
-| Kanban Board | /projects/{id} | BoardColumn, IssueCard, DragOverlay | empty, loading, online, offline |
-</pre>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== Template 10 ==================== -->
-  <div class="template-item" data-layer="progress">
-    <div class="template-header" onclick="toggleTemplate(this)">
-      <span class="th-num">10</span>
-      <span class="th-title">Edge Case Matrix — 异常态矩阵</span>
-      <span class="th-tag progress">进度层</span>
-      <span class="th-chevron">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </span>
-    </div>
-    <div class="template-body">
-      <div class="template-content">
-        <p class="tpl-desc">按六类状态（空、加载、错误、边界数据、权限、离线）穷举每个屏幕需要设计的异常态。避免到 QA 阶段才发现"忘了空状态设计"或"错误态没考虑"的返工。</p>
-<pre># Edge Case Matrix
-
-## Screen: {Page Name} — {Route}
-
-| State Type | Trigger Condition | Visual | Copy | Interaction | Priority |
-|-----------|-------------------|--------|------|-------------|----------|
-| **Empty** | 无任何数据（首次使用） | 插画 + CTA 按钮 | "还没有项目，创建你的第一个项目吧" | 点击 CTA → /projects/new | P0 |
-| **Empty (filtered)** | 筛选后无结果 | 搜索空状态插画 | "没有找到匹配「{筛选词}」的项目" | "清除筛选" 按钮 | P1 |
-| **Loading (initial)** | 首次加载数据 | 骨架屏 3 列 | — | 禁用所有交互 | P0 |
-| **Loading (refetch)** | 数据更新中 | 内容保留 + 顶部进度条 | — | 内容可读但不可编辑 | P0 |
-| **Loading (action)** | 点击提交后 | 按钮 spinner + 禁用 | "创建中..." | 禁止重复提交 | P0 |
-| **Error (network)** | 请求超时/断网 | 错误插画 | "网络连接失败，请检查网络后重试" | "重试" 按钮 | P0 |
-| **Error (403)** | 无权限访问 | 锁图标 | "你没有访问此项目的权限" | "返回 Dashboard" 链接 | P0 |
-| **Error (500)** | 服务端异常 | 通用错误插画 | "服务器开小差了，请稍后再试" | "刷新" + "联系支持" | P1 |
-| **Error (validation)** | 表单字段不合规 | 输入框红色边框 + 错误提示 | 各字段具体提示文案 | 聚焦到第一个错误字段 | P0 |
-| **Boundary (max items)** | 列表项达到上限（如 500 条） | 列表正常 + 底部提示条 | "已加载全部 {N} 条，使用搜索查看更多" | 隐藏加载更多 | P2 |
-| **Boundary (long text)** | 标题超长 | 文本截断 + tooltip | 显示... 完整文本在 hover tooltip 中 | tooltip 可复制 | P1 |
-| **Boundary (special chars)** | 输入含表情/HTML | 正常显示已转义内容 | — | 输入时实时转义 | P1 |
-| **Permission (read-only)** | viewer 角色访问编辑页 | 编辑按钮禁用/隐藏 | "你对此项目为只读权限" | 禁用编辑入口 | P1 |
-| **Permission (expired)** | 会话过期，操作中触发 | Modal 弹窗 | "登录已过期，请重新登录" | "重新登录" → /login 保存当前路径 | P0 |
-| **Offline** | 断网状态 | 离线 banner + 内容保留 | "你当前处于离线状态，部分功能不可用" | 禁用需要网络的操作 | P1 |
-| **Offline (recover)** | 网络恢复 | 绿色 toast 消失 | "网络已恢复" | 自动刷新数据 | P1 |
-| **Conflict** | 乐观更新与服务端冲突 | 冲突提示 Modal | "此内容已被其他人修改，是否刷新？" | "刷新" / "覆盖" / "取消" | P2 |
-
----
-
-## Screen: {Issue Detail Page} — /projects/{id}/issues/{number}
-
-| State Type | Trigger | Visual | Copy | Interaction | Priority |
-|-----------|---------|--------|------|-------------|----------|
-| **Empty (comments)** | Issue 无评论 | 居中插画 + 引导文字 | "还没有评论，留下第一条吧" | 评论框自动聚焦 | P1 |
-| **Empty (attachments)** | Issue 无附件 | 拖拽区虚线框 | "拖拽文件到此处或点击上传" | 点击/拖拽触发上传 | P1 |
-| **Loading (detail)** | 打开 Issue 详情 | 骨架屏（标题+描述+评论区） | — | — | P0 |
-| **Error (not found)** | Issue 不存在或已删除 | 404 插画 | "该 Issue 不存在或已被删除" | "返回看板" 按钮 | P0 |
-| **Error (comment submit)** | 评论提交失败 | 评论框保留输入 + 红色边框 | "评论发送失败，点击重试" | "重试" 按钮内联 | P0 |
-| **Boundary (comment length)** | 评论超过 5000 字 | 字符计数变红 | "评论不能超过 5000 字（当前 {N} 字）" | 禁止继续输入 | P1 |
-| **Boundary (upload size)** | 文件超过 10MB | 上传进度条变红 | "文件超过 10MB 限制" | 自动移除，允许重选 | P0 |
-| **Boundary (upload count)** | 附件达上限 20 个 | 上传按钮禁用 | "每个 Issue 最多 20 个附件" | — | P2 |
-| **Permission (no edit)** | 非成员查看他人 Issue | 编辑按钮隐藏 | — | 仅可查看+评论 | P1 |
-| **Conflict (concurrent edit)** | 两人同时编辑描述 | 顶部黄色提示条 | "其他人正在编辑此 Issue 的描述" | 编辑区只读 + "强制编辑" 按钮 | P2 |
-
----
-
-## Coverage Checklist
-
-- [ ] 每个 P0 页面都有 Empty state 设计
-- [ ] 每个 P0 页面都有 Loading state（骨架屏，非 spinner）
-- [ ] 每个表单都有 inline validation error 设计
-- [ ] 每个列表页都有空筛选结果设计
-- [ ] 全局 403 / 404 / 500 页面已设计
-- [ ] 离线 banner 组件已在全局 Layout 设计
-- [ ] 会话过期 Modal 已设计
-- [ ] 上传组件有大文件/数量限制处理
-</pre>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== Template 11 ==================== -->
-  <div class="template-item" data-layer="progress">
-    <div class="template-header" onclick="toggleTemplate(this)">
-      <span class="th-num">11</span>
-      <span class="th-title">AC as Code — 可执行验收标准</span>
-      <span class="th-tag progress">进度层</span>
-      <span class="th-chevron">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </span>
-    </div>
-    <div class="template-body">
-      <div class="template-content">
-        <p class="tpl-desc">将验收标准写成 YAML 格式的机器可读规范，配合自动化测试框架直接执行。让"验收标准"从文档变成可运行的防线，而非交付后才发现的清单。</p>
-<pre># Acceptance Criteria as Code
-# File: ac/project-board.ac.yml
-# Consumable by: Playwright test runner + Vitest unit tests
-
-meta:
-  feature: "项目看板 — Issue 管理"
-  story_id: "PROJ-001"
-  version: "1.0.0"
-  owner: "alice@team.com"
-
-preconditions:
-  - name: "用户已登录"
-    type: auth
-    fixture: "authenticated-user"
-    data:
-      email: "test.user@example.com"
-      role: "member"
-      project_role: "owner"
-
-  - name: "项目已创建"
-    type: state
-    fixture: "project-with-3-issues"
-    data:
-      project:
-        name: "Test Project"
-        slug: "test-project"
-      issues:
-        - number: 1
-          title: "First issue"
-          status: "todo"
-        - number: 2
-          title: "Second issue"
-          status: "todo"
-        - number: 3
-          title: "Third issue"
-          status: "in_progress"
-
-acceptance_criteria:
-
-  - id: AC-001
-    title: "创建新 Issue"
-    severity: critical
-    type: functional
-
-    given:
-      - "用户在看板页面 /projects/test-project"
-      - "看板有 Todo 列含 2 个 Issue"
-
-    when:
-      - "用户点击 +新建 Issue 按钮"
-      - "用户在抽屉表单中输入标题 'New Test Issue'"
-      - "用户选择类型为 'Task'"
-      - "用户选择优先级为 'High'"
-      - "用户点击 创建 按钮"
-
-    then:
-      - assert: "Issue 抽屉关闭"
-      - assert: "看板 Todo 列新增一张 Issue 卡片"
-      - assert: "卡片标题显示 'New Test Issue'"
-      - assert: "Issue 编号为 #4"
-      - assert: "卡片角标显示 High 优先级颜色"
-      - assert: "API 请求 POST /issues 返回 201"
-      - assert: "活动日志记录 'Issue #4 created by {user}'"
-      - assert: "WebSocket 广播 issue_created 事件"
-
-    accessibility:
-      - "新建按钮可通过 Tab 键聚焦"
-      - "抽屉可通过 Escape 键关闭"
-      - "表单字段有关联的 label 元素"
-      - "优先级选择器使用 select 元素或 ARIA role='listbox'"
-
-    performance:
-      - "从点击创建到卡片出现在看板 ≤ 500ms"
-      - "API 请求响应 ≤ 200ms (p95)"
-
-  - id: AC-002
-    title: "拖拽 Issue 切换状态列"
-    severity: critical
-    type: functional
-
-    given:
-      - "用户在看板页面"
-      - "Todo 列有 Issue #1 和 Issue #2"
-      - "In Progress 列有 Issue #3"
-
-    when:
-      - "用户拖拽 Issue #2 从 Todo 列"
-      - "用户释放在 In Progress 列"
-
-    then:
-      - assert: "Issue #2 出现在 In Progress 列"
-      - assert: "Issue #2 不再在 Todo 列"
-      - assert: "Issue #2 status 更新为 in_progress"
-      - assert: "数据库 issues 表 status 字段 = 'in_progress'"
-      - assert: "WebSocket 广播 issue_moved 事件"
-      - assert: "Issue #2 活动日志新增 'moved to In Progress'"
-
-    accessibility:
-      - "Issue 卡片可通过键盘聚焦 (tabindex=0)"
-      - "聚焦后按 Enter 进入拖拽模式"
-      - "方向键左右在列之间移动"
-      - "Enter 键释放并确认位置"
-      - "屏幕阅读器播报 'Issue #2 moved to In Progress'"
-
-  - id: AC-003
-    title: "拖拽失败时回滚"
-    severity: high
-    type: error-handling
-
-    given:
-      - "用户在看板页面"
-      - "网络已模拟断开 (navigator.onLine = false)"
-
-    when:
-      - "用户拖拽 Issue #1 从 Todo 到 In Progress"
-
-    then:
-      - assert: "Issue #1 视觉短暂出现在 In Progress 列（乐观更新）"
-      - assert: "300ms 后 Issue #1 回到 Todo 列原始位置"
-      - assert: "页面顶部显示离线 banner"
-      - assert: "显示 toast '操作失败，网络已断开'"
-      - assert: "操作存入离线队列"
-
-  - id: AC-004
-    title: "Issue 数量上限"
-    severity: medium
-    type: boundary
-
-    given:
-      - "项目已包含 500 个 Issue（上限）"
-
-    when:
-      - "用户点击 +新建 Issue"
-
-    then:
-      - assert: "抽屉显示但 创建 按钮禁用"
-      - assert: "显示提示 '该项目已达到 Issue 上限 500'"
-      - assert: "提供 升级套餐 链接"
-
-cleanup:
-  - "删除测试项目及所有关联 Issue"
-  - "清除测试用户会话"
-</pre>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== Template 12 ==================== -->
-  <div class="template-item" data-layer="execution">
-    <div class="template-header" onclick="toggleTemplate(this)">
-      <span class="th-num">12</span>
-      <span class="th-title">Design QA Checklist — 设计走查清单</span>
-      <span class="th-tag execution">执行层</span>
-      <span class="th-chevron">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </span>
-    </div>
-    <div class="template-body">
-      <div class="template-content">
-        <p class="tpl-desc">设计稿交付前的系统性自检清单。按视觉规范、交互状态、响应式、无障碍、一致性五大维度逐项核查，确保交付物不存在"设计师自己都知道但忘了修"的问题。</p>
-<pre># Design QA Checklist
-
-## Project: {Project Name}    Screen: {Screen Name}    Date: {YYYY-MM-DD}
-## Reviewer: {Name}           Status: [ ] Pass  [ ] Pass w/ Notes  [ ] Fail
-
----
-
-## 1. Visual Standards — 视觉规范 (20 items)
-
-### 1.1 Color
-- [ ] 所有颜色值来自 design-tokens.json，无硬编码 hex
-- [ ] 文字与背景对比度 ≥ 4.5:1（正文）/ ≥ 3:1（大字 ≥18px bold）
-- [ ] 功能色（success/warning/error）语义一致，无混用
-- [ ] 深色/浅色模式下均可读，无低对比区域
-- [ ] 品牌色用于 CTA 和强调，不用于普通正文
-
-### 1.2 Typography
-- [ ] 字体 family 全部来自 token 定义（display/body/code）
-- [ ] 字号使用 token scale 值，无任意 px
-- [ ] 行高、字距使用 token 中定义的比例
-- [ ] 中英文混排无基线错位
-- [ ] 长文本有截断/换行策略，不撑破容器
-
-### 1.3 Spacing & Layout
-- [ ] 间距使用 token spacing scale（4 的倍数体系）
-- [ ] 卡片/容器内 padding 一致（同级组件统一）
-- [ ] 元素间水平间距和垂直间距遵循同一节奏
-- [ ] 页面最大宽度与安全边距符合断点定义
-
-### 1.4 Components
-- [ ] 圆角使用 token radius scale
-- [ ] 阴影使用 token shadow scale
-- [ ] 图标尺寸统一（16/20/24），来自同一 icon set
-- [ ] 按钮高度/padding 在同一 size 级别内一致
-
----
-
-## 2. Interaction States — 交互状态 (15 items)
-
-### 2.1 Interactive Elements
-- [ ] 每个 interactive 元素设计了 hover 状态
-- [ ] 每个 interactive 元素设计了 active/pressed 状态
-- [ ] 每个 interactive 元素设计了 focus-visible 状态（非仅 focus）
-- [ ] 每个 interactive 元素设计了 disabled 状态
-- [ ] 表单输入框设计了 placeholder / filled / error / success 状态
-
-### 2.2 Loading & Async
-- [ ] 首次加载有骨架屏设计（非 spinner）
-- [ ] 按钮提交有 loading spinner + 文案变化 + 禁用
-- [ ] 图片/媒体有加载占位或 blur-up
-- [ ] 数据刷新有顶部进度条或 pull-to-refresh（mobile）
-
-### 2.3 Feedback
-- [ ] 操作成功有 toast 反馈（含自动消失时间）
-- [ ] 操作失败有错误提示（含重试入口）
-- [ ] 危险操作有二次确认 Modal
-- [ ] 批量操作有进度反馈
-- [ ] 空状态有插画 + CTA，非纯文字
-
----
-
-## 3. Responsive — 响应式 (10 items)
-
-- [ ] 在最小断点（375px）下内容无横向滚动
-- [ ] 导航在移动端有适配方案（汉堡 / 底部 tab）
-- [ ] 表格/列表在移动端有替代展示（卡片 / 折叠）
-- [ ] Modal 在移动端从底部滑出，非居中弹窗
-- [ ] 手势操作（如拖拽）在移动端有 fallback（长按/按钮）
-- [ ] 字号在移动端不小于 14px（正文）
-- [ ] 可点击区域不小于 44×44px（iOS HIG）
-- [ ] 横屏模式布局不崩溃
-- [ ] 大屏（1440px+）有最大宽度限制或自适应填充
-- [ ] 触摸与鼠标交互模式均已覆盖
-
----
-
-## 4. Accessibility — 无障碍 (12 items)
-
-- [ ] 所有图片有 alt text（装饰性图片 alt=""）
-- [ ] 表单字段有关联的 label
-- [ ] 错误提示用 aria-live="assertive" 或 role="alert"
-- [ ] Modal 打开时焦点陷阱生效，关闭后焦点回归
-- [ ] 所有功能可用键盘完成（Tab 顺序合理）
-- [ ] 跳过链接（Skip to main content）存在
-- [ ] 颜色不作为唯一信息传递（图标 + 文字）
-- [ ] 动画可被 prefers-reduced-motion 禁用
-- [ ] 链接文案可理解，非 "点击这里"
-- [ ] 标题层级（h1 → h2 → h3）无跳级
-- [ ] 语义化标签（nav/main/section/article）使用正确
-- [ ] WCAG 2.1 AA 对照通过（自动化扫描 + 人工核验）
-
----
-
-## 5. Consistency — 一致性 (8 items)
-
-- [ ] 与已有页面的组件用法一致（同一组件不造新变体）
-- [ ] 图标风格一致（线条 vs 实心不混用）
-- [ ] 空状态/错误态插画风格一致
-- [ ] 文案语气一致（参考 voice & tone guide）
-- [ ] 日期/时间格式全局一致（如 YYYY-MM-DD HH:mm）
-- [ ] 数字格式一致（千分位、小数位）
-- [ ] 图标与文字间距一致
-- [ ] 同类操作的确认/反馈模式一致
-
----
-
-## Summary
-
-| Category | Total | Passed | Failed | N/A |
-|----------|-------|--------|--------|-----|
-| Visual Standards | 20 | __ | __ | __ |
-| Interaction States | 15 | __ | __ | __ |
-| Responsive | 10 | __ | __ | __ |
-| Accessibility | 12 | __ | __ | __ |
-| Consistency | 8 | __ | __ | __ |
-| **Total** | **65** | **__** | **__** | **__** |
-
-## Failures & Action Items
-
-| # | Category | Issue Description | Screen Ref | Severity | Owner | Due Date |
-|---|----------|-------------------|------------|----------|-------|----------|
-| 1 | | | | | | |
-| 2 | | | | | | |
-| 3 | | | | | | |
-</pre>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== Template 13 ==================== -->
-  <div class="template-item" data-layer="progress">
-    <div class="template-header" onclick="toggleTemplate(this)">
-      <span class="th-num">13</span>
-      <span class="th-title">AC Trace Matrix — 验收追溯矩阵</span>
-      <span class="th-tag progress">进度层</span>
-      <span class="th-chevron">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </span>
-    </div>
-    <div class="template-body">
-      <div class="template-content">
-        <p class="tpl-desc">将需求 → 验收标准 → 测试用例 → 实现代码四层链路双向追溯。确保没有需求被遗漏、没有验收标准没有测试、没有测试脱离需求，形成闭环可审计的开发证据链。</p>
-<pre># Acceptance Criteria Traceability Matrix
-
-## Project: {Project Name}    Sprint: {Sprint N}    Date: {YYYY-MM-DD}
-
-## Legend
-- Status: ✅ Passed | ⚠️ Blocked | ❌ Failed | ⏳ Pending | ◻ Not Started
-- Coverage: Full | Partial | None
-
----
-
-## Trace Matrix
-
-| Req ID | Requirement | AC ID | Acceptance Criteria | Test ID | Test Case | Test Status | Implementation | Code Link | Coverage |
-|--------|-------------|-------|---------------------|---------|-----------|-------------|----------------|------------|----------|
-| REQ-01 | 用户可创建项目 | AC-01 | 点击"新建项目"→ 表单 → 提交 → 跳转看板 | T-001 | test_create_project_happy_path | ✅ Passed | ✅ Done | src/services/project.ts | Full |
-| REQ-01 | | AC-02 | 项目名称为空时提交 → 显示错误 | T-002 | test_create_project_empty_name | ✅ Passed | ✅ Done | src/components/ProjectForm.tsx | Full |
-| REQ-01 | | AC-03 | 名称超 100 字 → 显示错误 | T-003 | test_create_project_name_too_long | ⏳ Pending | ✅ Done | src/components/ProjectForm.tsx | Partial |
-| REQ-01 | | AC-04 | slug 已存在 → 显示错误 | T-004 | test_create_project_slug_conflict | ◻ Not Started | ⚠️ Partial | — | None |
-| REQ-02 | 用户可邀请成员 | AC-05 | 输入邮箱 → 发送邀请 → 成员出现在列表 | T-005 | test_invite_member_success | ✅ Passed | ✅ Done | src/services/invite.ts | Full |
-| REQ-02 | | AC-06 | 邀请已存在成员 → 提示已加入 | T-006 | test_invite_existing_member | ❌ Failed | ✅ Done | src/services/invite.ts | Partial |
-| REQ-02 | | AC-07 | 无权限用户尝试邀请 → 403 | T-007 | test_invite_no_permission | ⏳ Pending | ◻ Not Started | — | None |
-| REQ-03 | 看板拖拽排序 | AC-08 | 拖 Issue Todo→InProgress → 状态更新 | T-008 | test_drag_issue_status_change | ✅ Passed | ✅ Done | src/features/board/ | Full |
-| REQ-03 | | AC-09 | 同列内排序 → 持久化 | T-009 | test_drag_issue_reorder | ✅ Passed | ✅ Done | src/features/board/ | Full |
-| REQ-03 | | AC-10 | 网络断开 → 回滚 + 离线提示 | T-010 | test_drag_offline_rollback | ⚠️ Blocked | ⚠️ Partial | src/features/board/offline.ts | Partial |
-| REQ-04 | Issue 详情页 | AC-11 | 点击 Issue → 打开详情抽屉 | T-011 | test_open_issue_detail | ✅ Passed | ✅ Done | src/components/IssueDrawer.tsx | Full |
-| REQ-04 | | AC-12 | 添加评论 → 实时显示 | T-012 | test_add_comment_realtime | ✅ Passed | ✅ Done | src/features/comments/ | Full |
-| REQ-04 | | AC-13 | 评论超长 → 截断 + 展开 | T-013 | test_long_comment_truncate | ◻ Not Started | ◻ Not Started | — | None |
-
----
-
-## Coverage Summary
-
-### By Requirement
-| Req ID | Requirement | Total ACs | Passed | Failed | Pending | Not Started | Coverage % |
-|--------|-------------|-----------|--------|--------|---------|-------------|-----------|
-| REQ-01 | 创建项目 | 4 | 2 | 0 | 1 | 1 | 50% |
-| REQ-02 | 邀请成员 | 3 | 1 | 1 | 1 | 0 | 33% |
-| REQ-03 | 看板拖拽 | 3 | 2 | 0 | 0 | 1 | 67% |
-| REQ-04 | Issue 详情 | 3 | 2 | 0 | 0 | 1 | 67% |
-| **Total** | | **13** | **7** | **1** | **2** | **3** | **54%** |
-
-### By Layer
-| Layer | Requirements | ACs | Tests | Implementation |
-|-------|-------------|-----|-------|---------------|
-| Need → Requirement | 4 defined | — | — | — |
-| Requirement → AC | — | 13 defined | — | — |
-| AC → Test Case | — | — | 13 written (10 with code) | — |
-| AC → Code | — | 10 implemented | — | 10/13 done |
-
-### Gap Analysis
-| Gap Type | Count | Items | Action |
-|----------|-------|-------|--------|
-| AC without Test | 0 | — | — |
-| AC without Implementation | 3 | AC-04, AC-07, AC-13 | Assign to dev sprint |
-| Test Failed | 1 | T-006 (invite existing member) | Bug ticket BUG-045 |
-| Test Blocked | 1 | T-010 (offline drag) | Need mock-service-worker setup |
-| Requirement without any AC | 0 | — | — |
-
----
-
-## Defect Log (linked to failed tests)
-
-| Defect ID | Test ID | AC ID | Description | Severity | Status | Assignee |
-|-----------|---------|-------|-------------|----------|--------|----------|
-| BUG-045 | T-006 | AC-06 | 邀请已存在成员时返回 500 而非友好提示 | High | Open | @dev-alice |
-| BUG-046 | T-010 | AC-10 | 离线回滚延迟过长（>1s），用户感知卡顿 | Medium | Open | @dev-bob |
-
----
-
-## Sign-off
-
-| Role | Name | Date | Decision |
-|------|------|------|----------|
-| Product Owner | | | Approve / Reject / Conditional |
-| Tech Lead | | | Approve / Reject / Conditional |
-| QA Lead | | | Approve / Reject / Conditional |
-| Design Lead | | | Approve / Reject / Conditional |
-</pre>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== Template 14 ==================== -->
-  <div class="template-item" data-layer="progress">
-    <div class="template-header" onclick="toggleTemplate(this)">
-      <span class="th-num">14</span>
-      <span class="th-title">System Prompt Library — 提示词模板库</span>
-      <span class="th-tag progress">进度层</span>
-      <span class="th-chevron">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </span>
-    </div>
-    <div class="template-body">
-      <div class="template-content">
-        <p class="tpl-desc">沉淀项目过程中反复使用的 AI 提示词模板。按场景分类管理，每个模板含角色设定、上下文注入点、输出格式约束，确保团队成员调用 AI 时输出一致、可复现。</p>
-<pre># System Prompt Library
-# Version: 1.0.0
-# Maintained by: {team/process lead}
-# Usage: 复制对应 prompt → 替换 {占位符} → 发送给 AI Agent
-
----
-
-## Category: 需求分析 (Requirement Analysis)
-
-### Prompt: REQ-001 需求拆解
----
-**Role**: 你是一位资深产品经理，精通 JTBD（Jobs to be Done）框架和 INVEST 原则。
-
-**Context**:
-- 项目背景：{插入 Problem Framing 摘要}
-- 当前 Feature 描述：{粘贴需求描述}
-- 目标用户：{Persona 名称与核心 JTBD}
-
-**Task**:
-将以上 Feature 拆解为独立的 User Story，每个 Story 需满足 INVEST 原则。
-
-**Output Format** (严格遵循):
-```
-## Story {N}: {Story Title}
-- **As a** {角色}
-- **I want** {功能}
-- **So that** {价值/目的}
-- **Priority**: {P0|P1|P2}
-- **Story Points**: {1|2|3|5|8|13}
-- **Acceptance Criteria**:
-  - Given {前置条件}
-  - When {触发动作}
-  - Then {预期结果}
-- **Design Touchpoints**: {涉及哪些页面/组件}
-- **Dependencies**: {依赖的其他 Story ID}
-```
-
-**Constraints**:
-- 每个 Story 必须可独立交付和测试
-- AC 至少 2 条（正常路径 + 1 条异常路径）
-- 如 Story 不可拆小，标注 "Epic" 并进一步拆分
-- 输出中文
----
-
-### Prompt: REQ-002 需求优先级排序
----
-**Role**: 你是一位产品经理，熟悉 RICE 和 ICE 优先级框架。
-
-**Context**:
-- 以下是需要排序的需求列表：
-{粘贴需求列表}
-
-- 产品阶段：{探索期/成长期/成熟期}
-- 团队规模：{N 人，N 周期}
-- 北极星指标：{指标名称}
-
-**Task**:
-使用 RICE 框架对以上需求排序，输出排序表和推荐 sprint 分配。
-
-**Output Format**:
-| Rank | Story | Reach | Impact | Confidence | Effort | RICE Score | Sprint |
-|------|-------|-------|--------|-----------|--------|------------|--------|
-| 1 | ... | N users/月 | 3(高)/2(中)/1(低) | 100%→0% | person-months | (R×I×C)/E | N |
-
-**Constraints**:
-- Impact 和 Confidence 必须给出评分依据（1-2 句话）
-- 如数据不足，Confidence 不超过 50%，并标注"需验证"
-- Sprint 容量按 {团队人数} × {每期周数} × 0.7（扣除 overhead）计算
----
-
-
-## Category: 设计产出 (Design Generation)
-
-### Prompt: DES-001 页面设计指令
----
-**Role**: 你是一位高级 UI/UX 设计师，精通现代 Web 设计系统。
-
-**Context**:
-- 设计简报：{粘贴 Design Brief 关键字段}
-- Design Tokens：{粘贴 design-tokens.json 中 color/typography/spacing 部分}
-- 页面信息：
-  - 路由：{/route/path}
-  - 页面标题：{Title}
-  - 主要功能：{功能描述}
-  - 包含组件：{Component List}
-
-**Task**:
-设计此页面的完整布局，输出可直接编码的 HTML + Tailwind CSS。
-
-**Design Constraints**:
-- 严格使用提供的 design tokens（颜色、字号、间距）
-- 桌面优先（1024px+），给出移动端适配方案
-- 包含以下状态：默认 / hover / loading / empty / error
-- 每个可交互元素必须有 focus-visible 样式
-- 遵守 WCAG 2.1 AA 标准
-
-**Output**:
-1. 布局结构说明（2-3 句）
-2. 完整 HTML 代码（自包含，内联 CSS 变量）
-3. 移动端适配说明（列表形式）
-4. 状态变体说明（每种状态如何切换）
-
-**Constraints**:
-- 不使用外部 CSS 框架（仅 Tailwind utility classes 或内联 style）
-- 图标使用 inline SVG
-- 图片使用 placeholder.com 占位
-- 所有文案使用中文
----
-
-### Prompt: DES-002 异常态穷举
----
-**Role**: 你是一位注重细节的设计师，专门负责边缘状态设计。
-
-**Context**:
-- 页面名称：{Screen Name}
-- 路由：{/route}
-- 主功能：{功能描述}
-- 已知状态：{列出已设计的状态}
-
-**Task**:
-按以下 6 个维度穷举此页面所有可能需要设计的异常态：
-1. Empty（空数据/首次使用/筛选无结果）
-2. Loading（首次加载/刷新/操作中）
-3. Error（网络/服务端/权限/表单校验）
-4. Boundary（数据量上限/文本超长/特殊字符）
-5. Permission（只读/无权限/会话过期）
-6. Offline（断网/恢复/离线操作队列）
-
-**Output Format**:
-| State Type | Trigger | Visual Description | Copy | Interaction | Priority |
-|------------|---------|--------------------|------|-------------|----------|
-
-**Constraints**:
-- 每个 Category 至少 1 条，不可遗漏
-- Priority 用 P0（必须）/ P1（应该）/ P2（可以）
-- Copy 必须是最终文案，非占位符
-- 如某状态不适用此页面，标注 "N/A — 理由"
----
-
-
-## Category: 代码生成 (Code Generation)
-
-### Prompt: DEV-001 组件实现
----
-**Role**: 你是一位高级前端工程师，精通 React 19 + TypeScript 5 + Tailwind CSS 4。
-
-**Context**:
-- 项目规范：{粘贴 AGENTS.md 核心规则}
-- Design Tokens：{引用 tokens 文件路径}
-- 组件规格：
-  - 名称：{ComponentName}
-  - Props 接口：{列出 Props}
-  - 使用场景：{描述}
-  - 设计稿描述：{文字描述视觉规格}
-
-**Task**:
-实现此 React 组件，输出完整可运行代码。
-
-**Code Requirements**:
-- 使用 TypeScript，Props 接口命名为 {ComponentName}Props
-- 使用 Tailwind classes，颜色/间距/圆角引用 token 对应的 CSS 变量
-- 包含以下状态的样式：default / hover / focus-visible / disabled / loading
-- 添加 aria-label 或关联 label（如有交互）
-- 支持键盘操作（如适用）
-- 导出为 named export
-
-**Output**:
-1. {ComponentName}.tsx — 组件实现
-2. {ComponentName}.test.tsx — Vitest + Testing Library 测试（至少 3 个用例）
-
-**Constraints**:
-- 不使用 any 类型
-- 不使用 inline style，全部 Tailwind classes
-- 组件文件 ≤ 150 行（如超长说明需要拆分）
-- 测试覆盖：渲染 / 交互 / 无障碍
----
-
-### Prompt: DEV-002 API Service 生成
----
-**Role**: 你是一位后端/全栈工程师，精通 REST API 设计与 TypeScript。
-
-**Context**:
-- 数据模型定义：{粘贴 Data Model Spec 中相关 Entity}
-- API 约定：{粘贴 AGENTS.md 中 API Layer 规则}
-- 需要实现的资源：{Resource Name}
-
-**Task**:
-为此资源生成完整的 CRUD service 层 + 类型定义。
-
-**Output**:
-1. src/types/{resource}.ts — 类型定义
-2. src/services/{resource}.ts — API service 层
-
-**Service 函数签名**:
-- get{Resource}(id): Promise<Result<{Resource}>>
-- list{Resource}(params): Promise<PaginatedResult<{Resource}[]>>
-- create{Resource}(input): Promise<Result<{Resource}>>
-- update{Resource}(id, patch): Promise<Result<{Resource}>>
-- delete{Resource}(id): Promise<Result<void>>
-
-**Result type**: `{ data: T | null; error: { code: string; message: string } | null; status: number }`
-
-**Constraints**:
-- 使用项目统一的 fetch wrapper（import from src/lib/http）
-- 所有函数有 JSDoc 注释
-- 输入参数做运行时校验（用 zod schema）
-- 错误码使用大写蛇形命名（如 RESOURCE_NOT_FOUND）
----
-
-
-## Category: 测试与验收 (Testing & QA)
-
-### Prompt: QA-001 测试用例生成
----
-**Role**: 你是一位 QA 工程师，精通 Playwright E2E 测试和 Vitest 单元测试。
-
-**Context**:
-- AC 文件：{粘贴 AC as Code YAML}
-- 组件/页面路由：{Route or Component path}
-
-**Task**:
-根据以上验收标准生成可执行的 Playwright E2E 测试文件。
-
-**Output**: src/e2e/{feature}.spec.ts
-
-**Constraints**:
-- 每个 AC ID 对应一个 test.describe block
-- 使用 Page Object Model 模式
-- 每个 test 有清晰的描述
-- 包含 setup（登录/数据准备）和 teardown
-- 断言使用 expect + Playwright auto-waiting
-- 测试数据使用 fixtures，不硬编码
-- 标注 @smoke / @regression 标签
----
-
-## Usage Guide
-
-1. **选择 Category**：根据当前任务阶段选择对应分类
-2. **复制 Prompt**：完整复制 --- 之间的内容
-3. **替换占位符**：所有 {花括号} 内容替换为实际上下文
-4. **检查 Constraints**：确保 AI 输出符合约束
-5. **验证 Output Format**：对照模板中的格式要求检查输出
-6. **归档结果**：将 AI 输出与原始 Prompt 一起存入项目文档
-
-## Maintenance
-
-- 每次使用后如有改进，更新此文件并 bump version
-- 低效 Prompt（输出不符合预期 > 2 次）应标注并优化
-- 新增场景按 Category 归档，ID 格式：{CATEGORY}-{NNN}
-</pre>
-      </div>
-    </div>
-  </div>
-
+</div>
 </div>
 
 
@@ -4178,6 +2592,25 @@ window.addEventListener('scroll', () => {
     if (a.getAttribute('href') === '#' + current) a.classList.add('active');
   });
 });
+function kitCopy(btn) {
+  var pre = btn.closest('.template-item').querySelector('pre');
+  if (!pre) return;
+  var text = pre.innerText;
+  var ok = function(v){
+    btn.textContent = v ? '已复制' : '失败';
+    setTimeout(function(){ btn.textContent = '复制'; }, 2000);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function(){ ok(true); }, function(){ ok(false); });
+  } else {
+    try {
+      var r = document.createRange(), s = window.getSelection();
+      r.selectNodeContents(pre); s.removeAllRanges(); s.addRange(r);
+      document.execCommand('copy'); s.removeAllRanges();
+      ok(true);
+    } catch(e) { ok(false); }
+  }
+}
 </script>
 </body>
 </html>
