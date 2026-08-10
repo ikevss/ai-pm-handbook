@@ -267,7 +267,8 @@ tbody tr:hover td { background: var(--raised); }
 
 /* ====== Pit Grid ====== */
 .pit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 20px 0; }
-.pit-card { background: var(--surface); border: 1px solid var(--b); border-radius: var(--r); padding: 20px 22px; border-top: 3px solid var(--rose); }
+.pit-card { background: var(--surface); border: 1px solid var(--b); border-radius: var(--r); padding: 20px 22px; }
+.pit-card::after { content: ''; display: block; width: 40px; height: 3px; background: var(--rose); border-radius: 2px; margin-bottom: 10px; }
 .pit-card h4 { font-family: var(--font); font-size: 17px; font-weight: 600; margin-bottom: 6px; }
 .pit-card .pit-symptom { font-size: 13px; color: var(--rose); margin-bottom: 8px; font-weight: 500; }
 .pit-card .pit-fix { font-size: 14px; color: var(--t2); line-height: 1.6; }
@@ -275,8 +276,8 @@ tbody tr:hover td { background: var(--raised); }
 /* ====== AI Boundary ====== */
 .boundary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
 .boundary-card { border-radius: var(--r); padding: 22px; border: 1px solid var(--b); background: var(--surface); }
-.boundary-card.do { border-left: 3px solid var(--teal); }
-.boundary-card.dont { border-left: 3px solid var(--rose); }
+.boundary-card.do { border-color: rgba(13,148,136,0.25); background: rgba(13,148,136,0.02); }
+.boundary-card.dont { border-color: rgba(190,18,60,0.25); background: rgba(190,18,60,0.02); }
 .boundary-card h4 { font-family: var(--font); font-size: 17px; font-weight: 600; margin-bottom: 10px; }
 .boundary-card.do h4 { color: var(--teal); }
 .boundary-card.dont h4 { color: var(--rose); }
@@ -705,7 +706,7 @@ tbody tr:hover td { background: var(--raised); }
   <div class="station-why"><p>前四站是"学"，这一站是<strong>"用和改"</strong>。直接复制的话术、前人踩过的坑、什么时候该把活交给 AI、什么时候必须自己来。</p></div>
 
   <h3 class="subhead">8 句话术（直接复制用）</h3>
-  <div style="border:1px solid var(--b);border-radius:var(--r);overflow:hidden;margin:20px 0;">
+  <div style="border:1px solid var(--b);border-radius:var(--r);overflow:hidden;margin:20px 24px;">
     <div class="phrase-row"><span class="phrase-scene">开工</span><span class="phrase-text">我要做【X】。做对了的标准是【1、2、3】。这次不做【Y】。你先复述一遍理解，别动手。</span><button class="phrase-copy" onclick="copyPhrase(this)" aria-label="复制">复制</button></div>
     <div class="phrase-row"><span class="phrase-scene">要方案</span><span class="phrase-text">先给方案别写代码。说清楚：怎么做、多久、有什么风险、有没有更简单的办法、会碰到哪些现有功能。</span><button class="phrase-copy" onclick="copyPhrase(this)" aria-label="复制">复制</button></div>
     <div class="phrase-row"><span class="phrase-scene">限制范围</span><span class="phrase-text">只改【X】，别碰其他任何地方。改完告诉我你碰了哪些功能。</span><button class="phrase-copy" onclick="copyPhrase(this)" aria-label="复制">复制</button></div>
