@@ -100,6 +100,9 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
   .toc-guide { display:none; }
   .tcard-grid { grid-template-columns:1fr; }
 }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
 </style>
 </head>
 <body>

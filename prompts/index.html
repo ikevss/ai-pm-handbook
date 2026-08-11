@@ -149,6 +149,9 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
   .card-grid { grid-template-columns:1fr; }
   .pcard-copy { opacity:1; }
 }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
 </style>
 </head>
 <body>
