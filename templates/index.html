@@ -1,0 +1,2131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>案例模板库 — AI PM 工作手册</title>
+<meta name="description" content="21 份项目文档模板，覆盖调研立项、产品设计、项目执行、测试验收、发布迭代、AI 自动产出、过程资产。每份模板可直接复制使用。">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<style>
+/* ====== Tokens ====== */
+:root {
+  --bg: #faf8f5; --surface: #fff; --raised: #f5f3ef; --code-bg: #f8f6f2;
+  --t1: #1c1917; --t2: #57534e; --t3: #a8a29e;
+  --amber: #c2410c; --amber-l: #fed7aa; --amber-g: rgba(194,65,12,0.06);
+  --teal: #0d9488; --teal-l: #ccfbf1; --teal-g: rgba(13,148,136,0.06);
+  --rose: #be123c; --rose-l: #ffe4e6;
+  --violet: #6366f1; --violet-l: #e0e7ff;
+  --b: #e7e5e4; --b2: #d6d3d1;
+  --font: "PingFang SC","Microsoft YaHei","Hiragino Sans GB",-apple-system,system-ui,sans-serif;
+  --font-mono: "SF Mono","Cascadia Code","Fira Code",Consolas,monospace;
+  --r: 12px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { background: var(--bg); color: var(--t1); font-family: var(--font); font-size: 16px; line-height: 1.7; }
+:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 4px; }
+
+/* ====== Top bar ====== */
+.top-bar { position: sticky; top: 0; z-index: 50; background: rgba(250,248,245,0.94); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--b); padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+.top-back { font-size: 14px; font-weight: 600; color: var(--teal); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+.top-back:hover { color: var(--amber); }
+.top-title { font-weight: 800; font-size: 16px; color: var(--amber); }
+.top-right { width: 80px; }
+
+/* ====== Hero ====== */
+.t-hero { text-align: center; padding: 64px 24px 40px; max-width: 780px; margin: 0 auto; }
+.t-hero h1 { font-weight: 800; font-size: clamp(32px, 5vw, 52px); line-height: 1.15; margin-bottom: 12px; }
+.t-hero p { color: var(--t2); font-size: 16px; max-width: 600px; margin: 0 auto 24px; }
+.t-hero .t-count { font-family: var(--font-mono); font-size: 13px; color: var(--t3); }
+
+/* ====== Directory tree ====== */
+.t-tree { max-width: 780px; margin: 0 auto 48px; padding: 0 24px; }
+.t-tree details { margin-bottom: 4px; }
+.t-tree summary { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--amber); cursor: pointer; padding: 4px 0; list-style: none; display: flex; align-items: center; gap: 4px; }
+.t-tree summary::-webkit-details-marker { display: none; }
+.t-tree summary::before { content: '▸'; display: inline-block; font-size: 10px; transition: transform 0.2s; width: 14px; flex-shrink: 0; color: var(--t3); }
+.t-tree details[open] > summary::before { transform: rotate(90deg); }
+.t-tree ul { list-style: none; padding-left: 20px; margin: 2px 0 8px; }
+.t-tree li { font-family: var(--font-mono); font-size: 12px; color: var(--t2); padding: 1px 0; }
+.t-tree li.dir { color: var(--teal); font-weight: 600; }
+
+/* ====== Sticky nav ====== */
+.t-nav { position: sticky; top: 56px; z-index: 40; background: var(--bg); border-bottom: 1px solid var(--b); padding: 0 24px; overflow-x: auto; white-space: nowrap; display: flex; gap: 2px; }
+.t-nav a { font-size: 12px; font-weight: 600; color: var(--t2); text-decoration: none; padding: 8px 12px; border-radius: 6px 6px 0 0; transition: all 0.15s; }
+.t-nav a:hover { color: var(--t1); background: var(--raised); }
+.t-nav a.n-root { color: var(--amber); }
+
+/* ====== Sections ====== */
+main { max-width: 960px; margin: 0 auto; padding: 0 24px 64px; }
+.t-section { margin-bottom: 48px; }
+.t-section-head { margin-bottom: 16px; }
+.t-section-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+.t-section-desc { font-size: 14px; color: var(--t2); line-height: 1.6; }
+
+/* ====== Doc cards ====== */
+.t-doc-list { display: flex; flex-direction: column; gap: 8px; }
+.t-doc-card { background: var(--surface); border: 1px solid var(--b); border-radius: var(--r); overflow: hidden; transition: border-color 0.15s; }
+.t-doc-card:hover { border-color: var(--b2); }
+.t-doc-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; cursor: pointer; gap: 12px; user-select: none; }
+.t-doc-left { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.t-doc-name { font-size: 15px; font-weight: 700; color: var(--t1); }
+.t-doc-meta { font-size: 12px; color: var(--t3); }
+.t-doc-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.t-status { font-family: var(--font-mono); font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+.t-status-draft { background: var(--amber-l); color: var(--amber); }
+.t-status-in-review { background: #dbeafe; color: #2563eb; }
+.t-status-approved { background: var(--teal-l); color: var(--teal); }
+.t-status-proposed { background: var(--violet-l); color: var(--violet); }
+.t-status-archived { background: #f3f4f6; color: #9ca3af; }
+.t-chevron { color: var(--t3); transition: transform 0.2s; flex-shrink: 0; }
+.t-doc-card.open .t-chevron { transform: rotate(180deg); }
+.t-doc-body { display: none; padding: 0 20px 20px; }
+.t-doc-card.open .t-doc-body { display: block; }
+.t-doc-desc { font-size: 13px; color: var(--t2); margin-bottom: 12px; line-height: 1.6; }
+.t-copy-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--teal); background: none; border: 1px solid var(--teal); border-radius: 6px; padding: 6px 12px; cursor: pointer; margin-bottom: 12px; transition: all 0.15s; }
+.t-copy-btn:hover { background: var(--teal); color: #fff; }
+.t-content { font-family: var(--font-mono); font-size: 12px; line-height: 1.65; background: var(--raised); padding: 16px 20px; border-radius: 8px; overflow-x: auto; color: var(--t2); white-space: pre; max-height: 500px; overflow-y: auto; }
+.t-content::-webkit-scrollbar { width: 6px; height: 6px; }
+.t-content::-webkit-scrollbar-thumb { background: var(--b2); border-radius: 3px; }
+
+/* ====== Prompt rule ====== */
+.t-rule { max-width: 780px; margin: 0 auto 48px; padding: 20px 24px; background: var(--amber-g); border: 1px solid rgba(194,65,12,0.15); border-radius: var(--r); }
+.t-rule h3 { font-size: 16px; font-weight: 700; color: var(--amber); margin-bottom: 8px; }
+.t-rule p { font-size: 14px; color: var(--t2); margin: 0; }
+
+/* ====== Footer ====== */
+.t-footer { text-align: center; padding: 40px 24px; border-top: 1px solid var(--b); color: var(--t3); font-size: 14px; }
+.t-footer a { color: var(--amber); text-decoration: none; font-weight: 600; }
+
+/* ====== Toast ====== */
+.toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); background: var(--t1); color: #fff; padding: 10px 24px; border-radius: 8px; font-size: 13px; z-index: 200; opacity: 0; transition: opacity 0.25s; pointer-events: none; }
+.toast.show { opacity: 1; }
+
+@media (max-width: 768px) {
+  .t-doc-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .t-doc-right { align-self: flex-end; }
+  .t-hero { padding: 40px 20px 32px; }
+  main { padding: 0 16px 48px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="top-back" href="../">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    返回手册
+  </a>
+  <span class="top-title">案例模板库</span>
+  <span class="top-right"></span>
+</div>
+
+<div class="t-hero">
+  <h1>23 份文档模板</h1>
+  <p>覆盖从调研立项到发布迭代的全流程。每份模板都有<strong>空白版可直接复制</strong>，部分有填写示例。点击展开查看完整内容，一键复制拿去用。</p>
+  <p class="t-count">7 个阶段 · 23 份模板 · 建议所有文档统一使用 Draft → In Review → Approved → Archived 状态</p>
+</div>
+
+<!-- Directory tree -->
+<div class="t-tree">
+  <details open>
+    <summary>项目根目录/</summary>
+    <ul>
+      <li>README.md — 项目入口 + 进度看板</li>
+      <li>AGENTS.md — AI 协作规则</li>
+      <li>CLAUDE.md — AI 协作规则（同上，平台不同文件名不同）</li>
+      <li>CHANGELOG.md — 变更记录 = 需求追踪</li>
+      <li class="dir">docs/</li>
+    </ul>
+  </details>
+  <details open>
+    <summary>docs/product/ — 产品定义与 AI 行为约束</summary>
+    <ul>
+      <li>商业需求-BRD.md</li>
+      <li>竞品分析-CAR.md</li>
+      <li>技术验证-POC.md</li>
+      <li>产品规格-Spec.md</li>
+      <li>提示词规范-Prompt.md</li>
+    </ul>
+  </details>
+  <details open>
+    <summary>docs/project/ — 项目管理五件套</summary>
+    <ul>
+      <li>项目计划-Plan.md</li>
+      <li>风险登记-Risk.md</li>
+      <li>项目进度-Kanban.md</li>
+      <li>团队分工-RACI.md</li>
+      <li>成本核算-Cost.md</li>
+    </ul>
+  </details>
+  <details open>
+    <summary>docs/qa/ — 测试与验收</summary>
+    <ul>
+      <li>验收清单-UAT.md</li>
+      <li>测试集-Eval.md</li>
+      <li>评分指标-Metrics.md</li>
+      <li>缺陷跟踪-Issue.md</li>
+    </ul>
+  </details>
+  <details open>
+    <summary>docs/ai-logs/ — AI 自动产出</summary>
+    <ul>
+      <li>方案记录-Solution.md</li>
+      <li>原型记录-Prototype.md</li>
+      <li>架构决策-ADR.md</li>
+    </ul>
+  </details>
+  <details open>
+    <summary>docs/process/ — 过程资产</summary>
+    <ul>
+      <li>会议记录-Notes-YYYYMMDD.md</li>
+      <li>工作笔记-Scratch.md</li>
+      <li>参考资料-Ref.md</li>
+    </ul>
+  </details>
+</div>
+
+<!-- Coding rule -->
+<div class="t-rule">
+  <h3>⚠️ AI 每次 Coding 前强制读取 3 个文件</h3>
+  <p>① <strong>docs/product/产品规格-Spec.md</strong> — 要做什么？<br>
+  ② <strong>docs/product/提示词规范-Prompt.md</strong> — AI 应该如何表现？<br>
+  ③ <strong>CHANGELOG.md</strong> — 最近发生了什么变化？</p>
+</div>
+
+<!-- Sticky section nav -->
+<nav class="t-nav" aria-label="分区导航">
+  <a href="#sec-root" class="n-root">📋 根目录</a>
+  <a href="#sec-product">📦 product/</a>
+  <a href="#sec-project">📐 project/</a>
+  <a href="#sec-qa">✅ qa/</a>
+  <a href="#sec-ai-logs">🤖 ai-logs/</a>
+  <a href="#sec-process">📝 process/</a>
+</nav>
+
+<main>
+    <section class="t-section" id="sec-root">
+      <div class="t-section-head">
+        <h2 class="t-section-title">📋 根目录</h2>
+        <p class="t-section-desc">AI 和开发者进入仓库后必须第一时间读取的文件。只放 README、AGENTS、CLAUDE、CHANGELOG——不放详细需求、不放细粒度进度、不放大量会议记录。</p>
+      </div>
+      <div class="t-doc-list">
+        <div class="t-doc-card" id="doc-changelog">
+          <div class="t-doc-header" onclick="toggleDoc('changelog')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">CHANGELOG.md</span>
+              <span class="t-doc-meta">初稿：PM · 评审决策：业务负责人</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-approved">已确认</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-changelog">
+            <p class="t-doc-desc">记录需求变更、功能迭代、验收结论。PM 每轮验收后维护。</p>
+            <button class="t-copy-btn" onclick="copyDoc('changelog')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-changelog"># 变更记录 CHANGELOG
+
+&gt; 本文件用于记录需求变更、功能迭代、验收结论。
+&gt; 每轮 PM 验收后更新一次。
+&gt; 格式遵循 Keep a Changelog。
+
+## [Unreleased]
+
+### Added
+- 新增：
+
+### Changed
+- 调整：
+
+### Fixed
+- 修复：
+
+### Removed
+- 移除：
+
+### PM 验收结论
+- 验收状态：待验收 / 部分通过 / 通过
+- 验收人：
+- 验收日期：
+- 遗留问题：
+- 是否允许进入下一阶段：是 / 否
+
+---
+
+## [v0.1.0] - 2026-08-11
+
+### Added
+- 完成初始需求定义。
+- 完成核心功能清单。
+
+### Changed
+- 无。
+
+### Fixed
+- 无。
+
+### Removed
+- 无。
+
+### PM 验收结论
+- 验收状态：通过
+- 验收人：花生
+- 验收日期：2026-08-11
+- 遗留问题：无
+- 是否允许进入下一阶段：是</pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-readme">
+          <div class="t-doc-header" onclick="toggleDoc('readme')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">README.md</span>
+              <span class="t-doc-meta">初稿：PM + AI · 评审决策：全员对齐</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-approved">已确认</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-readme">
+            <p class="t-doc-desc">项目入口 + 进度看板。PM 和 AI 共同维护，AI 打开仓库第一眼看到它。</p>
+            <button class="t-copy-btn" onclick="copyDoc('readme')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-readme"># 项目名称
+
+## 项目背景
+用 3-5 句话说明项目为什么存在，解决什么问题。
+
+## 项目目标
+- 目标一
+- 目标二
+- 目标三
+
+## 当前阶段
+- [x] 需求定义完成
+- [x] 原型验证完成
+- [ ] AI Coding 开发中
+- [ ] UAT 验收
+
+## 核心文档索引
+- 产品规格：docs/product/产品规格-Spec.md
+- 提示词规范：docs/product/提示词规范-Prompt.md
+- 项目进度：docs/project/项目进度-Kanban.md
+- 验收清单：docs/qa/验收清单-UAT.md
+- 变更记录：CHANGELOG.md
+
+## 外部系统
+- 项目看板：链接
+- 设计稿：链接
+- 数据看板：链接
+- 会议记录：docs/process/</pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-agents">
+          <div class="t-doc-header" onclick="toggleDoc('agents')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">AGENTS.md / CLAUDE.md</span>
+              <span class="t-doc-meta">初稿：PM / 主程 · 评审决策：技术总监</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-approved">已确认</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-agents">
+            <p class="t-doc-desc">约束 AI 行为，规定 AI 必须先读哪些文档、哪些目录不能改、代码规范、协作 SOP。</p>
+            <button class="t-copy-btn" onclick="copyDoc('agents')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-agents"># AI 协作规则
+
+## 1. 编码前必读
+在进行任何代码生成或修改前，必须先阅读以下文档：
+- docs/product/产品规格-Spec.md
+- docs/product/提示词规范-Prompt.md
+- CHANGELOG.md
+
+## 2. 禁止修改区域
+未经 PM 或主程确认，不得修改以下文件：
+- README.md
+- AGENTS.md
+- CHANGELOG.md
+- docs/product/产品规格-Spec.md
+
+## 3. 代码生成原则
+- 优先遵循现有项目结构。
+- 不得删除已有测试用例。
+- 涉及业务规则时，必须以 Spec.md 为准。
+- 如 Spec.md 未覆盖，必须先提出疑问，不得自行假设。
+
+## 4. 文档更新要求
+每次生成重要技术方案后，需更新：
+- docs/ai-logs/方案记录-Solution.md
+
+每次发生重大需求变化后，需提示 PM 更新：
+- CHANGELOG.md</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="t-section" id="sec-product">
+      <div class="t-section-head">
+        <h2 class="t-section-title">📦 docs/product/</h2>
+        <p class="t-section-desc">产品定义与 AI 行为约束。Spec 是 AI 的指令级需求文档，Prompt 规范定义 AI 角色和输出格式。</p>
+      </div>
+      <div class="t-doc-list">
+        <div class="t-doc-card" id="doc-brd">
+          <div class="t-doc-header" onclick="toggleDoc('brd')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">商业需求-BRD.md</span>
+              <span class="t-doc-meta">初稿：PM · 评审决策：业务负责人</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-draft">草稿</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-brd">
+            <p class="t-doc-desc">说明项目背景、业务痛点、目标用户、商业价值、核心指标。</p>
+            <button class="t-copy-btn" onclick="copyDoc('brd')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-brd">---
+title: 商业需求-BRD
+owner: 花生
+status: Draft
+updated: 2026-08-11
+---
+
+# 商业需求文档 BRD
+
+## 1. 项目背景
+
+说明项目产生的业务背景、当前问题、为什么现在要做。
+
+- 当前业务问题：
+- 当前用户痛点：
+- 现有解决方式的不足：
+- 为什么现在启动：
+
+## 2. 目标用户
+
+说明主要用户群体及其特征。
+
+| 用户角色 | 核心诉求 | 使用场景 | 频率 |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |
+|  |  |  |  |
+
+## 3. 核心问题
+
+明确本次项目要解决的最关键问题。
+
+1.
+2.
+3.
+
+## 4. 项目目标
+
+目标必须可衡量。
+
+| 目标类型 | 指标 | 当前值 | 目标值 | 衡量方式 |
+| :--- | :--- | :--- | :--- | :--- |
+| 业务目标 |  |  |  |  |
+| 用户目标 |  |  |  |  |
+| 技术目标 |  |  |  |  |
+
+## 5. 项目范围
+
+### 本期包含
+
+-
+-
+-
+
+### 本期不包含
+
+-
+-
+-
+
+## 6. 商业价值
+
+说明项目预期带来的商业收益。
+
+- 收入增长：
+- 成本下降：
+- 效率提升：
+- 用户体验提升：
+- 战略价值：
+
+## 7. 关键里程碑
+
+| 阶段 | 目标 | 预计时间 | 负责人 |
+| :--- | :--- | :--- | :--- |
+| 需求定义 |  |  |  |
+| 技术验证 |  |  |  |
+| 开发实现 |  |  |  |
+| 测试验收 |  |  |  |
+| 灰度上线 |  |  |  |
+
+## 8. 风险与假设
+
+| 类型 | 描述 | 影响 | 应对方案 |
+| :--- | :--- | :--- | :--- |
+| 假设 |  |  |  |
+| 风险 |  |  |  |
+
+## 9. 评审记录
+
+| 日期 | 参与人 | 结论 | 待办 |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |</pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-car">
+          <div class="t-doc-header" onclick="toggleDoc('car')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">竞品分析-CAR.md</span>
+              <span class="t-doc-meta">初稿：PM · 评审决策：业务负责人 / 技术总监</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-draft">草稿</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-car">
+            <p class="t-doc-desc">记录竞品功能、体验、技术路径、定价、优劣势。</p>
+            <button class="t-copy-btn" onclick="copyDoc('car')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-car">---
+title: 竞品分析-CAR
+owner: 花生
+status: Draft
+updated: 2026-08-11
+---
+
+# 竞品分析报告 CAR
+
+## 1. 分析目标
+
+说明本次竞品分析要回答什么问题。
+
+- 是否验证需求存在：
+- 是否寻找差异化机会：
+- 是否参考技术实现路径：
+- 是否评估商业化模式：
+
+## 2. 竞品清单
+
+| 竞品名称 | 类型 | 目标用户 | 核心场景 | 分析优先级 |
+| :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  | 高 / 中 / 低 |
+|  |  |  |  | 高 / 中 / 低 |
+
+## 3. 功能对比
+
+| 功能模块 | 我方产品 | 竞品 A | 竞品 B | 结论 |
+| :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  |  |
+|  |  |  |  |  |
+
+## 4. 体验对比
+
+| 维度 | 我方产品 | 竞品 A | 竞品 B | 备注 |
+| :--- | :--- | :--- | :--- | :--- |
+| 上手成本 |  |  |  |  |
+| 核心路径效率 |  |  |  |  |
+| AI 响应质量 |  |  |  |  |
+| 异常处理 |  |  |  |  |
+| 用户信任感 |  |  |  |  |
+
+## 5. 技术路径分析
+
+| 竞品 | 可能技术方案 | 模型能力 | 数据来源 | 成本结构 | 可借鉴点 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  |  |  |
+
+## 6. 商业化对比
+
+| 竞品 | 定价模式 | 免费范围 | 付费点 | 估算收入模式 | 启示 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  |  |  |
+
+## 7. 差异化机会
+
+1.
+2.
+3.
+
+## 8. 产品建议
+
+| 建议 | 优先级 | 原因 | 是否纳入本期 |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |
+
+## 9. 参考资料
+
+-
+- </pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-poc">
+          <div class="t-doc-header" onclick="toggleDoc('poc')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">技术验证-POC.md</span>
+              <span class="t-doc-meta">初稿：PM / 技术 · 评审决策：技术总监</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-draft">草稿</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-poc">
+            <p class="t-doc-desc">验证大模型、工具链、接口、关键方案是否可行。</p>
+            <button class="t-copy-btn" onclick="copyDoc('poc')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-poc">---
+title: 技术验证-POC
+owner: 花生
+status: Draft
+updated: 2026-08-11
+---
+
+# 技术验证报告 POC
+
+## 1. 验证目标
+
+说明本次 POC 要验证什么技术假设。
+
+- 要验证的核心问题：
+- 如果不验证，可能导致什么风险：
+- 本次验证不覆盖什么：
+
+## 2. 验证假设
+
+| 假设编号 | 假设内容 | 成功标准 |
+| :--- | :--- | :--- |
+| H1 |  |  |
+| H2 |  |  |
+
+## 3. 验证方案
+
+### 方案 A
+
+- 方案描述：
+- 所需模型 / API / 数据：
+- 预计成本：
+- 优点：
+- 缺点：
+
+### 方案 B
+
+- 方案描述：
+- 所需模型 / API / 数据：
+- 预计成本：
+- 优点：
+- 缺点：
+
+## 4. 测试数据
+
+| 数据类型 | 来源 | 数量 | 是否脱敏 | 备注 |
+| :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  |  |
+
+## 5. 验证结果
+
+| 假设编号 | 实际结果 | 是否通过 | 证据 / 数据 |
+| :--- | :--- | :--- | :--- |
+| H1 |  |  |  |
+| H2 |  |  |  |
+
+## 6. 成本与性能
+
+| 指标 | 结果 | 是否达标 |
+| :--- | :--- | :--- |
+| 平均响应时间 |  |  |
+| Token 消耗 |  |  |
+| 单次调用成本 |  |  |
+| 准确率 / 通过率 |  |  |
+| 稳定性 |  |  |
+
+## 7. 结论
+
+- 是否继续推进：是 / 否 / 有条件继续
+- 推荐方案：
+- 主要风险：
+- 下一步动作：
+
+## 8. 评审记录
+
+| 日期 | 参与人 | 结论 |
+| :--- | :--- | :--- |
+|  |  |  |</pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-spec">
+          <div class="t-doc-header" onclick="toggleDoc('spec')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">产品规格-Spec.md</span>
+              <span class="t-doc-meta">初稿：PM · 评审决策：技术总监 / AI 工程</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-in-review">评审中</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-spec">
+            <p class="t-doc-desc">给 AI 看的指令级需求文档。结构化描述功能、规则、输入输出、边界条件、验收标准。</p>
+            <button class="t-copy-btn" onclick="copyDoc('spec')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-spec">---
+title: 产品规格-Spec
+owner: 花生
+status: Draft
+updated: 2026-08-11
+priority: High
+---
+
+# 产品规格说明书 Spec
+
+&gt; 本文件是给 AI 和研发团队共同阅读的指令级需求文档。
+&gt; AI 在生成代码前必须先阅读本文件。
+&gt; 如果本文件与其他文档冲突，以本文件为准。
+
+## 1. 产品概述
+
+- 产品名称：
+- 一句话定义：
+- 核心用户：
+- 核心场景：
+- 核心价值：
+
+## 2. 目标与非目标
+
+### 目标
+
+1.
+2.
+3.
+
+### 非目标
+
+1.
+2.
+3.
+
+## 3. 用户角色
+
+| 角色 | 权限 | 核心任务 | 关键限制 |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |
+
+## 4. 核心用户流程
+
+### 主流程
+
+1. 用户进入：
+2. 用户输入：
+3. 系统处理：
+4. AI 输出：
+5. 用户确认：
+6. 结果保存：
+
+### 异常流程
+
+| 异常情况 | 系统行为 | 用户提示 | 兜底方案 |
+| :--- | :--- | :--- | :--- |
+| AI 超时 |  |  |  |
+| AI 输出不符合格式 |  |  |  |
+| 用户输入无效 |  |  |  |
+| 权限不足 |  |  |  |
+
+## 5. 功能规格
+
+### 5.1 功能一：功能名称
+
+#### 功能目标
+
+说明该功能为什么存在。
+
+#### 输入
+
+| 字段 | 类型 | 是否必填 | 校验规则 | 示例 |
+| :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  |  |
+
+#### 输出
+
+| 字段 | 类型 | 说明 | 示例 |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |
+
+#### 业务规则
+
+- MUST：
+- SHOULD：
+- MUST NOT：
+
+#### 边界条件
+
+- 最大输入长度：
+- 最小输入长度：
+- 空输入处理：
+- 超长输入处理：
+- 多语言处理：
+- 特殊字符处理：
+
+#### 验收标准
+
+- Given：
+- When：
+- Then：
+
+## 6. AI 行为要求
+
+| 行为 | 要求 |
+| :--- | :--- |
+| 回复风格 |  |
+| 回复长度 |  |
+| 不确定时 | 必须说明不确定，不得编造 |
+| 涉及敏感信息 | 必须拒绝或脱敏 |
+| 工具调用 | 必须先确认参数，再执行 |
+| 输出格式 | 必须符合指定 JSON / Markdown / 页面结构 |
+
+## 7. 数据要求
+
+| 数据对象 | 来源 | 用途 | 更新频率 | 权限要求 |
+| :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  |  |
+
+## 8. 状态机
+
+| 状态 | 含义 | 进入条件 | 可流转到 | 操作角色 |
+| :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  |  |
+
+## 9. 权限要求
+
+| 角色 | 可查看 | 可编辑 | 可删除 | 可审批 |
+| :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  |  |
+
+## 10. 埋点与指标
+
+| 事件名称 | 触发时机 | 关键参数 | 用途 |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |
+
+## 11. 开放问题
+
+| 问题 | 影响 | 责任人 | 状态 |
+| :--- | :--- | :--- | :--- |
+|  |  |  | 待确认 |
+
+## 12. 变更记录
+
+| 版本 | 日期 | 修改人 | 修改内容 | 影响范围 |
+| :--- | :--- | :--- | :--- | :--- |
+| v0.1 | 2026-08-11 | 花生 | 初稿 | 全部 |</pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-prompt">
+          <div class="t-doc-header" onclick="toggleDoc('prompt')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">提示词规范-Prompt.md</span>
+              <span class="t-doc-meta">初稿：PM · 评审决策：业务专家 / 法务</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-in-review">评审中</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-prompt">
+            <p class="t-doc-desc">定义 AI 角色、语气、任务逻辑、安全边界、输出格式、禁用内容。</p>
+            <button class="t-copy-btn" onclick="copyDoc('prompt')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-prompt">---
+title: 提示词规范-Prompt
+owner: 花生
+status: Draft
+updated: 2026-08-11
+---
+
+# 提示词规范 Prompt
+
+&gt; 本文件定义 AI 的角色、任务、输出格式和安全边界。
+&gt; AI Coding 或运行时 Prompt 必须与本文件保持一致。
+
+## 1. AI 角色定义
+
+- 角色名称：
+- 角色定位：
+- 服务对象：
+- 语气风格：
+- 专业边界：
+
+## 2. 核心任务
+
+AI 需要完成的任务：
+
+1.
+2.
+3.
+
+AI 不应该完成的任务：
+
+1.
+2.
+3.
+
+## 3. 输入说明
+
+| 输入项 | 类型 | 是否必须 | 说明 |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |
+
+## 4. 输出格式
+
+要求 AI 输出的格式：
+
+```text
+{
+  &quot;answer&quot;: &quot;&quot;,
+  &quot;confidence&quot;: &quot;&quot;,
+  &quot;reason&quot;: &quot;&quot;,
+  &quot;next_action&quot;: &quot;&quot;
+}
+```
+
+## 5. 行为约束
+
+- 不得编造事实。
+- 不得输出敏感信息。
+- 不得承诺无法完成的能力。
+- 遇到不确定信息，必须明确说明不确定。
+- 涉及专业领域，必须提示用户人工确认。
+- 输出必须简洁、结构化、可执行。
+
+## 6. 安全边界
+
+| 场景 | AI 行为 |
+| :--- | :--- |
+| 用户询问敏感信息 | 拒绝并说明原因 |
+| 用户要求越权操作 | 拒绝并提示权限不足 |
+| 用户输入包含攻击性内容 | 不执行，给出安全提示 |
+| 用户输入明显异常 | 记录并转人工 / 降级处理 |
+
+## 7. Few-shot 示例
+
+### 示例 1：正常场景
+
+用户输入：...
+
+AI 输出：...
+
+### 示例 2：异常场景
+
+用户输入：...
+
+AI 输出：...
+
+## 8. 版本记录
+
+| 版本 | 日期 | 修改人 | 修改内容 |
+| :--- | :--- | :--- | :--- |
+| v0.1 | 2026-08-11 | 花生 | 初稿 |</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="t-section" id="sec-project">
+      <div class="t-section-head">
+        <h2 class="t-section-title">📐 docs/project/</h2>
+        <p class="t-section-desc">项目管理五件套。项目计划定方向，风险登记防意外，进度看板跟执行，RACI 分职责，成本核算控预算。</p>
+      </div>
+      <div class="t-doc-list">
+        <div class="t-doc-card" id="doc-plan">
+          <div class="t-doc-header" onclick="toggleDoc('plan')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">项目计划-Plan.md</span>
+              <span class="t-doc-meta">初稿：PM · 评审决策：技术总监 / 业务负责人</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-draft">草稿</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-plan">
+            <p class="t-doc-desc">明确阶段目标、里程碑、关键节点、交付物。</p>
+            <button class="t-copy-btn" onclick="copyDoc('plan')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-plan">---
+title: 项目计划-Plan
+owner: 花生
+status: Draft
+updated: 2026-08-11
+---
+
+# 项目计划 Plan
+
+## 1. 项目目标
+
+- 本次项目要交付什么：
+- 项目成功标准：
+- 项目截止时间：
+- 关键约束：
+
+## 2. 阶段计划
+
+| 阶段 | 目标 | 关键交付物 | 开始时间 | 结束时间 | 负责人 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 调研立项 |  | BRD / CAR / POC |  |  |  |
+| 产品设计 |  | Spec / Prompt |  |  |  |
+| AI Coding |  | 可运行版本 |  |  |  |
+| 测试验收 |  | UAT / Eval |  |  |  |
+| 灰度上线 |  | 小流量验证 |  |  |  |
+| 正式发布 |  | 全量上线 |  |  |  |
+
+## 3. 关键里程碑
+
+| 里程碑 | 完成标准 | 预计日期 | 状态 |
+| :--- | :--- | :--- | :--- |
+| 需求确认 | Spec 通过评审 |  | 未开始 |
+| POC 完成 | 技术方案可验证 |  | 未开始 |
+| MVP 可演示 | 核心链路跑通 |  | 未开始 |
+| UAT 通过 | PM 验收清单通过 |  | 未开始 |
+| 上线 | 灰度无重大问题 |  | 未开始 |
+
+## 4. 依赖项
+
+| 依赖类型 | 依赖内容 | 提供方 | 是否确认 | 风险 |
+| :--- | :--- | :--- | :--- | :--- |
+| 数据 |  |  |  |  |
+| API |  |  |  |  |
+| 设计 |  |  |  |  |
+| 模型 |  |  |  |  |
+| 运营 |  |  |  |  |
+
+## 5. 资源分工
+
+| 角色 | 人员 | 投入比例 | 职责 |
+| :--- | :--- | :--- | :--- |
+| PM |  |  |  |
+| 技术 |  |  |  |
+| 设计 |  |  |  |
+| 测试 |  |  |  |
+| 业务 |  |  |  |
+
+## 6. 当前状态
+
+- 当前阶段：
+- 当前进度：
+- 当前阻塞：
+- 下一步动作：</pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-risk">
+          <div class="t-doc-header" onclick="toggleDoc('risk')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">风险登记-Risk.md</span>
+              <span class="t-doc-meta">初稿：PM · 评审决策：技术总监</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-draft">草稿</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-risk">
+            <p class="t-doc-desc">记录需求、技术、模型效果、成本、合规等风险及降级方案。</p>
+            <button class="t-copy-btn" onclick="copyDoc('risk')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-risk">---
+title: 风险登记-Risk
+owner: 花生
+status: Draft
+updated: 2026-08-11
+---
+
+# 风险登记册 Risk
+
+## 1. 风险评估表
+
+| ID | 风险类型 | 风险描述 | 发生概率 | 影响程度 | 风险等级 | 应对策略 | 责任人 | 状态 |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| R01 | 需求风险 |  | 高/中/低 | 高/中/低 |  |  |  | 待处理 |
+| R02 | 技术风险 |  |  |  |  |  |  |  |
+| R03 | 模型效果风险 |  |  |  |  |  |  |  |
+| R04 | 成本风险 |  |  |  |  |  |  |  |
+| R05 | 合规风险 |  |  |  |  |  |  |  |
+| R06 | 进度风险 |  |  |  |  |  |  |  |
+
+## 2. 降级预案
+
+| 风险场景 | 触发条件 | 降级方案 | 决策人 |
+| :--- | :--- | :--- | :--- |
+| AI 准确率不达标 |  | 转人工 / 缩小范围 / 减少自动化 |  |
+| API 成本过高 |  | 降低调用频率 / 换模型 / 缓存结果 |  |
+| 上线时间不足 |  | 砍非核心功能 / 灰度延期 |  |
+| 安全合规问题 |  | 立即下线 / 关闭 AI 输出 |  |
+
+## 3. 待决策事项
+
+| 事项 | 影响 | 备选方案 | 决策人 | 截止日期 |
+| :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  |  |</pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-kanban">
+          <div class="t-doc-header" onclick="toggleDoc('kanban')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">项目进度-Kanban.md</span>
+              <span class="t-doc-meta">初稿：PM / AI · 评审决策：全员对齐</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-in-review">评审中</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-kanban">
+            <p class="t-doc-desc">单独维护细粒度任务进度。README 只放摘要或链接，避免根目录频繁变更。</p>
+            <button class="t-copy-btn" onclick="copyDoc('kanban')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-kanban">---
+title: 项目进度-Kanban
+owner: 花生
+status: In Review
+updated: 2026-08-11
+---
+
+# 项目进度看板 Kanban
+
+&gt; 本文件记录细粒度任务进度。
+&gt; README 只放摘要，详细内容写在这里。
+&gt; 建议每日或每轮 AI Coding 后更新。
+
+## 当前迭代
+
+- 迭代名称：
+- 迭代周期：
+- 迭代目标：
+- 当前状态：进行中 / 阻塞 / 已完成
+
+## Backlog
+
+- [ ] 任务名称｜负责人｜优先级｜备注
+
+## Doing
+
+- [ ] 任务名称｜负责人｜开始日期｜预计完成日期
+
+## Review
+
+- [ ] 任务名称｜负责人｜等待谁 Review｜阻塞原因
+
+## Done
+
+- [x] 任务名称｜负责人｜完成日期｜验收人
+
+## Blocked
+
+- [ ] 任务名称｜负责人｜阻塞原因｜需要谁支持
+
+## 本周重点
+
+1.
+2.
+3.
+
+## 更新记录
+
+| 日期 | 更新人 | 更新内容 |
+| :--- | :--- | :--- |
+| 2026-08-11 | 花生 | 初始化看板 |</pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-raci">
+          <div class="t-doc-header" onclick="toggleDoc('raci')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">团队分工-RACI.md</span>
+              <span class="t-doc-meta">初稿：PM · 评审决策：技术总监 / 业务负责人</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-draft">草稿</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-raci">
+            <p class="t-doc-desc">明确 PM、技术、测试、业务、AI 各自负责、审批、咨询、知会范围。</p>
+            <button class="t-copy-btn" onclick="copyDoc('raci')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-raci">---
+title: 团队分工-RACI
+owner: 花生
+status: Draft
+updated: 2026-08-11
+---
+
+# 团队分工矩阵 RACI
+
+&gt; R = Responsible 负责执行
+&gt; A = Accountable 最终负责
+&gt; C = Consulted 需要咨询
+&gt; I = Informed 需要知会
+
+## 1. 角色说明
+
+| 角色 | 人员 | 职责 |
+| :--- | :--- | :--- |
+| PM |  | 需求、验收、项目推进 |
+| 技术负责人 |  | 架构、代码 Review、技术决策 |
+| AI Agent |  | 代码生成、文档初稿、测试建议 |
+| 设计 |  | 原型、UI、交互 |
+| 业务负责人 |  | 业务目标、验收决策 |
+| 测试 / QA |  | 测试集、评测、验收支持 |
+
+## 2. RACI 矩阵
+
+| 事项 | PM | 技术负责人 | AI Agent | 设计 | 业务负责人 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| BRD | A/R | C | C | I | C |
+| Spec | A/R | C | C | C | C |
+| Prompt 规范 | A/R | C | C | I | C |
+| AI Coding | C | A | R | I | I |
+| 代码 Review | I | A/R | C | I | I |
+| UAT 验收 | A/R | C | C | I | C |
+| 上线决策 | R | C | I | I | A |
+
+## 3. AI 参与边界
+
+AI 可以做什么：
+
+- 生成代码初稿。
+- 生成测试用例建议。
+- 整理会议记录。
+- 根据 Spec 提出实现方案。
+- 更新文档草稿。
+
+AI 不能做什么：
+
+- 不得自行修改已 Approved 的 Spec。
+- 不得自行删除测试用例。
+- 不得自行变更上线计划。
+- 不得在未经 PM 确认时改变业务规则。</pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-cost">
+          <div class="t-doc-header" onclick="toggleDoc('cost')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">成本核算-Cost.md</span>
+              <span class="t-doc-meta">初稿：PM / 财务 · 评审决策：业务负责人</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-draft">草稿</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-cost">
+            <p class="t-doc-desc">按用户场景预估 Token 消耗、调用频次、API 成本，并跟踪实际支出。</p>
+            <button class="t-copy-btn" onclick="copyDoc('cost')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-cost">---
+title: 成本核算-Cost
+owner: 花生
+status: Draft
+updated: 2026-08-11
+---
+
+# 成本核算表 Cost
+
+## 1. 成本模型概览
+
+| 成本项 | 单位 | 单价 | 预估用量 | 月成本 | 备注 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 大模型 API 调用 | Token/次 |  |  |  |  |
+| 向量数据库 | 存储/查询 |  |  |  |  |
+| 云服务器 | 小时/月 |  |  |  |  |
+| 第三方 API | 次 |  |  |  |  |
+| 人工标注 | 条 |  |  |  |  |
+
+## 2. 用户场景成本预估
+
+| 场景 | 单次输入 Token | 单次输出 Token | 单次总 Token | 日均调用次数 | 日成本 | 月成本 |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  |  |  |  |
+
+## 3. 成本上限
+
+- 单用户日成本上限：
+- 单用户月成本上限：
+- 项目总预算：
+- 超出预算后的动作：
+
+## 4. 实际消耗记录
+
+| 日期 | 调用次数 | Token 消耗 | 实际成本 | 是否异常 | 备注 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  |  |  |
+
+## 5. 优化策略
+
+- 缓存高频问题：
+- 降低模型规格：
+- 减少上下文长度：
+- 异步处理非实时任务：
+- 对低价值请求限流：</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="t-section" id="sec-qa">
+      <div class="t-section-head">
+        <h2 class="t-section-title">✅ docs/qa/</h2>
+        <p class="t-section-desc">测试与验收。PM 自己验收，不依赖测试团队。Eval 和 Metrics 保障 AI 输出质量可衡量。</p>
+      </div>
+      <div class="t-doc-list">
+        <div class="t-doc-card" id="doc-uat">
+          <div class="t-doc-header" onclick="toggleDoc('uat')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">验收清单-UAT.md</span>
+              <span class="t-doc-meta">初稿：PM · 评审决策：业务负责人</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-draft">草稿</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-uat">
+            <p class="t-doc-desc">PM 自测清单。每轮在浏览器或真实环境中逐条验收，测完形成测试报告。</p>
+            <button class="t-copy-btn" onclick="copyDoc('uat')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-uat">---
+title: 验收清单-UAT
+owner: 花生
+status: Draft
+updated: 2026-08-11
+---
+
+# 用户验收测试清单 UAT
+
+&gt; 本清单由 PM 在真实环境中逐条验收。
+&gt; 每一项必须明确通过 / 不通过 / 不适用。
+&gt; 验收完成后，本文件即为测试报告。
+
+## 1. 验收信息
+
+| 项目 | 内容 |
+| :--- | :--- |
+| 验收版本 |  |
+| 验收环境 |  |
+| 验收人 |  |
+| 验收日期 |  |
+| 关联 Spec | docs/product/产品规格-Spec.md |
+| 关联变更记录 | CHANGELOG.md |
+
+## 2. 功能验收
+
+| 编号 | 验收项 | 前置条件 | 操作步骤 | 预期结果 | 实际结果 | 状态 |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| UAT-01 |  |  |  |  |  | 未测 |
+| UAT-02 |  |  |  |  |  | 未测 |
+
+状态：未测 / 通过 / 不通过 / 不适用
+
+## 3. AI 效果验收
+
+| 编号 | 场景 | 用户输入 | 预期 AI 行为 | 实际 AI 行为 | 是否通过 | 备注 |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| AI-01 | 正常问答 |  |  |  | 未测 |  |
+| AI-02 | 模糊输入 |  |  |  | 未测 |  |
+| AI-03 | 敏感问题 |  |  |  | 未测 |  |
+| AI-04 | 超长输入 |  |  |  | 未测 |  |
+
+## 4. 异常与边界验收
+
+| 编号 | 异常场景 | 预期行为 | 实际行为 | 是否通过 |
+| :--- | :--- | :--- | :--- | :--- |
+| EX-01 | 网络失败 |  |  | 未测 |
+| EX-02 | AI 超时 |  |  | 未测 |
+| EX-03 | 权限不足 |  |  | 未测 |
+| EX-04 | 数据为空 |  |  | 未测 |
+
+## 5. 验收结论
+
+| 项目 | 结果 |
+| :--- | :--- |
+| 总验收项 |  |
+| 通过项 |  |
+| 不通过项 |  |
+| 遗留问题 |  |
+| 是否允许上线 | 是 / 否 / 有条件上线 |
+| PM 签字 |  |</pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-eval">
+          <div class="t-doc-header" onclick="toggleDoc('eval')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">测试集-Eval.md</span>
+              <span class="t-doc-meta">初稿：PM / 业务专家 · 评审决策：业务负责人</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-draft">草稿</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-eval">
+            <p class="t-doc-desc">记录真实用户问题、标准答案、边界用例、评测基准，用于 AI 回归测试。</p>
+            <button class="t-copy-btn" onclick="copyDoc('eval')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-eval">---
+title: 测试集-Eval
+owner: 花生
+status: Draft
+updated: 2026-08-11
+---
+
+# 测试集与评测基准 Eval
+
+&gt; 本文件定义 AI 效果评测的标准集。
+&gt; 实际测试数据较大时，可存放为 CSV / JSON / YAML，本文件负责说明规则。
+
+## 1. 评测目标
+
+- 评测对象：
+- 评测版本：
+- 评测目的：
+- 通过标准：
+
+## 2. 测试集来源
+
+| 来源 | 数量 | 说明 | 是否脱敏 |
+| :--- | :--- | :--- | :--- |
+| 真实用户问题 |  |  |  |
+| 业务专家构造 |  |  |  |
+| 边界场景构造 |  |  |  |
+| 对抗样本 |  |  |  |
+
+## 3. 测试用例
+
+| ID | 类型 | 用户输入 | 期望输出/判断标准 | 优先级 | 状态 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| EVAL-01 | 正常 |  |  | P0 | 未测 |
+| EVAL-02 | 边界 |  |  | P0 | 未测 |
+| EVAL-03 | 异常 |  |  | P1 | 未测 |
+| EVAL-04 | 安全 |  |  | P0 | 未测 |
+
+## 4. 评测结果
+
+| ID | 实际输出 | 得分 | 是否通过 | Bad Case 类型 | 备注 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| EVAL-01 |  |  | 未测 |  |  |
+| EVAL-02 |  |  | 未测 |  |  |
+
+## 5. Bad Case 分类
+
+| 类型 | 说明 | 示例 |
+| :--- | :--- | :--- |
+| 事实错误 | AI 编造或引用错误 |  |
+| 答非所问 | 未理解用户意图 |  |
+| 格式错误 | 输出不符合要求 |  |
+| 安全违规 | 输出敏感或违规内容 |  |
+| 工具调用错误 | API / 参数调用错误 |  |
+| 响应过慢 | 超出体验阈值 |  |
+
+## 6. 回归规则
+
+- 每次 Prompt 修改后，必须重新跑 P0 用例。
+- 每次模型版本变更后，必须重新跑全部用例。
+- 每次上线前，P0 通过率必须达到 100%。
+- 新增 Bad Case 必须补充进测试集。</pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-metrics">
+          <div class="t-doc-header" onclick="toggleDoc('metrics')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">评分指标-Metrics.md</span>
+              <span class="t-doc-meta">初稿：PM · 评审决策：业务专家</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-draft">草稿</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-metrics">
+            <p class="t-doc-desc">定义准确性、相关性、安全性、完成率等评分维度及达标阈值。</p>
+            <button class="t-copy-btn" onclick="copyDoc('metrics')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-metrics">---
+title: 评分指标-Metrics
+owner: 花生
+status: Draft
+updated: 2026-08-11
+---
+
+# 模型评分指标 Metrics
+
+## 1. 评分目标
+
+说明本次评分用于判断什么。
+
+- 评测版本：
+- 评测对象：
+- 评分人/评分方式：
+- 是否允许自动评分：
+
+## 2. 指标定义
+
+| 指标 | 定义 | 计算方式 | 目标值 | 权重 |
+| :--- | :--- | :--- | :--- | :--- |
+| 准确性 | 输出事实是否正确 | 正确用例数/总用例数 | ≥ 90% | 40% |
+| 相关性 | 是否回答用户问题 | 人工评分 1-5 分 | ≥ 4.0 | 20% |
+| 安全性 | 是否违反安全边界 | 违规数 = 0 | 0 | 20% |
+| 可用性 | 是否可被用户直接使用 | 人工评分 1-5 分 | ≥ 4.0 | 10% |
+| 响应速度 | 从请求到返回时间 | P95 延迟 | ≤ 3s | 10% |
+
+## 3. 人工评分表
+
+| 用例 ID | 准确性 | 相关性 | 安全性 | 可用性 | 总分 | 评分人 | 备注 |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| EVAL-01 |  |  |  |  |  |  |  |
+
+评分标准：
+
+- 5 分：完全符合预期。
+- 4 分：基本符合预期，有轻微问题。
+- 3 分：部分可用，需要人工修正。
+- 2 分：基本不可用。
+- 1 分：完全不可用或存在严重错误。
+
+## 4. 自动评分规则
+
+| 检查项 | 判断规则 | 扣分 |
+| :--- | :--- | :--- |
+| 输出格式错误 | 不符合 JSON/Markdown 规范 | -20 |
+| 未回答核心问题 | 关键信息缺失 | -30 |
+| 编造事实 | 与标准答案冲突 | -50 |
+| 安全违规 | 触发敏感词或越权 | 直接不通过 |
+
+## 5. 最终结论
+
+| 项目 | 结果 |
+| :--- | :--- |
+| 综合得分 |  |
+| 是否达标 |  |
+| 主要问题 |  |
+| 下一步优化 |  |</pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-issue">
+          <div class="t-doc-header" onclick="toggleDoc('issue')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">缺陷跟踪-Issue.md</span>
+              <span class="t-doc-meta">初稿：PM / 运营 · 评审决策：研发 / PM</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-draft">草稿</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-issue">
+            <p class="t-doc-desc">记录测试和线上发现的问题、AI 幻觉、Bad Case、修复状态。</p>
+            <button class="t-copy-btn" onclick="copyDoc('issue')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-issue">---
+title: 缺陷跟踪-Issue
+owner: 花生
+status: Draft
+updated: 2026-08-11
+---
+
+# 缺陷跟踪记录 Issue
+
+## 1. 缺陷列表
+
+| ID | 严重程度 | 模块 | 问题描述 | 复现步骤 | 原因分析 | 状态 | 负责人 |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| ISSUE-01 | P0 |  |  |  |  | 待处理 |  |
+| ISSUE-02 | P1 |  |  |  |  | 待处理 |  |
+
+严重程度定义：
+
+- P0：阻断核心流程，必须立即修复。
+- P1：影响主要体验，上线前必须修复。
+- P2：影响次要体验，可排期修复。
+- P3：优化建议，不影响上线。
+
+## 2. AI Bad Case 记录
+
+| ID | 用户输入 | AI 实际输出 | 期望输出 | Bad Case 类型 | 修复方式 | 是否补充进 Eval |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| BAD-01 |  |  |  |  |  | 是/否 |
+
+## 3. 缺陷详情模板
+
+### ISSUE-01：问题标题
+
+- 严重程度：
+- 发现时间：
+- 发现人：
+- 影响范围：
+- 复现步骤：
+
+1.
+2.
+3.
+
+- 预期结果：
+- 实际结果：
+- 原因分析：
+- 修复方案：
+- 验收标准：
+- 状态：待处理 / 处理中 / 待验收 / 已关闭
+
+## 4. 关闭标准
+
+- 问题可稳定复现或定位。
+- 修复方案已实现。
+- PM 或测试验收通过。
+- 如属于 AI Bad Case，必须补充进 `测试集-Eval.md`。</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="t-section" id="sec-ai-logs">
+      <div class="t-section-head">
+        <h2 class="t-section-title">🤖 docs/ai-logs/</h2>
+        <p class="t-section-desc">AI 自动产出文档。PM 需 Review 确认后才作为执行依据。</p>
+      </div>
+      <div class="t-doc-list">
+        <div class="t-doc-card" id="doc-solution">
+          <div class="t-doc-header" onclick="toggleDoc('solution')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">方案记录-Solution.md</span>
+              <span class="t-doc-meta">初稿：AI 产出 · 评审决策：PM / 技术总监</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-in-review">评审中</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-solution">
+            <p class="t-doc-desc">AI 自动产出的技术方案、实现路径、选型理由，PM 需 Review 是否符合 Spec。</p>
+            <button class="t-copy-btn" onclick="copyDoc('solution')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-solution">---
+title: 方案记录-Solution
+owner: AI / 花生
+status: In Review
+updated: 2026-08-11
+---
+
+# 产品方案记录 Solution
+
+&gt; 本文件记录 AI 在 Coding 过程中提出的产品或技术方案。
+&gt; AI 初稿必须经过 PM 或技术负责人 Review 后才能作为执行依据。
+
+## 1. 问题背景
+
+- 要解决的问题：
+- 触发来源：
+- 关联文档：
+- 当前约束：
+
+## 2. 方案选项
+
+### 方案 A
+
+- 方案描述：
+- 优点：
+- 缺点：
+- 成本：
+- 风险：
+- 对现有 Spec 的影响：
+
+### 方案 B
+
+- 方案描述：
+- 优点：
+- 缺点：
+- 成本：
+- 风险：
+- 对现有 Spec 的影响：
+
+## 3. 推荐方案
+
+- 推荐选择：
+- 推荐理由：
+- 需要 PM 确认的问题：
+- 需要技术确认的问题：
+
+## 4. 影响范围
+
+| 影响对象 | 是否影响 | 说明 |
+| :--- | :--- | :--- |
+| 产品规格-Spec | 是/否 |  |
+| 提示词规范-Prompt | 是/否 |  |
+| 测试集-Eval | 是/否 |  |
+| 用户界面 | 是/否 |  |
+| 成本 | 是/否 |  |
+| 上线计划 | 是/否 |  |
+
+## 5. Review 结论
+
+| 日期 | Review 人 | 结论 | 后续动作 |
+| :--- | :--- | :--- | :--- |
+|  |  | 采纳 / 驳回 / 修改后采纳 |  |</pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-prototype">
+          <div class="t-doc-header" onclick="toggleDoc('prototype')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">原型记录-Prototype.md</span>
+              <span class="t-doc-meta">初稿：AI 产出 · 评审决策：PM / UX</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-in-review">评审中</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-prototype">
+            <p class="t-doc-desc">AI 自动生成的原型、UI 方案、页面结构、交互逻辑记录。</p>
+            <button class="t-copy-btn" onclick="copyDoc('prototype')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-prototype">---
+title: 原型记录-Prototype
+owner: AI / 花生
+status: In Review
+updated: 2026-08-11
+---
+
+# 交互原型记录 Prototype
+
+&gt; 本文件记录 AI 生成的原型、页面结构、交互方案。
+&gt; 所有原型必须经过 PM 确认后才能进入开发。
+
+## 1. 原型目标
+
+- 本次原型要验证什么：
+- 关联需求：
+- 目标用户：
+- 核心场景：
+
+## 2. 页面清单
+
+| 页面 | 目标 | 入口 | 核心操作 | 状态 |
+| :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  | 草稿 |
+
+## 3. 页面结构
+
+### 页面一：页面名称
+
+- 页面目标：
+- 主要模块：
+- 用户操作：
+- 系统反馈：
+- 空状态：
+- 加载状态：
+- 错误状态：
+
+## 4. 交互说明
+
+| 操作 | 触发条件 | 系统反馈 | 异常处理 |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |
+
+## 5. AI 生成记录
+
+| 版本 | 日期 | 生成工具 | Prompt/输入摘要 | 输出结果 |
+| :--- | :--- | :--- | :--- | :--- |
+| v0.1 |  |  |  |  |
+
+## 6. PM 评审结论
+
+| 项目 | 结论 |
+| :--- | :--- |
+| 是否符合 Spec | 是/否 |
+| 是否符合用户体验要求 | 是/否 |
+| 是否需要修改 | 是/否 |
+| 是否允许进入开发 | 是/否 |
+| PM 签字 |  |</pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-adr">
+          <div class="t-doc-header" onclick="toggleDoc('adr')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">架构决策-ADR.md</span>
+              <span class="t-doc-meta">初稿：AI / 主程 · 评审决策：技术总监 / PM</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-proposed">提议中</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-adr">
+            <p class="t-doc-desc">记录关键技术选型背景、备选方案、决策理由、后果影响。</p>
+            <button class="t-copy-btn" onclick="copyDoc('adr')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-adr">---
+title: 架构决策-ADR
+owner: 技术负责人 / 花生
+status: Proposed
+updated: 2026-08-11
+---
+
+# 架构决策记录 ADR
+
+## ADR-001：决策标题
+
+### 状态
+
+Proposed / Accepted / Deprecated / Superseded
+
+### 背景
+
+说明为什么需要做这个技术决策。
+
+- 当前问题：
+- 业务约束：
+- 技术约束：
+- 成本约束：
+
+### 备选方案
+
+#### 方案 A
+
+- 描述：
+- 优点：
+- 缺点：
+- 成本：
+- 风险：
+
+#### 方案 B
+
+- 描述：
+- 优点：
+- 缺点：
+- 成本：
+- 风险：
+
+### 决策
+
+选择方案：
+
+理由：
+
+### 后果
+
+- 正面影响：
+- 负面影响：
+- 后续维护成本：
+- 是否影响产品规格：
+- 是否影响测试集：
+
+### 评审记录
+
+| 日期 | 参与人 | 结论 |
+| :--- | :--- | :--- |
+|  |  |  |</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="t-section" id="sec-process">
+      <div class="t-section-head">
+        <h2 class="t-section-title">📝 docs/process/</h2>
+        <p class="t-section-desc">过程资产：会议记录、工作笔记、参考资料。不直接驱动开发，但随时可查。</p>
+      </div>
+      <div class="t-doc-list">
+        <div class="t-doc-card" id="doc-notes">
+          <div class="t-doc-header" onclick="toggleDoc('notes')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">会议记录-Notes-YYYYMMDD.md</span>
+              <span class="t-doc-meta">初稿：PM / AI · 评审决策：PM</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-approved">已确认</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-notes">
+            <p class="t-doc-desc">记录关键会议中的决策、结论、待办、责任人。</p>
+            <button class="t-copy-btn" onclick="copyDoc('notes')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-notes">---
+title: 会议记录-Notes
+owner: 花生
+status: Approved
+updated: 2026-08-11
+meeting_date: 2026-08-11
+---
+
+# 会议记录 Notes
+
+## 1. 会议信息
+
+| 项目 | 内容 |
+| :--- | :--- |
+| 会议主题 |  |
+| 会议时间 |  |
+| 参与人 |  |
+| 记录人 |  |
+| 关联文档 |  |
+
+## 2. 会议目标
+
+本次会议需要解决的问题：
+
+1.
+2.
+3.
+
+## 3. 讨论要点
+
+### 议题一
+
+- 背景：
+- 讨论内容：
+- 不同观点：
+- 结论：
+
+### 议题二
+
+- 背景：
+- 讨论内容：
+- 不同观点：
+- 结论：
+
+## 4. 决策记录
+
+| 决策编号 | 决策内容 | 决策人 | 影响范围 |
+| :--- | :--- | :--- | :--- |
+| D01 |  |  |  |
+
+## 5. Action Items
+
+| 编号 | 待办事项 | 负责人 | 截止日期 | 状态 |
+| :--- | :--- | :--- | :--- | :--- |
+| A01 |  |  |  | 待处理 |
+| A02 |  |  |  | 待处理 |
+
+## 6. 需要更新到哪些文档
+
+| 文档 | 更新内容 | 责任人 |
+| :--- | :--- | :--- |
+| 产品规格-Spec.md |  |  |
+| 项目进度-Kanban.md |  |  |
+| CHANGELOG.md |  |  |</pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-scratch">
+          <div class="t-doc-header" onclick="toggleDoc('scratch')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">工作笔记-Scratch.md</span>
+              <span class="t-doc-meta">初稿：PM · 评审决策：PM</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-draft">草稿</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-scratch">
+            <p class="t-doc-desc">记录 PM 的草稿、灵感、临时想法、未确认需求。</p>
+            <button class="t-copy-btn" onclick="copyDoc('scratch')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-scratch">---
+title: 工作笔记-Scratch
+owner: 花生
+status: Draft
+updated: 2026-08-11
+---
+
+# 工作笔记 Scratch
+
+&gt; 本文件用于记录未确认的想法、草稿和临时笔记。
+&gt; 本文件不作为正式需求依据。
+&gt; 如想法被确认，应迁移到 Spec、BRD 或 Kanban。
+
+## 当前想法
+
+### 想法一
+
+- 描述：
+- 动机：
+- 可能价值：
+- 风险：
+- 是否值得验证：
+
+### 想法二
+
+- 描述：
+- 动机：
+- 可能价值：
+- 风险：
+- 是否值得验证：
+
+## 待验证问题
+
+- [ ]
+- [ ]
+- [ ]
+
+## 已迁移到正式文档的内容
+
+| 日期 | 原想法 | 迁移到文档 | 状态 |
+| :--- | :--- | :--- | :--- |
+|  |  |  |  |</pre>
+          </div>
+        </div>
+        <div class="t-doc-card" id="doc-ref">
+          <div class="t-doc-header" onclick="toggleDoc('ref')" role="button" tabindex="0" aria-expanded="false">
+            <div class="t-doc-left">
+              <span class="t-doc-name">参考资料-Ref.md</span>
+              <span class="t-doc-meta">初稿：PM · 评审决策：PM</span>
+            </div>
+            <div class="t-doc-right">
+              <span class="t-status t-status-draft">草稿</span>
+              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="t-doc-body" id="body-ref">
+            <p class="t-doc-desc">汇总行业资料、竞品链接、API 文档、设计稿、外部报告。</p>
+            <button class="t-copy-btn" onclick="copyDoc('ref')" aria-label="复制模板内容">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              复制模板
+            </button>
+            <pre class="t-content" id="content-ref">---
+title: 参考资料-Ref
+owner: 花生
+status: Draft
+updated: 2026-08-11
+---
+
+# 参考资料 Ref
+
+&gt; 本文件用于汇总项目相关的外部资料。
+&gt; 每条资料应注明来源、可信度和使用建议。
+
+## 1. 行业资料
+
+| 标题 | 链接 | 来源 | 日期 | 可信度 | 摘要 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  | 高/中/低 |  |
+
+## 2. 竞品资料
+
+| 竞品 | 资料类型 | 链接 | 关键发现 | 对我方启示 |
+| :--- | :--- | :--- | :--- | :--- |
+|  | 官网/文档/截图/视频 |  |  |  |
+
+## 3. 技术资料
+
+| 主题 | 链接 | 用途 | 是否已验证 | 备注 |
+| :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  |  |
+
+## 4. 设计资料
+
+| 名称 | 链接 | 版本 | 状态 | 备注 |
+| :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  |  |
+
+## 5. 数据资料
+
+| 数据名称 | 来源 | 是否脱敏 | 使用范围 | 备注 |
+| :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  |  |</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+</main>
+
+<footer class="t-footer">
+  <p><a href="../">← 返回 AI PM 工作手册</a></p>
+  <p style="margin-top:4px;">AI PM 工作手册 · 案例模板库 · 23 份模板</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function toggleDoc(id) {
+  const card = document.getElementById('doc-' + id);
+  const header = card.querySelector('.t-doc-header');
+  const isOpen = card.classList.contains('open');
+  card.classList.toggle('open');
+  header.setAttribute('aria-expanded', !isOpen);
+}
+
+function copyDoc(id) {
+  const content = document.getElementById('content-' + id).textContent;
+  const btn = document.querySelector('#doc-' + id + ' .t-copy-btn');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(content).then(() => showToast('已复制到剪贴板'));
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = content;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); showToast('已复制到剪贴板'); } catch(e) { showToast('复制失败，请手动选择复制'); }
+    document.body.removeChild(ta);
+  }
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1800);
+}
+</script>
+</body>
+</html>
