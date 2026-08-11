@@ -1741,22 +1741,26 @@ Product: id, name, price, stock, category
 var CARDS = document.querySelectorAll(".tcard");
 var modal = document.getElementById("modal");
 var curRaw = "";
+function openCard(card) {
+  var name = card.querySelector(".tcard-name").textContent;
+  var desc = card.querySelector(".tcard-desc").textContent;
+  var meta = card.querySelector(".tcard-meta").textContent;
+  var raw = card.querySelector(".tcard-raw").textContent;
+  document.getElementById("m-title").textContent = name;
+  document.getElementById("m-desc").textContent = desc;
+  document.getElementById("m-meta").textContent = meta;
+  document.getElementById("m-body").innerHTML = "<pre>" + raw.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") + "</pre>";
+  curRaw = raw;
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+  var bc = document.getElementById("m-copy");
+  bc.classList.remove("copied");
+  bc.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width:15px;height:15px"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span>复制模板</span>';
+}
 CARDS.forEach(function(card) {
-  card.addEventListener("click", function() {
-    var name = card.querySelector(".tcard-name").textContent;
-    var desc = card.querySelector(".tcard-desc").textContent;
-    var meta = card.querySelector(".tcard-meta").textContent;
-    var raw = card.querySelector(".tcard-raw").textContent;
-    document.getElementById("m-title").textContent = name;
-    document.getElementById("m-desc").textContent = desc;
-    document.getElementById("m-meta").textContent = meta;
-    document.getElementById("m-body").innerHTML = "<pre>" + raw.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") + "</pre>";
-    curRaw = raw;
-    modal.classList.add("open");
-    document.body.style.overflow = "hidden";
-    var bc = document.getElementById("m-copy");
-    bc.classList.remove("copied");
-    bc.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width:15px;height:15px"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span>复制模板</span>';
+  card.addEventListener("click", function() { openCard(card); });
+  card.addEventListener("keydown", function(e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openCard(card); }
   });
 });
 document.getElementById("m-close").addEventListener("click", function() { modal.classList.remove("open"); document.body.style.overflow = ""; });
