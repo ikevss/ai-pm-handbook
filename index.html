@@ -246,7 +246,7 @@ tbody tr:hover td { background: var(--raised); }
 .wf-label { font-size: 12px; fill: var(--t2); text-anchor: middle; }
 
 /* ====== Phrase Table ====== */
-.phrase-row { display: grid; grid-template-columns: 120px 1fr 70px; gap: 10px; align-items: start; padding: 12px 0; border-bottom: 1px solid var(--b); }
+.phrase-row { display: grid; grid-template-columns: 120px 1fr 70px; gap: 10px; align-items: start; padding: 12px 16px; border-bottom: 1px solid var(--b); }
 .phrase-row:last-child { border-bottom: none; }
 .phrase-scene { font-weight: 600; font-size: 14px; color: var(--t1); }
 .phrase-text { font-family: var(--font-mono); font-size: 13px; color: var(--t2); line-height: 1.6; background: var(--code-bg); padding: 10px 12px; border-radius: 8px; }
@@ -399,8 +399,6 @@ tbody tr:hover td { background: var(--raised); }
 <!-- ====== 提示词手册入口 ====== -->
 <section class="section" id="prompt-kit" aria-labelledby="pk-title">
   <h2 class="station-title" id="pk-title">提示词手册</h2>
-  <div class="station-subtitle">写不出好提示词？这里有 74 条现成的</div>
-  <div class="station-label">工具箱</div>
   <div class="station-why"><p>理论是"知道怎么写"，提示词是<strong>"直接抄着用"</strong>。这本手册把方法论里的需求分析、架构梳理、重构审查、测试设计、文档沉淀全部沉淀成 <strong>74 条精选提示词</strong>，按场景分 10 类，点击卡片即可复制，拿去就能指挥 AI。</p></div>
   <a class="pk-entry" href="prompts/">
     <div class="pk-entry-main">
@@ -419,8 +417,6 @@ tbody tr:hover td { background: var(--raised); }
 <!-- ====== STATION 1: 理论框架 ====== -->
 <section class="section" id="station-1" aria-labelledby="s1-title">
   <h2 class="station-title" id="s1-title">理论框架</h2>
-  <div class="station-subtitle">到底变了什么？</div>
-  <div class="station-label">理论框架</div>
   <div class="station-why"><p>很多 PM 拿着 AI 工具，但思维还是传统的"写需求→评审→排期"。这里帮你识别 <strong>3 个核心思维转变</strong>。理解"为什么变了"比记住"怎么做"更重要——AI 时代 PM 的核心竞争力不是"会用工具"，而是<strong>"能判断 AI 做对了没有"</strong>。</p></div>
 
   <h3 class="subhead">核心变化：从「人→人」到「人→AI→人」</h3>
@@ -457,8 +453,6 @@ tbody tr:hover td { background: var(--raised); }
 <!-- ====== STATION 3: 文件资产 ====== -->
 <section class="section" id="station-3" aria-labelledby="s3-title">
   <h2 class="station-title" id="s3-title">文件资产</h2>
-  <div class="station-subtitle">到底要维护哪些文档？每个文档里面有什么？</div>
-  <div class="station-label">实战方法</div>
   <div class="station-why"><p>AI 时代的文档<strong>写给 AI 看</strong>——结构化、无歧义、可直接当 Prompt。文档不再是"沟通工具"，而是<strong>AI 的输入指令和自己的干活记录</strong>。六份文档，分两档：第一档没有就不行，第二档按需用。</p></div>
 
   <!-- 第一梯队 -->
@@ -527,8 +521,6 @@ tbody tr:hover td { background: var(--raised); }
 <!-- ====== STATION 4: 案例模板 ====== -->
 <section class="section" id="station-4" aria-labelledby="s4-title">
   <h2 class="station-title" id="s4-title">案例模板</h2>
-  <div class="station-subtitle">23 份文档模板，覆盖从立项到发布的全流程</div>
-  <div class="station-label">文件资产</div>
   <div class="station-why"><p>AI 时代的项目文档不是"写完就扔的汇报材料"——<strong>每一份都是给 AI 的输入指令和协作契约</strong>。这里整理了 7 个阶段、23 份文档的完整模板，覆盖调研立项、产品设计、项目执行、测试验收、发布迭代、AI 自动产出、过程资产。</p></div>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:24px 0;">
@@ -577,8 +569,6 @@ tbody tr:hover td { background: var(--raised); }
 <!-- ====== STATION 5: 模仿改进 ====== -->
 <section class="section" id="station-5" aria-labelledby="s5-title">
   <h2 class="station-title" id="s5-title">模仿改进</h2>
-  <div class="station-subtitle">话术速查 + 常见坑 + AI 边界</div>
-  <div class="station-label">案例模板</div>
   <div class="station-why"><p>前四站是"学"，这一站是<strong>"用和改"</strong>。直接复制的话术、前人踩过的坑、什么时候该把活交给 AI、什么时候必须自己来。</p></div>
 
   <h3 class="subhead">8 句话术（直接复制用）</h3>
