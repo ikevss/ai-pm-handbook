@@ -8,8 +8,8 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <style>
 :root {
-  --paper:#f7f4ef; --paper-2:#f1ede6; --ink:#1c1917; --ink-2:#57534e; --ink-3:#a8a29e;
-  --rule:#e0dcd3; --rule-2:#d6d1c6;
+  --paper:#faf8f5; --paper-2:#f5f3ef; --ink:#1c1917; --ink-2:#57534e; --ink-3:#a8a29e;
+  --rule:#e7e5e4; --rule-2:#d6d3d1;
   --amber:#c2410c; --amber-l:#fed7aa; --amber-g:rgba(194,65,12,0.05);
   --teal:#0d9488; --rose:#be123c; --violet:#6366f1;
   --font:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",-apple-system,system-ui,sans-serif;
@@ -22,7 +22,7 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
 ::selection { background:var(--amber-l); }
 
 /* ========== 手册顶栏 ========== */
-.masthead { position:sticky; top:0; z-index:50; background:rgba(247,244,239,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule); }
+.masthead { position:sticky; top:0; z-index:50; background:rgba(250,248,245,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule); }
 .masthead-inner { max-width:1080px; margin:0 auto; padding:14px 28px; display:flex; align-items:center; gap:16px; }
 .mh-brand { display:flex; align-items:center; gap:11px; min-width:0; }
 .mh-logo { width:34px; height:34px; border-radius:8px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
@@ -41,46 +41,48 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
 .handbook { max-width:1080px; margin:0 auto; display:flex; gap:48px; padding:40px 28px 80px; }
 
 /* ---------- 左栏：目录 ---------- */
-.toc { width:216px; flex-shrink:0; position:sticky; top:84px; align-self:flex-start; }
+.toc { width:220px; flex-shrink:0; position:sticky; top:84px; align-self:flex-start; }
 .toc-label { font-family:var(--font-mono); font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:14px; }
 .toc-list { list-style:none; }
-.toc-item { display:flex; align-items:center; gap:10px; padding:7px 8px; border-radius:6px; color:var(--ink-2); text-decoration:none; font-size:.88rem; transition:.12s; }
+.toc-item { display:flex; align-items:center; gap:10px; padding:7px 9px; border-radius:8px; color:var(--ink-2); text-decoration:none; font-size:.88rem; transition:.12s; }
 .toc-item:hover { background:var(--paper-2); color:var(--ink); }
 .toc-item.active { color:var(--c); font-weight:700; background:var(--amber-g); }
-.toc-num { font-family:var(--font-mono); font-size:.8rem; color:var(--ink-3); width:20px; flex-shrink:0; text-align:center; }
-.toc-item.active .toc-num { color:var(--c); }
+.toc-ic { width:24px; height:24px; border-radius:7px; background:var(--paper-2); flex-shrink:0; display:flex; align-items:center; justify-content:center; opacity:.85; }
+.toc-item:hover .toc-ic { background:#fff; }
+.toc-item.active .toc-ic { background:#fff; opacity:1; }
+.toc-ic .icon { width:15px; height:15px; }
 .toc-name { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .toc-cnt { font-family:var(--font-mono); font-size:.68rem; color:var(--ink-3); }
 .toc-item.active .toc-cnt { color:var(--c); }
 .toc-guide { margin-top:20px; padding-top:16px; border-top:1px solid var(--rule); font-size:.78rem; color:var(--ink-3); line-height:1.7; }
 .toc-guide .dot { display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--amber); margin-right:6px; }
 
-/* ---------- 右栏：章节 ---------- */
+/* ---------- 右栏：分类 + 卡片网格 ---------- */
 .book { flex:1; min-width:0; }
-.chapter { margin-bottom:56px; scroll-margin-top:88px; }
-.chapter-head { display:flex; align-items:baseline; gap:18px; padding-bottom:14px; margin-bottom:22px; border-bottom:2px solid var(--ink); }
-.chapter-num { font-family:var(--font-mono); font-size:1.15rem; font-weight:700; flex-shrink:0; }
-.chapter-name { font-size:1.4rem; font-weight:800; letter-spacing:-.01em; line-height:1.2; }
-.chapter-desc { color:var(--ink-2); font-size:.84rem; margin-top:2px; }
+.cat-sec { margin-bottom:52px; scroll-margin-top:88px; }
+.cat-head { display:flex; align-items:center; gap:14px; padding-bottom:14px; margin-bottom:22px; border-bottom:1px solid var(--rule); }
+.cat-ic { width:40px; height:40px; border-radius:11px; background:var(--paper-2); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.cat-ic .icon { width:21px; height:21px; }
+.cat-name { font-size:1.32rem; font-weight:800; letter-spacing:-.01em; line-height:1.2; }
+.cat-desc { color:var(--ink-2); font-size:.84rem; margin-top:2px; }
 
-/* ---------- 条目列表 ---------- */
-.entries { list-style:none; }
-.entry { display:flex; align-items:center; gap:16px; padding:16px 4px; border-bottom:1px solid var(--rule); cursor:pointer; transition:background .14s; position:relative; }
-.entry:first-child { border-top:1px solid var(--rule); }
-.entry:hover { background:var(--paper-2); }
-.entry:focus-visible { outline:none; background:var(--paper-2); }
-.entry-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; opacity:.75; }
-.entry-main { flex:1; min-width:0; }
-.entry-title { font-size:1rem; font-weight:600; letter-spacing:-.01em; }
-.entry:hover .entry-title { color:var(--amber); }
-.entry-summary { font-size:.84rem; color:var(--ink-2); line-height:1.6; margin-top:3px; }
-.entry-copy { border:none; background:transparent; color:var(--ink-3); padding:6px; border-radius:5px; cursor:pointer; transition:.12s; display:inline-flex; opacity:0; flex-shrink:0; }
-.entry:hover .entry-copy { opacity:1; }
-.entry-copy:hover { background:#fff; color:var(--amber); }
-.entry-copy .icon { width:15px; height:15px; }
-.entry-arrow { color:var(--ink-3); flex-shrink:0; transition:transform .16s; }
-.entry-arrow .icon { width:16px; height:16px; }
-.entry:hover .entry-arrow { color:var(--amber); transform:translateX(2px); }
+/* ---------- 卡片网格 ---------- */
+.card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(272px,1fr)); gap:16px; }
+.pcard { display:flex; flex-direction:column; gap:10px; padding:20px 22px; background:#fff; border:1px solid var(--rule); border-radius:12px; box-shadow:0 1px 3px rgba(28,25,23,.05); cursor:pointer; transition:transform .18s,box-shadow .18s,border-color .18s; height:100%; }
+.pcard:hover, .pcard:focus-visible { transform:translateY(-3px); box-shadow:0 10px 30px rgba(28,25,23,.1); border-color:var(--rule-2); outline:none; }
+.pcard-top { display:flex; align-items:center; justify-content:space-between; }
+.pcard-ic { width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; }
+.pcard-ic .icon { width:19px; height:19px; }
+.pcard-copy { border:none; background:transparent; color:var(--ink-3); padding:5px; border-radius:7px; cursor:pointer; transition:.12s; display:inline-flex; opacity:0; }
+.pcard:hover .pcard-copy { opacity:1; }
+.pcard-copy:hover { background:var(--paper-2); color:var(--ink); }
+.pcard-copy .icon { width:15px; height:15px; }
+.pcard-title { font-size:1.02rem; font-weight:700; letter-spacing:-.01em; line-height:1.4; }
+.pcard-summary { font-size:.84rem; color:var(--ink-2); line-height:1.65; flex:1; }
+.pcard-more { display:inline-flex; align-items:center; gap:5px; font-size:.78rem; font-weight:600; color:var(--ink-3); transition:.12s; }
+.pcard:hover .pcard-more { color:var(--amber); }
+.pcard-more .icon { width:14px; height:14px; transition:transform .16s; }
+.pcard:hover .pcard-more .icon { transform:translateX(2px); }
 
 /* 空态 */
 .no-result { display:none; text-align:center; color:var(--ink-2); padding:70px 0; }
@@ -95,7 +97,7 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
 /* ---------- 弹窗 ---------- */
 .modal-overlay { position:fixed; inset:0; background:rgba(28,25,23,.5); z-index:100; display:none; align-items:center; justify-content:center; padding:24px; opacity:0; transition:opacity .18s; }
 .modal-overlay.open { display:flex; opacity:1; }
-.modal { background:#fcfaf6; width:760px; max-width:100%; max-height:88vh; display:flex; flex-direction:column; box-shadow:0 24px 60px rgba(28,25,23,.2); border:1px solid var(--rule); transform:translateY(12px); transition:transform .18s; overflow:hidden; }
+.modal { background:#fff; width:760px; max-width:100%; max-height:88vh; display:flex; flex-direction:column; box-shadow:0 24px 60px rgba(28,25,23,.22); border:1px solid var(--rule); border-radius:14px; transform:translateY(12px); transition:transform .18s; overflow:hidden; }
 .modal-overlay.open .modal { transform:none; }
 .modal-head { padding:22px 28px 16px; border-bottom:1px solid var(--rule); position:relative; }
 .modal-cat { font-family:var(--font-mono); font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); margin-bottom:8px; display:flex; align-items:center; gap:7px; }
@@ -143,9 +145,9 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
   .toc-list { display:flex; flex-wrap:wrap; gap:4px; }
   .toc-item { padding:5px 10px; border:1px solid var(--rule); border-radius:6px; font-size:.82rem; }
   .toc-guide { display:none; }
-  .chapter { margin-bottom:44px; }
-  .entry { padding:14px 2px; gap:12px; }
-  .entry-copy { opacity:1; }
+  .cat-sec { margin-bottom:44px; }
+  .card-grid { grid-template-columns:1fr; }
+  .pcard-copy { opacity:1; }
 }
 </style>
 </head>
@@ -175,52 +177,52 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
   <aside class="toc">
     <div class="toc-label">目录</div>
     <nav class="toc-list" id="nav"><a class="toc-item" href="#cat-requirements" data-cat="requirements" style="--c:#c2410c">
-  <span class="toc-num">Ⅰ</span>
+  <span class="toc-ic" style="color:#c2410c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
   <span class="toc-name">需求分析与任务规划</span>
   <span class="toc-cnt" data-cnt-cat="requirements">12</span>
 </a>
 <a class="toc-item" href="#cat-architecture" data-cat="architecture" style="--c:#6366f1">
-  <span class="toc-num">Ⅱ</span>
+  <span class="toc-ic" style="color:#6366f1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 8v5"/></svg></span>
   <span class="toc-name">代码架构与仓库分析</span>
   <span class="toc-cnt" data-cnt-cat="architecture">11</span>
 </a>
 <a class="toc-item" href="#cat-coding" data-cat="coding" style="--c:#0d9488">
-  <span class="toc-num">Ⅲ</span>
+  <span class="toc-ic" style="color:#0d9488"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
   <span class="toc-name">代码编写与开发范式</span>
   <span class="toc-cnt" data-cnt-cat="coding">12</span>
 </a>
 <a class="toc-item" href="#cat-refactor" data-cat="refactor" style="--c:#be123c">
-  <span class="toc-num">Ⅳ</span>
+  <span class="toc-ic" style="color:#be123c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
   <span class="toc-name">重构与代码审查</span>
   <span class="toc-cnt" data-cnt-cat="refactor">6</span>
 </a>
 <a class="toc-item" href="#cat-testing" data-cat="testing" style="--c:#0f766e">
-  <span class="toc-num">Ⅴ</span>
+  <span class="toc-ic" style="color:#0f766e"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg></span>
   <span class="toc-name">测试设计</span>
   <span class="toc-cnt" data-cnt-cat="testing">3</span>
 </a>
 <a class="toc-item" href="#cat-docs" data-cat="docs" style="--c:#7c3aed">
-  <span class="toc-num">Ⅵ</span>
+  <span class="toc-ic" style="color:#7c3aed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
   <span class="toc-name">文档与知识沉淀</span>
   <span class="toc-cnt" data-cnt-cat="docs">13</span>
 </a>
 <a class="toc-item" href="#cat-devops" data-cat="devops" style="--c:#b45309">
-  <span class="toc-num">Ⅶ</span>
+  <span class="toc-ic" style="color:#b45309"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></span>
   <span class="toc-name">CI/CD 与运维</span>
   <span class="toc-cnt" data-cnt-cat="devops">3</span>
 </a>
 <a class="toc-item" href="#cat-agents" data-cat="agents" style="--c:#9d174d">
-  <span class="toc-num">Ⅷ</span>
+  <span class="toc-ic" style="color:#9d174d"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></span>
   <span class="toc-name">多智能体与并行协作</span>
   <span class="toc-cnt" data-cnt-cat="agents">4</span>
 </a>
 <a class="toc-item" href="#cat-prompting" data-cat="prompting" style="--c:#ea580c">
-  <span class="toc-num">Ⅸ</span>
+  <span class="toc-ic" style="color:#ea580c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"/></svg></span>
   <span class="toc-name">提示词工程与风格</span>
   <span class="toc-cnt" data-cnt-cat="prompting">7</span>
 </a>
 <a class="toc-item" href="#cat-visual" data-cat="visual" style="--c:#6d28d9">
-  <span class="toc-num">Ⅹ</span>
+  <span class="toc-ic" style="color:#6d28d9"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></span>
   <span class="toc-name">可视化与特殊输出</span>
   <span class="toc-cnt" data-cnt-cat="visual">3</span>
 </a></nav>
@@ -229,761 +231,761 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
 
   <!-- 右栏：正文 -->
   <main class="book" id="content">
-    <section class="chapter" id="cat-requirements" data-cat="requirements">
-  <div class="chapter-head">
-    <span class="chapter-num" style="color:#c2410c">Ⅰ</span>
-    <div class="chapter-title-wrap">
-      <h2 class="chapter-name">需求分析与任务规划</h2>
-      <p class="chapter-desc">把模糊需求整理成清晰、可执行、可验收的任务描述</p>
+    <section class="cat-sec" id="cat-requirements" data-cat="requirements">
+  <div class="cat-head">
+    <span class="cat-ic" style="color:#c2410c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+    <div class="cat-head-text">
+      <h2 class="cat-name">需求分析与任务规划</h2>
+      <p class="cat-desc">把模糊需求整理成清晰、可执行、可验收的任务描述</p>
     </div>
   </div>
-  <ol class="entries"><li class="entry" data-idx="0" data-cat="requirements" tabindex="0" role="button" aria-label="查看：需求理解">
-  <span class="entry-dot" style="background:#c2410c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">需求理解</h3>
-    <p class="entry-summary">把一段模糊、口语化的需求描述，重构为清晰、精准、结构化、可直接交给 AI 执行的标准化需求。</p>
+  <div class="card-grid"><div class="pcard" data-idx="0" data-cat="requirements" tabindex="0" role="button" aria-label="查看：需求理解">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#c2410c14;color:#c2410c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="0" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="0" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="3" data-cat="requirements" tabindex="0" role="button" aria-label="查看：/goal 任务提示词模板">
-  <span class="entry-dot" style="background:#c2410c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">/goal 任务提示词模板</h3>
-    <p class="entry-summary">按 /goal 语法生成&quot;达成目标 + 验证证据 + 遵守限制&quot;三要素的任务提示词模板。</p>
+  <h3 class="pcard-title">需求理解</h3>
+  <p class="pcard-summary">把一段模糊、口语化的需求描述，重构为清晰、精准、结构化、可直接交给 AI 执行的标准化需求。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="3" data-cat="requirements" tabindex="0" role="button" aria-label="查看：/goal 任务提示词模板">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#c2410c14;color:#c2410c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="3" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="3" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="12" data-cat="requirements" tabindex="0" role="button" aria-label="查看：优化目标分析助手">
-  <span class="entry-dot" style="background:#c2410c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">优化目标分析助手</h3>
-    <p class="entry-summary">对任意对象（主题/代码/方案/流程）系统性分析可能的优化方向，帮你发现优化目标而非直接给答案。</p>
+  <h3 class="pcard-title">/goal 任务提示词模板</h3>
+  <p class="pcard-summary">按 /goal 语法生成&quot;达成目标 + 验证证据 + 遵守限制&quot;三要素的任务提示词模板。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="12" data-cat="requirements" tabindex="0" role="button" aria-label="查看：优化目标分析助手">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#c2410c14;color:#c2410c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="12" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="12" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="18" data-cat="requirements" tabindex="0" role="button" aria-label="查看：tasks 首席任务规划专家">
-  <span class="entry-dot" style="background:#c2410c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">tasks 首席任务规划专家</h3>
-    <p class="entry-summary">把自然语言需求转化为 assets/tasks/ 下的结构化任务文档体系，供执行 Agent 直接运行（不碰业务代码）。</p>
+  <h3 class="pcard-title">优化目标分析助手</h3>
+  <p class="pcard-summary">对任意对象（主题/代码/方案/流程）系统性分析可能的优化方向，帮你发现优化目标而非直接给答案。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="18" data-cat="requirements" tabindex="0" role="button" aria-label="查看：tasks 首席任务规划专家">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#c2410c14;color:#c2410c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="18" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="18" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="19" data-cat="requirements" tabindex="0" role="button" aria-label="查看：任务容器初始化专家">
-  <span class="entry-dot" style="background:#c2410c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">任务容器初始化专家</h3>
-    <p class="entry-summary">初始化任务容器：创建标准化的任务目录结构，为后续任务拆解与执行做好骨架。</p>
+  <h3 class="pcard-title">tasks 首席任务规划专家</h3>
+  <p class="pcard-summary">把自然语言需求转化为 assets/tasks/ 下的结构化任务文档体系，供执行 Agent 直接运行（不碰业务代码）。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="19" data-cat="requirements" tabindex="0" role="button" aria-label="查看：任务容器初始化专家">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#c2410c14;color:#c2410c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="19" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="19" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="20" data-cat="requirements" tabindex="0" role="button" aria-label="查看：Task Package 拆分与回填专家">
-  <span class="entry-dot" style="background:#c2410c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">Task Package 拆分与回填专家</h3>
-    <p class="entry-summary">把需求材料拆分为细粒度任务包（Task Packages），明确每包的输入、输出与依赖，一次拆完并回填文档。</p>
+  <h3 class="pcard-title">任务容器初始化专家</h3>
+  <p class="pcard-summary">初始化任务容器：创建标准化的任务目录结构，为后续任务拆解与执行做好骨架。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="20" data-cat="requirements" tabindex="0" role="button" aria-label="查看：Task Package 拆分与回填专家">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#c2410c14;color:#c2410c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="20" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="20" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="42" data-cat="requirements" tabindex="0" role="button" aria-label="查看：智能任务描述与补全">
-  <span class="entry-dot" style="background:#c2410c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">智能任务描述与补全</h3>
-    <p class="entry-summary">自动理解、描述并补全你正在进行的任务：识别缺要素、未完善处与风险，给出结构化补充建议。</p>
+  <h3 class="pcard-title">Task Package 拆分与回填专家</h3>
+  <p class="pcard-summary">把需求材料拆分为细粒度任务包（Task Packages），明确每包的输入、输出与依赖，一次拆完并回填文档。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="42" data-cat="requirements" tabindex="0" role="button" aria-label="查看：智能任务描述与补全">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#c2410c14;color:#c2410c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="42" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="42" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="43" data-cat="requirements" tabindex="0" role="button" aria-label="查看：软件工程分析">
-  <span class="entry-dot" style="background:#c2410c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">软件工程分析</h3>
-    <p class="entry-summary">扮演首席软件架构师，从用户需求、系统架构、组件数据、过程四条线全面分析一个软件工程。</p>
+  <h3 class="pcard-title">智能任务描述与补全</h3>
+  <p class="pcard-summary">自动理解、描述并补全你正在进行的任务：识别缺要素、未完善处与风险，给出结构化补充建议。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="43" data-cat="requirements" tabindex="0" role="button" aria-label="查看：软件工程分析">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#c2410c14;color:#c2410c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="43" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="43" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="51" data-cat="requirements" tabindex="0" role="button" aria-label="查看：需求分析师转界面流程文档">
-  <span class="entry-dot" style="background:#c2410c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">需求分析师转界面流程文档</h3>
-    <p class="entry-summary">把自然语言描述的功能/交互流程/用户故事，转换为高度结构化的界面流程文档，格式严格模仿示例。</p>
+  <h3 class="pcard-title">软件工程分析</h3>
+  <p class="pcard-summary">扮演首席软件架构师，从用户需求、系统架构、组件数据、过程四条线全面分析一个软件工程。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="51" data-cat="requirements" tabindex="0" role="button" aria-label="查看：需求分析师转界面流程文档">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#c2410c14;color:#c2410c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="51" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="51" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="63" data-cat="requirements" tabindex="0" role="button" aria-label="查看：AI 项目计划生成系统">
-  <span class="entry-dot" style="background:#c2410c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">AI 项目计划生成系统</h3>
-    <p class="entry-summary">把用户需求转化为完整的层级化计划文档系统，配流程图/结构图/时间线等可视化，只出计划不写代码。</p>
+  <h3 class="pcard-title">需求分析师转界面流程文档</h3>
+  <p class="pcard-summary">把自然语言描述的功能/交互流程/用户故事，转换为高度结构化的界面流程文档，格式严格模仿示例。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="63" data-cat="requirements" tabindex="0" role="button" aria-label="查看：AI 项目计划生成系统">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#c2410c14;color:#c2410c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="63" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="63" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="64" data-cat="requirements" tabindex="0" role="button" aria-label="查看：EARS 需求规范化工作流">
-  <span class="entry-dot" style="background:#c2410c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">EARS 需求规范化工作流</h3>
-    <p class="entry-summary">规范每次新需求的提出流程：先澄清问题，再用 EARS 语法写需求文档与验收标准，确认定稿后再开发。</p>
+  <h3 class="pcard-title">AI 项目计划生成系统</h3>
+  <p class="pcard-summary">把用户需求转化为完整的层级化计划文档系统，配流程图/结构图/时间线等可视化，只出计划不写代码。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="64" data-cat="requirements" tabindex="0" role="button" aria-label="查看：EARS 需求规范化工作流">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#c2410c14;color:#c2410c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="64" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="64" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="65" data-cat="requirements" tabindex="0" role="button" aria-label="查看：项目变量与工具统一维护">
-  <span class="entry-dot" style="background:#c2410c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">项目变量与工具统一维护</h3>
-    <p class="entry-summary">在 AGENTS.md / CLAUDE.md 中建立统一的全局变量索引表，集中维护变量、来源、调用路径，避免分散。</p>
+  <h3 class="pcard-title">EARS 需求规范化工作流</h3>
+  <p class="pcard-summary">规范每次新需求的提出流程：先澄清问题，再用 EARS 语法写需求文档与验收标准，确认定稿后再开发。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="65" data-cat="requirements" tabindex="0" role="button" aria-label="查看：项目变量与工具统一维护">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#c2410c14;color:#c2410c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="65" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="65" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li></ol>
+  <h3 class="pcard-title">项目变量与工具统一维护</h3>
+  <p class="pcard-summary">在 AGENTS.md / CLAUDE.md 中建立统一的全局变量索引表，集中维护变量、来源、调用路径，避免分散。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div></div>
 </section>
-<section class="chapter" id="cat-architecture" data-cat="architecture">
-  <div class="chapter-head">
-    <span class="chapter-num" style="color:#6366f1">Ⅱ</span>
-    <div class="chapter-title-wrap">
-      <h2 class="chapter-name">代码架构与仓库分析</h2>
-      <p class="chapter-desc">宏观理解代码仓库、生成架构图、分析系统结构</p>
+<section class="cat-sec" id="cat-architecture" data-cat="architecture">
+  <div class="cat-head">
+    <span class="cat-ic" style="color:#6366f1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 8v5"/></svg></span>
+    <div class="cat-head-text">
+      <h2 class="cat-name">代码架构与仓库分析</h2>
+      <p class="cat-desc">宏观理解代码仓库、生成架构图、分析系统结构</p>
     </div>
   </div>
-  <ol class="entries"><li class="entry" data-idx="1" data-cat="architecture" tabindex="0" role="button" aria-label="查看：有向无环图（DAG）生成器">
-  <span class="entry-dot" style="background:#6366f1"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">有向无环图（DAG）生成器</h3>
-    <p class="entry-summary">对当前代码仓库做静态分析，生成一张 Mermaid 有向无环图（DAG），展示模块边界、调用关系与数据流。</p>
+  <div class="card-grid"><div class="pcard" data-idx="1" data-cat="architecture" tabindex="0" role="button" aria-label="查看：有向无环图（DAG）生成器">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#6366f114;color:#6366f1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 8v5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="1" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="1" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="2" data-cat="architecture" tabindex="0" role="button" aria-label="查看：Mermaid 仓库结构图（上帝视角）">
-  <span class="entry-dot" style="background:#6366f1"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">Mermaid 仓库结构图（上帝视角）</h3>
-    <p class="entry-summary">基于完整代码上下文，生成可直接在 mermaid.ai 渲染的&quot;上帝视角&quot;项目仓库结构图。</p>
+  <h3 class="pcard-title">有向无环图（DAG）生成器</h3>
+  <p class="pcard-summary">对当前代码仓库做静态分析，生成一张 Mermaid 有向无环图（DAG），展示模块边界、调用关系与数据流。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="2" data-cat="architecture" tabindex="0" role="button" aria-label="查看：Mermaid 仓库结构图（上帝视角）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#6366f114;color:#6366f1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 8v5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="2" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="2" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="16" data-cat="architecture" tabindex="0" role="button" aria-label="查看：中文 λ 演算工程解释器">
-  <span class="entry-dot" style="background:#6366f1"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">中文 λ 演算工程解释器</h3>
-    <p class="entry-summary">把仓库中的系统、模块、API、业务流程转换为中文 λ 演算标准结构，用于极致逻辑抽象。</p>
+  <h3 class="pcard-title">Mermaid 仓库结构图（上帝视角）</h3>
+  <p class="pcard-summary">基于完整代码上下文，生成可直接在 mermaid.ai 渲染的&quot;上帝视角&quot;项目仓库结构图。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="16" data-cat="architecture" tabindex="0" role="button" aria-label="查看：中文 λ 演算工程解释器">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#6366f114;color:#6366f1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 8v5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="16" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="16" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="28" data-cat="architecture" tabindex="0" role="button" aria-label="查看：目录结构迁移/路径重构审查">
-  <span class="entry-dot" style="background:#6366f1"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">目录结构迁移/路径重构审查</h3>
-    <p class="entry-summary">审查&quot;目录结构迁移/路径重构&quot;这类影响面大的改动，确保业务逻辑改动最小、迁移安全。</p>
+  <h3 class="pcard-title">中文 λ 演算工程解释器</h3>
+  <p class="pcard-summary">把仓库中的系统、模块、API、业务流程转换为中文 λ 演算标准结构，用于极致逻辑抽象。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="28" data-cat="architecture" tabindex="0" role="button" aria-label="查看：目录结构迁移/路径重构审查">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#6366f114;color:#6366f1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 8v5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="28" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="28" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="29" data-cat="architecture" tabindex="0" role="button" aria-label="查看：Obsidian Canvas 架构洞察引擎">
-  <span class="entry-dot" style="background:#6366f1"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">Obsidian Canvas 架构洞察引擎</h3>
-    <p class="entry-summary">用 Obsidian Canvas 生成项目架构洞察图：不只罗列文件，而是揭示设计哲学、关键数据流与演进趋势。</p>
+  <h3 class="pcard-title">目录结构迁移/路径重构审查</h3>
+  <p class="pcard-summary">审查&quot;目录结构迁移/路径重构&quot;这类影响面大的改动，确保业务逻辑改动最小、迁移安全。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="29" data-cat="architecture" tabindex="0" role="button" aria-label="查看：Obsidian Canvas 架构洞察引擎">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#6366f114;color:#6366f1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 8v5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="29" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="29" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="30" data-cat="architecture" tabindex="0" role="button" aria-label="查看：Obsidian Canvas 动态序列图引擎">
-  <span class="entry-dot" style="background:#6366f1"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">Obsidian Canvas 动态序列图引擎</h3>
-    <p class="entry-summary">用 Obsidian Canvas 生成动态交互序列图，实时追踪项目核心交互流程并可视化。</p>
+  <h3 class="pcard-title">Obsidian Canvas 架构洞察引擎</h3>
+  <p class="pcard-summary">用 Obsidian Canvas 生成项目架构洞察图：不只罗列文件，而是揭示设计哲学、关键数据流与演进趋势。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="30" data-cat="architecture" tabindex="0" role="button" aria-label="查看：Obsidian Canvas 动态序列图引擎">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#6366f114;color:#6366f1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 8v5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="30" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="30" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="33" data-cat="architecture" tabindex="0" role="button" aria-label="查看：Mermaid 序列图生成">
-  <span class="entry-dot" style="background:#6366f1"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">Mermaid 序列图生成</h3>
-    <p class="entry-summary">分析业务场景与代码，生成 Mermaid 序列图语法，清晰展示系统内部交互流程。</p>
+  <h3 class="pcard-title">Obsidian Canvas 动态序列图引擎</h3>
+  <p class="pcard-summary">用 Obsidian Canvas 生成动态交互序列图，实时追踪项目核心交互流程并可视化。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="33" data-cat="architecture" tabindex="0" role="button" aria-label="查看：Mermaid 序列图生成">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#6366f114;color:#6366f1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 8v5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="33" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="33" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="36" data-cat="architecture" tabindex="0" role="button" aria-label="查看：通用项目架构综合分析框架">
-  <span class="entry-dot" style="background:#6366f1"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">通用项目架构综合分析框架</h3>
-    <p class="entry-summary">全面分析任何软件项目的架构、工作流与核心组件，识别技术债与设计缺陷，制定优化重构计划。</p>
+  <h3 class="pcard-title">Mermaid 序列图生成</h3>
+  <p class="pcard-summary">分析业务场景与代码，生成 Mermaid 序列图语法，清晰展示系统内部交互流程。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="36" data-cat="architecture" tabindex="0" role="button" aria-label="查看：通用项目架构综合分析框架">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#6366f114;color:#6366f1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 8v5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="36" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="36" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="44" data-cat="architecture" tabindex="0" role="button" aria-label="查看：通用项目架构综合分析框架（变体）">
-  <span class="entry-dot" style="background:#6366f1"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">通用项目架构综合分析框架（变体）</h3>
-    <p class="entry-summary">（与 #36 同框架的变体）通用项目架构综合分析与优化。</p>
+  <h3 class="pcard-title">通用项目架构综合分析框架</h3>
+  <p class="pcard-summary">全面分析任何软件项目的架构、工作流与核心组件，识别技术债与设计缺陷，制定优化重构计划。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="44" data-cat="architecture" tabindex="0" role="button" aria-label="查看：通用项目架构综合分析框架（变体）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#6366f114;color:#6366f1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 8v5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="44" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="44" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="45" data-cat="architecture" tabindex="0" role="button" aria-label="查看：Linus Torvalds 代码质量审查">
-  <span class="entry-dot" style="background:#6366f1"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">Linus Torvalds 代码质量审查</h3>
-    <p class="entry-summary">以 Linus Torvalds 的视角审查代码质量，&quot;好品味&quot;标准，从源头规避潜在风险。</p>
+  <h3 class="pcard-title">通用项目架构综合分析框架（变体）</h3>
+  <p class="pcard-summary">（与 #36 同框架的变体）通用项目架构综合分析与优化。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="45" data-cat="architecture" tabindex="0" role="button" aria-label="查看：Linus Torvalds 代码质量审查">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#6366f114;color:#6366f1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 8v5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="45" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="45" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="71" data-cat="architecture" tabindex="0" role="button" aria-label="查看：标准化目录规范重构">
-  <span class="entry-dot" style="background:#6366f1"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">标准化目录规范重构</h3>
-    <p class="entry-summary">按标准化目录规范重构项目仓库，识别并归类代码、配置、文档、测试、脚本、数据等各类文件。</p>
+  <h3 class="pcard-title">Linus Torvalds 代码质量审查</h3>
+  <p class="pcard-summary">以 Linus Torvalds 的视角审查代码质量，&quot;好品味&quot;标准，从源头规避潜在风险。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="71" data-cat="architecture" tabindex="0" role="button" aria-label="查看：标准化目录规范重构">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#6366f114;color:#6366f1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 8v5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="71" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="71" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li></ol>
+  <h3 class="pcard-title">标准化目录规范重构</h3>
+  <p class="pcard-summary">按标准化目录规范重构项目仓库，识别并归类代码、配置、文档、测试、脚本、数据等各类文件。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div></div>
 </section>
-<section class="chapter" id="cat-coding" data-cat="coding">
-  <div class="chapter-head">
-    <span class="chapter-num" style="color:#0d9488">Ⅲ</span>
-    <div class="chapter-title-wrap">
-      <h2 class="chapter-name">代码编写与开发范式</h2>
-      <p class="chapter-desc">高质量编码规范、自然语言编程、架构师角色设定</p>
+<section class="cat-sec" id="cat-coding" data-cat="coding">
+  <div class="cat-head">
+    <span class="cat-ic" style="color:#0d9488"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+    <div class="cat-head-text">
+      <h2 class="cat-name">代码编写与开发范式</h2>
+      <p class="cat-desc">高质量编码规范、自然语言编程、架构师角色设定</p>
     </div>
   </div>
-  <ol class="entries"><li class="entry" data-idx="9" data-cat="coding" tabindex="0" role="button" aria-label="查看：通用 Python 项目骨架">
-  <span class="entry-dot" style="background:#0d9488"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">通用 Python 项目骨架</h3>
-    <p class="entry-summary">通用 Python 项目骨架：标准目录结构模板，适合应用型/服务型/脚本工具项目。</p>
+  <div class="card-grid"><div class="pcard" data-idx="9" data-cat="coding" tabindex="0" role="button" aria-label="查看：通用 Python 项目骨架">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#0d948814;color:#0d9488"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="9" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="9" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="23" data-cat="coding" tabindex="0" role="button" aria-label="查看：附加角色定位（执行型代理）">
-  <span class="entry-dot" style="background:#0d9488"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">附加角色定位（执行型代理）</h3>
-    <p class="entry-summary">附加角色定位：把 AI 切换为&quot;执行型高级代理&quot;，不追问、不讨论，基于现有信息直接交付可验收结果。</p>
+  <h3 class="pcard-title">通用 Python 项目骨架</h3>
+  <p class="pcard-summary">通用 Python 项目骨架：标准目录结构模板，适合应用型/服务型/脚本工具项目。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="23" data-cat="coding" tabindex="0" role="button" aria-label="查看：附加角色定位（执行型代理）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#0d948814;color:#0d9488"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="23" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="23" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="39" data-cat="coding" tabindex="0" role="button" aria-label="查看：首席软件架构师（JSON 结构化）">
-  <span class="entry-dot" style="background:#0d9488"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">首席软件架构师（JSON 结构化）</h3>
-    <p class="entry-summary">JSON 结构化角色定义：首席软件架构师 + KISS/YAGNI/DRY/SOLID 四阶段工作流。</p>
+  <h3 class="pcard-title">附加角色定位（执行型代理）</h3>
+  <p class="pcard-summary">附加角色定位：把 AI 切换为&quot;执行型高级代理&quot;，不追问、不讨论，基于现有信息直接交付可验收结果。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="39" data-cat="coding" tabindex="0" role="button" aria-label="查看：首席软件架构师（JSON 结构化）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#0d948814;color:#0d9488"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="39" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="39" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="40" data-cat="coding" tabindex="0" role="button" aria-label="查看：首席软件架构师（KISS/YAGNI/SOLID）">
-  <span class="entry-dot" style="background:#0d9488"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">首席软件架构师（KISS/YAGNI/SOLID）</h3>
-    <p class="entry-summary">首席软件架构师完整角色：内化 KISS/YAGNI/SOLID，负责编辑、审查、迭代改进项目。</p>
+  <h3 class="pcard-title">首席软件架构师（JSON 结构化）</h3>
+  <p class="pcard-summary">JSON 结构化角色定义：首席软件架构师 + KISS/YAGNI/DRY/SOLID 四阶段工作流。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="40" data-cat="coding" tabindex="0" role="button" aria-label="查看：首席软件架构师（KISS/YAGNI/SOLID）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#0d948814;color:#0d9488"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="40" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="40" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="41" data-cat="coding" tabindex="0" role="button" aria-label="查看：系统架构师与 AI 协同设计顾问">
-  <span class="entry-dot" style="background:#0d9488"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">系统架构师与 AI 协同设计顾问</h3>
-    <p class="entry-summary">新项目/新功能启动时，系统架构师优先帮你设计好整体方案，再做功能开发。</p>
+  <h3 class="pcard-title">首席软件架构师（KISS/YAGNI/SOLID）</h3>
+  <p class="pcard-summary">首席软件架构师完整角色：内化 KISS/YAGNI/SOLID，负责编辑、审查、迭代改进项目。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="41" data-cat="coding" tabindex="0" role="button" aria-label="查看：系统架构师与 AI 协同设计顾问">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#0d948814;color:#0d9488"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="41" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="41" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="46" data-cat="coding" tabindex="0" role="button" aria-label="查看：高质量代码开发专家">
-  <span class="entry-dot" style="background:#0d9488"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">高质量代码开发专家</h3>
-    <p class="entry-summary">资深开发专家指导编写高质量、可维护、可扩展的代码，覆盖架构设计、设计模式与最佳实践。</p>
+  <h3 class="pcard-title">系统架构师与 AI 协同设计顾问</h3>
+  <p class="pcard-summary">新项目/新功能启动时，系统架构师优先帮你设计好整体方案，再做功能开发。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="46" data-cat="coding" tabindex="0" role="button" aria-label="查看：高质量代码开发专家">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#0d948814;color:#0d9488"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="46" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="46" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="47" data-cat="coding" tabindex="0" role="button" aria-label="查看：自然语言需求转编程任务">
-  <span class="entry-dot" style="background:#0d9488"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">自然语言需求转编程任务</h3>
-    <p class="entry-summary">把自然语言开发需求转换为结构化、专业、可执行的编程任务说明文档（Markdown）。</p>
+  <h3 class="pcard-title">高质量代码开发专家</h3>
+  <p class="pcard-summary">资深开发专家指导编写高质量、可维护、可扩展的代码，覆盖架构设计、设计模式与最佳实践。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="47" data-cat="coding" tabindex="0" role="button" aria-label="查看：自然语言需求转编程任务">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#0d948814;color:#0d9488"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="47" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="47" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="48" data-cat="coding" tabindex="0" role="button" aria-label="查看：顶级设计哲学内化（KISS/YAGNI/SOLID）">
-  <span class="entry-dot" style="background:#0d9488"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">顶级设计哲学内化（KISS/YAGNI/SOLID）</h3>
-    <p class="entry-summary">内化 KISS/YAGNI/SOLID 顶级设计哲学，根治代码复杂性、过度工程化与长期维护性差的痛点。</p>
+  <h3 class="pcard-title">自然语言需求转编程任务</h3>
+  <p class="pcard-summary">把自然语言开发需求转换为结构化、专业、可执行的编程任务说明文档（Markdown）。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="48" data-cat="coding" tabindex="0" role="button" aria-label="查看：顶级设计哲学内化（KISS/YAGNI/SOLID）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#0d948814;color:#0d9488"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="48" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="48" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="50" data-cat="coding" tabindex="0" role="button" aria-label="查看：自然语言编程专家">
-  <span class="entry-dot" style="background:#0d9488"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">自然语言编程专家</h3>
-    <p class="entry-summary">把自然语言编程需求转换为标准提示词（含功能描述、输入输出示例），提升 LLM 执行准确率。</p>
+  <h3 class="pcard-title">顶级设计哲学内化（KISS/YAGNI/SOLID）</h3>
+  <p class="pcard-summary">内化 KISS/YAGNI/SOLID 顶级设计哲学，根治代码复杂性、过度工程化与长期维护性差的痛点。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="50" data-cat="coding" tabindex="0" role="button" aria-label="查看：自然语言编程专家">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#0d948814;color:#0d9488"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="50" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="50" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="52" data-cat="coding" tabindex="0" role="button" aria-label="查看：无代码构建交互工具">
-  <span class="entry-dot" style="background:#0d9488"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">无代码构建交互工具</h3>
-    <p class="entry-summary">无代码构建交互工具：描述想法，AI 直接搭 UI、逻辑和部署步骤。</p>
+  <h3 class="pcard-title">自然语言编程专家</h3>
+  <p class="pcard-summary">把自然语言编程需求转换为标准提示词（含功能描述、输入输出示例），提升 LLM 执行准确率。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="52" data-cat="coding" tabindex="0" role="button" aria-label="查看：无代码构建交互工具">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#0d948814;color:#0d9488"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="52" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="52" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="57" data-cat="coding" tabindex="0" role="button" aria-label="查看：人机对齐（高级顾问+批判性合作者）">
-  <span class="entry-dot" style="background:#0d9488"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">人机对齐（高级顾问+批判性合作者）</h3>
-    <p class="entry-summary">人机对齐：AI 作为高级顾问与批判性合作者，遇歧义先澄清再给结论，不盲从。</p>
+  <h3 class="pcard-title">无代码构建交互工具</h3>
+  <p class="pcard-summary">无代码构建交互工具：描述想法，AI 直接搭 UI、逻辑和部署步骤。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="57" data-cat="coding" tabindex="0" role="button" aria-label="查看：人机对齐（高级顾问+批判性合作者）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#0d948814;color:#0d9488"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="57" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="57" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="61" data-cat="coding" tabindex="0" role="button" aria-label="查看：系统架构师与 AI 协同设计顾问（变体）">
-  <span class="entry-dot" style="background:#0d9488"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">系统架构师与 AI 协同设计顾问（变体）</h3>
-    <p class="entry-summary">（与 #41 同框架的变体）系统架构师与 AI 协同设计顾问。</p>
+  <h3 class="pcard-title">人机对齐（高级顾问+批判性合作者）</h3>
+  <p class="pcard-summary">人机对齐：AI 作为高级顾问与批判性合作者，遇歧义先澄清再给结论，不盲从。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="61" data-cat="coding" tabindex="0" role="button" aria-label="查看：系统架构师与 AI 协同设计顾问（变体）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#0d948814;color:#0d9488"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="61" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="61" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li></ol>
+  <h3 class="pcard-title">系统架构师与 AI 协同设计顾问（变体）</h3>
+  <p class="pcard-summary">（与 #41 同框架的变体）系统架构师与 AI 协同设计顾问。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div></div>
 </section>
-<section class="chapter" id="cat-refactor" data-cat="refactor">
-  <div class="chapter-head">
-    <span class="chapter-num" style="color:#be123c">Ⅳ</span>
-    <div class="chapter-title-wrap">
-      <h2 class="chapter-name">重构与代码审查</h2>
-      <p class="chapter-desc">基于第一性原理/成熟组件库的系统性重构</p>
+<section class="cat-sec" id="cat-refactor" data-cat="refactor">
+  <div class="cat-head">
+    <span class="cat-ic" style="color:#be123c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+    <div class="cat-head-text">
+      <h2 class="cat-name">重构与代码审查</h2>
+      <p class="cat-desc">基于第一性原理/成熟组件库的系统性重构</p>
     </div>
   </div>
-  <ol class="entries"><li class="entry" data-idx="21" data-cat="refactor" tabindex="0" role="button" aria-label="查看：第一性原理重构">
-  <span class="entry-dot" style="background:#be123c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">第一性原理重构</h3>
-    <p class="entry-summary">基于第一性原理对代码/模块/系统做批判性审查与重构，覆盖问题诊断、代码级优化到架构改进。</p>
+  <div class="card-grid"><div class="pcard" data-idx="21" data-cat="refactor" tabindex="0" role="button" aria-label="查看：第一性原理重构">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#be123c14;color:#be123c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="21" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="21" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="24" data-cat="refactor" tabindex="0" role="button" aria-label="查看：glue 基于原型重构（成熟组件复用）">
-  <span class="entry-dot" style="background:#be123c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">glue 基于原型重构（成熟组件复用）</h3>
-    <p class="entry-summary">审查现有原型代码，识别所有可被成熟社区库替代的自研部分，制定可执行、可退役的迁移方案。</p>
+  <h3 class="pcard-title">第一性原理重构</h3>
+  <p class="pcard-summary">基于第一性原理对代码/模块/系统做批判性审查与重构，覆盖问题诊断、代码级优化到架构改进。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="24" data-cat="refactor" tabindex="0" role="button" aria-label="查看：glue 基于原型重构（成熟组件复用）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#be123c14;color:#be123c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="24" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="24" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="58" data-cat="refactor" tabindex="0" role="button" aria-label="查看：分析提示词（教学版）">
-  <span class="entry-dot" style="background:#be123c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">分析提示词（教学版）</h3>
-    <p class="entry-summary">教学版分析：用数据/过程/抽象三大概念，以通俗易懂的语言把项目讲给初学者。</p>
+  <h3 class="pcard-title">glue 基于原型重构（成熟组件复用）</h3>
+  <p class="pcard-summary">审查现有原型代码，识别所有可被成熟社区库替代的自研部分，制定可执行、可退役的迁移方案。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="58" data-cat="refactor" tabindex="0" role="button" aria-label="查看：分析提示词（教学版）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#be123c14;color:#be123c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="58" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="58" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="59" data-cat="refactor" tabindex="0" role="button" aria-label="查看：分析提示词（专业版）">
-  <span class="entry-dot" style="background:#be123c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">分析提示词（专业版）</h3>
-    <p class="entry-summary">专业版分析：从数据/过程/抽象三维度做系统化诊断，覆盖 SICP/SOLID/DDD/函数式抽象。</p>
+  <h3 class="pcard-title">分析提示词（教学版）</h3>
+  <p class="pcard-summary">教学版分析：用数据/过程/抽象三大概念，以通俗易懂的语言把项目讲给初学者。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="59" data-cat="refactor" tabindex="0" role="button" aria-label="查看：分析提示词（专业版）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#be123c14;color:#be123c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="59" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="59" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="67" data-cat="refactor" tabindex="0" role="button" aria-label="查看：胶水开发约束">
-  <span class="entry-dot" style="background:#be123c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">胶水开发约束</h3>
-    <p class="entry-summary">胶水开发约束：禁止自实现底层逻辑，必须优先复用成熟仓库与生产级库，防止复制改依赖库。</p>
+  <h3 class="pcard-title">分析提示词（专业版）</h3>
+  <p class="pcard-summary">专业版分析：从数据/过程/抽象三维度做系统化诊断，覆盖 SICP/SOLID/DDD/函数式抽象。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="67" data-cat="refactor" tabindex="0" role="button" aria-label="查看：胶水开发约束">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#be123c14;color:#be123c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="67" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="67" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="68" data-cat="refactor" tabindex="0" role="button" aria-label="查看：胶水开发要求（强依赖复用）">
-  <span class="entry-dot" style="background:#be123c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">胶水开发要求（强依赖复用）</h3>
-    <p class="entry-summary">强依赖复用开发模式：架构师角色，用成熟代码构建稳定可维护工程，禁止自建框架。</p>
+  <h3 class="pcard-title">胶水开发约束</h3>
+  <p class="pcard-summary">胶水开发约束：禁止自实现底层逻辑，必须优先复用成熟仓库与生产级库，防止复制改依赖库。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="68" data-cat="refactor" tabindex="0" role="button" aria-label="查看：胶水开发要求（强依赖复用）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#be123c14;color:#be123c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="68" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="68" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li></ol>
+  <h3 class="pcard-title">胶水开发要求（强依赖复用）</h3>
+  <p class="pcard-summary">强依赖复用开发模式：架构师角色，用成熟代码构建稳定可维护工程，禁止自建框架。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div></div>
 </section>
-<section class="chapter" id="cat-testing" data-cat="testing">
-  <div class="chapter-head">
-    <span class="chapter-num" style="color:#0f766e">Ⅴ</span>
-    <div class="chapter-title-wrap">
-      <h2 class="chapter-name">测试设计</h2>
-      <p class="chapter-desc">测试工程师角色、测试分类清单与用例设计</p>
+<section class="cat-sec" id="cat-testing" data-cat="testing">
+  <div class="cat-head">
+    <span class="cat-ic" style="color:#0f766e"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg></span>
+    <div class="cat-head-text">
+      <h2 class="cat-name">测试设计</h2>
+      <p class="cat-desc">测试工程师角色、测试分类清单与用例设计</p>
     </div>
   </div>
-  <ol class="entries"><li class="entry" data-idx="5" data-cat="testing" tabindex="0" role="button" aria-label="查看：资深软件测试工程师（角色设定）">
-  <span class="entry-dot" style="background:#0f766e"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">资深软件测试工程师（角色设定）</h3>
-    <p class="entry-summary">资深测试工程师/QA Lead 角色：理解产品、设计测试策略、写用例、跑测试、出发布质量判断，产出可交付测试资产。</p>
+  <div class="card-grid"><div class="pcard" data-idx="5" data-cat="testing" tabindex="0" role="button" aria-label="查看：资深软件测试工程师（角色设定）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#0f766e14;color:#0f766e"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="5" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="5" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="8" data-cat="testing" tabindex="0" role="button" aria-label="查看：测试分类清单与测试设计">
-  <span class="entry-dot" style="background:#0f766e"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">测试分类清单与测试设计</h3>
-    <p class="entry-summary">测试分类百科全书（单元/函数/Handler/组件/模块/服务/API/接口/E2E/安全等约 234 种）+ 测试设计执行流程。</p>
+  <h3 class="pcard-title">资深软件测试工程师（角色设定）</h3>
+  <p class="pcard-summary">资深测试工程师/QA Lead 角色：理解产品、设计测试策略、写用例、跑测试、出发布质量判断，产出可交付测试资产。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="8" data-cat="testing" tabindex="0" role="button" aria-label="查看：测试分类清单与测试设计">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#0f766e14;color:#0f766e"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="8" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="8" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="15" data-cat="testing" tabindex="0" role="button" aria-label="查看：资深软件测试工程师（测试）">
-  <span class="entry-dot" style="background:#0f766e"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">资深软件测试工程师（测试）</h3>
-    <p class="entry-summary">（与 #5 同角色）资深测试工程师完整工作流程。</p>
+  <h3 class="pcard-title">测试分类清单与测试设计</h3>
+  <p class="pcard-summary">测试分类百科全书（单元/函数/Handler/组件/模块/服务/API/接口/E2E/安全等约 234 种）+ 测试设计执行流程。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="15" data-cat="testing" tabindex="0" role="button" aria-label="查看：资深软件测试工程师（测试）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#0f766e14;color:#0f766e"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="15" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="15" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li></ol>
+  <h3 class="pcard-title">资深软件测试工程师（测试）</h3>
+  <p class="pcard-summary">（与 #5 同角色）资深测试工程师完整工作流程。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div></div>
 </section>
-<section class="chapter" id="cat-docs" data-cat="docs">
-  <div class="chapter-head">
-    <span class="chapter-num" style="color:#7c3aed">Ⅵ</span>
-    <div class="chapter-title-wrap">
-      <h2 class="chapter-name">文档与知识沉淀</h2>
-      <p class="chapter-desc">技术文档生成、项目上下文沉淀、任务交接</p>
+<section class="cat-sec" id="cat-docs" data-cat="docs">
+  <div class="cat-head">
+    <span class="cat-ic" style="color:#7c3aed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+    <div class="cat-head-text">
+      <h2 class="cat-name">文档与知识沉淀</h2>
+      <p class="cat-desc">技术文档生成、项目上下文沉淀、任务交接</p>
     </div>
   </div>
-  <ol class="entries"><li class="entry" data-idx="11" data-cat="docs" tabindex="0" role="button" aria-label="查看：任务交接总结生成器">
-  <span class="entry-dot" style="background:#7c3aed"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">任务交接总结生成器</h3>
-    <p class="entry-summary">上下文迁移神器：当前会话快满了时，生成一份可无缝续接的任务交接文档，新窗口直接接管。</p>
+  <div class="card-grid"><div class="pcard" data-idx="11" data-cat="docs" tabindex="0" role="button" aria-label="查看：任务交接总结生成器">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#7c3aed14;color:#7c3aed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="11" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="11" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="17" data-cat="docs" tabindex="0" role="button" aria-label="查看：线性流程契约（AGENTS.md）">
-  <span class="entry-dot" style="background:#7c3aed"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">线性流程契约（AGENTS.md）</h3>
-    <p class="entry-summary">为 AGENTS.md 添加&quot;线性流程契约&quot;板块，基于真实代码提炼主链路，格式固定、可追溯。</p>
+  <h3 class="pcard-title">任务交接总结生成器</h3>
+  <p class="pcard-summary">上下文迁移神器：当前会话快满了时，生成一份可无缝续接的任务交接文档，新窗口直接接管。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="17" data-cat="docs" tabindex="0" role="button" aria-label="查看：线性流程契约（AGENTS.md）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#7c3aed14;color:#7c3aed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="17" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="17" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="22" data-cat="docs" tabindex="0" role="button" aria-label="查看：项目文档自动同步">
-  <span class="entry-dot" style="background:#7c3aed"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">项目文档自动同步</h3>
-    <p class="entry-summary">项目文档同步 Agent：每次开发迭代后，把 README 等文档同步到与代码配置完全一致的最新状态。</p>
+  <h3 class="pcard-title">线性流程契约（AGENTS.md）</h3>
+  <p class="pcard-summary">为 AGENTS.md 添加&quot;线性流程契约&quot;板块，基于真实代码提炼主链路，格式固定、可追溯。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="22" data-cat="docs" tabindex="0" role="button" aria-label="查看：项目文档自动同步">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#7c3aed14;color:#7c3aed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="22" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="22" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="25" data-cat="docs" tabindex="0" role="button" aria-label="查看：代码变更陈述">
-  <span class="entry-dot" style="background:#7c3aed"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">代码变更陈述</h3>
-    <p class="entry-summary">基于对话内事实（不虚构），生成本次代码变更的说明陈述，用于提交信息或变更日志。</p>
+  <h3 class="pcard-title">项目文档自动同步</h3>
+  <p class="pcard-summary">项目文档同步 Agent：每次开发迭代后，把 README 等文档同步到与代码配置完全一致的最新状态。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="25" data-cat="docs" tabindex="0" role="button" aria-label="查看：代码变更陈述">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#7c3aed14;color:#7c3aed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="25" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="25" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="26" data-cat="docs" tabindex="0" role="button" aria-label="查看：可复现执行文档生成器">
-  <span class="entry-dot" style="background:#7c3aed"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">可复现执行文档生成器</h3>
-    <p class="entry-summary">把本次&quot;用 AI 完成一次任务&quot;的全过程沉淀为带 YAML Front Matter 的可复现执行文档，未来同类任务可复制重跑。</p>
+  <h3 class="pcard-title">代码变更陈述</h3>
+  <p class="pcard-summary">基于对话内事实（不虚构），生成本次代码变更的说明陈述，用于提交信息或变更日志。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="26" data-cat="docs" tabindex="0" role="button" aria-label="查看：可复现执行文档生成器">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#7c3aed14;color:#7c3aed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="26" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="26" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="34" data-cat="docs" tabindex="0" role="button" aria-label="查看：智能需求理解与研发导航引擎">
-  <span class="entry-dot" style="background:#7c3aed"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">智能需求理解与研发导航引擎</h3>
-    <p class="entry-summary">智能需求理解与研发导航引擎：输入任何主题，自动识别关键词、关联高级知识结构、给出行动方向。</p>
+  <h3 class="pcard-title">可复现执行文档生成器</h3>
+  <p class="pcard-summary">把本次&quot;用 AI 完成一次任务&quot;的全过程沉淀为带 YAML Front Matter 的可复现执行文档，未来同类任务可复制重跑。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="34" data-cat="docs" tabindex="0" role="button" aria-label="查看：智能需求理解与研发导航引擎">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#7c3aed14;color:#7c3aed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="34" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="34" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="35" data-cat="docs" tabindex="0" role="button" aria-label="查看：项目上下文文档生成">
-  <span class="entry-dot" style="background:#7c3aed"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">项目上下文文档生成</h3>
-    <p class="entry-summary">基于当前对话信息，生成完整、结构化、可迁移的项目上下文文档，用于跨会话复用与 Prompt 注入。</p>
+  <h3 class="pcard-title">智能需求理解与研发导航引擎</h3>
+  <p class="pcard-summary">智能需求理解与研发导航引擎：输入任何主题，自动识别关键词、关联高级知识结构、给出行动方向。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="35" data-cat="docs" tabindex="0" role="button" aria-label="查看：项目上下文文档生成">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#7c3aed14;color:#7c3aed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="35" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="35" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="37" data-cat="docs" tabindex="0" role="button" aria-label="查看：AI 生成代码文档通用模板">
-  <span class="entry-dot" style="background:#7c3aed"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">AI 生成代码文档通用模板</h3>
-    <p class="entry-summary">通用 AI 生成代码文档模板：项目信息 + 4 部分文档结构（问题解决/技术实现/系统架构/成果收益）。</p>
+  <h3 class="pcard-title">项目上下文文档生成</h3>
+  <p class="pcard-summary">基于当前对话信息，生成完整、结构化、可迁移的项目上下文文档，用于跨会话复用与 Prompt 注入。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="37" data-cat="docs" tabindex="0" role="button" aria-label="查看：AI 生成代码文档通用模板">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#7c3aed14;color:#7c3aed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="37" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="37" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="38" data-cat="docs" tabindex="0" role="button" aria-label="查看：文件头注释规范">
-  <span class="entry-dot" style="background:#7c3aed"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">文件头注释规范</h3>
-    <p class="entry-summary">为所有代码文件最上方生成统一的文件头注释规范（含元信息模板）。</p>
+  <h3 class="pcard-title">AI 生成代码文档通用模板</h3>
+  <p class="pcard-summary">通用 AI 生成代码文档模板：项目信息 + 4 部分文档结构（问题解决/技术实现/系统架构/成果收益）。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="38" data-cat="docs" tabindex="0" role="button" aria-label="查看：文件头注释规范">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#7c3aed14;color:#7c3aed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="38" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="38" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="54" data-cat="docs" tabindex="0" role="button" aria-label="查看：DDD 文档管家 v2.0">
-  <span class="entry-dot" style="background:#7c3aed"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">DDD 文档管家 v2.0</h3>
-    <p class="entry-summary">DDD 文档管家 v2.0：把 docs/ 打造成单一可信来源（SSOT），文档始终与真实代码一致。</p>
+  <h3 class="pcard-title">文件头注释规范</h3>
+  <p class="pcard-summary">为所有代码文件最上方生成统一的文件头注释规范（含元信息模板）。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="54" data-cat="docs" tabindex="0" role="button" aria-label="查看：DDD 文档管家 v2.0">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#7c3aed14;color:#7c3aed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="54" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="54" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="55" data-cat="docs" tabindex="0" role="button" aria-label="查看：DDD 文档管家 v1.0.0">
-  <span class="entry-dot" style="background:#7c3aed"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">DDD 文档管家 v1.0.0</h3>
-    <p class="entry-summary">DDD 文档管家 v1.0.0：工业级版本，含元信息、上下文、原则，文档驱动开发的标准实现。</p>
+  <h3 class="pcard-title">DDD 文档管家 v2.0</h3>
+  <p class="pcard-summary">DDD 文档管家 v2.0：把 docs/ 打造成单一可信来源（SSOT），文档始终与真实代码一致。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="55" data-cat="docs" tabindex="0" role="button" aria-label="查看：DDD 文档管家 v1.0.0">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#7c3aed14;color:#7c3aed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="55" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="55" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="60" data-cat="docs" tabindex="0" role="button" aria-label="查看：精华技术文档生成">
-  <span class="entry-dot" style="background:#7c3aed"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">精华技术文档生成</h3>
-    <p class="entry-summary">精华技术文档生成：问题解决、技术实现、系统架构、成果收益四段式，配流程图。</p>
+  <h3 class="pcard-title">DDD 文档管家 v1.0.0</h3>
+  <p class="pcard-summary">DDD 文档管家 v1.0.0：工业级版本，含元信息、上下文、原则，文档驱动开发的标准实现。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="60" data-cat="docs" tabindex="0" role="button" aria-label="查看：精华技术文档生成">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#7c3aed14;color:#7c3aed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="60" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="60" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="66" data-cat="docs" tabindex="0" role="button" aria-label="查看：项目文档自动同步（变体）">
-  <span class="entry-dot" style="background:#7c3aed"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">项目文档自动同步（变体）</h3>
-    <p class="entry-summary">（与 #22 同框架的变体）项目文档自动同步。</p>
+  <h3 class="pcard-title">精华技术文档生成</h3>
+  <p class="pcard-summary">精华技术文档生成：问题解决、技术实现、系统架构、成果收益四段式，配流程图。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="66" data-cat="docs" tabindex="0" role="button" aria-label="查看：项目文档自动同步（变体）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#7c3aed14;color:#7c3aed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="66" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="66" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li></ol>
+  <h3 class="pcard-title">项目文档自动同步（变体）</h3>
+  <p class="pcard-summary">（与 #22 同框架的变体）项目文档自动同步。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div></div>
 </section>
-<section class="chapter" id="cat-devops" data-cat="devops">
-  <div class="chapter-head">
-    <span class="chapter-num" style="color:#b45309">Ⅶ</span>
-    <div class="chapter-title-wrap">
-      <h2 class="chapter-name">CI/CD 与运维</h2>
-      <p class="chapter-desc">持续集成交付、Shell 控制面板、守护脚本</p>
+<section class="cat-sec" id="cat-devops" data-cat="devops">
+  <div class="cat-head">
+    <span class="cat-ic" style="color:#b45309"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></span>
+    <div class="cat-head-text">
+      <h2 class="cat-name">CI/CD 与运维</h2>
+      <p class="cat-desc">持续集成交付、Shell 控制面板、守护脚本</p>
     </div>
   </div>
-  <ol class="entries"><li class="entry" data-idx="10" data-cat="devops" tabindex="0" role="button" aria-label="查看：CI/CD 完整体系">
-  <span class="entry-dot" style="background:#b45309"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">CI/CD 完整体系</h3>
-    <p class="entry-summary">CI/CD 完整体系说明书：从提交、构建、测试、安全、制品、部署、监控、回滚到度量治理的全流程。</p>
+  <div class="card-grid"><div class="pcard" data-idx="10" data-cat="devops" tabindex="0" role="button" aria-label="查看：CI/CD 完整体系">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#b4530914;color:#b45309"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="10" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="10" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="56" data-cat="devops" tabindex="0" role="button" aria-label="查看：生产级 Shell 控制面板">
-  <span class="entry-dot" style="background:#b45309"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">生产级 Shell 控制面板</h3>
-    <p class="entry-summary">生成生产级 Shell 交互式控制面板：自动化配置、双模式运行、可直接用于生产环境。</p>
+  <h3 class="pcard-title">CI/CD 完整体系</h3>
+  <p class="pcard-summary">CI/CD 完整体系说明书：从提交、构建、测试、安全、制品、部署、监控、回滚到度量治理的全流程。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="56" data-cat="devops" tabindex="0" role="button" aria-label="查看：生产级 Shell 控制面板">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#b4530914;color:#b45309"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="56" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="56" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="73" data-cat="devops" tabindex="0" role="button" aria-label="查看：用户级守护程序脚本">
-  <span class="entry-dot" style="background:#b45309"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">用户级守护程序脚本</h3>
-    <p class="entry-summary">为服务目录编写用户级守护脚本 daemon.sh：不依赖 systemd，实现常驻运行、健康检查与自动拉起。</p>
+  <h3 class="pcard-title">生产级 Shell 控制面板</h3>
+  <p class="pcard-summary">生成生产级 Shell 交互式控制面板：自动化配置、双模式运行、可直接用于生产环境。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="73" data-cat="devops" tabindex="0" role="button" aria-label="查看：用户级守护程序脚本">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#b4530914;color:#b45309"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="73" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="73" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li></ol>
+  <h3 class="pcard-title">用户级守护程序脚本</h3>
+  <p class="pcard-summary">为服务目录编写用户级守护脚本 daemon.sh：不依赖 systemd，实现常驻运行、健康检查与自动拉起。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div></div>
 </section>
-<section class="chapter" id="cat-agents" data-cat="agents">
-  <div class="chapter-head">
-    <span class="chapter-num" style="color:#9d174d">Ⅷ</span>
-    <div class="chapter-title-wrap">
-      <h2 class="chapter-name">多智能体与并行协作</h2>
-      <p class="chapter-desc">并行子代理、主控模式、Git worktree 并行开发</p>
+<section class="cat-sec" id="cat-agents" data-cat="agents">
+  <div class="cat-head">
+    <span class="cat-ic" style="color:#9d174d"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></span>
+    <div class="cat-head-text">
+      <h2 class="cat-name">多智能体与并行协作</h2>
+      <p class="cat-desc">并行子代理、主控模式、Git worktree 并行开发</p>
     </div>
   </div>
-  <ol class="entries"><li class="entry" data-idx="4" data-cat="agents" tabindex="0" role="button" aria-label="查看：多专家协同问题解决">
-  <span class="entry-dot" style="background:#9d174d"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">多专家协同问题解决</h3>
-    <p class="entry-summary">多专家协同推理：模拟 3-7 位相关领域专家，从多学科视角分析问题，并给出从概念到落地的完整链路。</p>
+  <div class="card-grid"><div class="pcard" data-idx="4" data-cat="agents" tabindex="0" role="button" aria-label="查看：多专家协同问题解决">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#9d174d14;color:#9d174d"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="4" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="4" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="6" data-cat="agents" tabindex="0" role="button" aria-label="查看：主 Codex 主控模式（auto-tmux）">
-  <span class="entry-dot" style="background:#9d174d"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">主 Codex 主控模式（auto-tmux）</h3>
-    <p class="entry-summary">主 Codex 模式：通过 auto-tmux 控制持久化 worker Codex pane，进入持续任务执行模式。</p>
+  <h3 class="pcard-title">多专家协同问题解决</h3>
+  <p class="pcard-summary">多专家协同推理：模拟 3-7 位相关领域专家，从多学科视角分析问题，并给出从概念到落地的完整链路。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="6" data-cat="agents" tabindex="0" role="button" aria-label="查看：主 Codex 主控模式（auto-tmux）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#9d174d14;color:#9d174d"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="6" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="6" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="7" data-cat="agents" tabindex="0" role="button" aria-label="查看：Git 并行开发协调器">
-  <span class="entry-dot" style="background:#9d174d"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">Git 并行开发协调器</h3>
-    <p class="entry-summary">Git 并行开发协调器：在同一个仓库上用 Git worktree 实现&quot;物理并行开发&quot;。</p>
+  <h3 class="pcard-title">主 Codex 主控模式（auto-tmux）</h3>
+  <p class="pcard-summary">主 Codex 模式：通过 auto-tmux 控制持久化 worker Codex pane，进入持续任务执行模式。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="7" data-cat="agents" tabindex="0" role="button" aria-label="查看：Git 并行开发协调器">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#9d174d14;color:#9d174d"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="7" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="7" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="14" data-cat="agents" tabindex="0" role="button" aria-label="查看：并行子代理执行任务">
-  <span class="entry-dot" style="background:#9d174d"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">并行子代理执行任务</h3>
-    <p class="entry-summary">启动并行子代理：任务拆分为独立子任务，各子代理并行执行（模型 gpt-5.5+xhigh），最后汇总汇报。</p>
+  <h3 class="pcard-title">Git 并行开发协调器</h3>
+  <p class="pcard-summary">Git 并行开发协调器：在同一个仓库上用 Git worktree 实现&quot;物理并行开发&quot;。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="14" data-cat="agents" tabindex="0" role="button" aria-label="查看：并行子代理执行任务">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#9d174d14;color:#9d174d"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="14" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="14" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li></ol>
+  <h3 class="pcard-title">并行子代理执行任务</h3>
+  <p class="pcard-summary">启动并行子代理：任务拆分为独立子任务，各子代理并行执行（模型 gpt-5.5+xhigh），最后汇总汇报。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div></div>
 </section>
-<section class="chapter" id="cat-prompting" data-cat="prompting">
-  <div class="chapter-head">
-    <span class="chapter-num" style="color:#ea580c">Ⅸ</span>
-    <div class="chapter-title-wrap">
-      <h2 class="chapter-name">提示词工程与风格</h2>
-      <p class="chapter-desc">伪代码化、函数化、硬约束生成、文风控制</p>
+<section class="cat-sec" id="cat-prompting" data-cat="prompting">
+  <div class="cat-head">
+    <span class="cat-ic" style="color:#ea580c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"/></svg></span>
+    <div class="cat-head-text">
+      <h2 class="cat-name">提示词工程与风格</h2>
+      <p class="cat-desc">伪代码化、函数化、硬约束生成、文风控制</p>
     </div>
   </div>
-  <ol class="entries"><li class="entry" data-idx="13" data-cat="prompting" tabindex="0" role="button" aria-label="查看：成熟方案检索与路径设计专家">
-  <span class="entry-dot" style="background:#ea580c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">成熟方案检索与路径设计专家</h3>
-    <p class="entry-summary">成熟方案检索与路径设计专家：不发明方法，而是帮你找到已验证的成熟方案、成功案例与可复制路径。</p>
+  <div class="card-grid"><div class="pcard" data-idx="13" data-cat="prompting" tabindex="0" role="button" aria-label="查看：成熟方案检索与路径设计专家">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#ea580c14;color:#ea580c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="13" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="13" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="27" data-cat="prompting" tabindex="0" role="button" aria-label="查看：任务执行优先成熟范式">
-  <span class="entry-dot" style="background:#ea580c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">任务执行优先成熟范式</h3>
-    <p class="entry-summary">成熟范式优先（Proven-Pattern-First）任务执行：先检索成熟方法，再复制适配，交付可验收成果。</p>
+  <h3 class="pcard-title">成熟方案检索与路径设计专家</h3>
+  <p class="pcard-summary">成熟方案检索与路径设计专家：不发明方法，而是帮你找到已验证的成熟方案、成功案例与可复制路径。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="27" data-cat="prompting" tabindex="0" role="button" aria-label="查看：任务执行优先成熟范式">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#ea580c14;color:#ea580c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="27" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="27" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="31" data-cat="prompting" tabindex="0" role="button" aria-label="查看：伪代码（PARE 系统）">
-  <span class="entry-dot" style="background:#ea580c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">伪代码（PARE 系统）</h3>
-    <p class="entry-summary">PARE 伪代码系统：把复杂逻辑转成与语言无关的中文伪代码，降低学习门槛、方便沟通。</p>
+  <h3 class="pcard-title">任务执行优先成熟范式</h3>
+  <p class="pcard-summary">成熟范式优先（Proven-Pattern-First）任务执行：先检索成熟方法，再复制适配，交付可验收成果。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="31" data-cat="prompting" tabindex="0" role="button" aria-label="查看：伪代码（PARE 系统）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#ea580c14;color:#ea580c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="31" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="31" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="32" data-cat="prompting" tabindex="0" role="button" aria-label="查看：函数化万物专家">
-  <span class="entry-dot" style="background:#ea580c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">函数化万物专家</h3>
-    <p class="entry-summary">函数化万物专家：把复杂对象/事件分解为一系列有明确职责的函数模块，追求极致精细化。</p>
+  <h3 class="pcard-title">伪代码（PARE 系统）</h3>
+  <p class="pcard-summary">PARE 伪代码系统：把复杂逻辑转成与语言无关的中文伪代码，降低学习门槛、方便沟通。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="32" data-cat="prompting" tabindex="0" role="button" aria-label="查看：函数化万物专家">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#ea580c14;color:#ea580c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="32" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="32" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="69" data-cat="prompting" tabindex="0" role="button" aria-label="查看：简洁克制文风控制">
-  <span class="entry-dot" style="background:#ea580c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">简洁克制文风控制</h3>
-    <p class="entry-summary">文风控制：删除表情、客套、夸张修辞与空洞过渡语，只给事实与结论，默认怀疑并二次核查。</p>
+  <h3 class="pcard-title">函数化万物专家</h3>
+  <p class="pcard-summary">函数化万物专家：把复杂对象/事件分解为一系列有明确职责的函数模块，追求极致精细化。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="69" data-cat="prompting" tabindex="0" role="button" aria-label="查看：简洁克制文风控制">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#ea580c14;color:#ea580c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="69" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="69" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="70" data-cat="prompting" tabindex="0" role="button" aria-label="查看：数据管道化表达">
-  <span class="entry-dot" style="background:#ea580c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">数据管道化表达</h3>
-    <p class="entry-summary">数据管道化表达：把任何输入/指令/目标转换为一段&quot;工程化代码注释风格&quot;的数据处理管道流程。</p>
+  <h3 class="pcard-title">简洁克制文风控制</h3>
+  <p class="pcard-summary">文风控制：删除表情、客套、夸张修辞与空洞过渡语，只给事实与结论，默认怀疑并二次核查。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="70" data-cat="prompting" tabindex="0" role="button" aria-label="查看：数据管道化表达">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#ea580c14;color:#ea580c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="70" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="70" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="72" data-cat="prompting" tabindex="0" role="button" aria-label="查看：前置条件式硬约束生成">
-  <span class="entry-dot" style="background:#ea580c"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">前置条件式硬约束生成</h3>
-    <p class="entry-summary">前置条件式硬约束生成：把初始提示词批判性重构为&quot;前置条件式硬约束清单&quot;，约束更严密。</p>
+  <h3 class="pcard-title">数据管道化表达</h3>
+  <p class="pcard-summary">数据管道化表达：把任何输入/指令/目标转换为一段&quot;工程化代码注释风格&quot;的数据处理管道流程。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="72" data-cat="prompting" tabindex="0" role="button" aria-label="查看：前置条件式硬约束生成">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#ea580c14;color:#ea580c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="72" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="72" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li></ol>
+  <h3 class="pcard-title">前置条件式硬约束生成</h3>
+  <p class="pcard-summary">前置条件式硬约束生成：把初始提示词批判性重构为&quot;前置条件式硬约束清单&quot;，约束更严密。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div></div>
 </section>
-<section class="chapter" id="cat-visual" data-cat="visual">
-  <div class="chapter-head">
-    <span class="chapter-num" style="color:#6d28d9">Ⅹ</span>
-    <div class="chapter-title-wrap">
-      <h2 class="chapter-name">可视化与特殊输出</h2>
-      <p class="chapter-desc">HTML 逆向、ASCII 图、科研报告等特殊格式</p>
+<section class="cat-sec" id="cat-visual" data-cat="visual">
+  <div class="cat-head">
+    <span class="cat-ic" style="color:#6d28d9"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></span>
+    <div class="cat-head-text">
+      <h2 class="cat-name">可视化与特殊输出</h2>
+      <p class="cat-desc">HTML 逆向、ASCII 图、科研报告等特殊格式</p>
     </div>
   </div>
-  <ol class="entries"><li class="entry" data-idx="49" data-cat="visual" tabindex="0" role="button" aria-label="查看：HTML 网页逆向分析（一键生成 UI）">
-  <span class="entry-dot" style="background:#6d28d9"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">HTML 网页逆向分析（一键生成 UI）</h3>
-    <p class="entry-summary">HTML 网页逆向分析：从 HTML 全维度分析页面结构/UI/视觉/交互，生成可复用的 UI 提示词。</p>
+  <div class="card-grid"><div class="pcard" data-idx="49" data-cat="visual" tabindex="0" role="button" aria-label="查看：HTML 网页逆向分析（一键生成 UI）">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#6d28d914;color:#6d28d9"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="49" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="49" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="53" data-cat="visual" tabindex="0" role="button" aria-label="查看：ASCII 图生成">
-  <span class="entry-dot" style="background:#6d28d9"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">ASCII 图生成</h3>
-    <p class="entry-summary">生成符合严格约束的 ASCII 架构图/流程图，避免非 ASCII 字符与错位排版。</p>
+  <h3 class="pcard-title">HTML 网页逆向分析（一键生成 UI）</h3>
+  <p class="pcard-summary">HTML 网页逆向分析：从 HTML 全维度分析页面结构/UI/视觉/交互，生成可复用的 UI 提示词。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="53" data-cat="visual" tabindex="0" role="button" aria-label="查看：ASCII 图生成">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#6d28d914;color:#6d28d9"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="53" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="53" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li>
-<li class="entry" data-idx="62" data-cat="visual" tabindex="0" role="button" aria-label="查看：学术科研风格报告">
-  <span class="entry-dot" style="background:#6d28d9"></span>
-  <div class="entry-main">
-    <h3 class="entry-title">学术科研风格报告</h3>
-    <p class="entry-summary">学术科研风格报告：把简单日常行为写成&quot;高大上&quot;的研究报告摘要（含结构模板与语言风格）。</p>
+  <h3 class="pcard-title">ASCII 图生成</h3>
+  <p class="pcard-summary">生成符合严格约束的 ASCII 架构图/流程图，避免非 ASCII 字符与错位排版。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div>
+<div class="pcard" data-idx="62" data-cat="visual" tabindex="0" role="button" aria-label="查看：学术科研风格报告">
+  <div class="pcard-top">
+    <span class="pcard-ic" style="background:#6d28d914;color:#6d28d9"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></span>
+    <button type="button" class="pcard-copy" data-idx="62" title="复制提示词" aria-label="复制"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
   </div>
-  <button type="button" class="entry-copy" data-idx="62" title="复制提示词"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>
-  <span class="entry-arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
-</li></ol>
+  <h3 class="pcard-title">学术科研风格报告</h3>
+  <p class="pcard-summary">学术科研风格报告：把简单日常行为写成&quot;高大上&quot;的研究报告摘要（含结构模板与语言风格）。</p>
+  <span class="pcard-more">查看全文 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m9 18 6-6-6-6"/></svg></span>
+</div></div>
 </section>
     <div class="no-result" id="no-result">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -1023,8 +1025,8 @@ const CAT_NAME = {"requirements": "需求分析与任务规划", "architecture":
 const CAT_ICON = {"requirements": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><circle cx=\"12\" cy=\"12\" r=\"6\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></svg>", "architecture": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon\"><rect x=\"16\" y=\"16\" width=\"6\" height=\"6\" rx=\"1\"/><rect x=\"2\" y=\"16\" width=\"6\" height=\"6\" rx=\"1\"/><rect x=\"9\" y=\"2\" width=\"6\" height=\"6\" rx=\"1\"/><path d=\"M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3\"/><path d=\"M12 8v5\"/></svg>", "coding": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon\"><polyline points=\"16 18 22 12 16 6\"/><polyline points=\"8 6 2 12 8 18\"/></svg>", "refactor": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon\"><path d=\"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z\"/></svg>", "testing": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon\"><path d=\"M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2\"/><path d=\"M8.5 2h7\"/><path d=\"M7 16h10\"/></svg>", "docs": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon\"><path d=\"M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z\"/><path d=\"M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z\"/></svg>", "devops": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"8\" rx=\"2\" ry=\"2\"/><rect x=\"2\" y=\"14\" width=\"20\" height=\"8\" rx=\"2\" ry=\"2\"/><line x1=\"6\" y1=\"6\" x2=\"6.01\" y2=\"6\"/><line x1=\"6\" y1=\"18\" x2=\"6.01\" y2=\"18\"/></svg>", "agents": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon\"><path d=\"M12 8V4H8\"/><rect width=\"16\" height=\"12\" x=\"4\" y=\"8\" rx=\"2\"/><path d=\"M2 14h2\"/><path d=\"M20 14h2\"/><path d=\"M15 13v2\"/><path d=\"M9 13v2\"/></svg>", "prompting": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon\"><path d=\"M9 18h6\"/><path d=\"M10 22h4\"/><path d=\"M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5\"/></svg>", "visual": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon\"><rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\" ry=\"2\"/><circle cx=\"9\" cy=\"9\" r=\"2\"/><path d=\"m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21\"/></svg>"};
 
 const search = document.getElementById('search');
-const cards = Array.from(document.querySelectorAll('.entry'));
-const secs = Array.from(document.querySelectorAll('.chapter'));
+const cards = Array.from(document.querySelectorAll('.pcard'));
+const secs = Array.from(document.querySelectorAll('.cat-sec'));
 const navItems = Array.from(document.querySelectorAll('.toc-item'));
 const noResult = document.getElementById('no-result');
 const modal = document.getElementById('modal');
@@ -1060,7 +1062,7 @@ function filter() {
 function resetCounts() {
   cards.forEach(c => c.style.display = '');
   secs.forEach(sec => {
-    const n = sec.querySelectorAll('.entry').length;
+    const n = sec.querySelectorAll('.pcard').length;
     const cnt = document.querySelector('[data-cnt-cat="'+sec.dataset.cat+'"]');
     if (cnt) cnt.textContent = n;
   });
@@ -1107,7 +1109,7 @@ function closeModal() {
 }
 cards.forEach(card => {
   card.addEventListener('click', (e) => {
-    if (e.target.closest('.entry-copy')) return; // 忽略复制按钮
+    if (e.target.closest('.pcard-copy')) return; // 忽略复制按钮
     openModal(card.dataset.idx);
   });
   card.addEventListener('keydown', (e) => {
@@ -1137,7 +1139,7 @@ function fallback(btn, text, flash) {
   try { document.execCommand('copy'); flash(); } catch(e) { alert('复制失败，请手动复制'); }
   document.body.removeChild(ta);
 }
-document.querySelectorAll('.entry-copy').forEach(btn => {
+document.querySelectorAll('.pcard-copy').forEach(btn => {
   btn.addEventListener('click', (e) => {
     e.stopPropagation();
     const d = CARD_DATA[btn.dataset.idx];
