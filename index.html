@@ -358,35 +358,34 @@ tbody tr:hover td { background: var(--raised); }
 <!-- ====== HERO ====== -->
 <section class="hero" id="hero" aria-labelledby="hero-title">
   <div class="hero-badge"><span>PM 实操手册</span></div>
-  <h1 id="hero-title"><span class="line1">你定义验收标准，</span><span class="line2">AI 在边界内交付</span></h1>
-  <p class="hero-subtitle">一份面向产品经理的实战工作手册——从需求分析到发布上线，<br>每一步都有可直接复用的模板、话术和提示词。</p>
+  <h1 id="hero-title"><span class="line1">先定义产品，</span><span class="line2">再定义验收标准</span></h1>
+  <p class="hero-subtitle">把"这是什么、为谁解决什么问题"写清楚。<br>再把"做对了长什么样、边界在哪、出错时怎样"写清楚。<br>剩下的方案生成、代码实现、自测验证、人话汇报，交给 AI。</p>
 
   <div class="hero-paradigm">
     <div class="hero-pm-box">
-      <h3>PM 定义围栏</h3>
+      <h3>① 先定义产品</h3>
       <div class="pm-items">
-        <div class="pm-item"><span class="pm-dot"></span>写清楚什么算做对了（验收标准）</div>
-        <div class="pm-item"><span class="pm-dot"></span>写清楚什么不能做（排除边界）</div>
-        <div class="pm-item"><span class="pm-dot"></span>出错时显示什么（异常态约定）</div>
+        <div class="pm-item"><span class="pm-dot"></span>这是什么、为谁解决什么问题</div>
+        <div class="pm-item"><span class="pm-dot"></span>核心场景和核心价值是什么</div>
+        <div class="pm-item"><span class="pm-dot"></span>这次不做什么（排除范围）</div>
       </div>
     </div>
     <div class="hero-arrow">
       <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--amber)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20h24M26 8l12 12-12 12"/></svg>
     </div>
     <div class="hero-ai-box">
-      <h3>AI 在围栏内产出</h3>
+      <h3>② 再定义验收标准</h3>
       <div class="ai-items">
-        <div class="ai-item"><span class="ai-dot"></span>把意图翻译成方案和代码</div>
-        <div class="ai-item"><span class="ai-dot"></span>完成自测，附验证证据</div>
-        <div class="ai-item"><span class="ai-dot"></span>说人话汇报：影响 / 现状 / 下一步</div>
+        <div class="ai-item"><span class="ai-dot"></span>做对了长什么样——正常路径的期望结果</div>
+        <div class="ai-item"><span class="ai-dot"></span>边界在哪——格式错误、超时、空数据、重复操作怎么处理</div>
+        <div class="ai-item"><span class="ai-dot"></span>出错时显示什么——具体到文案</div>
       </div>
     </div>
   </div>
 
   <div class="hero-action">
-    <div class="hero-action-label">复制这段话，粘贴到 AI 对话里，现在就试试</div>
     <div class="hero-action-row">
-      <span class="action-placeholder">我要做 <mark>____</mark>。做对了的标准是 <mark>1、2、3</mark>。这次不做 <mark>____</mark>。你先复述一遍，别动手。</span>
+      <span class="action-placeholder">我要做 <mark>____</mark>，给 <mark>____</mark> 用，解决 <mark>____</mark> 的问题。做对了的标准是 <mark>1、2、3</mark>。这次不做 <mark>____</mark>。你先复述一遍，别动手。</span>
       <button class="copy-btn" onclick="copyHeroSnippet(this)" aria-label="复制话术">复制</button>
     </div>
   </div>
@@ -521,7 +520,7 @@ tbody tr:hover td { background: var(--raised); }
 <!-- ====== STATION 4: 案例模板 ====== -->
 <section class="section" id="station-4" aria-labelledby="s4-title">
   <h2 class="station-title" id="s4-title">案例模板</h2>
-  <div class="station-why"><p>AI 时代的项目文档不是"写完就扔的汇报材料"——<strong>每一份都是给 AI 的输入指令和协作契约</strong>。这里整理了 7 个阶段、23 份文档的完整模板，覆盖调研立项、产品设计、项目执行、测试验收、发布迭代、AI 自动产出、过程资产。</p></div>
+  <div class="station-why"><p>AI 时代的项目文档不是"写完就扔的汇报材料"——<strong>每一份都是给 AI 的输入指令和协作契约</strong>。这里整理了<strong> 7 个阶段、24 份文档</strong>的完整模板，覆盖调研立项、产品设计、项目执行、测试验收、发布迭代、AI 自动产出、过程资产。</p></div>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:24px 0;">
     <div style="background:var(--surface);border:1px solid var(--b);border-radius:var(--r);padding:18px 20px;">
@@ -558,7 +557,7 @@ tbody tr:hover td { background: var(--raised); }
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#0d9488"/><rect x="5" y="4" width="14" height="16" rx="2" fill="#faf8f5" opacity="0.95"/><rect x="7" y="7" width="10" height="1.5" rx="0.75" fill="#0d9488" opacity="0.8"/><rect x="7" y="10" width="8" height="1.5" rx="0.75" fill="#0d9488" opacity="0.6"/><rect x="7" y="13" width="9" height="1.5" rx="0.75" fill="#0d9488" opacity="0.4"/></svg>
       </div>
       <div class="pk-entry-text">
-        <h3>查看全部 23 份模板</h3>
+        <h3>查看全部 24 份模板</h3>
         <p>含完整目录结构 · 每份模板有空白版和填写示例 · 可直接复制使用</p>
       </div>
     </div>
@@ -633,7 +632,7 @@ const hamburger=document.querySelector('.hamburger'),mobileNav=document.getEleme
 hamburger.addEventListener('click',()=>{const o=mobileNav.classList.toggle('show');hamburger.classList.toggle('open',o);hamburger.setAttribute('aria-expanded',o)});
 mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileNav.classList.remove('show');hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded','false')}));
 function toggleTemplate(h){const i=h.closest('.template-item');if(!i)return;i.classList.toggle('open');h.setAttribute('aria-expanded',i.classList.contains('open'))}
-function copyHeroSnippet(b){doCopy(b,'我要做 ____。做对了的标准是 1、2、3。这次不做 ____。你先复述一遍理解，别动手。')}
+function copyHeroSnippet(b){doCopy(b,'我要做 ____，给 ____ 用，解决 ____ 的问题。做对了的标准是 1、2、3。这次不做 ____。你先复述一遍，别动手。')}
 function copyPhrase(b){doCopy(b,b.parentElement.querySelector('.phrase-text').innerText)}
 function kitCopy(b){const p=b.closest('.template-item').querySelector('pre');if(!p)return;doCopy(b,p.innerText)}
 function doCopy(b,t){const o=v=>{b.textContent=v?'已复制':'复制';b.classList.toggle('copied',v);setTimeout(()=>{b.textContent=b.dataset.orig||'复制';b.classList.remove('copied')},2000)};if(!b.dataset.orig)b.dataset.orig=b.textContent;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>o(true),()=>o(false))}else{try{const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);o(true)}catch(e){o(false)}}

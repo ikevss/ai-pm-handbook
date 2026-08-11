@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>案例模板库 · AI PM 手册</title>
-<meta name="description" content="23 份项目文档模板，覆盖产品定义、项目管理、测试验收、AI产出、过程资产。每份模板可直接复制使用。">
+<meta name="description" content="24 份项目文档模板，覆盖产品定义、项目管理、测试验收、AI产出、过程资产。每份模板可直接复制使用。">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <style>
 :root {
@@ -110,7 +110,7 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
       <span class="mh-logo"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="5" fill="#c2410c"/><rect x="5" y="4" width="14" height="16" rx="2" fill="#faf8f5" opacity="0.95"/><rect x="7" y="7" width="10" height="1.5" rx="0.75" fill="#c2410c" opacity="0.8"/><rect x="7" y="10" width="8" height="1.5" rx="0.75" fill="#c2410c" opacity="0.6"/><rect x="7" y="13" width="9" height="1.5" rx="0.75" fill="#c2410c" opacity="0.4"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="#0d9488"/></svg></span>
       <span>
         <span class="mh-title">案例模板库</span>
-        <span class="mh-sub">23 份模板 · PM 直接可用</span>
+        <span class="mh-sub">24 份模板 · PM 直接可用</span>
       </span>
     </a>
     <a class="mh-back" href="../index.html">
@@ -129,6 +129,7 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
 <a class="toc-item" href="#sec-qa"><span class="toc-name">测试与验收</span><span class="toc-cnt">4</span></a>
 <a class="toc-item" href="#sec-ai"><span class="toc-name">AI 自动产出</span><span class="toc-cnt">3</span></a>
 <a class="toc-item" href="#sec-process"><span class="toc-name">过程资产</span><span class="toc-cnt">3</span></a>
+<a class="toc-item" href="#sec-data"><span class="toc-name">补充文档</span><span class="toc-cnt">1</span></a>
 </nav>
     <p class="toc-guide">点击卡片查看完整模板<br>弹窗内一键复制即用</p>
   </aside>
@@ -579,6 +580,8 @@ priority: High
 | 用户输入无效 |  |  |  |
 | 权限不足 |  |  |  |
 
+&gt; 填写示例：权限不足 → 跳转403页 → 显示"你没有权限访问该页面，如需开通请联系管理员" → 同时记录审计日志
+
 ## 5. 功能规格
 
 ### 5.1 功能一：功能名称
@@ -601,6 +604,7 @@ priority: High
 
 #### 业务规则
 
+&gt; MUST=必须满足，不满足则功能不可上线。SHOULD=推荐满足，可有正当理由不满足。MUST NOT=严禁发生，用于框住AI最容易脑补的越界行为。
 - MUST：
 - SHOULD：
 - MUST NOT：
@@ -616,6 +620,7 @@ priority: High
 
 #### 验收标准
 
+&gt; 至少覆盖三类场景：正常路径（主要操作的正确结果）、异常路径（格式错误/超时/空数据/重复操作/断网等）、边界值（最大值/最小值/并发等）。Then里必须写具体的UI反馈文案，不能写"显示错误提示"这种抽象结论。
 - Given：
 - When：
 - Then：
@@ -1666,6 +1671,46 @@ updated: 2026-08-11
 </div></div>
 </section>
 
+    <section class="chap" id="sec-data" style="margin-bottom:52px;scroll-margin-top:88px;">
+      <div class="chap-head"><h2 class="chap-name">补充文档</h2><p class="chap-desc">按需使用的辅助文档，不是每个项目都需要，但遇到对应场景时直接拿来用。</p></div>
+      <div class="tcard-grid"><div class="tcard" data-idx="datamodel" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#6366f1"></span><h3 class="tcard-name">数据模型简述.md</h3><span class="tcard-status" style="color:#6366f1;background:#6366f114">评审中</span></div>
+  <p class="tcard-meta">初稿：PM · 评审决策：技术总监</p>
+  <p class="tcard-desc">给 AI 的数据库上下文。PM 不需要画完整 ER 图——只需标注业务含义和状态枚举。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
+title: 数据模型简述
+owner: 花生
+status: Draft
+updated: 2026-08-11
+---
+
+# 数据模型简述
+
+&gt; 给 AI 的数据库上下文。AI 能自己读 schema 文件，PM 只需补充两样：
+&gt; 1. 这张表干什么用的（业务含义）
+&gt; 2. 状态/枚举字段有哪些合法值
+
+## 核心表
+
+User: id, phone, nickname, avatar, created_at
+  -- 用户基本信息表
+
+Order: id, user_id,
+  status(pending/paid/shipped/done),
+  amount, created_at
+  -- 订单表。status 四个值：pending 待支付
+    paid 已支付、shipped 已发货、done 已完成
+
+Product: id, name, price, stock, category
+  -- 商品表。category 从后台管理页面配置
+
+## 补充说明
+
+按项目实际表结构填写即可，不需要把所有表都列出来——只列 AI 容易理解错的、或状态含义不直观的表。</div>
+</div></div>
+    </section>
+
   </main>
 </div>
 
@@ -1674,7 +1719,7 @@ updated: 2026-08-11
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
     返回 AI PM 手册
   </a>
-  <span>案例模板库 · 23 份</span>
+  <span>案例模板库 · 24 份</span>
 </footer>
 
 <div class="modal-overlay" id="modal">
