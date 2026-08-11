@@ -30,15 +30,10 @@ body { background: var(--bg); color: var(--t1); font-family: var(--font); font-s
 .nav-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,248,245,0.94); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--b); height: 56px; display: flex; align-items: center; padding: 0 24px; justify-content: space-between; }
 .nav-brand { font-weight: 800; font-size: 16px; color: var(--amber); white-space: nowrap; display: flex; align-items: center; gap: 8px; flex-shrink: 0; text-decoration: none; }
 .nav-brand svg { flex-shrink: 0; }
-.nav-tiers { display: flex; gap: 4px; align-items: center; }
-.nav-tier-btn { font-size: 13px; font-weight: 600; padding: 6px 14px; border: 1px solid transparent; background: transparent; color: var(--t2); border-radius: var(--r); cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-.nav-tier-btn:hover { background: var(--raised); color: var(--t1); }
-.nav-tier-btn.active { background: var(--amber); color: #fff; border-color: var(--amber); }
-.nav-tier-dropdown { display: none; position: absolute; top: 52px; left: 50%; transform: translateX(-50%); background: var(--surface); border: 1px solid var(--b); border-radius: var(--r); box-shadow: 0 12px 40px rgba(0,0,0,0.08); padding: 4px 0; min-width: 220px; z-index: 101; }
-.nav-tier-dropdown.show { display: block; }
-.nav-tier-dropdown a { display: block; padding: 9px 18px; font-size: 14px; color: var(--t2); text-decoration: none; transition: all 0.12s; }
-.nav-tier-dropdown a:hover { background: var(--raised); color: var(--t1); }
-.nav-tier-wrapper { position: relative; }
+.nav-links { display: flex; gap: 2px; align-items: center; }
+.nav-links a { font-size: 13px; font-weight: 600; color: var(--t2); text-decoration: none; padding: 7px 14px; border-radius: var(--r); transition: all 0.15s; white-space: nowrap; }
+.nav-links a:hover { background: var(--raised); color: var(--t1); }
+.nav-links a.nav-promo { color: var(--amber); }
 .hamburger { display: none; width: 38px; height: 38px; border: 1px solid var(--b); border-radius: 8px; background: var(--surface); cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0; flex-shrink: 0; }
 .hamburger span { display: block; width: 18px; height: 2px; background: var(--t2); border-radius: 1px; transition: all 0.25s; }
 .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
@@ -47,9 +42,10 @@ body { background: var(--bg); color: var(--t1); font-family: var(--font); font-s
 .mobile-nav { display: none; position: fixed; top: 56px; left: 0; right: 0; bottom: 0; background: rgba(250,248,245,0.98); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); z-index: 99; flex-direction: column; padding: 24px; overflow-y: auto; }
 .mobile-nav.show { display: flex; }
 .mobile-nav .m-section { margin-bottom: 20px; }
-.mobile-nav .m-label { font-family: var(--font-mono); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; color: var(--t2); }
+.mobile-nav .m-label { font-family: var(--font-mono); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; color: var(--amber); }
 .mobile-nav a { display: block; padding: 8px 0; font-size: 16px; color: var(--t2); text-decoration: none; border-bottom: 1px solid var(--b); }
 .mobile-nav a:last-child { border-bottom: none; }
+.mobile-nav a.nav-promo { color: var(--amber); font-weight: 600; }
 
 /* ====== Section Base ====== */
 .section { padding: 72px 40px; max-width: 1200px; margin: 0 auto; }
@@ -339,24 +335,26 @@ tbody tr:hover td { background: var(--raised); }
     </svg>
     AI PM 手册
   </a>
-  <div class="nav-tiers">
-    <div class="nav-tier-wrapper"><button class="nav-tier-btn" data-tier="start" aria-expanded="false" aria-haspopup="true">即看即用</button><div class="nav-tier-dropdown" id="tier-start" role="menu"><a href="#hero" role="menuitem">快速上手</a><a href="#station-2" role="menuitem">实战方法 · 8步流程</a><a href="#station-4" role="menuitem">案例模板</a><a href="#station-5" role="menuitem">话术速查</a></div></div>
-    <div class="nav-tier-wrapper"><button class="nav-tier-btn" data-tier="ref" aria-expanded="false" aria-haspopup="true">按需查阅</button><div class="nav-tier-dropdown" id="tier-ref" role="menu"><a href="#station-1" role="menuitem">理论框架</a><a href="#station-3" role="menuitem">文件资产</a><a href="#station-4-toolbox" role="menuitem">进阶工具箱</a><a href="prompts/" role="menuitem">提示词手册</a></div></div>
-    <div class="nav-tier-wrapper"><button class="nav-tier-btn" data-tier="deep" aria-expanded="false" aria-haspopup="true">深度参考</button><div class="nav-tier-dropdown" id="tier-deep" role="menu"><a href="#advanced" role="menuitem">进阶参考</a></div></div>
+  <div class="nav-links">
+    <a href="#station-1">理论框架</a>
+    <a href="#station-2">实战方法</a>
+    <a href="#station-3">文件资产</a>
+    <a href="#station-4">案例模板</a>
+    <a href="#station-5">模仿改进</a>
+    <a href="prompts/" class="nav-promo">提示词手册</a>
   </div>
   <button class="hamburger" aria-label="菜单" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="移动端导航">
-  <div class="m-section"><div class="m-label">即看即用</div><a href="#hero">快速上手</a><a href="#station-2">实战方法</a><a href="#station-4">案例模板</a><a href="#station-5">话术速查</a></div>
-  <div class="m-section"><div class="m-label">按需查阅</div><a href="#station-1">理论框架</a><a href="#station-3">文件资产</a><a href="#station-4-toolbox">进阶工具箱</a><a href="prompts/">提示词手册</a></div>
-  <div class="m-section"><div class="m-label">深度参考</div><a href="#advanced">进阶参考</a></div>
+  <div class="m-section"><div class="m-label">五站学习路径</div><a href="#station-1">① 理论框架</a><a href="#station-2">② 实战方法</a><a href="#station-3">③ 文件资产</a><a href="#station-4">④ 案例模板</a><a href="#station-5">⑤ 模仿改进</a></div>
+  <div class="m-section"><a href="prompts/" class="nav-promo">提示词手册（74 条 · 10 类）</a><a href="#advanced">进阶参考</a></div>
 </div>
 
 <!-- ====== HERO ====== -->
 <section class="hero" id="hero" aria-labelledby="hero-title">
   <div class="hero-badge"><span>PM 新范式</span></div>
-  <h1 id="hero-title"><span class="line1">你定义<em>围栏</em>，</span><span class="line2">AI 在围栏内<em>自主产出</em></span></h1>
-  <p class="hero-subtitle">过去的 PM 写需求文档让人理解。现在的 PM 写约束文件让 AI 执行——验证取代沟通，边界取代描述。</p>
+  <h1 id="hero-title"><span class="line1">不必亲自写代码，</span><span class="line2">不必什么都懂</span></h1>
+  <p class="hero-subtitle">你只管写清楚<strong>做出什么样算过关</strong>、<strong>不许做什么</strong>。<br>剩下的翻译成方案、实现加自测、人话汇报，AI 自己来。</p>
 
   <div class="hero-paradigm">
     <div class="hero-pm-box">
