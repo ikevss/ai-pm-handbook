@@ -3,238 +3,148 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>案例模板库 — AI PM 工作手册</title>
-<meta name="description" content="21 份项目文档模板，覆盖调研立项、产品设计、项目执行、测试验收、发布迭代、AI 自动产出、过程资产。每份模板可直接复制使用。">
+<title>案例模板库 · AI PM 手册</title>
+<meta name="description" content="23 份项目文档模板，覆盖产品定义、项目管理、测试验收、AI产出、过程资产。每份模板可直接复制使用。">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <style>
-/* ====== Tokens ====== */
 :root {
-  --bg: #faf8f5; --surface: #fff; --raised: #f5f3ef; --code-bg: #f8f6f2;
-  --t1: #1c1917; --t2: #57534e; --t3: #a8a29e;
-  --amber: #c2410c; --amber-l: #fed7aa; --amber-g: rgba(194,65,12,0.06);
-  --teal: #0d9488; --teal-l: #ccfbf1; --teal-g: rgba(13,148,136,0.06);
-  --rose: #be123c; --rose-l: #ffe4e6;
-  --violet: #6366f1; --violet-l: #e0e7ff;
-  --b: #e7e5e4; --b2: #d6d3d1;
-  --font: "PingFang SC","Microsoft YaHei","Hiragino Sans GB",-apple-system,system-ui,sans-serif;
-  --font-mono: "SF Mono","Cascadia Code","Fira Code",Consolas,monospace;
-  --r: 12px;
+  --paper:#faf8f5; --paper-2:#f5f3ef; --ink:#1c1917; --ink-2:#57534e; --ink-3:#a8a29e;
+  --rule:#e7e5e4; --rule-2:#d6d3d1;
+  --amber:#c2410c; --amber-l:#fed7aa; --amber-g:rgba(194,65,12,0.05);
+  --teal:#0d9488; --rose:#be123c; --violet:#6366f1;
+  --font:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",-apple-system,system-ui,sans-serif;
+  --font-mono:"SF Mono","Cascadia Code","Fira Code",Consolas,monospace;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 64px; }
-body { background: var(--bg); color: var(--t1); font-family: var(--font); font-size: 16px; line-height: 1.7; }
-:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 4px; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { background:var(--paper); color:var(--ink); font-family:var(--font); line-height:1.7; font-size:0.95rem; }
+.icon { width:1em; height:1em; vertical-align:-0.15em; flex-shrink:0; }
+::selection { background:var(--amber-l); }
 
-/* ====== Top bar ====== */
-.top-bar { position: sticky; top: 0; z-index: 50; background: rgba(250,248,245,0.94); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--b); padding: 0 24px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
-.top-back { font-size: 14px; font-weight: 600; color: var(--teal); text-decoration: none; display: flex; align-items: center; gap: 6px; }
-.top-back:hover { color: var(--amber); }
-.top-title { font-weight: 800; font-size: 16px; color: var(--amber); }
-.top-right { width: 80px; }
+/* Masthead */
+.masthead { position:sticky; top:0; z-index:50; background:rgba(250,248,245,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule); }
+.mh-inner { max-width:1080px; margin:0 auto; padding:14px 28px; display:flex; align-items:center; gap:16px; }
+.mh-brand { display:flex; align-items:center; gap:11px; text-decoration:none; color:inherit; }
+.mh-logo { width:34px; height:34px; display:flex; align-items:center; justify-content:center; }
+.mh-logo svg { width:34px; height:34px; }
+.mh-title { font-weight:800; font-size:1rem; letter-spacing:-.01em; }
+.mh-sub { font-size:.72rem; color:var(--ink-3); display:block; }
+.mh-back { margin-left:auto; display:inline-flex; align-items:center; gap:6px; padding:7px 14px; border:1px solid var(--rule); border-radius:7px; color:var(--ink-2); text-decoration:none; font-size:.84rem; font-weight:600; }
+.mh-back:hover { border-color:var(--amber); color:var(--amber); background:var(--amber-g); }
+.mh-back .icon { width:14px; height:14px; }
 
-/* ====== Hero ====== */
-.t-hero { text-align: center; padding: 64px 24px 40px; max-width: 780px; margin: 0 auto; }
-.t-hero h1 { font-weight: 800; font-size: clamp(32px, 5vw, 52px); line-height: 1.15; margin-bottom: 12px; }
-.t-hero p { color: var(--t2); font-size: 16px; max-width: 600px; margin: 0 auto 24px; }
-.t-hero .t-count { font-family: var(--font-mono); font-size: 13px; color: var(--t3); }
+/* Layout */
+.handbook { max-width:1080px; margin:0 auto; display:flex; gap:48px; padding:40px 28px 80px; }
 
-/* ====== Directory tree ====== */
-.t-tree { max-width: 780px; margin: 0 auto 48px; padding: 0 24px; }
-.t-tree details { margin-bottom: 4px; }
-.t-tree summary { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--amber); cursor: pointer; padding: 4px 0; list-style: none; display: flex; align-items: center; gap: 4px; }
-.t-tree summary::-webkit-details-marker { display: none; }
-.t-tree summary::before { content: '▸'; display: inline-block; font-size: 10px; transition: transform 0.2s; width: 14px; flex-shrink: 0; color: var(--t3); }
-.t-tree details[open] > summary::before { transform: rotate(90deg); }
-.t-tree ul { list-style: none; padding-left: 20px; margin: 2px 0 8px; }
-.t-tree li { font-family: var(--font-mono); font-size: 12px; color: var(--t2); padding: 1px 0; }
-.t-tree li.dir { color: var(--teal); font-weight: 600; }
+/* TOC */
+.toc { width:200px; flex-shrink:0; position:sticky; top:84px; align-self:flex-start; }
+.toc-label { font-family:var(--font-mono); font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:14px; }
+.toc-item { display:flex; align-items:center; gap:8px; padding:7px 9px; border-radius:8px; color:var(--ink-2); text-decoration:none; font-size:.88rem; }
+.toc-item:hover { background:var(--paper-2); color:var(--ink); }
+.toc-name { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.toc-cnt { font-family:var(--font-mono); font-size:.68rem; color:var(--ink-3); }
+.toc-guide { margin-top:20px; padding-top:16px; border-top:1px solid var(--rule); font-size:.77rem; color:var(--ink-3); line-height:1.6; }
 
-/* ====== Sticky nav ====== */
-.t-nav { position: sticky; top: 56px; z-index: 40; background: var(--bg); border-bottom: 1px solid var(--b); padding: 0 24px; overflow-x: auto; white-space: nowrap; display: flex; gap: 2px; }
-.t-nav a { font-size: 12px; font-weight: 600; color: var(--t2); text-decoration: none; padding: 8px 12px; border-radius: 6px 6px 0 0; transition: all 0.15s; }
-.t-nav a:hover { color: var(--t1); background: var(--raised); }
-.t-nav a.n-root { color: var(--amber); }
+/* Chapters */
+.book { flex:1; min-width:0; }
+.chap { margin-bottom:52px; scroll-margin-top:88px; }
+.chap-head { padding-bottom:14px; margin-bottom:22px; border-bottom:1px solid var(--rule); }
+.chap-name { font-size:1.3rem; font-weight:800; letter-spacing:-.01em; }
+.chap-desc { color:var(--ink-2); font-size:.84rem; margin-top:4px; }
 
-/* ====== Sections ====== */
-main { max-width: 960px; margin: 0 auto; padding: 0 24px 64px; }
-.t-section { margin-bottom: 48px; }
-.t-section-head { margin-bottom: 16px; }
-.t-section-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
-.t-section-desc { font-size: 14px; color: var(--t2); line-height: 1.6; }
+/* Cards */
+.tcard-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; }
+.tcard { display:flex; flex-direction:column; gap:10px; padding:20px 22px; background:#fff; border:1px solid var(--rule); border-radius:12px; box-shadow:0 1px 3px rgba(28,25,23,.05); cursor:pointer; transition:transform .18s,box-shadow .18s; }
+.tcard:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(28,25,23,.1); }
+.tcard:focus-visible { outline:none; box-shadow:0 0 0 3px rgba(194,65,12,.2); }
+.tcard-top { display:flex; align-items:center; gap:10px; }
+.tcard-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.tcard-name { font-size:1.02rem; font-weight:700; letter-spacing:-.01em; flex:1; }
+.tcard-status { font-family:var(--font-mono); font-size:.68rem; font-weight:700; padding:2px 8px; border-radius:4px; white-space:nowrap; }
+.tcard-meta { font-size:.78rem; color:var(--ink-3); }
+.tcard-desc { font-size:.84rem; color:var(--ink-2); line-height:1.65; flex:1; }
+.tcard-more { font-size:.78rem; font-weight:600; color:var(--ink-3); }
+.tcard:hover .tcard-more { color:var(--amber); }
 
-/* ====== Doc cards ====== */
-.t-doc-list { display: flex; flex-direction: column; gap: 8px; }
-.t-doc-card { background: var(--surface); border: 1px solid var(--b); border-radius: var(--r); overflow: hidden; transition: border-color 0.15s; }
-.t-doc-card:hover { border-color: var(--b2); }
-.t-doc-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; cursor: pointer; gap: 12px; user-select: none; }
-.t-doc-left { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.t-doc-name { font-size: 15px; font-weight: 700; color: var(--t1); }
-.t-doc-meta { font-size: 12px; color: var(--t3); }
-.t-doc-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.t-status { font-family: var(--font-mono); font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
-.t-status-draft { background: var(--amber-l); color: var(--amber); }
-.t-status-in-review { background: #dbeafe; color: #2563eb; }
-.t-status-approved { background: var(--teal-l); color: var(--teal); }
-.t-status-proposed { background: var(--violet-l); color: var(--violet); }
-.t-status-archived { background: #f3f4f6; color: #9ca3af; }
-.t-chevron { color: var(--t3); transition: transform 0.2s; flex-shrink: 0; }
-.t-doc-card.open .t-chevron { transform: rotate(180deg); }
-.t-doc-body { display: none; padding: 0 20px 20px; }
-.t-doc-card.open .t-doc-body { display: block; }
-.t-doc-desc { font-size: 13px; color: var(--t2); margin-bottom: 12px; line-height: 1.6; }
-.t-copy-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--teal); background: none; border: 1px solid var(--teal); border-radius: 6px; padding: 6px 12px; cursor: pointer; margin-bottom: 12px; transition: all 0.15s; }
-.t-copy-btn:hover { background: var(--teal); color: #fff; }
-.t-content { font-family: var(--font-mono); font-size: 12px; line-height: 1.65; background: var(--raised); padding: 16px 20px; border-radius: 8px; overflow-x: auto; color: var(--t2); white-space: pre; max-height: 500px; overflow-y: auto; }
-.t-content::-webkit-scrollbar { width: 6px; height: 6px; }
-.t-content::-webkit-scrollbar-thumb { background: var(--b2); border-radius: 3px; }
+/* Modal */
+.modal-overlay { position:fixed; inset:0; background:rgba(28,25,23,.5); z-index:100; display:none; align-items:center; justify-content:center; padding:24px; opacity:0; transition:opacity .18s; }
+.modal-overlay.open { display:flex; opacity:1; }
+.modal { background:#fff; width:760px; max-width:100%; max-height:88vh; display:flex; flex-direction:column; box-shadow:0 24px 60px rgba(28,25,23,.22); border:1px solid var(--rule); border-radius:14px; overflow:hidden; }
+.modal-head { padding:20px 28px 14px; border-bottom:1px solid var(--rule); display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.modal-title { font-size:1.2rem; font-weight:800; }
+.modal-actions { display:flex; gap:8px; }
+.btn { display:inline-flex; align-items:center; gap:6px; border:none; border-radius:7px; padding:8px 15px; font-size:.84rem; font-weight:700; cursor:pointer; }
+.btn-copy { background:var(--amber); color:#faf8f5; }
+.btn-copy:hover { background:#ea580c; }
+.btn-copy.copied { background:var(--teal); }
+.btn-close { background:var(--paper-2); color:var(--ink-2); }
+.btn-close:hover { background:#e2ddd2; color:var(--ink); }
+.modal-desc { padding:14px 28px 0; color:var(--ink-2); font-size:.88rem; }
+.modal-meta { padding:2px 28px; color:var(--ink-3); font-size:.82rem; }
+.modal-body { flex:1; overflow-y:auto; padding:16px 28px 28px; }
+.modal-body pre { font-family:var(--font-mono); font-size:.82em; line-height:1.6; background:var(--paper-2); border:1px solid var(--rule); border-radius:10px; padding:16px 20px; overflow:auto; white-space:pre; color:var(--ink-2); }
+.modal-body pre::-webkit-scrollbar { width:6px; height:6px; }
+.modal-body pre::-webkit-scrollbar-thumb { background:var(--rule-2); border-radius:3px; }
 
-/* ====== Prompt rule ====== */
-.t-rule { max-width: 780px; margin: 0 auto 48px; padding: 20px 24px; background: var(--amber-g); border: 1px solid rgba(194,65,12,0.15); border-radius: var(--r); }
-.t-rule h3 { font-size: 16px; font-weight: 700; color: var(--amber); margin-bottom: 8px; }
-.t-rule p { font-size: 14px; color: var(--t2); margin: 0; }
+.colophon { border-top:1px solid var(--rule); padding:22px 28px; display:flex; align-items:center; justify-content:space-between; max-width:1080px; margin:0 auto; color:var(--ink-3); font-size:.8rem; }
+.colophon a { display:inline-flex; align-items:center; gap:6px; color:var(--ink-3); text-decoration:none; font-weight:600; }
+.colophon a:hover { color:var(--amber); }
+.colophon .icon { width:14px; height:14px; }
 
-/* ====== Footer ====== */
-.t-footer { text-align: center; padding: 40px 24px; border-top: 1px solid var(--b); color: var(--t3); font-size: 14px; }
-.t-footer a { color: var(--amber); text-decoration: none; font-weight: 600; }
-
-/* ====== Toast ====== */
-.toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); background: var(--t1); color: #fff; padding: 10px 24px; border-radius: 8px; font-size: 13px; z-index: 200; opacity: 0; transition: opacity 0.25s; pointer-events: none; }
-.toast.show { opacity: 1; }
-
-@media (max-width: 768px) {
-  .t-doc-header { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .t-doc-right { align-self: flex-end; }
-  .t-hero { padding: 40px 20px 32px; }
-  main { padding: 0 16px 48px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+@media (max-width:920px) { .handbook { gap:28px; padding:28px 20px 60px; } .toc { width:170px; } }
+@media (max-width:680px) {
+  .mh-inner { padding:12px 16px; } .mh-back span { display:none; }
+  .handbook { flex-direction:column; padding:24px 16px 56px; gap:24px; }
+  .toc { position:static; width:100%; display:flex; flex-wrap:wrap; gap:6px; }
+  .toc-item { padding:5px 10px; border:1px solid var(--rule); border-radius:6px; font-size:.82rem; }
+  .toc-guide { display:none; }
+  .tcard-grid { grid-template-columns:1fr; }
 }
 </style>
 </head>
 <body>
 
-<div class="top-bar">
-  <a class="top-back" href="../">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    返回手册
-  </a>
-  <span class="top-title">案例模板库</span>
-  <span class="top-right"></span>
-</div>
+<header class="masthead">
+  <div class="mh-inner">
+    <a class="mh-brand" href="../index.html">
+      <span class="mh-logo"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="5" fill="#c2410c"/><rect x="5" y="4" width="14" height="16" rx="2" fill="#faf8f5" opacity="0.95"/><rect x="7" y="7" width="10" height="1.5" rx="0.75" fill="#c2410c" opacity="0.8"/><rect x="7" y="10" width="8" height="1.5" rx="0.75" fill="#c2410c" opacity="0.6"/><rect x="7" y="13" width="9" height="1.5" rx="0.75" fill="#c2410c" opacity="0.4"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="#0d9488"/></svg></span>
+      <span>
+        <span class="mh-title">案例模板库</span>
+        <span class="mh-sub">23 份模板 · PM 直接可用</span>
+      </span>
+    </a>
+    <a class="mh-back" href="../index.html">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      <span>返回手册</span>
+    </a>
+  </div>
+</header>
 
-<div class="t-hero">
-  <h1>23 份文档模板</h1>
-  <p>覆盖从调研立项到发布迭代的全流程。每份模板都有<strong>空白版可直接复制</strong>，部分有填写示例。点击展开查看完整内容，一键复制拿去用。</p>
-  <p class="t-count">7 个阶段 · 23 份模板 · 建议所有文档统一使用 Draft → In Review → Approved → Archived 状态</p>
-</div>
-
-<!-- Directory tree -->
-<div class="t-tree">
-  <details open>
-    <summary>项目根目录/</summary>
-    <ul>
-      <li>README.md — 项目入口 + 进度看板</li>
-      <li>AGENTS.md — AI 协作规则</li>
-      <li>CLAUDE.md — AI 协作规则（同上，平台不同文件名不同）</li>
-      <li>CHANGELOG.md — 变更记录 = 需求追踪</li>
-      <li class="dir">docs/</li>
-    </ul>
-  </details>
-  <details open>
-    <summary>docs/product/ — 产品定义与 AI 行为约束</summary>
-    <ul>
-      <li>商业需求-BRD.md</li>
-      <li>竞品分析-CAR.md</li>
-      <li>技术验证-POC.md</li>
-      <li>产品规格-Spec.md</li>
-      <li>提示词规范-Prompt.md</li>
-    </ul>
-  </details>
-  <details open>
-    <summary>docs/project/ — 项目管理五件套</summary>
-    <ul>
-      <li>项目计划-Plan.md</li>
-      <li>风险登记-Risk.md</li>
-      <li>项目进度-Kanban.md</li>
-      <li>团队分工-RACI.md</li>
-      <li>成本核算-Cost.md</li>
-    </ul>
-  </details>
-  <details open>
-    <summary>docs/qa/ — 测试与验收</summary>
-    <ul>
-      <li>验收清单-UAT.md</li>
-      <li>测试集-Eval.md</li>
-      <li>评分指标-Metrics.md</li>
-      <li>缺陷跟踪-Issue.md</li>
-    </ul>
-  </details>
-  <details open>
-    <summary>docs/ai-logs/ — AI 自动产出</summary>
-    <ul>
-      <li>方案记录-Solution.md</li>
-      <li>原型记录-Prototype.md</li>
-      <li>架构决策-ADR.md</li>
-    </ul>
-  </details>
-  <details open>
-    <summary>docs/process/ — 过程资产</summary>
-    <ul>
-      <li>会议记录-Notes-YYYYMMDD.md</li>
-      <li>工作笔记-Scratch.md</li>
-      <li>参考资料-Ref.md</li>
-    </ul>
-  </details>
-</div>
-
-<!-- Coding rule -->
-<div class="t-rule">
-  <h3>⚠️ AI 每次 Coding 前强制读取 3 个文件</h3>
-  <p>① <strong>docs/product/产品规格-Spec.md</strong> — 要做什么？<br>
-  ② <strong>docs/product/提示词规范-Prompt.md</strong> — AI 应该如何表现？<br>
-  ③ <strong>CHANGELOG.md</strong> — 最近发生了什么变化？</p>
-</div>
-
-<!-- Sticky section nav -->
-<nav class="t-nav" aria-label="分区导航">
-  <a href="#sec-root" class="n-root">📋 根目录</a>
-  <a href="#sec-product">📦 product/</a>
-  <a href="#sec-project">📐 project/</a>
-  <a href="#sec-qa">✅ qa/</a>
-  <a href="#sec-ai-logs">🤖 ai-logs/</a>
-  <a href="#sec-process">📝 process/</a>
+<div class="handbook">
+  <aside class="toc">
+    <div class="toc-label">目录</div>
+    <nav><a class="toc-item" href="#sec-root"><span class="toc-name">根目录文件</span><span class="toc-cnt">3</span></a>
+<a class="toc-item" href="#sec-product"><span class="toc-name">产品定义</span><span class="toc-cnt">5</span></a>
+<a class="toc-item" href="#sec-project"><span class="toc-name">项目管理</span><span class="toc-cnt">5</span></a>
+<a class="toc-item" href="#sec-qa"><span class="toc-name">测试与验收</span><span class="toc-cnt">4</span></a>
+<a class="toc-item" href="#sec-ai"><span class="toc-name">AI 自动产出</span><span class="toc-cnt">3</span></a>
+<a class="toc-item" href="#sec-process"><span class="toc-name">过程资产</span><span class="toc-cnt">3</span></a>
 </nav>
+    <p class="toc-guide">点击卡片查看完整模板<br>弹窗内一键复制即用</p>
+  </aside>
+  <main class="book">
+    <section class="chap" id="sec-root">
+  <div class="chap-head"><h2 class="chap-name">根目录文件</h2><p class="chap-desc">AI 和开发者进入仓库后必须第一时间读取的文件。只放 README、AGENTS、CLAUDE、CHANGELOG。</p></div>
+  <div class="tcard-grid"><div class="tcard" data-idx="changelog" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#0d9488"></span><h3 class="tcard-name">CHANGELOG.md</h3><span class="tcard-status" style="color:#0d9488;background:#0d948814">已确认</span></div>
+  <p class="tcard-meta">初稿：PM · 评审决策：业务负责人</p>
+  <p class="tcard-desc">记录需求变更、功能迭代、验收结论。PM 每轮验收后维护。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden># 变更记录 CHANGELOG
 
-<main>
-    <section class="t-section" id="sec-root">
-      <div class="t-section-head">
-        <h2 class="t-section-title">📋 根目录</h2>
-        <p class="t-section-desc">AI 和开发者进入仓库后必须第一时间读取的文件。只放 README、AGENTS、CLAUDE、CHANGELOG——不放详细需求、不放细粒度进度、不放大量会议记录。</p>
-      </div>
-      <div class="t-doc-list">
-        <div class="t-doc-card" id="doc-changelog">
-          <div class="t-doc-header" onclick="toggleDoc('changelog')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">CHANGELOG.md</span>
-              <span class="t-doc-meta">初稿：PM · 评审决策：业务负责人</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-approved">已确认</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-changelog">
-            <p class="t-doc-desc">记录需求变更、功能迭代、验收结论。PM 每轮验收后维护。</p>
-            <button class="t-copy-btn" onclick="copyDoc('changelog')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-changelog"># 变更记录 CHANGELOG
-
-&gt; 本文件用于记录需求变更、功能迭代、验收结论。
-&gt; 每轮 PM 验收后更新一次。
-&gt; 格式遵循 Keep a Changelog。
+&amp;gt; 本文件用于记录需求变更、功能迭代、验收结论。
+&amp;gt; 每轮 PM 验收后更新一次。
+&amp;gt; 格式遵循 Keep a Changelog。
 
 ## [Unreleased]
 
@@ -279,27 +189,13 @@ main { max-width: 960px; margin: 0 auto; padding: 0 24px 64px; }
 - 验收人：花生
 - 验收日期：2026-08-11
 - 遗留问题：无
-- 是否允许进入下一阶段：是</pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-readme">
-          <div class="t-doc-header" onclick="toggleDoc('readme')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">README.md</span>
-              <span class="t-doc-meta">初稿：PM + AI · 评审决策：全员对齐</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-approved">已确认</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-readme">
-            <p class="t-doc-desc">项目入口 + 进度看板。PM 和 AI 共同维护，AI 打开仓库第一眼看到它。</p>
-            <button class="t-copy-btn" onclick="copyDoc('readme')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-readme"># 项目名称
+- 是否允许进入下一阶段：是</div>
+</div><div class="tcard" data-idx="readme" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#0d9488"></span><h3 class="tcard-name">README.md</h3><span class="tcard-status" style="color:#0d9488;background:#0d948814">已确认</span></div>
+  <p class="tcard-meta">初稿：PM + AI · 评审决策：全员对齐</p>
+  <p class="tcard-desc">项目入口 + 进度看板。PM 和 AI 共同维护，AI 打开仓库第一眼看到它。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden># 项目名称
 
 ## 项目背景
 用 3-5 句话说明项目为什么存在，解决什么问题。
@@ -326,27 +222,13 @@ main { max-width: 960px; margin: 0 auto; padding: 0 24px 64px; }
 - 项目看板：链接
 - 设计稿：链接
 - 数据看板：链接
-- 会议记录：docs/process/</pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-agents">
-          <div class="t-doc-header" onclick="toggleDoc('agents')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">AGENTS.md / CLAUDE.md</span>
-              <span class="t-doc-meta">初稿：PM / 主程 · 评审决策：技术总监</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-approved">已确认</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-agents">
-            <p class="t-doc-desc">约束 AI 行为，规定 AI 必须先读哪些文档、哪些目录不能改、代码规范、协作 SOP。</p>
-            <button class="t-copy-btn" onclick="copyDoc('agents')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-agents"># AI 协作规则
+- 会议记录：docs/process/</div>
+</div><div class="tcard" data-idx="agents" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#0d9488"></span><h3 class="tcard-name">AGENTS.md / CLAUDE.md</h3><span class="tcard-status" style="color:#0d9488;background:#0d948814">已确认</span></div>
+  <p class="tcard-meta">初稿：PM / 主程 · 评审决策：技术总监</p>
+  <p class="tcard-desc">约束 AI 行为，规定 AI 必须先读哪些文档、哪些目录不能改、代码规范、协作 SOP。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden># AI 协作规则
 
 ## 1. 编码前必读
 在进行任何代码生成或修改前，必须先阅读以下文档：
@@ -372,35 +254,17 @@ main { max-width: 960px; margin: 0 auto; padding: 0 24px 64px; }
 - docs/ai-logs/方案记录-Solution.md
 
 每次发生重大需求变化后，需提示 PM 更新：
-- CHANGELOG.md</pre>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="t-section" id="sec-product">
-      <div class="t-section-head">
-        <h2 class="t-section-title">📦 docs/product/</h2>
-        <p class="t-section-desc">产品定义与 AI 行为约束。Spec 是 AI 的指令级需求文档，Prompt 规范定义 AI 角色和输出格式。</p>
-      </div>
-      <div class="t-doc-list">
-        <div class="t-doc-card" id="doc-brd">
-          <div class="t-doc-header" onclick="toggleDoc('brd')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">商业需求-BRD.md</span>
-              <span class="t-doc-meta">初稿：PM · 评审决策：业务负责人</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-draft">草稿</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-brd">
-            <p class="t-doc-desc">说明项目背景、业务痛点、目标用户、商业价值、核心指标。</p>
-            <button class="t-copy-btn" onclick="copyDoc('brd')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-brd">---
+- CHANGELOG.md</div>
+</div></div>
+</section>
+<section class="chap" id="sec-product">
+  <div class="chap-head"><h2 class="chap-name">产品定义</h2><p class="chap-desc">产品需求与 AI 行为约束。Spec 是 AI 的指令级需求文档，Prompt 规范定义 AI 角色和输出格式。</p></div>
+  <div class="tcard-grid"><div class="tcard" data-idx="brd" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#c2410c"></span><h3 class="tcard-name">商业需求-BRD.md</h3><span class="tcard-status" style="color:#c2410c;background:#c2410c14">草稿</span></div>
+  <p class="tcard-meta">初稿：PM · 评审决策：业务负责人</p>
+  <p class="tcard-desc">说明项目背景、业务痛点、目标用户、商业价值、核心指标。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 商业需求-BRD
 owner: 花生
 status: Draft
@@ -490,27 +354,13 @@ updated: 2026-08-11
 
 | 日期 | 参与人 | 结论 | 待办 |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |</pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-car">
-          <div class="t-doc-header" onclick="toggleDoc('car')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">竞品分析-CAR.md</span>
-              <span class="t-doc-meta">初稿：PM · 评审决策：业务负责人 / 技术总监</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-draft">草稿</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-car">
-            <p class="t-doc-desc">记录竞品功能、体验、技术路径、定价、优劣势。</p>
-            <button class="t-copy-btn" onclick="copyDoc('car')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-car">---
+|  |  |  |  |</div>
+</div><div class="tcard" data-idx="car" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#c2410c"></span><h3 class="tcard-name">竞品分析-CAR.md</h3><span class="tcard-status" style="color:#c2410c;background:#c2410c14">草稿</span></div>
+  <p class="tcard-meta">初稿：PM · 评审决策：业务负责人 / 技术总监</p>
+  <p class="tcard-desc">记录竞品功能、体验、技术路径、定价、优劣势。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 竞品分析-CAR
 owner: 花生
 status: Draft
@@ -579,27 +429,13 @@ updated: 2026-08-11
 ## 9. 参考资料
 
 -
-- </pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-poc">
-          <div class="t-doc-header" onclick="toggleDoc('poc')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">技术验证-POC.md</span>
-              <span class="t-doc-meta">初稿：PM / 技术 · 评审决策：技术总监</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-draft">草稿</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-poc">
-            <p class="t-doc-desc">验证大模型、工具链、接口、关键方案是否可行。</p>
-            <button class="t-copy-btn" onclick="copyDoc('poc')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-poc">---
+-</div>
+</div><div class="tcard" data-idx="poc" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#c2410c"></span><h3 class="tcard-name">技术验证-POC.md</h3><span class="tcard-status" style="color:#c2410c;background:#c2410c14">草稿</span></div>
+  <p class="tcard-meta">初稿：PM / 技术 · 评审决策：技术总监</p>
+  <p class="tcard-desc">验证大模型、工具链、接口、关键方案是否可行。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 技术验证-POC
 owner: 花生
 status: Draft
@@ -675,27 +511,13 @@ updated: 2026-08-11
 
 | 日期 | 参与人 | 结论 |
 | :--- | :--- | :--- |
-|  |  |  |</pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-spec">
-          <div class="t-doc-header" onclick="toggleDoc('spec')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">产品规格-Spec.md</span>
-              <span class="t-doc-meta">初稿：PM · 评审决策：技术总监 / AI 工程</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-in-review">评审中</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-spec">
-            <p class="t-doc-desc">给 AI 看的指令级需求文档。结构化描述功能、规则、输入输出、边界条件、验收标准。</p>
-            <button class="t-copy-btn" onclick="copyDoc('spec')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-spec">---
+|  |  |  |</div>
+</div><div class="tcard" data-idx="spec" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#6366f1"></span><h3 class="tcard-name">产品规格-Spec.md</h3><span class="tcard-status" style="color:#6366f1;background:#6366f114">评审中</span></div>
+  <p class="tcard-meta">初稿：PM · 评审决策：技术总监 / AI 工程</p>
+  <p class="tcard-desc">给 AI 看的指令级需求文档。结构化描述功能、规则、输入输出、边界条件、验收标准。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 产品规格-Spec
 owner: 花生
 status: Draft
@@ -705,9 +527,9 @@ priority: High
 
 # 产品规格说明书 Spec
 
-&gt; 本文件是给 AI 和研发团队共同阅读的指令级需求文档。
-&gt; AI 在生成代码前必须先阅读本文件。
-&gt; 如果本文件与其他文档冲突，以本文件为准。
+&amp;gt; 本文件是给 AI 和研发团队共同阅读的指令级需求文档。
+&amp;gt; AI 在生成代码前必须先阅读本文件。
+&amp;gt; 如果本文件与其他文档冲突，以本文件为准。
 
 ## 1. 产品概述
 
@@ -843,27 +665,13 @@ priority: High
 
 | 版本 | 日期 | 修改人 | 修改内容 | 影响范围 |
 | :--- | :--- | :--- | :--- | :--- |
-| v0.1 | 2026-08-11 | 花生 | 初稿 | 全部 |</pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-prompt">
-          <div class="t-doc-header" onclick="toggleDoc('prompt')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">提示词规范-Prompt.md</span>
-              <span class="t-doc-meta">初稿：PM · 评审决策：业务专家 / 法务</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-in-review">评审中</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-prompt">
-            <p class="t-doc-desc">定义 AI 角色、语气、任务逻辑、安全边界、输出格式、禁用内容。</p>
-            <button class="t-copy-btn" onclick="copyDoc('prompt')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-prompt">---
+| v0.1 | 2026-08-11 | 花生 | 初稿 | 全部 |</div>
+</div><div class="tcard" data-idx="prompt" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#6366f1"></span><h3 class="tcard-name">提示词规范-Prompt.md</h3><span class="tcard-status" style="color:#6366f1;background:#6366f114">评审中</span></div>
+  <p class="tcard-meta">初稿：PM · 评审决策：业务专家 / 法务</p>
+  <p class="tcard-desc">定义 AI 角色、语气、任务逻辑、安全边界、输出格式、禁用内容。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 提示词规范-Prompt
 owner: 花生
 status: Draft
@@ -872,8 +680,8 @@ updated: 2026-08-11
 
 # 提示词规范 Prompt
 
-&gt; 本文件定义 AI 的角色、任务、输出格式和安全边界。
-&gt; AI Coding 或运行时 Prompt 必须与本文件保持一致。
+&amp;gt; 本文件定义 AI 的角色、任务、输出格式和安全边界。
+&amp;gt; AI Coding 或运行时 Prompt 必须与本文件保持一致。
 
 ## 1. AI 角色定义
 
@@ -909,10 +717,10 @@ AI 不应该完成的任务：
 
 ```text
 {
-  &quot;answer&quot;: &quot;&quot;,
-  &quot;confidence&quot;: &quot;&quot;,
-  &quot;reason&quot;: &quot;&quot;,
-  &quot;next_action&quot;: &quot;&quot;
+  &amp;quot;answer&amp;quot;: &amp;quot;&amp;quot;,
+  &amp;quot;confidence&amp;quot;: &amp;quot;&amp;quot;,
+  &amp;quot;reason&amp;quot;: &amp;quot;&amp;quot;,
+  &amp;quot;next_action&amp;quot;: &amp;quot;&amp;quot;
 }
 ```
 
@@ -952,35 +760,17 @@ AI 输出：...
 
 | 版本 | 日期 | 修改人 | 修改内容 |
 | :--- | :--- | :--- | :--- |
-| v0.1 | 2026-08-11 | 花生 | 初稿 |</pre>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="t-section" id="sec-project">
-      <div class="t-section-head">
-        <h2 class="t-section-title">📐 docs/project/</h2>
-        <p class="t-section-desc">项目管理五件套。项目计划定方向，风险登记防意外，进度看板跟执行，RACI 分职责，成本核算控预算。</p>
-      </div>
-      <div class="t-doc-list">
-        <div class="t-doc-card" id="doc-plan">
-          <div class="t-doc-header" onclick="toggleDoc('plan')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">项目计划-Plan.md</span>
-              <span class="t-doc-meta">初稿：PM · 评审决策：技术总监 / 业务负责人</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-draft">草稿</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-plan">
-            <p class="t-doc-desc">明确阶段目标、里程碑、关键节点、交付物。</p>
-            <button class="t-copy-btn" onclick="copyDoc('plan')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-plan">---
+| v0.1 | 2026-08-11 | 花生 | 初稿 |</div>
+</div></div>
+</section>
+<section class="chap" id="sec-project">
+  <div class="chap-head"><h2 class="chap-name">项目管理</h2><p class="chap-desc">项目计划定方向，风险登记防意外，进度看板跟执行，RACI 分职责，成本核算控预算。</p></div>
+  <div class="tcard-grid"><div class="tcard" data-idx="plan" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#c2410c"></span><h3 class="tcard-name">项目计划-Plan.md</h3><span class="tcard-status" style="color:#c2410c;background:#c2410c14">草稿</span></div>
+  <p class="tcard-meta">初稿：PM · 评审决策：技术总监 / 业务负责人</p>
+  <p class="tcard-desc">明确阶段目标、里程碑、关键节点、交付物。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 项目计划-Plan
 owner: 花生
 status: Draft
@@ -1042,27 +832,13 @@ updated: 2026-08-11
 - 当前阶段：
 - 当前进度：
 - 当前阻塞：
-- 下一步动作：</pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-risk">
-          <div class="t-doc-header" onclick="toggleDoc('risk')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">风险登记-Risk.md</span>
-              <span class="t-doc-meta">初稿：PM · 评审决策：技术总监</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-draft">草稿</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-risk">
-            <p class="t-doc-desc">记录需求、技术、模型效果、成本、合规等风险及降级方案。</p>
-            <button class="t-copy-btn" onclick="copyDoc('risk')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-risk">---
+- 下一步动作：</div>
+</div><div class="tcard" data-idx="risk" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#c2410c"></span><h3 class="tcard-name">风险登记-Risk.md</h3><span class="tcard-status" style="color:#c2410c;background:#c2410c14">草稿</span></div>
+  <p class="tcard-meta">初稿：PM · 评审决策：技术总监</p>
+  <p class="tcard-desc">记录需求、技术、模型效果、成本、合规等风险及降级方案。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 风险登记-Risk
 owner: 花生
 status: Draft
@@ -1095,27 +871,13 @@ updated: 2026-08-11
 
 | 事项 | 影响 | 备选方案 | 决策人 | 截止日期 |
 | :--- | :--- | :--- | :--- | :--- |
-|  |  |  |  |  |</pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-kanban">
-          <div class="t-doc-header" onclick="toggleDoc('kanban')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">项目进度-Kanban.md</span>
-              <span class="t-doc-meta">初稿：PM / AI · 评审决策：全员对齐</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-in-review">评审中</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-kanban">
-            <p class="t-doc-desc">单独维护细粒度任务进度。README 只放摘要或链接，避免根目录频繁变更。</p>
-            <button class="t-copy-btn" onclick="copyDoc('kanban')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-kanban">---
+|  |  |  |  |  |</div>
+</div><div class="tcard" data-idx="kanban" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#6366f1"></span><h3 class="tcard-name">项目进度-Kanban.md</h3><span class="tcard-status" style="color:#6366f1;background:#6366f114">评审中</span></div>
+  <p class="tcard-meta">初稿：PM / AI · 评审决策：全员对齐</p>
+  <p class="tcard-desc">单独维护细粒度任务进度。README 只放摘要或链接，避免根目录频繁变更。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 项目进度-Kanban
 owner: 花生
 status: In Review
@@ -1124,9 +886,9 @@ updated: 2026-08-11
 
 # 项目进度看板 Kanban
 
-&gt; 本文件记录细粒度任务进度。
-&gt; README 只放摘要，详细内容写在这里。
-&gt; 建议每日或每轮 AI Coding 后更新。
+&amp;gt; 本文件记录细粒度任务进度。
+&amp;gt; README 只放摘要，详细内容写在这里。
+&amp;gt; 建议每日或每轮 AI Coding 后更新。
 
 ## 当前迭代
 
@@ -1165,27 +927,13 @@ updated: 2026-08-11
 
 | 日期 | 更新人 | 更新内容 |
 | :--- | :--- | :--- |
-| 2026-08-11 | 花生 | 初始化看板 |</pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-raci">
-          <div class="t-doc-header" onclick="toggleDoc('raci')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">团队分工-RACI.md</span>
-              <span class="t-doc-meta">初稿：PM · 评审决策：技术总监 / 业务负责人</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-draft">草稿</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-raci">
-            <p class="t-doc-desc">明确 PM、技术、测试、业务、AI 各自负责、审批、咨询、知会范围。</p>
-            <button class="t-copy-btn" onclick="copyDoc('raci')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-raci">---
+| 2026-08-11 | 花生 | 初始化看板 |</div>
+</div><div class="tcard" data-idx="raci" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#c2410c"></span><h3 class="tcard-name">团队分工-RACI.md</h3><span class="tcard-status" style="color:#c2410c;background:#c2410c14">草稿</span></div>
+  <p class="tcard-meta">初稿：PM · 评审决策：技术总监 / 业务负责人</p>
+  <p class="tcard-desc">明确 PM、技术、测试、业务、AI 各自负责、审批、咨询、知会范围。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 团队分工-RACI
 owner: 花生
 status: Draft
@@ -1194,10 +942,10 @@ updated: 2026-08-11
 
 # 团队分工矩阵 RACI
 
-&gt; R = Responsible 负责执行
-&gt; A = Accountable 最终负责
-&gt; C = Consulted 需要咨询
-&gt; I = Informed 需要知会
+&amp;gt; R = Responsible 负责执行
+&amp;gt; A = Accountable 最终负责
+&amp;gt; C = Consulted 需要咨询
+&amp;gt; I = Informed 需要知会
 
 ## 1. 角色说明
 
@@ -1237,27 +985,13 @@ AI 不能做什么：
 - 不得自行修改已 Approved 的 Spec。
 - 不得自行删除测试用例。
 - 不得自行变更上线计划。
-- 不得在未经 PM 确认时改变业务规则。</pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-cost">
-          <div class="t-doc-header" onclick="toggleDoc('cost')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">成本核算-Cost.md</span>
-              <span class="t-doc-meta">初稿：PM / 财务 · 评审决策：业务负责人</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-draft">草稿</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-cost">
-            <p class="t-doc-desc">按用户场景预估 Token 消耗、调用频次、API 成本，并跟踪实际支出。</p>
-            <button class="t-copy-btn" onclick="copyDoc('cost')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-cost">---
+- 不得在未经 PM 确认时改变业务规则。</div>
+</div><div class="tcard" data-idx="cost" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#c2410c"></span><h3 class="tcard-name">成本核算-Cost.md</h3><span class="tcard-status" style="color:#c2410c;background:#c2410c14">草稿</span></div>
+  <p class="tcard-meta">初稿：PM / 财务 · 评审决策：业务负责人</p>
+  <p class="tcard-desc">按用户场景预估 Token 消耗、调用频次、API 成本，并跟踪实际支出。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 成本核算-Cost
 owner: 花生
 status: Draft
@@ -1301,35 +1035,17 @@ updated: 2026-08-11
 - 降低模型规格：
 - 减少上下文长度：
 - 异步处理非实时任务：
-- 对低价值请求限流：</pre>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="t-section" id="sec-qa">
-      <div class="t-section-head">
-        <h2 class="t-section-title">✅ docs/qa/</h2>
-        <p class="t-section-desc">测试与验收。PM 自己验收，不依赖测试团队。Eval 和 Metrics 保障 AI 输出质量可衡量。</p>
-      </div>
-      <div class="t-doc-list">
-        <div class="t-doc-card" id="doc-uat">
-          <div class="t-doc-header" onclick="toggleDoc('uat')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">验收清单-UAT.md</span>
-              <span class="t-doc-meta">初稿：PM · 评审决策：业务负责人</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-draft">草稿</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-uat">
-            <p class="t-doc-desc">PM 自测清单。每轮在浏览器或真实环境中逐条验收，测完形成测试报告。</p>
-            <button class="t-copy-btn" onclick="copyDoc('uat')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-uat">---
+- 对低价值请求限流：</div>
+</div></div>
+</section>
+<section class="chap" id="sec-qa">
+  <div class="chap-head"><h2 class="chap-name">测试与验收</h2><p class="chap-desc">PM 自己验收，不依赖测试团队。Eval 和 Metrics 保障 AI 输出质量可衡量。</p></div>
+  <div class="tcard-grid"><div class="tcard" data-idx="uat" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#c2410c"></span><h3 class="tcard-name">验收清单-UAT.md</h3><span class="tcard-status" style="color:#c2410c;background:#c2410c14">草稿</span></div>
+  <p class="tcard-meta">初稿：PM · 评审决策：业务负责人</p>
+  <p class="tcard-desc">PM 自测清单。每轮在浏览器或真实环境中逐条验收，测完形成测试报告。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 验收清单-UAT
 owner: 花生
 status: Draft
@@ -1338,9 +1054,9 @@ updated: 2026-08-11
 
 # 用户验收测试清单 UAT
 
-&gt; 本清单由 PM 在真实环境中逐条验收。
-&gt; 每一项必须明确通过 / 不通过 / 不适用。
-&gt; 验收完成后，本文件即为测试报告。
+&amp;gt; 本清单由 PM 在真实环境中逐条验收。
+&amp;gt; 每一项必须明确通过 / 不通过 / 不适用。
+&amp;gt; 验收完成后，本文件即为测试报告。
 
 ## 1. 验收信息
 
@@ -1389,27 +1105,13 @@ updated: 2026-08-11
 | 不通过项 |  |
 | 遗留问题 |  |
 | 是否允许上线 | 是 / 否 / 有条件上线 |
-| PM 签字 |  |</pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-eval">
-          <div class="t-doc-header" onclick="toggleDoc('eval')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">测试集-Eval.md</span>
-              <span class="t-doc-meta">初稿：PM / 业务专家 · 评审决策：业务负责人</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-draft">草稿</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-eval">
-            <p class="t-doc-desc">记录真实用户问题、标准答案、边界用例、评测基准，用于 AI 回归测试。</p>
-            <button class="t-copy-btn" onclick="copyDoc('eval')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-eval">---
+| PM 签字 |  |</div>
+</div><div class="tcard" data-idx="eval" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#c2410c"></span><h3 class="tcard-name">测试集-Eval.md</h3><span class="tcard-status" style="color:#c2410c;background:#c2410c14">草稿</span></div>
+  <p class="tcard-meta">初稿：PM / 业务专家 · 评审决策：业务负责人</p>
+  <p class="tcard-desc">记录真实用户问题、标准答案、边界用例、评测基准，用于 AI 回归测试。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 测试集-Eval
 owner: 花生
 status: Draft
@@ -1418,8 +1120,8 @@ updated: 2026-08-11
 
 # 测试集与评测基准 Eval
 
-&gt; 本文件定义 AI 效果评测的标准集。
-&gt; 实际测试数据较大时，可存放为 CSV / JSON / YAML，本文件负责说明规则。
+&amp;gt; 本文件定义 AI 效果评测的标准集。
+&amp;gt; 实际测试数据较大时，可存放为 CSV / JSON / YAML，本文件负责说明规则。
 
 ## 1. 评测目标
 
@@ -1469,27 +1171,13 @@ updated: 2026-08-11
 - 每次 Prompt 修改后，必须重新跑 P0 用例。
 - 每次模型版本变更后，必须重新跑全部用例。
 - 每次上线前，P0 通过率必须达到 100%。
-- 新增 Bad Case 必须补充进测试集。</pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-metrics">
-          <div class="t-doc-header" onclick="toggleDoc('metrics')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">评分指标-Metrics.md</span>
-              <span class="t-doc-meta">初稿：PM · 评审决策：业务专家</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-draft">草稿</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-metrics">
-            <p class="t-doc-desc">定义准确性、相关性、安全性、完成率等评分维度及达标阈值。</p>
-            <button class="t-copy-btn" onclick="copyDoc('metrics')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-metrics">---
+- 新增 Bad Case 必须补充进测试集。</div>
+</div><div class="tcard" data-idx="metrics" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#c2410c"></span><h3 class="tcard-name">评分指标-Metrics.md</h3><span class="tcard-status" style="color:#c2410c;background:#c2410c14">草稿</span></div>
+  <p class="tcard-meta">初稿：PM · 评审决策：业务专家</p>
+  <p class="tcard-desc">定义准确性、相关性、安全性、完成率等评分维度及达标阈值。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 评分指标-Metrics
 owner: 花生
 status: Draft
@@ -1547,27 +1235,13 @@ updated: 2026-08-11
 | 综合得分 |  |
 | 是否达标 |  |
 | 主要问题 |  |
-| 下一步优化 |  |</pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-issue">
-          <div class="t-doc-header" onclick="toggleDoc('issue')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">缺陷跟踪-Issue.md</span>
-              <span class="t-doc-meta">初稿：PM / 运营 · 评审决策：研发 / PM</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-draft">草稿</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-issue">
-            <p class="t-doc-desc">记录测试和线上发现的问题、AI 幻觉、Bad Case、修复状态。</p>
-            <button class="t-copy-btn" onclick="copyDoc('issue')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-issue">---
+| 下一步优化 |  |</div>
+</div><div class="tcard" data-idx="issue" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#c2410c"></span><h3 class="tcard-name">缺陷跟踪-Issue.md</h3><span class="tcard-status" style="color:#c2410c;background:#c2410c14">草稿</span></div>
+  <p class="tcard-meta">初稿：PM / 运营 · 评审决策：研发 / PM</p>
+  <p class="tcard-desc">记录测试和线上发现的问题、AI 幻觉、Bad Case、修复状态。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 缺陷跟踪-Issue
 owner: 花生
 status: Draft
@@ -1622,35 +1296,17 @@ updated: 2026-08-11
 - 问题可稳定复现或定位。
 - 修复方案已实现。
 - PM 或测试验收通过。
-- 如属于 AI Bad Case，必须补充进 `测试集-Eval.md`。</pre>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="t-section" id="sec-ai-logs">
-      <div class="t-section-head">
-        <h2 class="t-section-title">🤖 docs/ai-logs/</h2>
-        <p class="t-section-desc">AI 自动产出文档。PM 需 Review 确认后才作为执行依据。</p>
-      </div>
-      <div class="t-doc-list">
-        <div class="t-doc-card" id="doc-solution">
-          <div class="t-doc-header" onclick="toggleDoc('solution')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">方案记录-Solution.md</span>
-              <span class="t-doc-meta">初稿：AI 产出 · 评审决策：PM / 技术总监</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-in-review">评审中</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-solution">
-            <p class="t-doc-desc">AI 自动产出的技术方案、实现路径、选型理由，PM 需 Review 是否符合 Spec。</p>
-            <button class="t-copy-btn" onclick="copyDoc('solution')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-solution">---
+- 如属于 AI Bad Case，必须补充进 `测试集-Eval.md`。</div>
+</div></div>
+</section>
+<section class="chap" id="sec-ai">
+  <div class="chap-head"><h2 class="chap-name">AI 自动产出</h2><p class="chap-desc">AI 自动产出文档。PM 需 Review 确认后才作为执行依据。</p></div>
+  <div class="tcard-grid"><div class="tcard" data-idx="solution" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#6366f1"></span><h3 class="tcard-name">方案记录-Solution.md</h3><span class="tcard-status" style="color:#6366f1;background:#6366f114">评审中</span></div>
+  <p class="tcard-meta">初稿：AI 产出 · 评审决策：PM / 技术总监</p>
+  <p class="tcard-desc">AI 自动产出的技术方案、实现路径、选型理由，PM 需 Review 是否符合 Spec。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 方案记录-Solution
 owner: AI / 花生
 status: In Review
@@ -1659,8 +1315,8 @@ updated: 2026-08-11
 
 # 产品方案记录 Solution
 
-&gt; 本文件记录 AI 在 Coding 过程中提出的产品或技术方案。
-&gt; AI 初稿必须经过 PM 或技术负责人 Review 后才能作为执行依据。
+&amp;gt; 本文件记录 AI 在 Coding 过程中提出的产品或技术方案。
+&amp;gt; AI 初稿必须经过 PM 或技术负责人 Review 后才能作为执行依据。
 
 ## 1. 问题背景
 
@@ -1711,27 +1367,13 @@ updated: 2026-08-11
 
 | 日期 | Review 人 | 结论 | 后续动作 |
 | :--- | :--- | :--- | :--- |
-|  |  | 采纳 / 驳回 / 修改后采纳 |  |</pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-prototype">
-          <div class="t-doc-header" onclick="toggleDoc('prototype')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">原型记录-Prototype.md</span>
-              <span class="t-doc-meta">初稿：AI 产出 · 评审决策：PM / UX</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-in-review">评审中</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-prototype">
-            <p class="t-doc-desc">AI 自动生成的原型、UI 方案、页面结构、交互逻辑记录。</p>
-            <button class="t-copy-btn" onclick="copyDoc('prototype')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-prototype">---
+|  |  | 采纳 / 驳回 / 修改后采纳 |  |</div>
+</div><div class="tcard" data-idx="prototype" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#6366f1"></span><h3 class="tcard-name">原型记录-Prototype.md</h3><span class="tcard-status" style="color:#6366f1;background:#6366f114">评审中</span></div>
+  <p class="tcard-meta">初稿：AI 产出 · 评审决策：PM / UX</p>
+  <p class="tcard-desc">AI 自动生成的原型、UI 方案、页面结构、交互逻辑记录。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 原型记录-Prototype
 owner: AI / 花生
 status: In Review
@@ -1740,8 +1382,8 @@ updated: 2026-08-11
 
 # 交互原型记录 Prototype
 
-&gt; 本文件记录 AI 生成的原型、页面结构、交互方案。
-&gt; 所有原型必须经过 PM 确认后才能进入开发。
+&amp;gt; 本文件记录 AI 生成的原型、页面结构、交互方案。
+&amp;gt; 所有原型必须经过 PM 确认后才能进入开发。
 
 ## 1. 原型目标
 
@@ -1788,27 +1430,13 @@ updated: 2026-08-11
 | 是否符合用户体验要求 | 是/否 |
 | 是否需要修改 | 是/否 |
 | 是否允许进入开发 | 是/否 |
-| PM 签字 |  |</pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-adr">
-          <div class="t-doc-header" onclick="toggleDoc('adr')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">架构决策-ADR.md</span>
-              <span class="t-doc-meta">初稿：AI / 主程 · 评审决策：技术总监 / PM</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-proposed">提议中</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-adr">
-            <p class="t-doc-desc">记录关键技术选型背景、备选方案、决策理由、后果影响。</p>
-            <button class="t-copy-btn" onclick="copyDoc('adr')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-adr">---
+| PM 签字 |  |</div>
+</div><div class="tcard" data-idx="adr" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#6d28d9"></span><h3 class="tcard-name">架构决策-ADR.md</h3><span class="tcard-status" style="color:#6d28d9;background:#6d28d914">提议中</span></div>
+  <p class="tcard-meta">初稿：AI / 主程 · 评审决策：技术总监 / PM</p>
+  <p class="tcard-desc">记录关键技术选型背景、备选方案、决策理由、后果影响。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 架构决策-ADR
 owner: 技术负责人 / 花生
 status: Proposed
@@ -1868,35 +1496,17 @@ Proposed / Accepted / Deprecated / Superseded
 
 | 日期 | 参与人 | 结论 |
 | :--- | :--- | :--- |
-|  |  |  |</pre>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="t-section" id="sec-process">
-      <div class="t-section-head">
-        <h2 class="t-section-title">📝 docs/process/</h2>
-        <p class="t-section-desc">过程资产：会议记录、工作笔记、参考资料。不直接驱动开发，但随时可查。</p>
-      </div>
-      <div class="t-doc-list">
-        <div class="t-doc-card" id="doc-notes">
-          <div class="t-doc-header" onclick="toggleDoc('notes')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">会议记录-Notes-YYYYMMDD.md</span>
-              <span class="t-doc-meta">初稿：PM / AI · 评审决策：PM</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-approved">已确认</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-notes">
-            <p class="t-doc-desc">记录关键会议中的决策、结论、待办、责任人。</p>
-            <button class="t-copy-btn" onclick="copyDoc('notes')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-notes">---
+|  |  |  |</div>
+</div></div>
+</section>
+<section class="chap" id="sec-process">
+  <div class="chap-head"><h2 class="chap-name">过程资产</h2><p class="chap-desc">会议记录、工作笔记、参考资料。不直接驱动开发，但随时可查。</p></div>
+  <div class="tcard-grid"><div class="tcard" data-idx="notes" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#0d9488"></span><h3 class="tcard-name">会议记录-Notes-YYYYMMDD.md</h3><span class="tcard-status" style="color:#0d9488;background:#0d948814">已确认</span></div>
+  <p class="tcard-meta">初稿：PM / AI · 评审决策：PM</p>
+  <p class="tcard-desc">记录关键会议中的决策、结论、待办、责任人。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 会议记录-Notes
 owner: 花生
 status: Approved
@@ -1959,27 +1569,13 @@ meeting_date: 2026-08-11
 | :--- | :--- | :--- |
 | 产品规格-Spec.md |  |  |
 | 项目进度-Kanban.md |  |  |
-| CHANGELOG.md |  |  |</pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-scratch">
-          <div class="t-doc-header" onclick="toggleDoc('scratch')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">工作笔记-Scratch.md</span>
-              <span class="t-doc-meta">初稿：PM · 评审决策：PM</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-draft">草稿</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-scratch">
-            <p class="t-doc-desc">记录 PM 的草稿、灵感、临时想法、未确认需求。</p>
-            <button class="t-copy-btn" onclick="copyDoc('scratch')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-scratch">---
+| CHANGELOG.md |  |  |</div>
+</div><div class="tcard" data-idx="scratch" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#c2410c"></span><h3 class="tcard-name">工作笔记-Scratch.md</h3><span class="tcard-status" style="color:#c2410c;background:#c2410c14">草稿</span></div>
+  <p class="tcard-meta">初稿：PM · 评审决策：PM</p>
+  <p class="tcard-desc">记录 PM 的草稿、灵感、临时想法、未确认需求。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 工作笔记-Scratch
 owner: 花生
 status: Draft
@@ -1988,9 +1584,9 @@ updated: 2026-08-11
 
 # 工作笔记 Scratch
 
-&gt; 本文件用于记录未确认的想法、草稿和临时笔记。
-&gt; 本文件不作为正式需求依据。
-&gt; 如想法被确认，应迁移到 Spec、BRD 或 Kanban。
+&amp;gt; 本文件用于记录未确认的想法、草稿和临时笔记。
+&amp;gt; 本文件不作为正式需求依据。
+&amp;gt; 如想法被确认，应迁移到 Spec、BRD 或 Kanban。
 
 ## 当前想法
 
@@ -2020,27 +1616,13 @@ updated: 2026-08-11
 
 | 日期 | 原想法 | 迁移到文档 | 状态 |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |</pre>
-          </div>
-        </div>
-        <div class="t-doc-card" id="doc-ref">
-          <div class="t-doc-header" onclick="toggleDoc('ref')" role="button" tabindex="0" aria-expanded="false">
-            <div class="t-doc-left">
-              <span class="t-doc-name">参考资料-Ref.md</span>
-              <span class="t-doc-meta">初稿：PM · 评审决策：PM</span>
-            </div>
-            <div class="t-doc-right">
-              <span class="t-status t-status-draft">草稿</span>
-              <svg class="t-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="t-doc-body" id="body-ref">
-            <p class="t-doc-desc">汇总行业资料、竞品链接、API 文档、设计稿、外部报告。</p>
-            <button class="t-copy-btn" onclick="copyDoc('ref')" aria-label="复制模板内容">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              复制模板
-            </button>
-            <pre class="t-content" id="content-ref">---
+|  |  |  |  |</div>
+</div><div class="tcard" data-idx="ref" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#c2410c"></span><h3 class="tcard-name">参考资料-Ref.md</h3><span class="tcard-status" style="color:#c2410c;background:#c2410c14">草稿</span></div>
+  <p class="tcard-meta">初稿：PM · 评审决策：PM</p>
+  <p class="tcard-desc">汇总行业资料、竞品链接、API 文档、设计稿、外部报告。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
 title: 参考资料-Ref
 owner: 花生
 status: Draft
@@ -2049,8 +1631,8 @@ updated: 2026-08-11
 
 # 参考资料 Ref
 
-&gt; 本文件用于汇总项目相关的外部资料。
-&gt; 每条资料应注明来源、可信度和使用建议。
+&amp;gt; 本文件用于汇总项目相关的外部资料。
+&amp;gt; 每条资料应注明来源、可信度和使用建议。
 
 ## 1. 行业资料
 
@@ -2080,52 +1662,76 @@ updated: 2026-08-11
 
 | 数据名称 | 来源 | 是否脱敏 | 使用范围 | 备注 |
 | :--- | :--- | :--- | :--- | :--- |
-|  |  |  |  |  |</pre>
-          </div>
-        </div>
-      </div>
-    </section>
-</main>
+|  |  |  |  |  |</div>
+</div></div>
+</section>
 
-<footer class="t-footer">
-  <p><a href="../">← 返回 AI PM 工作手册</a></p>
-  <p style="margin-top:4px;">AI PM 工作手册 · 案例模板库 · 23 份模板</p>
+  </main>
+</div>
+
+<footer class="colophon">
+  <a href="../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    返回 AI PM 手册
+  </a>
+  <span>案例模板库 · 23 份</span>
 </footer>
 
-<div class="toast" id="toast"></div>
+<div class="modal-overlay" id="modal">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <h2 class="modal-title" id="m-title"></h2>
+      <div class="modal-actions">
+        <button class="btn btn-copy" id="m-copy"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width:15px;height:15px"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span>复制模板</span></button>
+        <button class="btn btn-close" id="m-close"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width:15px;height:15px"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+      </div>
+    </div>
+    <p class="modal-desc" id="m-desc"></p>
+    <p class="modal-meta" id="m-meta"></p>
+    <div class="modal-body" id="m-body"></div>
+  </div>
+</div>
 
 <script>
-function toggleDoc(id) {
-  const card = document.getElementById('doc-' + id);
-  const header = card.querySelector('.t-doc-header');
-  const isOpen = card.classList.contains('open');
-  card.classList.toggle('open');
-  header.setAttribute('aria-expanded', !isOpen);
-}
-
-function copyDoc(id) {
-  const content = document.getElementById('content-' + id).textContent;
-  const btn = document.querySelector('#doc-' + id + ' .t-copy-btn');
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(content).then(() => showToast('已复制到剪贴板'));
-  } else {
-    const ta = document.createElement('textarea');
-    ta.value = content;
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.select();
-    try { document.execCommand('copy'); showToast('已复制到剪贴板'); } catch(e) { showToast('复制失败，请手动选择复制'); }
-    document.body.removeChild(ta);
+var CARDS = document.querySelectorAll(".tcard");
+var modal = document.getElementById("modal");
+var curRaw = "";
+CARDS.forEach(function(card) {
+  card.addEventListener("click", function() {
+    var name = card.querySelector(".tcard-name").textContent;
+    var desc = card.querySelector(".tcard-desc").textContent;
+    var meta = card.querySelector(".tcard-meta").textContent;
+    var raw = card.querySelector(".tcard-raw").textContent;
+    document.getElementById("m-title").textContent = name;
+    document.getElementById("m-desc").textContent = desc;
+    document.getElementById("m-meta").textContent = meta;
+    document.getElementById("m-body").innerHTML = "<pre>" + raw.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") + "</pre>";
+    curRaw = raw;
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+    var bc = document.getElementById("m-copy");
+    bc.classList.remove("copied");
+    bc.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width:15px;height:15px"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span>复制模板</span>';
+  });
+});
+document.getElementById("m-close").addEventListener("click", function() { modal.classList.remove("open"); document.body.style.overflow = ""; });
+modal.addEventListener("click", function(e) { if(e.target===modal) { modal.classList.remove("open"); document.body.style.overflow = ""; } });
+document.addEventListener("keydown", function(e) { if(e.key==="Escape") { modal.classList.remove("open"); document.body.style.overflow = ""; } });
+document.getElementById("m-copy").addEventListener("click", function() {
+  var btn = this;
+  function flash(b) {
+    b.classList.add("copied");
+    b.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width:15px;height:15px"><path d="M20 6 9 17l-5-5"/></svg><span>已复制</span>';
+    setTimeout(function() { b.classList.remove("copied"); b.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width:15px;height:15px"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span>复制模板</span>'; }, 1600);
   }
-}
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 1800);
-}
+  if(navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(curRaw).then(function() { flash(btn); }, function() {
+      var ta = document.createElement("textarea"); ta.value = curRaw; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); flash(btn);
+    });
+  } else {
+    var ta = document.createElement("textarea"); ta.value = curRaw; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); flash(btn);
+  }
+});
 </script>
 </body>
 </html>
