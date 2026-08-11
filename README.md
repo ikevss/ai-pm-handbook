@@ -4,6 +4,8 @@
 
 📖 **在线阅读：** https://ikevss.github.io/ai-pm-handbook/
 
+> 💡 配套工具：[**AI 提示词手册**](https://ikevss.github.io/ai-pm-handbook/prompts/) — 把本手册的方法论沉淀成 74 条精选提示词，按场景分 10 类，点击卡片即可复制使用。
+
 ## 这是什么
 
 这是一份面向产品经理的实操手册，系统梳理了 AI Coding 时代产品经理需要掌握的工作体系。

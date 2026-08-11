@@ -278,6 +278,17 @@ tbody tr:hover td { background: var(--raised); }
 .boundary-card li::before { content: '·'; position: absolute; left: 0; font-weight: 700; }
 .info-box { padding: 14px 18px; background: var(--raised); border-radius: 8px; font-size: 14px; color: var(--t2); border: 1px solid var(--b); line-height: 1.6; margin: 12px 0; }
 
+/* ====== 提示词手册入口 ====== */
+.pk-entry { display: flex; align-items: center; justify-content: space-between; gap: 20px; background: var(--surface); border: 1px solid var(--b); border-radius: var(--r); padding: 22px 26px; text-decoration: none; color: inherit; transition: all 0.2s; }
+.pk-entry:hover { border-color: var(--amber); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.pk-entry-main { display: flex; align-items: center; gap: 16px; }
+.pk-entry-ic { width: 46px; height: 46px; border-radius: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.pk-entry-text h3 { font-size: 18px; font-weight: 700; margin-bottom: 3px; }
+.pk-entry-text p { font-size: 13px; color: var(--t3); }
+.pk-entry-go { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: var(--amber); white-space: nowrap; }
+.pk-entry-go svg { transition: transform 0.2s; }
+.pk-entry:hover .pk-entry-go svg { transform: translateX(3px); }
+
 /* ====== Footer ====== */
 .footer { text-align: center; padding: 48px 24px 36px; border-top: 1px solid var(--b); margin-top: 40px; color: var(--t3); font-size: 14px; }
 .footer-brand { font-weight: 700; font-size: 16px; color: var(--amber); margin-bottom: 12px; }
@@ -300,6 +311,8 @@ tbody tr:hover td { background: var(--raised); }
   .hero-paradigm { grid-template-columns: 1fr; gap: 12px; }
   .hero-arrow { transform: rotate(90deg); padding: 0; justify-content: center; }
   .dim-grid { grid-template-columns: repeat(2, 1fr); }
+  .pk-entry { flex-direction: column; align-items: flex-start; padding: 18px 20px; gap: 14px; }
+  .pk-entry-go { align-self: flex-end; }
 }
 @media (max-width: 480px) {
   body { font-size: 15px; }
@@ -328,14 +341,14 @@ tbody tr:hover td { background: var(--raised); }
   </a>
   <div class="nav-tiers">
     <div class="nav-tier-wrapper"><button class="nav-tier-btn" data-tier="start" aria-expanded="false" aria-haspopup="true">即看即用</button><div class="nav-tier-dropdown" id="tier-start" role="menu"><a href="#hero" role="menuitem">快速上手</a><a href="#station-2" role="menuitem">实战方法 · 8步流程</a><a href="#station-4" role="menuitem">案例模板</a><a href="#station-5" role="menuitem">话术速查</a></div></div>
-    <div class="nav-tier-wrapper"><button class="nav-tier-btn" data-tier="ref" aria-expanded="false" aria-haspopup="true">按需查阅</button><div class="nav-tier-dropdown" id="tier-ref" role="menu"><a href="#station-1" role="menuitem">理论框架</a><a href="#station-3" role="menuitem">文件资产</a><a href="#station-4-toolbox" role="menuitem">进阶工具箱</a></div></div>
+    <div class="nav-tier-wrapper"><button class="nav-tier-btn" data-tier="ref" aria-expanded="false" aria-haspopup="true">按需查阅</button><div class="nav-tier-dropdown" id="tier-ref" role="menu"><a href="#station-1" role="menuitem">理论框架</a><a href="#station-3" role="menuitem">文件资产</a><a href="#station-4-toolbox" role="menuitem">进阶工具箱</a><a href="prompts/" role="menuitem">提示词手册</a></div></div>
     <div class="nav-tier-wrapper"><button class="nav-tier-btn" data-tier="deep" aria-expanded="false" aria-haspopup="true">深度参考</button><div class="nav-tier-dropdown" id="tier-deep" role="menu"><a href="#advanced" role="menuitem">进阶参考</a></div></div>
   </div>
   <button class="hamburger" aria-label="菜单" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="移动端导航">
   <div class="m-section"><div class="m-label">即看即用</div><a href="#hero">快速上手</a><a href="#station-2">实战方法</a><a href="#station-4">案例模板</a><a href="#station-5">话术速查</a></div>
-  <div class="m-section"><div class="m-label">按需查阅</div><a href="#station-1">理论框架</a><a href="#station-3">文件资产</a><a href="#station-4-toolbox">进阶工具箱</a></div>
+  <div class="m-section"><div class="m-label">按需查阅</div><a href="#station-1">理论框架</a><a href="#station-3">文件资产</a><a href="#station-4-toolbox">进阶工具箱</a><a href="prompts/">提示词手册</a></div>
   <div class="m-section"><div class="m-label">深度参考</div><a href="#advanced">进阶参考</a></div>
 </div>
 
@@ -378,6 +391,25 @@ tbody tr:hover td { background: var(--raised); }
   <nav class="station-nav" aria-label="五站导航">
     <a href="#station-1">理论框架</a><a href="#station-2">实战方法</a><a href="#station-3">文件资产</a><a href="#station-4">案例模板</a><a href="#station-5">模仿改进</a>
   </nav>
+</section>
+
+<!-- ====== 提示词手册入口 ====== -->
+<section class="section" id="prompt-kit" aria-labelledby="pk-title">
+  <h2 class="station-title" id="pk-title">写不出好提示词？这里有 74 条现成的</h2>
+  <div class="station-label">提示词手册</div>
+  <div class="station-why"><p>理论是"知道怎么写"，提示词是<strong>"直接抄着用"</strong>。这本手册把五站方法论里的需求分析、架构梳理、重构审查、测试设计、文档沉淀全部沉淀成 <strong>74 条精选提示词</strong>，按场景分 10 类，点击卡片即可复制，拿去就能指挥 AI。</p></div>
+  <a class="pk-entry" href="prompts/">
+    <div class="pk-entry-main">
+      <div class="pk-entry-ic">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#c2410c"/><rect x="5" y="4" width="14" height="16" rx="2" fill="#faf8f5" opacity="0.95"/><rect x="7" y="7" width="10" height="1.5" rx="0.75" fill="#c2410c" opacity="0.8"/><rect x="7" y="10" width="8" height="1.5" rx="0.75" fill="#c2410c" opacity="0.6"/><rect x="7" y="13" width="9" height="1.5" rx="0.75" fill="#c2410c" opacity="0.4"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="#0d9488"/></svg>
+      </div>
+      <div class="pk-entry-text">
+        <h3>AI 提示词手册</h3>
+        <p>10 类场景 · 74 条精选提示词 · 支持搜索 · 一键复制</p>
+      </div>
+    </div>
+    <span class="pk-entry-go">进入手册 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </a>
 </section>
 
 <!-- ====== STATION 1: 理论框架 ====== -->
@@ -575,6 +607,7 @@ tbody tr:hover td { background: var(--raised); }
 
 <footer class="footer">
   <div class="footer-brand">AI PM 工作手册 · v4.0</div>
+  <p><a href="prompts/" style="color:var(--amber);text-decoration:none;font-weight:600;">提示词手册（74 条 · 10 类）</a></p>
   <p>五站学习路径：理论框架 → 实战方法 → 文件资产 → 案例模板 → 模仿改进</p>
   <p style="margin-top:8px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
     <span>历史版本：</span>
