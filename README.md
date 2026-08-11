@@ -157,3 +157,9 @@ MIT License
 **最后更新：** 2026-07-31  
 **版本：** v2.0  
 **维护者：** ikevssy
+
+---
+
+## 联系
+
+📮 联系邮箱：ihuass@agent.qq.com
