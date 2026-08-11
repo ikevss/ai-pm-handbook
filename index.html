@@ -359,26 +359,26 @@ tbody tr:hover td { background: var(--raised); }
 <section class="hero" id="hero" aria-labelledby="hero-title">
   <div class="hero-badge"><span>PM 实操手册</span></div>
   <h1 id="hero-title"><span class="line1">先定义产品，</span><span class="line2">再定义验收标准</span></h1>
-  <p class="hero-subtitle">把"这是什么、为谁解决什么问题"写清楚。<br>再把"做对了长什么样、边界在哪、出错时怎样"写清楚。<br>剩下的方案生成、代码实现、自测验证、人话汇报，交给 AI。</p>
+  <p class="hero-subtitle">AI 把实现成本压到接近零，PM 的价值回到定义：<br>定义产品，定义验收标准。这两件事不能假手于人；<br>定义不清，AI 执行得越彻底，偏离得越远。</p>
 
   <div class="hero-paradigm">
     <div class="hero-pm-box">
-      <h3>① 先定义产品</h3>
+      <h3>先定义产品</h3>
       <div class="pm-items">
-        <div class="pm-item"><span class="pm-dot"></span>这是什么、为谁解决什么问题</div>
-        <div class="pm-item"><span class="pm-dot"></span>核心场景和核心价值是什么</div>
-        <div class="pm-item"><span class="pm-dot"></span>这次不做什么（排除范围）</div>
+        <div class="pm-item"><span class="pm-dot"></span>服务对象与问题：给谁用，解决什么真实问题</div>
+        <div class="pm-item"><span class="pm-dot"></span>使用场景与价值：在什么情境下，创造什么可衡量价值</div>
+        <div class="pm-item"><span class="pm-dot"></span>范围边界：本期做什么，明确不做什么</div>
       </div>
     </div>
     <div class="hero-arrow">
       <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--amber)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20h24M26 8l12 12-12 12"/></svg>
     </div>
     <div class="hero-ai-box">
-      <h3>② 再定义验收标准</h3>
+      <h3>再定义验收标准</h3>
       <div class="ai-items">
-        <div class="ai-item"><span class="ai-dot"></span>做对了长什么样——正常路径的期望结果</div>
-        <div class="ai-item"><span class="ai-dot"></span>边界在哪——格式错误、超时、空数据、重复操作怎么处理</div>
-        <div class="ai-item"><span class="ai-dot"></span>出错时显示什么——具体到文案</div>
+        <div class="ai-item"><span class="ai-dot"></span>正常路径：主流程每一步的预期结果</div>
+        <div class="ai-item"><span class="ai-dot"></span>边界条件：格式错误、超时、空数据、重复操作</div>
+        <div class="ai-item"><span class="ai-dot"></span>异常反馈：出错时的具体提示与降级方案</div>
       </div>
     </div>
   </div>
@@ -498,6 +498,7 @@ tbody tr:hover td { background: var(--raised); }
     <p>3. <strong>PM 自己测</strong>——验收清单打勾即验收，不需要测试团队</p>
     <p>4. <strong>文档越少越好</strong>——SPEC + README + CHANGELOG 三件套覆盖 80% 场景</p>
     <p>5. <strong>AI 能读代码就不写文档</strong>——schema 本身是数据文档，组件代码本身是 UI 文档</p>
+    <p>6. <strong>项目根上先放两份真相</strong>——PRODUCT.md 记产品是什么、为谁、边界；DESIGN.md 记视觉规范。AI 每次做产品/界面决策前先读它们，避免凭对话记忆漂移。</p>
   </div>
 
   <!-- 协作流 -->
@@ -520,12 +521,12 @@ tbody tr:hover td { background: var(--raised); }
 <!-- ====== STATION 4: 案例模板 ====== -->
 <section class="section" id="station-4" aria-labelledby="s4-title">
   <h2 class="station-title" id="s4-title">案例模板</h2>
-  <div class="station-why"><p>AI 时代的项目文档不是"写完就扔的汇报材料"——<strong>每一份都是给 AI 的输入指令和协作契约</strong>。这里整理了<strong> 7 个阶段、24 份文档</strong>的完整模板，覆盖调研立项、产品设计、项目执行、测试验收、发布迭代、AI 自动产出、过程资产。</p></div>
+  <div class="station-why"><p>AI 时代的项目文档不是"写完就扔的汇报材料"——<strong>每一份都是给 AI 的输入指令和协作契约</strong>。这里整理了<strong> 7 个阶段、26 份文档</strong>的完整模板，覆盖调研立项、产品设计、项目执行、测试验收、发布迭代、AI 自动产出、过程资产。</p></div>
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:24px 0;">
     <div style="background:var(--surface);border:1px solid var(--b);border-radius:var(--r);padding:18px 20px;">
       <h4 style="font-size:15px;font-weight:700;color:var(--amber);margin-bottom:6px;">📋 根目录</h4>
-      <p style="font-size:13px;color:var(--t3);margin:0;">README · AGENTS · CLAUDE · CHANGELOG<br>AI 和开发者进仓库第一眼看到的文件</p>
+      <p style="font-size:13px;color:var(--t3);margin:0;">README · AGENTS · CLAUDE · CHANGELOG · PRODUCT · DESIGN<br>AI 和开发者进仓库第一眼看到的文件</p>
     </div>
     <div style="background:var(--surface);border:1px solid var(--b);border-radius:var(--r);padding:18px 20px;">
       <h4 style="font-size:15px;font-weight:700;color:var(--amber);margin-bottom:6px;">📦 docs/product/</h4>
@@ -557,7 +558,7 @@ tbody tr:hover td { background: var(--raised); }
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#0d9488"/><rect x="5" y="4" width="14" height="16" rx="2" fill="#faf8f5" opacity="0.95"/><rect x="7" y="7" width="10" height="1.5" rx="0.75" fill="#0d9488" opacity="0.8"/><rect x="7" y="10" width="8" height="1.5" rx="0.75" fill="#0d9488" opacity="0.6"/><rect x="7" y="13" width="9" height="1.5" rx="0.75" fill="#0d9488" opacity="0.4"/></svg>
       </div>
       <div class="pk-entry-text">
-        <h3>查看全部 24 份模板</h3>
+        <h3>查看全部 26 份模板</h3>
         <p>含完整目录结构 · 每份模板有空白版和填写示例 · 可直接复制使用</p>
       </div>
     </div>

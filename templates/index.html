@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>案例模板库 · AI PM 手册</title>
-<meta name="description" content="24 份项目文档模板，覆盖产品定义、项目管理、测试验收、AI产出、过程资产。每份模板可直接复制使用。">
+<meta name="description" content="26 份项目文档模板，覆盖产品定义、项目管理、测试验收、AI产出、过程资产。每份模板可直接复制使用。">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <style>
 :root {
@@ -91,6 +91,33 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
 .colophon a:hover { color:var(--amber); }
 .colophon .icon { width:14px; height:14px; }
 
+/* ====== 仓库目录结构图 ====== */
+.tree-map { max-width:1080px; margin:0 auto; padding:36px 28px 0; scroll-margin-top:72px; }
+.tree-card { background:#fff; border:1px solid var(--rule); border-radius:12px; padding:26px 30px 22px; box-shadow:0 1px 3px rgba(28,25,23,.05); }
+.tree-label { font-family:var(--font-mono); font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:8px; display:block; }
+.tree-title { font-size:1.3rem; font-weight:800; letter-spacing:-.01em; }
+.tree-sub { font-size:.82rem; color:var(--ink-2); margin-top:3px; margin-bottom:20px; }
+.tree-body { font-family:var(--font-mono); }
+.tree-row { display:flex; align-items:center; flex-wrap:wrap; gap:7px; padding:7px 0; }
+.tree-row-root { padding:12px 0 14px; border-bottom:1px solid var(--rule); margin-bottom:6px; }
+.tree-folder { font-size:.8rem; font-weight:700; color:var(--amber); text-decoration:none; cursor:pointer; white-space:nowrap; transition:color .13s; }
+.tree-folder:hover { color:var(--amber); text-decoration:underline; text-decoration-color:rgba(194,65,12,.4); }
+.tree-folder:focus-visible { outline:2px solid var(--amber); outline-offset:1px; border-radius:4px; }
+.tree-cnt { font-size:.66rem; font-weight:700; color:var(--ink-3); background:var(--paper-2); border:1px solid var(--rule); border-radius:4px; padding:1px 6px; white-space:nowrap; }
+.tree-leaf { font-size:.72rem; font-weight:600; color:var(--ink-2); background:var(--paper-2); border:1px solid var(--rule); border-radius:6px; padding:3px 9px; cursor:pointer; transition:border-color .13s,color .13s,background .13s; white-space:nowrap; font-family:inherit; }
+.tree-leaf:hover { color:var(--amber); border-color:var(--amber); background:var(--amber-g); }
+.tree-leaf:active { transform:scale(.97); }
+.tree-leaf:focus-visible { outline:2px solid var(--amber); outline-offset:1px; }
+.tree-branch { margin-left:4px; padding-left:18px; border-left:1px solid var(--rule); }
+.tree-note { margin-top:12px; padding-top:12px; border-top:1px solid var(--rule); font-family:var(--font); font-size:.78rem; color:var(--ink-3); line-height:1.6; }
+@media (max-width:680px) {
+  .tree-map { padding:24px 16px 0; }
+  .tree-card { padding:20px 18px 18px; }
+  .tree-branch { padding-left:12px; }
+  .tree-leaf { padding:5px 11px; font-size:.74rem; }
+  .tree-folder { font-size:.84rem; }
+}
+
 @media (max-width:920px) { .handbook { gap:28px; padding:28px 20px 60px; } .toc { width:170px; } }
 @media (max-width:680px) {
   .mh-inner { padding:12px 16px; } .mh-back span { display:none; }
@@ -113,7 +140,7 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
       <span class="mh-logo"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="5" fill="#c2410c"/><rect x="5" y="4" width="14" height="16" rx="2" fill="#faf8f5" opacity="0.95"/><rect x="7" y="7" width="10" height="1.5" rx="0.75" fill="#c2410c" opacity="0.8"/><rect x="7" y="10" width="8" height="1.5" rx="0.75" fill="#c2410c" opacity="0.6"/><rect x="7" y="13" width="9" height="1.5" rx="0.75" fill="#c2410c" opacity="0.4"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="#0d9488"/></svg></span>
       <span>
         <span class="mh-title">案例模板库</span>
-        <span class="mh-sub">24 份模板 · PM 直接可用</span>
+        <span class="mh-sub">26 份模板 · PM 直接可用</span>
       </span>
     </a>
     <a class="mh-back" href="../index.html">
@@ -123,10 +150,81 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
   </div>
 </header>
 
+<!-- ====== 仓库目录结构图 ====== -->
+<section class="tree-map" aria-labelledby="tree-title">
+  <div class="tree-card">
+    <span class="tree-label">仓库结构</span>
+    <h2 class="tree-title" id="tree-title">项目根目录/</h2>
+    <p class="tree-sub">一图看懂 26 份模板放哪。点文件名直达模板，点目录名滚到对应章节。</p>
+    <div class="tree-body">
+      <div class="tree-row tree-row-root">
+        <button class="tree-leaf" data-t="readme">README.md</button>
+        <button class="tree-leaf" data-t="agents">AGENTS.md</button>
+        <button class="tree-leaf" data-t="agents">CLAUDE.md</button>
+        <button class="tree-leaf" data-t="changelog">CHANGELOG.md</button>
+        <button class="tree-leaf" data-t="product-md">PRODUCT.md</button>
+        <button class="tree-leaf" data-t="design-md">DESIGN.md</button>
+      </div>
+      <div class="tree-row">
+        <button class="tree-folder" data-sec="sec-root" aria-expanded="false">docs/</button>
+        <span class="tree-cnt">6 个子目录 · 26 份模板</span>
+      </div>
+      <div class="tree-branch">
+        <div class="tree-row">
+          <button class="tree-folder" data-sec="sec-product">product/</button>
+          <span class="tree-cnt">5</span>
+          <button class="tree-leaf" data-t="brd">BRD</button>
+          <button class="tree-leaf" data-t="car">CAR</button>
+          <button class="tree-leaf" data-t="poc">POC</button>
+          <button class="tree-leaf" data-t="spec">Spec</button>
+          <button class="tree-leaf" data-t="prompt">Prompt</button>
+        </div>
+        <div class="tree-row">
+          <button class="tree-folder" data-sec="sec-project">project/</button>
+          <span class="tree-cnt">5</span>
+          <button class="tree-leaf" data-t="plan">Plan</button>
+          <button class="tree-leaf" data-t="risk">Risk</button>
+          <button class="tree-leaf" data-t="kanban">Kanban</button>
+          <button class="tree-leaf" data-t="raci">RACI</button>
+          <button class="tree-leaf" data-t="cost">Cost</button>
+        </div>
+        <div class="tree-row">
+          <button class="tree-folder" data-sec="sec-qa">qa/</button>
+          <span class="tree-cnt">4</span>
+          <button class="tree-leaf" data-t="uat">UAT</button>
+          <button class="tree-leaf" data-t="eval">Eval</button>
+          <button class="tree-leaf" data-t="metrics">Metrics</button>
+          <button class="tree-leaf" data-t="issue">Issue</button>
+        </div>
+        <div class="tree-row">
+          <button class="tree-folder" data-sec="sec-ai">ai-logs/</button>
+          <span class="tree-cnt">3</span>
+          <button class="tree-leaf" data-t="solution">Solution</button>
+          <button class="tree-leaf" data-t="prototype">Prototype</button>
+          <button class="tree-leaf" data-t="adr">ADR</button>
+        </div>
+        <div class="tree-row">
+          <button class="tree-folder" data-sec="sec-process">process/</button>
+          <span class="tree-cnt">3</span>
+          <button class="tree-leaf" data-t="notes">Notes</button>
+          <button class="tree-leaf" data-t="scratch">Scratch</button>
+          <button class="tree-leaf" data-t="ref">Ref</button>
+        </div>
+        <div class="tree-row">
+          <button class="tree-folder" data-sec="sec-data">补充</button>
+          <span class="tree-cnt">1</span>
+          <button class="tree-leaf" data-t="datamodel">数据模型简述</button>
+        </div>
+      </div>
+    </div>
+    <p class="tree-note">根目录只放 AI 和开发者进仓库第一眼该读的文件；详细需求、细粒度进度、会议记录全部下沉到 docs/。</p>
+  </div>
+</section>
+
 <div class="handbook">
   <aside class="toc">
     <div class="toc-label">目录</div>
-    <nav><a class="toc-item" href="#sec-root"><span class="toc-name">根目录文件</span><span class="toc-cnt">3</span></a>
+    <nav><a class="toc-item" href="#sec-root"><span class="toc-name">根目录文件</span><span class="toc-cnt">5</span></a>
 <a class="toc-item" href="#sec-product"><span class="toc-name">产品定义</span><span class="toc-cnt">5</span></a>
 <a class="toc-item" href="#sec-project"><span class="toc-name">项目管理</span><span class="toc-cnt">5</span></a>
 <a class="toc-item" href="#sec-qa"><span class="toc-name">测试与验收</span><span class="toc-cnt">4</span></a>
@@ -259,6 +357,151 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
 
 每次发生重大需求变化后，需提示 PM 更新：
 - CHANGELOG.md</div>
+</div><div class="tcard" data-idx="product-md" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#0d9488"></span><h3 class="tcard-name">PRODUCT.md</h3><span class="tcard-status" style="color:#0d9488;background:#0d948814">已确认</span></div>
+  <p class="tcard-meta">初稿：PM · 评审决策：业务负责人</p>
+  <p class="tcard-desc">记录产品真相：用户、目的、定位、约束、品牌承诺。任何 AI 在做产品决策前先读它。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden># Product
+
+## Platform
+
+web
+
+## Users
+
+[主要用户：他们是谁、在什么情境下、要完成什么任务。]
+
+## Product Purpose
+
+[这个产品做什么、为什么存在、成功意味着什么。]
+
+## Positioning
+
+[这个产品区别于同类产品的独特机制或主张——一个相近产品无法照抄的说法。]
+
+## Operating Context
+
+[使用或评估该产品的工作流、环境、工具、文档、素材和惯例。]
+
+## Capabilities and Constraints
+
+[已确认的功能、技术约束、术语，以及明确未决的产品事实。]
+
+## Brand Commitments
+
+[既有的名称、语气、资产、个性、身份约束和用户明确绑定的参照。没有则省略。]
+
+## Evidence on Hand
+
+[真实的内容、数据、演示、测试、案例、媒体或资产，注明路径。明确说明不存在哪些未来不得编造的证据。]
+
+## Product Principles
+
+[由已确认回答推导出的 3-5 条持久战略原则；不写视觉配方。]
+
+## Accessibility & Inclusion
+
+[已知的用户需求或必需标准。未建立产品级要求时省略。]</div>
+</div><div class="tcard" data-idx="design-md" tabindex="0" role="button">
+  <div class="tcard-top"><span class="tcard-dot" style="background:#0d9488"></span><h3 class="tcard-name">DESIGN.md</h3><span class="tcard-status" style="color:#0d9488;background:#0d948814">已确认</span></div>
+  <p class="tcard-meta">初稿：PM / 设计 · 评审决策：设计负责人</p>
+  <p class="tcard-desc">记录设计系统：色板、字体、布局、组件规范。让 AI 生成的每个界面都保持一致。</p>
+  <span class="tcard-more">查看模板</span>
+  <div class="tcard-raw" hidden>---
+name: [项目名称]
+description: [一句话定位]
+colors:
+  primary: "#B8422E"
+  neutral-bg: "#FAF7F2"
+  # 每个实际用到的颜色一条；key = 描述性 slug
+typography:
+  display:
+    fontFamily: "Cormorant Garamond, Georgia, serif"
+    fontSize: "clamp(2.5rem, 7vw, 4.5rem)"
+    fontWeight: 300
+    lineHeight: 1
+  body:
+    # ...
+rounded:
+  sm: "4px"
+  md: "8px"
+spacing:
+  sm: "8px"
+  md: "16px"
+components:
+  button-primary:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.neutral-bg}"
+    rounded: "{rounded.sm}"
+    padding: "16px 48px"
+---
+
+# Design System: [项目名称]
+
+## Overview
+
+**Creative North Star: "[命名隐喻]"**
+
+[2-3 段整体描述：性格、密度、美学理念。从北极星出发向外展开。只陈述已确认的视觉拒绝项。以 **Key Characteristics:** 列表收尾。]
+
+## Colors
+
+[一句话描述色板性格。]
+
+### Primary
+- **[描述性名称]** (#HEX): 在什么上下文、为什么用这个颜色。要具体到语境，不只是角色。
+
+### Neutral
+- **[描述性名称]** (#HEX): 文字 / 背景 / 边框 / 分隔线角色。
+
+## Typography
+
+**Display Font:** [字体]（回退 [fallback]）
+**Body Font:** [字体]（回退 [fallback]）
+
+**Character:** [1-2 句字体配对性格。]
+
+### Hierarchy
+- **Display**（[字重], [字号/clamp], [行高]）: 用途；出现在哪里。
+- **Headline**（[字重], [字号], [行高]）: 用途。
+- **Body**（[字重], [字号], [行高]）: 用途。含最大行长 65-75ch。
+- **Label**（[字重], [字号], [字距], 大写与否）: 用途。
+
+## Layout
+
+[网格或空间模型、容器行为、密度、响应式变化、间距节奏。仅在实际观测到值时写具体数值。]
+
+## Elevation & Depth
+
+[一句话：用阴影、色调分层还是混合？无阴影则明确说明，并描述深度如何传达。]
+
+## Shapes
+
+[形式语言：圆角策略、边框、裁切、反复出现的轮廓或几何。]
+
+## Components
+
+[每个组件先一句话性格，再写形状、颜色、状态、独特行为。]
+
+### Buttons
+- **Shape:** [圆角描述（具体值）]
+- **Primary:** [颜色分配 + 内边距]
+- **Hover / Focus:** [过渡、处理]
+
+### Cards / Containers
+- **Corner Style:** [圆角]
+- **Background:** [颜色]
+- **Shadow Strategy:** [参照 Elevation 节]
+- **Internal Padding:** [比例]
+
+## Do's and Don'ts
+
+### Do:
+- **Do** [有具体值或命名规则的具体处方]
+
+### Don't:
+- **Don't** [经既有系统或用户确认的具体禁令]</div>
 </div></div>
 </section>
 <section class="chap" id="sec-product">
@@ -1722,7 +1965,7 @@ Product: id, name, price, stock, category
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
     返回 AI PM 手册
   </a>
-  <span>案例模板库 · 24 份</span>
+  <span>案例模板库 · 26 份</span>
 </footer>
 
 <div class="modal-overlay" id="modal">
@@ -1783,6 +2026,27 @@ document.getElementById("m-copy").addEventListener("click", function() {
   } else {
     var ta = document.createElement("textarea"); ta.value = curRaw; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); flash(btn);
   }
+});
+
+/* ---------- 仓库目录结构图 ---------- */
+var tcards = {}; CARDS.forEach(function(c){ tcards[c.dataset.idx] = c; });
+document.querySelectorAll(".tree-leaf").forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    var t = btn.dataset.t;
+    if (t && tcards[t]) { openCard(tcards[t]); }
+  });
+  btn.addEventListener("keydown", function(e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); btn.click(); }
+  });
+});
+document.querySelectorAll(".tree-folder").forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    var sec = btn.dataset.sec;
+    if (sec) { var el = document.getElementById(sec); if (el) el.scrollIntoView({behavior:"smooth", block:"start"}); }
+  });
+  btn.addEventListener("keydown", function(e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); btn.click(); }
+  });
 });
 </script>
 </body>
