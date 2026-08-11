@@ -296,34 +296,9 @@ tbody tr:hover td { background: var(--raised); }
 .copy-toast.show { opacity: 1; }
 
 /* ====== Modal ====== */
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.3); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 300; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
-.modal-overlay.show { opacity: 1; pointer-events: auto; }
-.modal-box { background: var(--surface); border: 1px solid var(--b); border-radius: var(--r); max-width: 780px; width: 100%; max-height: 80vh; overflow-y: auto; padding: 32px 36px; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
-.modal-close { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; border: 1px solid var(--b); border-radius: 8px; background: var(--surface); color: var(--t3); font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
-.modal-close:hover { border-color: var(--amber); color: var(--amber); }
-.modal-box h2 { font-size: 20px; font-weight: 700; color: var(--t1); margin-bottom: 6px; }
-.modal-box .mod-tag { font-family: var(--font-mono); font-size: 11px; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 16px; }
-.modal-box .mod-tag.t1 { background: var(--amber-l); color: var(--amber); }
-.modal-box .mod-tag.t2 { background: var(--teal-l); color: var(--teal); }
-.modal-box h3 { font-size: 16px; font-weight: 700; color: var(--t1); margin: 20px 0 8px; }
-.modal-box .md-li { padding: 2px 0 2px 16px; position: relative; font-size: 14px; color: var(--t2); line-height: 1.7; }
-.modal-box .md-li::before { content: '·'; position: absolute; left: 0; font-weight: 700; color: var(--t3); }
-.modal-box .md-li b { color: var(--t1); }
-.modal-box .md-li em { color: var(--t3); font-style: italic; }
-.modal-box pre { font-family: var(--font-mono); font-size: 12px; background: var(--raised); padding: 12px 16px; border-radius: 8px; overflow-x: auto; line-height: 1.6; color: var(--t2); margin: 8px 0; white-space: pre; }
-.modal-box table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 8px 0; border: 1px solid var(--b); border-radius: 6px; overflow: hidden; }
-.modal-box table th { text-align: left; padding: 6px 10px; font-weight: 600; color: var(--t2); background: var(--raised); border-bottom: 1px solid var(--b); font-size: 11px; }
-.modal-box table td { padding: 6px 10px; color: var(--t2); border-bottom: 1px solid var(--b); }
+<!-- Modal & template card CSS removed in v5.0; templates moved to /templates/ -->
 
-/* ====== Template cards ====== */
-.tpl-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin: 24px 0; }
-.tpl-card { background: var(--surface); border: 1px solid var(--b); border-radius: var(--r); padding: 24px; cursor: pointer; transition: all 0.2s; }
-.tpl-card:hover { border-color: var(--amber); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
-.tpl-card .tc-tag { font-family: var(--font-mono); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
-.tpl-card .tc-tag.t1 { background: var(--amber-l); color: var(--amber); }
-.tpl-card .tc-tag.t2 { background: var(--teal-l); color: var(--teal); }
-.tpl-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
-.tpl-card p { font-size: 13px; color: var(--t3); line-height: 1.6; }
+<!-- Template cards CSS removed in v5.0; templates moved to /templates/ -->
 
 /* ====== Responsive ====== */
 @media (max-width: 1024px) { .nav-tiers { display: none; } .hamburger { display: flex; } }
@@ -376,7 +351,7 @@ tbody tr:hover td { background: var(--raised); }
   <button class="hamburger" aria-label="菜单" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="移动端导航">
-  <div class="m-section"><div class="m-label">五站学习路径</div><a href="#station-1">① 理论框架</a><a href="#station-3">② 文件资产</a><a href="#station-4">③ 案例模板</a><a href="#station-5">④ 模仿改进</a></div>
+  <div class="m-section"><div class="m-label">学习路径</div><a href="#station-1">① 理论框架</a><a href="#station-3">② 文件资产</a><a href="#station-4">③ 案例模板</a><a href="#station-5">④ 模仿改进</a></div>
   <div class="m-section"><a href="prompts/" class="nav-promo">提示词手册（74 条 · 10 类）</a><a href="#advanced">进阶参考</a></div>
 </div>
 
@@ -416,7 +391,7 @@ tbody tr:hover td { background: var(--raised); }
     </div>
   </div>
 
-  <nav class="station-nav" aria-label="五站导航">
+  <nav class="station-nav" aria-label="四站导航">
     <a href="#station-1">理论框架</a><a href="#station-3">文件资产</a><a href="#station-4">案例模板</a><a href="#station-5">模仿改进</a>
   </nav>
 </section>
@@ -552,230 +527,53 @@ tbody tr:hover td { background: var(--raised); }
 <!-- ====== STATION 4: 案例模板 ====== -->
 <section class="section" id="station-4" aria-labelledby="s4-title">
   <h2 class="station-title" id="s4-title">案例模板</h2>
-  <div class="station-subtitle">6 份核心模板，覆盖 PM + AI 协作的全部产出</div>
+  <div class="station-subtitle">23 份文档模板，覆盖从立项到发布的全流程</div>
   <div class="station-label">第三章</div>
-  <div class="station-why"><p>这里是上一站「文件资产」中六份文档的<strong>完整模板</strong>。每一份都有字段说明和真实例子。点击卡片查看详情，复制直接拿去用。</p></div>
+  <div class="station-why"><p>AI 时代的项目文档不是"写完就扔的汇报材料"——<strong>每一份都是给 AI 的输入指令和协作契约</strong>。这里整理了 7 个阶段、23 份文档的完整模板，覆盖调研立项、产品设计、项目执行、测试验收、发布迭代、AI 自动产出、过程资产。</p></div>
 
-  <div class="tpl-cards">
-    <!-- 1. SPEC -->
-    <div class="tpl-card" onclick="openModal('mod-spec')">
-      <span class="tc-tag t1">第一档</span>
-      <h3>Product SPEC</h3>
-      <p>给 AI 看的指令级文档，替代传统 PRD。写清功能行为、边界条件、错误提示。</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:24px 0;">
+    <div style="background:var(--surface);border:1px solid var(--b);border-radius:var(--r);padding:18px 20px;">
+      <h4 style="font-size:15px;font-weight:700;color:var(--amber);margin-bottom:6px;">📋 根目录</h4>
+      <p style="font-size:13px;color:var(--t3);margin:0;">README · AGENTS · CLAUDE · CHANGELOG<br>AI 和开发者进仓库第一眼看到的文件</p>
     </div>
-    <!-- 2. README -->
-    <div class="tpl-card" onclick="openModal('mod-readme')">
-      <span class="tc-tag t1">第一档</span>
-      <h3>README.md</h3>
-      <p>项目入口 + 进度看板。PM 和 AI 共同维护，AI 打开仓库第一眼看到它。</p>
+    <div style="background:var(--surface);border:1px solid var(--b);border-radius:var(--r);padding:18px 20px;">
+      <h4 style="font-size:15px;font-weight:700;color:var(--amber);margin-bottom:6px;">📦 docs/product/</h4>
+      <p style="font-size:13px;color:var(--t3);margin:0;">BRD · 竞品分析 · 技术验证 · Spec · 提示词规范<br>产品定义与 AI 行为约束</p>
     </div>
-    <!-- 3. CHANGELOG -->
-    <div class="tpl-card" onclick="openModal('mod-changelog')">
-      <span class="tc-tag t1">第一档</span>
-      <h3>CHANGELOG.md</h3>
-      <p>变更记录 = 需求追踪。PM 每轮验收后写一条：做了什么、关联什么、验了什么。</p>
+    <div style="background:var(--surface);border:1px solid var(--b);border-radius:var(--r);padding:18px 20px;">
+      <h4 style="font-size:15px;font-weight:700;color:var(--amber);margin-bottom:6px;">📐 docs/project/</h4>
+      <p style="font-size:13px;color:var(--t3);margin:0;">项目计划 · 风险登记 · 进度看板 · 分工矩阵 · 成本核算<br>项目管理五件套</p>
     </div>
-    <!-- 4. AGENTS -->
-    <div class="tpl-card" onclick="openModal('mod-agents')">
-      <span class="tc-tag t2">第二档</span>
-      <h3>AGENTS.md</h3>
-      <p>AI 协作规则。约束 AI 行为的项目配置，相当于"AI 开发规范"。</p>
+    <div style="background:var(--surface);border:1px solid var(--b);border-radius:var(--r);padding:18px 20px;">
+      <h4 style="font-size:15px;font-weight:700;color:var(--teal);margin-bottom:6px;">✅ docs/qa/</h4>
+      <p style="font-size:13px;color:var(--t3);margin:0;">验收清单 · 测试集 · 评分指标 · 缺陷跟踪<br>PM 自测和 AI 质量评估</p>
     </div>
-    <!-- 5. Checklist -->
-    <div class="tpl-card" onclick="openModal('mod-checklist')">
-      <span class="tc-tag t2">第二档</span>
-      <h3>验收清单</h3>
-      <p>PM 自己测，逐条打勾即验收。分四类：正常/边界/数据/相邻功能。</p>
+    <div style="background:var(--surface);border:1px solid var(--b);border-radius:var(--r);padding:18px 20px;">
+      <h4 style="font-size:15px;font-weight:700;color:var(--teal);margin-bottom:6px;">🤖 docs/ai-logs/</h4>
+      <p style="font-size:13px;color:var(--t3);margin:0;">方案记录 · 原型记录 · 架构决策<br>AI 自动产出，PM Review 确认</p>
     </div>
-    <!-- 6. Data Model -->
-    <div class="tpl-card" onclick="openModal('mod-datamodel')">
-      <span class="tc-tag t2">第二档</span>
-      <h3>数据模型简述</h3>
-      <p>给 AI 的数据库上下文。PM 只需标业务含义和状态枚举，AI 自己读 schema。</p>
+    <div style="background:var(--surface);border:1px solid var(--b);border-radius:var(--r);padding:18px 20px;">
+      <h4 style="font-size:15px;font-weight:700;color:var(--teal);margin-bottom:6px;">📝 docs/process/</h4>
+      <p style="font-size:13px;color:var(--t3);margin:0;">会议记录 · 工作笔记 · 参考资料<br>过程资产，随时翻查</p>
     </div>
   </div>
 
-  <div class="callout"><strong>怎么用：</strong>新建项目时，先放好 README.md 和 AGENTS.md 作为项目基线。每做一个功能，先写 SPEC → AI 生成 → 对照验收清单自己测 → 更新 CHANGELOG → 勾掉 README 进度。</div>
+  <div class="callout" style="margin-bottom:24px;"><strong>核心规则：</strong>AI 每次 Coding 前强制读取 3 个文件——<strong>Spec</strong>（要做什么）、<strong>Prompt 规范</strong>（AI 应该如何表现）、<strong>CHANGELOG</strong>（最近发生了什么变化）。这三个文件分别回答了 AI 最需要的三个问题。</div>
+
+  <a class="pk-entry" href="templates/" style="margin-top:8px;">
+    <div class="pk-entry-main">
+      <div class="pk-entry-ic">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#0d9488"/><rect x="5" y="4" width="14" height="16" rx="2" fill="#faf8f5" opacity="0.95"/><rect x="7" y="7" width="10" height="1.5" rx="0.75" fill="#0d9488" opacity="0.8"/><rect x="7" y="10" width="8" height="1.5" rx="0.75" fill="#0d9488" opacity="0.6"/><rect x="7" y="13" width="9" height="1.5" rx="0.75" fill="#0d9488" opacity="0.4"/></svg>
+      </div>
+      <div class="pk-entry-text">
+        <h3>查看全部 23 份模板</h3>
+        <p>含完整目录结构 · 每份模板有空白版和填写示例 · 可直接复制使用</p>
+      </div>
+    </div>
+    <span class="pk-entry-go">进入模板库 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </a>
 </section>
 
-<!-- ====== MODALS ====== -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
-  <!-- SPEC -->
-  <div class="modal-box" id="mod-spec" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeModal()" aria-label="关闭">×</button>
-    <h2>Product SPEC</h2><span class="mod-tag t1">第一档 · 给 AI 看的指令级文档</span>
-    <p style="font-size:14px;color:var(--t2);margin-bottom:16px;">不是传统 PRD——不写"用户应该能"，而是写清<strong>输入什么、输出什么、边界在哪、出错时显示什么</strong>。一份 SPEC 就是一个功能的完整契约。</p>
-    <h3>空白模板</h3>
-    <div class="md-li"><b>功能名：</b><em>（动词开头，如"手机号验证码登录"）</em></div>
-    <h3>做对了长什么样</h3>
-    <div class="md-li">1. <em>正常路径（用户的主要操作 + 期望结果）</em></div>
-    <div class="md-li">2-5. <em>边界情况（格式错误、超时、重复操作、空数据等）</em></div>
-    <h3>错误状态</h3>
-    <div class="md-li">没网络时：<em>显示什么文案</em></div>
-    <div class="md-li">服务端错误时：<em>显示什么文案</em></div>
-    <div class="md-li">权限不足时：<em>显示什么文案</em></div>
-    <h3>这次不做</h3>
-    <div class="md-li"><em>明确排除的功能——防止 AI 擅自加</em></div>
-    <h3>填写示例</h3>
-    <pre>## 功能：手机号验证码登录
-## 做对了长什么样
-1. 正确手机号+验证码 → 跳转首页
-2. 手机号格式错 → 输入框变红，提示"请输入正确的手机号"
-3. 验证码错 → 提示"验证码不正确"
-4. 60秒过期 → 提示"已过期，重新获取"
-5. 60秒内重复发送 → 按钮灰色倒计时
-## 错误状态
-- 无网络 → "网络连接失败，点此重试"
-- 发送失败 → "发送失败，稍后再试"
-## 这次不做
-- 不接微信登录（下期需求）
-- 不保存登录设备列表</pre>
-  </div>
-
-  <!-- README -->
-  <div class="modal-box" id="mod-readme" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeModal()" aria-label="关闭">×</button>
-    <h2>README.md</h2><span class="mod-tag t1">第一档 · 项目入口 + 进度看板</span>
-    <p style="font-size:14px;color:var(--t2);margin-bottom:16px;">放在仓库根目录。AI 打开仓库第一眼看到它。包含三块：<strong>当前进度</strong>（哪些完成、哪个在开发）、<strong>技术栈</strong>（一句话说清）、<strong>协作约定</strong>（分支名、commit 格式、目录结构）。</p>
-    <h3>空白模板</h3>
-    <pre># 项目名
-
-## 当前进度
-- [完成] 功能名 (PR #N)
-- [待开始] 功能名 (进行中, branch: feature/xxx)
-- [ ] 计划中的功能
-
-## 技术栈
-Next.js 16 + Tailwind + Prisma + PostgreSQL
-
-## 启动方式
-git clone ... → pnpm install → pnpm dev
-
-## 协作约定
-- 分支命名：feature/xxx, fix/xxx
-- Commit：feat: / fix: / chore:
-- 组件：src/components/
-- API：src/app/api/</pre>
-    <h3>填写示例</h3>
-    <pre># 门店管理后台
-
-## 当前进度
-- [完成] 用户登录 (PR #21)
-- [完成] 首页数据看板 (PR #25)
-- [进行中] 门店详情页 (branch: feature/store-detail)
-- [ ] 订单管理 (待开始)
-
-## 技术栈
-Next.js 16 + TypeScript + Tailwind + Prisma + SQLite
-
-## 启动方式
-git clone git@github.com:team/store-admin.git
-pnpm install
-pnpm dev</pre>
-  </div>
-
-  <!-- CHANGELOG -->
-  <div class="modal-box" id="mod-changelog" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeModal()" aria-label="关闭">×</button>
-    <h2>CHANGELOG.md</h2><span class="mod-tag t1">第一档 · 变更记录 = 需求追踪</span>
-    <p style="font-size:14px;color:var(--t2);margin-bottom:16px;">替代传统的测试报告和需求追踪表。每轮验收后写一条，三个信息：<strong>做了什么</strong>（新增的接口/页面）、<strong>关联什么</strong>（Issue + PR 编号）、<strong>验了什么</strong>（测试覆盖的场景）。</p>
-    <h3>格式</h3>
-    <pre>## YYYY-MM-DD
-### feat/fix: 一句话说清做了什么
-- 新增/修改了哪些接口、页面
-- 关联 Issue #N, PR #N
-- 验收通过：列出测过的主要场景</pre>
-    <h3>填写示例</h3>
-    <pre>## 2026-08-11
-### feat: 手机号验证码登录
-- 新增登录页 + 发码接口 (/api/auth/send-code)
-- 新增校验接口 (/api/auth/verify)
-- 关联 Issue #8, PR #21
-- 验收通过：正常流程 / 格式校验 / 验证码超时 / 断网恢复</pre>
-  </div>
-
-  <!-- AGENTS -->
-  <div class="modal-box" id="mod-agents" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeModal()" aria-label="关闭">×</button>
-    <h2>AGENTS.md / CLAUDE.md</h2><span class="mod-tag t2">第二档 · AI 协作规则</span>
-    <p style="font-size:14px;color:var(--t2);margin-bottom:16px;">放在项目根目录，AI 每次启动自动读取。<strong>按项目实际情况写</strong>，不需要全部照抄——你的项目用什么就写什么。</p>
-    <h3>空白模板</h3>
-    <table><tr><th style="width:25%">类型</th><th style="width:35%">写什么</th><th style="width:40%">示例</th></tr>
-    <tr><td><b>角色设定</b></td><td>AI 的身份 + 语言偏好</td><td><em>你是一个前端开发专家。使用中文注释。</em></td></tr>
-    <tr><td><b>技术约束</b></td><td>用什么框架/库/格式</td><td><em>组件用 shadcn/ui。所有 API 返回 { code, data, message }。</em></td></tr>
-    <tr><td><b>行为约束</b></td><td>哪些不能改、不能做</td><td><em>不要修改 prisma/schema.prisma 除非明确要求。</em></td></tr>
-    <tr><td><b>质量约束</b></td><td>每次改完要跑什么检查</td><td><em>每次修改后运行 pnpm lint 检查。</em></td></tr></table>
-    <h3>完整示例</h3>
-    <pre>你是一个前端开发专家。
-- 使用中文注释
-- 组件用 shadcn/ui
-- 所有 API 返回 { code, data, message } 格式
-- 不要修改 prisma/schema.prisma 除非我明确要求
-- 每次修改后运行 pnpm lint 检查
-- 新增页面时自动更新 README.md 进度</pre>
-  </div>
-
-  <!-- Checklist -->
-  <div class="modal-box" id="mod-checklist" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeModal()" aria-label="关闭">×</button>
-    <h2>验收清单</h2><span class="mod-tag t2">第二档 · PM 自己测</span>
-    <p style="font-size:14px;color:var(--t2);margin-bottom:16px;">不是给测试团队的——<strong>PM 自己逐条打勾</strong>。分四类：正常路径、边界情况、数据显示、是否影响相邻功能。</p>
-    <h3>空白模板</h3>
-    <div class="md-li"><b>正常路径</b></div>
-    <div class="md-li">[ ] 主要操作从头走到尾 → 正确结果</div>
-    <div class="md-li"><b>边界情况</b></div>
-    <div class="md-li">[ ] 输入错误 → 有提示</div>
-    <div class="md-li">[ ] 重复操作 → 有防护</div>
-    <div class="md-li">[ ] 断网 → 不白屏</div>
-    <div class="md-li">[ ] 空数据 → 有引导</div>
-    <div class="md-li"><b>数据显示</b></div>
-    <div class="md-li">[ ] 数字和接口一致（抽查几个）</div>
-    <div class="md-li">[ ] 时间/金额格式正确</div>
-    <div class="md-li"><b>相邻功能</b></div>
-    <div class="md-li">[ ] 相关页面还能正常用（列 2-3 个检查）</div>
-    <h3>填写示例</h3>
-    <pre>## 登录验收清单
-[完成] 正确手机号+验证码 → 登录成功
-[完成] 错误验证码 → 提示"验证码不正确"
-[完成] 手机号格式错 → 红框+"请输入..."
-[完成] 断网 → 显示"网络连接失败..."
-[完成] 60s重复发送 → 按钮灰色倒计时
-[完成] 登录后刷页面 → 保持登录态
-[待测] 并发登录——下次测
-[待测] 弱网环境——下次测</pre>
-  </div>
-
-  <!-- Data Model -->
-  <div class="modal-box" id="mod-datamodel" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeModal()" aria-label="关闭">×</button>
-    <h2>数据模型简述</h2><span class="mod-tag t2">第二档 · 给 AI 的数据库上下文</span>
-    <p style="font-size:14px;color:var(--t2);margin-bottom:16px;">AI 能自己读 schema 文件。PM 不需要画完整 ER 图——只需要补充两样：<strong>这张表干什么用的</strong>、<strong>那些枚举字段有哪些合法值</strong>。两句话就够了。</p>
-    <h3>空白模板</h3>
-    <pre>## 核心表
-
-TableName: 字段1, 字段2, 字段3, ...
-  -- 这张表干什么用的
-
-TableName: 字段1, 字段2,
-  status(值1/值2/值3),
-  ...
-  -- 状态字段的合法值说明</pre>
-    <h3>填写示例</h3>
-    <pre>## 核心表
-
-User: id, phone, nickname, avatar, created_at
-  -- 用户基本信息表
-
-Order: id, user_id,
-  status(pending/paid/shipped/done),
-  amount, created_at
-  -- 订单表。status 四个值：pending 待支付
-    paid 已支付、shipped 已发货、done 已完成
-
-Product: id, name, price, stock, category
-  -- 商品表。category 从后台管理页面配置</pre>
-  </div>
-</div>
 <!-- ====== STATION 5: 模仿改进 ====== -->
 <section class="section" id="station-5" aria-labelledby="s5-title">
   <h2 class="station-title" id="s5-title">模仿改进</h2>
@@ -840,11 +638,7 @@ Product: id, name, price, stock, category
 <script>
 const backBtn=document.getElementById('backToTop');
 addEventListener('scroll',()=>{backBtn.classList.toggle('show',scrollY>400)});
-const tierBtns=document.querySelectorAll('.nav-tier-btn'),tierDrops=document.querySelectorAll('.nav-tier-dropdown');
-let openTier=null;
-tierBtns.forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const t=b.dataset.tier,d=document.getElementById('tier-'+t),is=d.classList.contains('show');tierDrops.forEach(x=>x.classList.remove('show'));tierBtns.forEach(x=>{x.classList.remove('active');x.setAttribute('aria-expanded','false')});if(!is){d.classList.add('show');b.classList.add('active');b.setAttribute('aria-expanded','true');openTier=t}else openTier=null}));
-addEventListener('click',()=>{tierDrops.forEach(d=>d.classList.remove('show'));tierBtns.forEach(b=>{b.classList.remove('active');b.setAttribute('aria-expanded','false')});openTier=null});
-addEventListener('keydown',e=>{if(e.key==='Escape'&&openTier){tierDrops.forEach(d=>d.classList.remove('show'));tierBtns.forEach(b=>{b.classList.remove('active');b.setAttribute('aria-expanded','false')});openTier=null}});
+// Old tier-nav JS removed in v5.0
 const hamburger=document.querySelector('.hamburger'),mobileNav=document.getElementById('mobile-nav');
 hamburger.addEventListener('click',()=>{const o=mobileNav.classList.toggle('show');hamburger.classList.toggle('open',o);hamburger.setAttribute('aria-expanded',o)});
 mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileNav.classList.remove('show');hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded','false')}));
@@ -854,9 +648,7 @@ function copyPhrase(b){doCopy(b,b.parentElement.querySelector('.phrase-text').in
 function kitCopy(b){const p=b.closest('.template-item').querySelector('pre');if(!p)return;doCopy(b,p.innerText)}
 function doCopy(b,t){const o=v=>{b.textContent=v?'已复制':'复制';b.classList.toggle('copied',v);setTimeout(()=>{b.textContent=b.dataset.orig||'复制';b.classList.remove('copied')},2000)};if(!b.dataset.orig)b.dataset.orig=b.textContent;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>o(true),()=>o(false))}else{try{const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);o(true)}catch(e){o(false)}}
 const toast=document.getElementById('copyToast');toast.textContent='已复制到剪贴板';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2000)}
-function openModal(id){document.getElementById('modal-overlay').classList.add('show');document.querySelectorAll('.modal-box').forEach(b=>b.style.display='none');const m=document.getElementById(id);if(m)m.style.display='block';document.body.style.overflow='hidden'}
-function closeModal(){document.getElementById('modal-overlay').classList.remove('show');document.body.style.overflow=''}
-addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()})
+// Modal functions removed in v5.0 — templates moved to /templates/
 </script>
 </body>
 </html>
