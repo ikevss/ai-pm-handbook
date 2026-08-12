@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI PM 工作手册 — 产品经理的 AI 协作新范式</title>
-<meta name="description" content="AI PM 工作手册：理论框架→文件资产→案例模板→模仿改进。PM定义围栏，AI在围栏内自主产出。">
+<title>AI 新范式 · PM Coding 手册 — 产品经理驱动 AI 编码</title>
+<meta name="description" content="PM Coding 手册：理论框架→文件资产→案例模板→模仿改进，配提示词手册与模板库。产品经理定义产品与验收标准，驱动 AI 编码交付。">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
 /* ====== Tokens ====== */
@@ -33,7 +33,9 @@ body { background: var(--bg); color: var(--t1); font-family: var(--font); font-s
 .nav-links { display: flex; gap: 2px; align-items: center; }
 .nav-links a { font-size: 13px; font-weight: 600; color: var(--t2); text-decoration: none; padding: 7px 14px; border-radius: var(--r); transition: all 0.15s; white-space: nowrap; }
 .nav-links a:hover { background: var(--raised); color: var(--t1); }
-.nav-links a.nav-promo { color: var(--amber); }
+.nav-links .nav-divider { width: 1px; height: 18px; background: var(--b2); margin: 0 6px; flex-shrink: 0; }
+.nav-links a.nav-ext { color: var(--amber); display: inline-flex; align-items: center; gap: 4px; }
+.nav-links a.nav-ext .nav-arrow { font-size: 10px; opacity: 0.6; }
 .hamburger { display: none; width: 38px; height: 38px; border: 1px solid var(--b); border-radius: 8px; background: var(--surface); cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0; flex-shrink: 0; }
 .hamburger span { display: block; width: 18px; height: 2px; background: var(--t2); border-radius: 1px; transition: all 0.25s; }
 .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
@@ -50,9 +52,6 @@ body { background: var(--bg); color: var(--t1); font-family: var(--font); font-s
 /* ====== Section Base ====== */
 .section { padding: 72px 40px; max-width: 1200px; margin: 0 auto; }
 .station-title { font-weight: 800; font-size: clamp(28px, 3.5vw, 38px); line-height: 1.2; margin-bottom: 8px; letter-spacing: -0.01em; }
-.station-subtitle { font-size: 16px; color: var(--t3); font-weight: 400; margin-bottom: 20px; }
-.station-label { font-family: var(--font-mono); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--amber); margin-bottom: 32px; display: flex; align-items: center; gap: 10px; }
-.station-label::after { content: ''; flex: 1; height: 1px; background: var(--b); margin-top: 1px; }
 .station-why { background: var(--teal-g); border: 1px solid rgba(13,148,136,0.12); border-radius: var(--r); padding: 20px 24px; margin-bottom: 36px; }
 .station-why p { font-size: 15px; color: var(--t2); line-height: 1.7; }
 .station-why strong { color: var(--teal); }
@@ -67,60 +66,55 @@ body { background: var(--bg); color: var(--t1); font-family: var(--font); font-s
 .hero h1 .line2 { display: block; color: var(--amber); }
 .hero-subtitle { font-size: 18px; color: var(--t2); max-width: 520px; margin: 0 auto 56px; line-height: 1.7; position: relative; opacity: 0; animation: fu 0.8s 0.5s forwards; }
 @keyframes fu { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
-.hero-paradigm { display: grid; grid-template-columns: 1fr 56px 1fr; gap: 0; align-items: start; max-width: 820px; width: 100%; margin: 0 auto 52px; opacity: 0; animation: fu 0.8s 0.6s forwards; }
-.hero-pm-box { background: var(--bg); border: 1px solid var(--b); border-radius: var(--r); padding: 22px 26px; text-align: left; }
-.hero-pm-box h3 { font-size: 13px; font-weight: 700; color: var(--amber); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.06em; }
-.hero-pm-box .pm-items { display: flex; flex-direction: column; gap: 10px; }
-.hero-pm-box .pm-item { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: var(--t2); line-height: 1.6; }
-.hero-pm-box .pm-item .pm-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); margin-top: 8px; flex-shrink: 0; }
-.hero-arrow { display: flex; align-items: flex-start; justify-content: center; padding-top: 28px; }
-.hero-arrow svg { width: 36px; height: auto; }
-.hero-ai-box { background: linear-gradient(135deg, rgba(13,148,136,0.04), rgba(99,102,241,0.04)); border: 1px solid rgba(13,148,136,0.2); border-radius: var(--r); padding: 22px 26px; text-align: left; }
-.hero-ai-box h3 { font-size: 13px; font-weight: 700; color: var(--teal); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.06em; }
-.hero-ai-box .ai-items { display: flex; flex-direction: column; gap: 10px; }
-.hero-ai-box .ai-item { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: var(--t2); line-height: 1.6; }
-.hero-ai-box .ai-item .ai-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); margin-top: 8px; flex-shrink: 0; }
-.hero-action { margin: 0; opacity: 0; animation: fu 0.8s 0.8s forwards; max-width: 520px; width: 100%; position: relative; }
-.hero-action-label { font-size: 13px; font-weight: 600; color: var(--t3); margin-bottom: 12px; }
-.hero-action-row { display: flex; gap: 8px; background: var(--bg); border: 1px solid var(--b); border-radius: var(--r); padding: 6px; align-items: center; }
-.hero-action-row .action-placeholder { flex: 1; font-family: var(--font-mono); font-size: 13px; color: var(--t3); padding: 10px 14px; }
-.hero-action-row .action-placeholder mark { background: var(--amber-l); color: var(--amber); padding: 1px 5px; border-radius: 3px; }
-.hero-action-row .copy-btn { font-size: 13px; font-weight: 700; padding: 10px 20px; border: none; background: var(--amber); color: #fff; border-radius: 8px; cursor: pointer; transition: all 0.2s; white-space: nowrap; flex-shrink: 0; }
-.hero-action-row .copy-btn:hover { background: #ea580c; }
-.hero-action-row .copy-btn.copied { background: var(--teal); }
 .station-nav { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; opacity: 0; animation: fu 0.8s 1s forwards; margin-top: 40px; position: relative; }
 .station-nav a { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--t2); text-decoration: none; padding: 9px 18px; border: 1px solid var(--b); border-radius: 10px; transition: all 0.2s; background: var(--surface); }
 .station-nav a:hover { border-color: var(--amber); color: var(--amber); background: rgba(194,65,12,0.03); }
 
-/* ====== Compare Cards ====== */
-.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
-.compare-card { background: var(--surface); border: 1px solid var(--b); border-radius: var(--r); padding: 28px; position: relative; }
-.compare-card.old { border-color: rgba(190,18,60,0.18); }
-.compare-card.old::before { content: '过去的协作链'; position: absolute; top: 14px; right: 14px; font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--rose); background: var(--rose-l); padding: 3px 9px; border-radius: 4px; }
-.compare-card.new { border-color: rgba(13,148,136,0.18); }
-.compare-card.new::before { content: '现在的协作链'; position: absolute; top: 14px; right: 14px; font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--teal); background: var(--teal-l); padding: 3px 9px; border-radius: 4px; }
-.compare-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 14px; padding-right: 80px; }
-.compare-card ul { list-style: none; padding: 0; }
-.compare-card li { font-size: 15px; color: var(--t2); padding: 7px 0 7px 14px; position: relative; line-height: 1.6; border-bottom: 1px solid var(--b); }
-.compare-card li:last-child { border-bottom: none; }
-.compare-card li::before { content: '·'; position: absolute; left: 0; font-weight: 700; color: var(--t3); }
+/* ====== 理论框架 (tf-) ====== */
+.tf-chain { display: flex; flex-direction: column; gap: 0; margin: 20px 0 32px; border-radius: var(--r); overflow: hidden; border: 1px solid var(--b); }
+.tf-chain-row { padding: 22px 26px; }
+.tf-chain-row.old { background: var(--rose-g); border-bottom: 1px dashed var(--b); }
+.tf-chain-row.new { background: var(--teal-g); }
+.tf-chain-tag { display: inline-block; font-family: var(--font-mono); font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 4px; margin-bottom: 12px; }
+.tf-chain-row.old .tf-chain-tag { background: var(--rose-l); color: var(--rose); }
+.tf-chain-row.new .tf-chain-tag { background: var(--teal-l); color: var(--teal); }
+.tf-chain-nodes { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 12px; }
+.tf-node { font-size: 13px; font-weight: 600; background: var(--surface); border: 1px solid var(--b); border-radius: 6px; padding: 5px 12px; }
+.tf-chain-row.old .tf-node { color: var(--rose); }
+.tf-chain-row.new .tf-node { color: var(--teal); }
+.tf-arrow { color: var(--t3); font-size: 13px; }
+.tf-chain-pts { list-style: none; padding: 0; margin: 0; }
+.tf-chain-pts li { font-size: 13px; color: var(--t2); padding: 3px 0 3px 14px; position: relative; line-height: 1.6; }
+.tf-chain-pts li::before { content: '·'; position: absolute; left: 0; font-weight: 700; color: var(--t3); }
+.tf-chain-gap { text-align: center; padding: 8px 0; background: var(--raised); border-bottom: 1px dashed var(--b); font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--amber); }
 
-/* ====== Value Dimensions SVG ====== */
-.dimensions { margin: 32px 0; }
-.dim-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
-.dim-svg { width: 100%; height: auto; border-radius: var(--r); }
+.tf-switch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0 28px; }
+.tf-switch-card { background: var(--surface); border: 1px solid var(--b); border-radius: var(--r); padding: 22px 24px; }
+.tf-switch-title { font-size: 17px; font-weight: 700; color: var(--t1); margin-bottom: 12px; line-height: 1.45; }
+.tf-switch-label { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--amber); margin: 8px 0 3px; }
+.tf-switch-text { font-size: 13px; color: var(--t2); line-height: 1.7; }
+.tf-switch-core { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--b); font-size: 13px; font-weight: 600; color: var(--amber); }
+
+.tf-dim-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 20px 0; }
+.tf-dim-card { background: var(--surface); border: 1px solid var(--b); border-radius: var(--r); padding: 18px 20px; }
+.tf-dim-head { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.tf-dim-ic { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; background: var(--amber-g); flex-shrink: 0; }
+.tf-dim-num { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--amber); }
+.tf-dim-title { font-size: 16px; font-weight: 700; color: var(--t1); }
+.tf-dim-line { display: flex; gap: 10px; padding: 8px 0; align-items: flex-start; }
+.tf-dim-k { font-family: var(--font-mono); font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
+.tf-dim-k.old { background: var(--rose-l); color: var(--rose); }
+.tf-dim-k.new { background: var(--teal-l); color: var(--teal); }
+.tf-dim-line p { font-size: 13px; color: var(--t2); line-height: 1.6; }
+.tf-dim-line em { color: var(--t3); font-style: italic; font-size: 12px; }
 
 /* ====== Tables ====== */
-.table-wrap { overflow-x: auto; margin-bottom: 24px; border-radius: var(--r); border: 1px solid var(--b); }
 table { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--surface); }
 th { text-align: left; padding: 12px 16px; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--t2); background: var(--raised); border-bottom: 1px solid var(--b2); white-space: nowrap; }
 td { padding: 12px 16px; border-bottom: 1px solid var(--b); color: var(--t2); vertical-align: top; line-height: 1.6; }
 tr:last-child td { border-bottom: none; }
 tbody tr:nth-child(even) td { background: rgba(0,0,0,0.012); }
 tbody tr:hover td { background: var(--raised); }
-
-/* ====== Tags ====== */
-.tag { display: inline-block; font-family: var(--font-mono); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.03em; white-space: nowrap; }
 
 /* ====== Callout ====== */
 .callout { background: linear-gradient(135deg, rgba(194,65,12,0.03), rgba(13,148,136,0.02)); border: 1px solid rgba(194,65,12,0.08); border-radius: var(--r); padding: 20px 24px; margin: 20px 0; }
@@ -129,121 +123,6 @@ tbody tr:hover td { background: var(--raised); }
 
 /* ====== Subhead ====== */
 .subhead { font-weight: 700; font-size: 20px; margin: 36px 0 12px; }
-
-/* ====== Timeline ====== */
-.timeline { position: relative; padding-left: 32px; margin: 20px 0; }
-.timeline::before { content: ''; position: absolute; left: 11px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(to bottom, var(--amber), var(--teal), var(--violet)); border-radius: 1px; }
-.tl-step { position: relative; margin-bottom: 20px; }
-.tl-step:last-child { margin-bottom: 0; }
-.tl-step::before { content: ''; position: absolute; left: -25px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--amber); border: 2px solid var(--bg); z-index: 1; }
-.tl-step:nth-child(-n+3)::before { background: var(--amber); }
-.tl-step:nth-child(n+4):nth-child(-n+6)::before { background: var(--teal); }
-.tl-step:nth-child(n+7)::before { background: var(--violet); }
-.tl-step h4 { font-size: 16px; font-weight: 600; margin-bottom: 2px; display: flex; align-items: center; gap: 8px; }
-.tl-step h4 .step-num { font-family: var(--font-mono); font-size: 12px; color: var(--t3); font-weight: 400; }
-.tl-step p { font-size: 14px; color: var(--t2); line-height: 1.6; }
-.tl-step .tl-hint { font-size: 13px; color: var(--t3); margin-top: 3px; }
-
-/* ====== Role Grid ====== */
-.role-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 20px 0; }
-.role-card { background: var(--surface); border: 1px solid var(--b); border-radius: var(--r); padding: 22px; }
-.role-card h5 { font-size: 17px; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-.role-tag { font-family: var(--font-mono); font-size: 11px; padding: 2px 8px; border-radius: 4px; }
-.role-tag.pm { background: var(--amber-l); color: var(--amber); }
-.role-tag.tech { background: var(--teal-l); color: var(--teal); }
-.role-tag.ai { background: var(--violet-l); color: var(--violet); }
-.role-card ul { list-style: none; padding: 0; }
-.role-card li { font-size: 14px; color: var(--t2); padding: 3px 0 3px 14px; position: relative; line-height: 1.5; }
-.role-card li::before { content: '·'; position: absolute; left: 0; font-weight: 700; color: var(--t3); }
-
-/* ====== File Map ====== */
-.file-map { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
-.file-box { border-radius: var(--r); padding: 24px; border: 1px solid var(--b); }
-.file-box.global { background: linear-gradient(135deg, rgba(99,102,241,0.02), transparent); border-color: rgba(99,102,241,0.12); }
-.file-box.global h4 { color: var(--violet); }
-.file-box.project { background: linear-gradient(135deg, rgba(13,148,136,0.02), transparent); border-color: rgba(13,148,136,0.12); }
-.file-box.project h4 { color: var(--teal); }
-.file-box h4 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
-.file-box .fb-sub { font-size: 13px; color: var(--t3); margin-bottom: 14px; }
-.file-item { display: flex; justify-content: space-between; align-items: baseline; padding: 7px 0; border-bottom: 1px dashed var(--b); font-size: 14px; }
-.file-item:last-child { border-bottom: none; }
-.file-item .fi-path { font-family: var(--font-mono); font-size: 13px; color: var(--t1); font-weight: 500; }
-.file-item .fi-desc { font-size: 12px; color: var(--t3); text-align: right; }
-
-/* ====== Template Demo ====== */
-.tpl-demo { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
-.tpl-demo-col { border-radius: var(--r); overflow: hidden; border: 1px solid var(--b); }
-.tpl-demo-col .tpl-demo-hd { font-family: var(--font-mono); font-size: 12px; font-weight: 700; padding: 11px 18px; letter-spacing: 0.04em; }
-.tpl-demo-col.blank .tpl-demo-hd { background: var(--raised); color: var(--t3); }
-.tpl-demo-col.filled .tpl-demo-hd { background: rgba(13,148,136,0.07); color: var(--teal); }
-.tpl-demo-col .tpl-md { padding: 20px 22px; font-size: 14px; line-height: 1.7; color: var(--t2); background: var(--surface); }
-.tpl-demo-col .tpl-md h2 { font-size: 17px; font-weight: 700; color: var(--t1); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--b); }
-.tpl-demo-col .tpl-md h3 { font-size: 14px; font-weight: 700; color: var(--t1); margin: 14px 0 6px; }
-.tpl-demo-col .tpl-md b { color: var(--t1); font-weight: 600; }
-.tpl-demo-col .tpl-md .md-li { padding: 2px 0 2px 16px; position: relative; }
-.tpl-demo-col .tpl-md .md-li::before { content: '·'; position: absolute; left: 0; font-weight: 700; color: var(--t3); }
-.tpl-demo-col .tpl-md .md-cb { display: flex; align-items: flex-start; gap: 6px; padding: 1px 0; }
-.tpl-demo-col .tpl-md .md-cb span { color: var(--t3); flex-shrink: 0; }
-.tpl-demo-col .tpl-md .md-cb.done { color: var(--teal); text-decoration: line-through; text-decoration-color: rgba(0,0,0,0.12); }
-.tpl-demo-col .tpl-md .md-cb.done span { color: var(--teal); }
-.tpl-demo-col .tpl-md em { color: var(--t3); font-style: italic; }
-.tpl-demo-col.filled .tpl-md h2 { border-bottom-color: rgba(13,148,136,0.15); }
-.tpl-md table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 8px 0; }
-.tpl-md table th { text-align: left; padding: 5px 8px; font-weight: 600; color: var(--t2); background: var(--raised); border: 1px solid var(--b); font-size: 11px; }
-.tpl-md table td { padding: 5px 8px; color: var(--t2); border: 1px solid var(--b); }
-
-/* ====== Accordion ====== */
-.template-accordion { display: flex; flex-direction: column; gap: 8px; margin: 20px 0; }
-.template-item { border: 1px solid var(--b); border-radius: var(--r); overflow: hidden; background: var(--surface); }
-.template-header { padding: 14px 20px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: background 0.15s; user-select: none; }
-.template-header:hover { background: var(--raised); }
-.template-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-.template-item.open .template-body { max-height: 8000px; }
-.template-content { padding: 0 20px 20px; }
-.template-content pre { background: var(--code-bg); border: 1px solid var(--b); border-radius: 8px; padding: 18px; overflow-x: auto; font-family: var(--font-mono); font-size: 12px; line-height: 1.6; color: var(--t2); white-space: pre; }
-.th-num { font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--amber); min-width: 24px; }
-.th-title { font-size: 16px; font-weight: 600; flex: 1; }
-.th-tag { font-family: var(--font-mono); font-size: 11px; padding: 2px 8px; border-radius: 4px; }
-.th-tag.anchor { background: var(--amber-l); color: var(--amber); }
-.th-tag.progress { background: var(--teal-l); color: var(--teal); }
-.th-tag.execution { background: var(--violet-l); color: var(--violet); }
-.th-chevron { color: var(--t3); transition: transform 0.3s; flex-shrink: 0; }
-.template-item.open .th-chevron { transform: rotate(90deg); }
-.tpl-body { padding: 20px 22px; font-size: 14px; line-height: 1.7; color: var(--t2); background: var(--surface); }
-.tpl-body h2 { font-size: 17px; font-weight: 700; color: var(--t1); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--b); }
-.tpl-body h3 { font-size: 14px; font-weight: 700; color: var(--t1); margin: 12px 0 6px; }
-.tpl-body .md-li { padding: 2px 0 2px 16px; position: relative; }
-.tpl-body .md-li::before { content: '·'; position: absolute; left: 0; font-weight: 700; color: var(--t3); }
-.tpl-body table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 8px 0; }
-.tpl-body table th { text-align: left; padding: 5px 8px; font-weight: 600; color: var(--t2); background: var(--raised); border: 1px solid var(--b); font-size: 11px; }
-.tpl-body table td { padding: 5px 8px; color: var(--t2); border: 1px solid var(--b); }
-.tpl-body pre { font-family: var(--font-mono); font-size: 12px; background: var(--raised); padding: 10px 14px; border-radius: 6px; overflow-x: auto; line-height: 1.5; margin: 6px 0; color: var(--t2); white-space: pre; }
-.tpl-body em { color: var(--t3); font-style: italic; }
-
-/* ====== Layer Stack ====== */
-.layer-stack { display: flex; flex-direction: column; gap: 3px; margin-bottom: 24px; }
-.layer { border-radius: var(--r); padding: 24px; border: 1px solid var(--b); }
-.layer-anchor { background: linear-gradient(135deg, rgba(194,65,12,0.02), transparent); border-color: rgba(194,65,12,0.15); }
-.layer-progress { background: linear-gradient(135deg, rgba(13,148,136,0.02), transparent); border-color: rgba(13,148,136,0.1); }
-.layer-execution { background: linear-gradient(135deg, rgba(99,102,241,0.02), transparent); border-color: rgba(99,102,241,0.08); }
-.layer-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-.layer-icon { width: 32px; height: 32px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 700; font-size: 14px; flex-shrink: 0; }
-.layer-anchor .layer-icon { background: var(--amber-l); color: var(--amber); }
-.layer-progress .layer-icon { background: var(--teal-l); color: var(--teal); }
-.layer-execution .layer-icon { background: var(--violet-l); color: var(--violet); }
-.layer h3 { font-size: 18px; font-weight: 600; }
-.layer-meta { font-family: var(--font-mono); font-size: 12px; color: var(--t3); margin-left: auto; }
-.layer-items { display: flex; flex-wrap: wrap; gap: 6px; }
-.layer-item { font-size: 13px; padding: 5px 11px; background: var(--surface); border: 1px solid var(--b); border-radius: 5px; color: var(--t2); }
-
-/* ====== Workflow SVG ====== */
-.workflow-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
-.workflow-box { background: var(--surface); border: 1px solid var(--b); border-radius: var(--r); padding: 22px; }
-.workflow-box h3 { font-size: 18px; font-weight: 600; margin-bottom: 16px; text-align: center; }
-.workflow-box.old h3 { color: var(--rose); }
-.workflow-box.new h3 { color: var(--teal); }
-.workflow-box svg { width: 100%; height: auto; }
-.wf-label { font-size: 12px; fill: var(--t2); text-anchor: middle; }
 
 /* ====== Phrase Table ====== */
 .phrase-row { display: grid; grid-template-columns: 120px 1fr 70px; gap: 10px; align-items: start; padding: 12px 16px; border-bottom: 1px solid var(--b); }
@@ -273,7 +152,6 @@ tbody tr:hover td { background: var(--raised); }
 .boundary-card ul { list-style: none; padding: 0; }
 .boundary-card li { font-size: 14px; color: var(--t2); padding: 4px 0 4px 14px; position: relative; line-height: 1.5; }
 .boundary-card li::before { content: '·'; position: absolute; left: 0; font-weight: 700; }
-.info-box { padding: 14px 18px; background: var(--raised); border-radius: 8px; font-size: 14px; color: var(--t2); border: 1px solid var(--b); line-height: 1.6; margin: 12px 0; }
 
 /* ====== 提示词手册入口 ====== */
 .pk-entry { display: flex; align-items: center; justify-content: space-between; gap: 20px; background: var(--surface); border: 1px solid var(--b); border-radius: var(--r); padding: 22px 26px; text-decoration: none; color: inherit; transition: all 0.2s; }
@@ -292,39 +170,27 @@ tbody tr:hover td { background: var(--raised); }
 .back-to-top { position: fixed; bottom: 24px; right: 24px; width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--b); background: var(--surface); color: var(--t3); font-size: 16px; cursor: pointer; opacity: 0; pointer-events: none; transition: all 0.25s; z-index: 50; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
 .back-to-top.show { opacity: 1; pointer-events: auto; }
 .back-to-top:hover { border-color: var(--amber); color: var(--amber); }
-.copy-toast { position: fixed; bottom: 76px; left: 50%; transform: translateX(-50%); background: var(--t1); color: #fff; font-size: 13px; padding: 8px 20px; border-radius: 16px; opacity: 0; transition: opacity 0.25s; z-index: 200; pointer-events: none; }
-.copy-toast.show { opacity: 1; }
-
-/* ====== Modal ====== */
-<!-- Modal & template card CSS removed in v5.0; templates moved to /templates/ -->
-
-<!-- Template cards CSS removed in v5.0; templates moved to /templates/ -->
 
 /* ====== Responsive ====== */
 @media (max-width: 1024px) { .nav-links { display: none; } .hamburger { display: flex; } }
 @media (max-width: 768px) {
   .section { padding: 56px 24px; }
-  .compare-grid, .file-map, .tpl-demo, .workflow-container, .boundary-grid { grid-template-columns: 1fr; }
+  .boundary-grid { grid-template-columns: 1fr; }
   .phrase-row { grid-template-columns: 1fr; gap: 4px; }
   .phrase-scene { font-size: 14px; }
   .phrase-copy { justify-self: start; }
   .hero { padding: 72px 20px 48px; min-height: auto; }
   .hero h1 { font-size: clamp(26px, 7vw, 42px); }
-  .hero-paradigm { grid-template-columns: 1fr; gap: 12px; }
-  .hero-arrow { transform: rotate(90deg); padding: 0; justify-content: center; }
-  .dim-grid { grid-template-columns: repeat(2, 1fr); }
+  .tf-switch-grid { grid-template-columns: 1fr; }
+  .tf-dim-grid { grid-template-columns: 1fr; }
   .pk-entry { flex-direction: column; align-items: flex-start; padding: 18px 20px; gap: 14px; }
   .pk-entry-go { align-self: flex-end; }
 }
 @media (max-width: 480px) {
   body { font-size: 15px; }
   .section { padding: 40px 18px; }
-  .compare-card, .role-card, .pit-card, .boundary-card, .file-box { padding: 18px; }
-  .layer { padding: 18px; }
+  .pit-card, .boundary-card { padding: 18px; }
   th, td { padding: 8px 10px; font-size: 12px; }
-  .hero-action-row { flex-direction: column; }
-  .hero-action-row .copy-btn { width: 100%; text-align: center; }
-  .dim-grid { grid-template-columns: 1fr; }
   .pit-grid { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -339,78 +205,33 @@ tbody tr:hover td { background: var(--raised); }
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <rect width="24" height="24" rx="5" fill="#c2410c"/><rect x="5" y="4" width="14" height="16" rx="2" fill="#faf8f5" opacity="0.95"/><rect x="7" y="7" width="10" height="1.5" rx="0.75" fill="#c2410c" opacity="0.8"/><rect x="7" y="10" width="8" height="1.5" rx="0.75" fill="#c2410c" opacity="0.6"/><rect x="7" y="13" width="9" height="1.5" rx="0.75" fill="#c2410c" opacity="0.4"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="#0d9488"/><text x="17.5" y="19.5" font-family="Arial, sans-serif" font-size="5" font-weight="bold" fill="#faf8f5" text-anchor="middle">AI</text>
     </svg>
-    AI PM 手册
+    PM Coding 手册
   </a>
   <div class="nav-links">
     <a href="#station-1">理论框架</a>
     <a href="#station-3">文件资产</a>
     <a href="#station-4">案例模板</a>
     <a href="#station-5">模仿改进</a>
-    <a href="prompts/" class="nav-promo">提示词手册</a>
+    <span class="nav-divider" aria-hidden="true"></span>
+    <a href="templates/" class="nav-ext">模板库 <span class="nav-arrow">↗</span></a>
+    <a href="prompts/" class="nav-ext">提示词手册 <span class="nav-arrow">↗</span></a>
   </div>
   <button class="hamburger" aria-label="菜单" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="移动端导航">
   <div class="m-section"><div class="m-label">学习路径</div><a href="#station-1">① 理论框架</a><a href="#station-3">② 文件资产</a><a href="#station-4">③ 案例模板</a><a href="#station-5">④ 模仿改进</a></div>
-  <div class="m-section"><a href="prompts/" class="nav-promo">提示词手册（99 条 · 12 类）</a><a href="#advanced">进阶参考</a></div>
+  <div class="m-section"><div class="m-label">独立页面</div><a href="templates/" class="nav-promo">模板库（26 份文档模板）</a><a href="prompts/" class="nav-promo">提示词手册（99 条 · 12 类）</a></div>
 </div>
 
 <!-- ====== HERO ====== -->
 <section class="hero" id="hero" aria-labelledby="hero-title">
-  <div class="hero-badge"><span>PM 实操手册</span></div>
-  <h1 id="hero-title"><span class="line1">先定义产品，</span><span class="line2">再定义验收标准</span></h1>
-  <p class="hero-subtitle">AI 把实现成本压到接近零，PM 的价值回到定义：<br>定义产品，定义验收标准。这两件事不能假手于人；<br>定义不清，AI 执行得越彻底，偏离得越远。</p>
-
-  <div class="hero-paradigm">
-    <div class="hero-pm-box">
-      <h3>先定义产品</h3>
-      <div class="pm-items">
-        <div class="pm-item"><span class="pm-dot"></span>服务对象与问题：给谁用，解决什么真实问题</div>
-        <div class="pm-item"><span class="pm-dot"></span>使用场景与价值：在什么情境下，创造什么可衡量价值</div>
-        <div class="pm-item"><span class="pm-dot"></span>范围边界：本期做什么，明确不做什么</div>
-      </div>
-    </div>
-    <div class="hero-arrow">
-      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--amber)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20h24M26 8l12 12-12 12"/></svg>
-    </div>
-    <div class="hero-ai-box">
-      <h3>再定义验收标准</h3>
-      <div class="ai-items">
-        <div class="ai-item"><span class="ai-dot"></span>正常路径：主流程每一步的预期结果</div>
-        <div class="ai-item"><span class="ai-dot"></span>边界条件：格式错误、超时、空数据、重复操作</div>
-        <div class="ai-item"><span class="ai-dot"></span>异常反馈：出错时的具体提示与降级方案</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero-action">
-    <div class="hero-action-row">
-      <span class="action-placeholder">我要做 <mark>____</mark>，给 <mark>____</mark> 用，解决 <mark>____</mark> 的问题。做对了的标准是 <mark>1、2、3</mark>。这次不做 <mark>____</mark>。你先复述一遍，别动手。</span>
-      <button class="copy-btn" onclick="copyHeroSnippet(this)" aria-label="复制话术">复制</button>
-    </div>
-  </div>
+  <div class="hero-badge"><span>AI 协作范式</span></div>
+  <h1 id="hero-title"><span class="line1">AI 新范式</span><span class="line2">PM Coding 手册</span></h1>
+  <p class="hero-subtitle">产品经理直接驱动 AI 编码的工作手册。<br>从定义产品、定义验收标准，到让 AI 交付可验收的成果。</p>
 
   <nav class="station-nav" aria-label="四站导航">
     <a href="#station-1">理论框架</a><a href="#station-3">文件资产</a><a href="#station-4">案例模板</a><a href="#station-5">模仿改进</a>
   </nav>
-</section>
-
-<!-- ====== 提示词手册入口 ====== -->
-<section class="section" id="prompt-kit" aria-labelledby="pk-title">
-  <h2 class="station-title" id="pk-title">提示词手册</h2>
-  <div class="station-why"><p>理论是"知道怎么写"，提示词是<strong>"直接抄着用"</strong>。这本手册把方法论里的需求分析、架构梳理、重构审查、测试设计、文档沉淀全部沉淀成 <strong>99 条精选提示词</strong>，按场景分 12 类，点击卡片即可复制，拿去就能指挥 AI。</p></div>
-  <a class="pk-entry" href="prompts/">
-    <div class="pk-entry-main">
-      <div class="pk-entry-ic">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#c2410c"/><rect x="5" y="4" width="14" height="16" rx="2" fill="#faf8f5" opacity="0.95"/><rect x="7" y="7" width="10" height="1.5" rx="0.75" fill="#c2410c" opacity="0.8"/><rect x="7" y="10" width="8" height="1.5" rx="0.75" fill="#c2410c" opacity="0.6"/><rect x="7" y="13" width="9" height="1.5" rx="0.75" fill="#c2410c" opacity="0.4"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="#0d9488"/></svg>
-      </div>
-      <div class="pk-entry-text">
-        <h3>AI 提示词手册</h3>
-        <p>12 类场景 · 99 条精选提示词 · 支持搜索 · 一键复制</p>
-      </div>
-    </div>
-    <span class="pk-entry-go">进入手册 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-  </a>
 </section>
 
 <!-- ====== STATION 1: 理论框架 ====== -->
@@ -418,37 +239,107 @@ tbody tr:hover td { background: var(--raised); }
   <h2 class="station-title" id="s1-title">理论框架</h2>
   <div class="station-why"><p>很多 PM 拿着 AI 工具，但思维还是传统的"写需求→评审→排期"。这里帮你识别 <strong>3 个核心思维转变</strong>。理解"为什么变了"比记住"怎么做"更重要——AI 时代 PM 的核心竞争力不是"会用工具"，而是<strong>"能判断 AI 做对了没有"</strong>。</p></div>
 
-  <h3 class="subhead">核心变化：从「人→人」到「人→AI→人」</h3>
-  <div class="compare-grid">
-    <div class="compare-card old"><h3>过去的协作链</h3><ul><li>PM 写需求 → 设计师出图 → 前端开发 → 后端开发 → QA 测试，每一环都在等人、理解、传递</li><li>最贵的环节是<strong>沟通对齐</strong>——开会、评审、反复确认，沟通成本随人数线性增长</li><li>最大风险是<strong>做慢了</strong>——排期排不上、返工成本高、项目周期等于各环节时长之和</li><li>PM 的核心能力：<strong>想清楚要什么 + 说服别人</strong></li></ul></div>
-    <div class="compare-card new"><h3>现在的协作链</h3><ul><li>PM 描述意图 → AI 生成方案和代码 → PM 判断对不对 → 技术同事把关。生成变便宜了，迭代变快了</li><li>最贵的环节是<strong>判断 AI 给的对不对</strong>——你没说的它会脑补，你说错的它会认真执行</li><li>最大风险是<strong>做快了但错了且没人发现</strong>——AI 一口气做完 80%，你才发现方向错了</li><li>PM 的核心能力：<strong>想清楚要什么 + 定义什么叫做对了 + 能查出它错没错</strong></li></ul></div>
+  <!-- 一、协作链变化：镜像对开横幅 -->
+  <h3 class="subhead">协作链：从「人→人」到「人→AI→人」</h3>
+  <div class="tf-chain">
+    <div class="tf-chain-row old">
+      <span class="tf-chain-tag">过去的协作链</span>
+      <div class="tf-chain-nodes">
+        <span class="tf-node">PM 写需求</span><span class="tf-arrow">→</span>
+        <span class="tf-node">设计师出图</span><span class="tf-arrow">→</span>
+        <span class="tf-node">前端开发</span><span class="tf-arrow">→</span>
+        <span class="tf-node">后端开发</span><span class="tf-arrow">→</span>
+        <span class="tf-node">QA 测试</span>
+      </div>
+      <ul class="tf-chain-pts">
+        <li>最贵的环节是<strong>沟通对齐</strong>——开会、评审、反复确认，沟通成本随人数线性增长</li>
+        <li>最大风险是<strong>做慢了</strong>——排期排不上、返工成本高，项目周期等于各环节时长之和</li>
+        <li>PM 的核心能力：<strong>想清楚要什么 + 说服别人</strong></li>
+      </ul>
+    </div>
+    <div class="tf-chain-gap"><span>AI 介入</span></div>
+    <div class="tf-chain-row new">
+      <span class="tf-chain-tag">现在的协作链</span>
+      <div class="tf-chain-nodes">
+        <span class="tf-node">PM 描述意图</span><span class="tf-arrow">→</span>
+        <span class="tf-node">AI 生成方案+代码</span><span class="tf-arrow">→</span>
+        <span class="tf-node">PM 判断对不对</span><span class="tf-arrow">→</span>
+        <span class="tf-node">技术同事把关</span>
+      </div>
+      <ul class="tf-chain-pts">
+        <li>最贵的环节是<strong>判断 AI 给的对不对</strong>——你没说的它会脑补，你说错的它会认真执行</li>
+        <li>最大风险是<strong>做快了但错了且没人发现</strong>——AI 一口气做完 80%，你才发现方向错了</li>
+        <li>PM 的核心能力：<strong>想清楚要什么 + 定义什么叫做对了 + 能查出它错没错</strong></li>
+      </ul>
+    </div>
   </div>
 
+  <!-- 二、三个思维转变：三栏卡片墙 -->
   <h3 class="subhead">三个必须切换的思维习惯</h3>
-  <div class="table-wrap"><table>
-    <thead><tr><th style="width:18%">思维转变</th><th style="width:36%">过去怎么做</th><th style="width:36%">现在怎么做</th><th style="width:10%">核心</th></tr></thead>
-    <tbody>
-      <tr><td style="font-weight:600;">从描述功能<br>到定义验收</td><td>写 PRD："做一个客户列表页，支持搜索和筛选"——AI 会脑补你没说的所有细节</td><td>写验收标准："搜'张'能搜到张三；搜不到显示'没找到'；两个筛选能叠加；五千条不卡；断网显示重试按钮"</td><td>写不出验收标准 = 你自己还没想清楚</td></tr>
-      <tr><td style="font-weight:600;">从一次说清<br>到小步逼近</td><td>文档一次写全，因为返工贵。但 AI 一口气做完 80%，你才发现方向错了，全废</td><td>说个大概→AI 复述→纠偏→出方案→做一小块→看效果→继续。永远不让 AI 连做三步以上不给你看中间产物</td><td>每一环都短，每一环都能叫停</td></tr>
-      <tr><td style="font-weight:600;">从相信交付<br>到默认怀疑</td><td>开发说"做完了"= 可以验收。AI 说"已完成""测试通过"，可信度接近于零</td><td>追问三句："我怎么自己看到效果？""你测了哪些、没测哪些？""最坏会怎样、怎么退回去？"——答不上来 = 没做完</td><td>这不是不信任，这是流程</td></tr>
-    </tbody>
-  </table></div>
+  <div class="tf-switch-grid">
+    <div class="tf-switch-card">
+      <h4 class="tf-switch-title">从描述功能<br>到定义验收</h4>
+      <p class="tf-switch-label">过去</p>
+      <p class="tf-switch-text">写 PRD："做一个客户列表页，支持搜索和筛选"——AI 会脑补你没说的所有细节</p>
+      <p class="tf-switch-label">现在</p>
+      <p class="tf-switch-text">写验收标准："搜'张'能搜到张三；搜不到显示'没找到'；两个筛选能叠加；五千条不卡；断网显示重试按钮"</p>
+      <p class="tf-switch-core">写不出验收标准 = 你自己还没想清楚</p>
+    </div>
+    <div class="tf-switch-card">
+      <h4 class="tf-switch-title">从一次说清<br>到小步逼近</h4>
+      <p class="tf-switch-label">过去</p>
+      <p class="tf-switch-text">文档一次写全，因为返工贵。但 AI 一口气做完 80%，你才发现方向错了，全废</p>
+      <p class="tf-switch-label">现在</p>
+      <p class="tf-switch-text">说个大概→AI 复述→纠偏→出方案→做一小块→看效果→继续。永远不让 AI 连做三步以上不给你看中间产物</p>
+      <p class="tf-switch-core">每一环都短，每一环都能叫停</p>
+    </div>
+    <div class="tf-switch-card">
+      <h4 class="tf-switch-title">从相信交付<br>到默认怀疑</h4>
+      <p class="tf-switch-label">过去</p>
+      <p class="tf-switch-text">开发说"做完了"= 可以验收。AI 说"已完成""测试通过"，可信度接近于零</p>
+      <p class="tf-switch-label">现在</p>
+      <p class="tf-switch-text">追问三句："我怎么自己看到效果？""你测了哪些、没测哪些？""最坏会怎样、怎么退回去？"——答不上来 = 没做完</p>
+      <p class="tf-switch-core">这不是不信任，这是流程</p>
+    </div>
+  </div>
 
   <div class="callout"><strong>一句话带走：</strong>AI 把「实现」变便宜了，于是「判断」变成了最贵的东西。你的价值从"写清楚要什么"转移到了"说清楚什么算对，并且能查出它错没错"。</div>
 
+  <!-- 三、六个维度：2x3 紧凑对照网格 -->
   <h3 class="subhead">六个维度的底层变化</h3>
-  <div class="dimensions">
-    <div class="dim-grid">
-      <svg class="dim-svg" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="价值模型：从先免费后变现，到场景落地即时价值交付"><rect width="320" height="200" rx="10" fill="#fff" stroke="#e7e5e4" stroke-width="1"/><text x="20" y="30" font-size="13" font-weight="700" fill="#1c1917">价值模型</text><rect x="16" y="46" width="288" height="52" rx="7" fill="rgba(190,18,60,0.04)" stroke="rgba(190,18,60,0.2)" stroke-width="1"/><text x="26" y="62" font-size="11" fill="#be123c" font-weight="700">旧</text><text x="48" y="62" font-size="11" fill="#57534e">抓住心智入口 → 边际成本趋近 0 → 后期商业化</text><text x="48" y="77" font-size="10" fill="#a8a29e">先免费做大规模，用户即资产</text><text x="160" y="115" text-anchor="middle" font-size="20" fill="#c2410c">↓</text><rect x="16" y="128" width="288" height="52" rx="7" fill="rgba(13,148,136,0.04)" stroke="rgba(13,148,136,0.2)" stroke-width="1"/><text x="26" y="144" font-size="11" fill="#0d9488" font-weight="700">新</text><text x="48" y="144" font-size="11" fill="#57534e">场景落地深度 → 边际成本正相关 → 即时价值交付</text><text x="48" y="159" font-size="10" fill="#a8a29e">AI 调用有成本，每个用户必须即时产生价值</text></svg>
-      <svg class="dim-svg" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="边际成本：从趋近于零，到随使用量正相关"><rect width="320" height="200" rx="10" fill="#fff" stroke="#e7e5e4" stroke-width="1"/><text x="20" y="30" font-size="13" font-weight="700" fill="#1c1917">边际成本</text><rect x="16" y="46" width="288" height="52" rx="7" fill="rgba(190,18,60,0.04)" stroke="rgba(190,18,60,0.2)" stroke-width="1"/><text x="26" y="62" font-size="11" fill="#be123c" font-weight="700">旧</text><text x="48" y="62" font-size="11" fill="#57534e">边际成本 → 0，软件复制无限份</text><text x="48" y="77" font-size="10" fill="#a8a29e">用户越多，单位成本越低，规模效应越强</text><text x="160" y="115" text-anchor="middle" font-size="20" fill="#c2410c">↓</text><rect x="16" y="128" width="288" height="52" rx="7" fill="rgba(13,148,136,0.04)" stroke="rgba(13,148,136,0.2)" stroke-width="1"/><text x="26" y="144" font-size="11" fill="#0d9488" font-weight="700">新</text><text x="48" y="144" font-size="11" fill="#57534e">边际成本 ∝ 使用量</text><text x="48" y="159" font-size="10" fill="#a8a29e">每次调用消耗 Token/算力，必须确保价值 &gt; 成本</text></svg>
-      <svg class="dim-svg" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="资产定义：从用户量即资产，到数据加落地场景即资产"><rect width="320" height="200" rx="10" fill="#fff" stroke="#e7e5e4" stroke-width="1"/><text x="20" y="30" font-size="13" font-weight="700" fill="#1c1917">资产定义</text><rect x="16" y="46" width="288" height="52" rx="7" fill="rgba(190,18,60,0.04)" stroke="rgba(190,18,60,0.2)" stroke-width="1"/><text x="26" y="62" font-size="11" fill="#be123c" font-weight="700">旧</text><text x="48" y="62" font-size="11" fill="#57534e">用户量 = 资产，DAU/MAU 是核心指标</text><text x="48" y="77" font-size="10" fill="#a8a29e">用户数据可后期变现，先圈地后赚钱</text><text x="160" y="115" text-anchor="middle" font-size="20" fill="#c2410c">↓</text><rect x="16" y="128" width="288" height="52" rx="7" fill="rgba(13,148,136,0.04)" stroke="rgba(13,148,136,0.2)" stroke-width="1"/><text x="26" y="144" font-size="11" fill="#0d9488" font-weight="700">新</text><text x="48" y="144" font-size="11" fill="#57534e">数据 + 落地场景 = 资产</text><text x="48" y="159" font-size="10" fill="#a8a29e">独家数据让 AI 越用越准，场景嵌入让 AI 不可替代</text></svg>
-      <svg class="dim-svg" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="壁垒来源：从网络效应加规模效应，到数据飞轮加场景锁定"><rect width="320" height="200" rx="10" fill="#fff" stroke="#e7e5e4" stroke-width="1"/><text x="20" y="30" font-size="13" font-weight="700" fill="#1c1917">壁垒来源</text><rect x="16" y="46" width="288" height="52" rx="7" fill="rgba(190,18,60,0.04)" stroke="rgba(190,18,60,0.2)" stroke-width="1"/><text x="26" y="62" font-size="11" fill="#be123c" font-weight="700">旧</text><text x="48" y="62" font-size="11" fill="#57534e">网络效应 + 规模效应</text><text x="48" y="77" font-size="10" fill="#a8a29e">用户越多价值越高、成本越低，双轮飞轮</text><text x="160" y="115" text-anchor="middle" font-size="20" fill="#c2410c">↓</text><rect x="16" y="128" width="288" height="52" rx="7" fill="rgba(13,148,136,0.04)" stroke="rgba(13,148,136,0.2)" stroke-width="1"/><text x="26" y="144" font-size="11" fill="#0d9488" font-weight="700">新</text><text x="48" y="144" font-size="11" fill="#57534e">数据飞轮 + 场景嵌入深度 + 工作流锁定</text><text x="48" y="159" font-size="10" fill="#a8a29e">没有数据和场景的 AI 产品，模型一升级就归零</text></svg>
-      <svg class="dim-svg" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PM核心能力：从需求洞察加沟通协调，到问题框定加约束定义加验证判断"><rect width="320" height="200" rx="10" fill="#fff" stroke="#e7e5e4" stroke-width="1"/><text x="20" y="30" font-size="13" font-weight="700" fill="#1c1917">PM 核心能力</text><rect x="16" y="46" width="288" height="52" rx="7" fill="rgba(190,18,60,0.04)" stroke="rgba(190,18,60,0.2)" stroke-width="1"/><text x="26" y="62" font-size="11" fill="#be123c" font-weight="700">旧</text><text x="48" y="62" font-size="11" fill="#57534e">需求洞察 + 沟通协调 + 项目管理</text><text x="48" y="77" font-size="10" fill="#a8a29e">核心是"描述+协调"，产出物给人看</text><text x="160" y="115" text-anchor="middle" font-size="20" fill="#c2410c">↓</text><rect x="16" y="128" width="288" height="52" rx="7" fill="rgba(13,148,136,0.04)" stroke="rgba(13,148,136,0.2)" stroke-width="1"/><text x="26" y="144" font-size="11" fill="#0d9488" font-weight="700">新</text><text x="48" y="144" font-size="11" fill="#57534e">问题框定 + 约束定义 + 验证判断 + 迭代节奏</text><text x="48" y="159" font-size="10" fill="#a8a29e">核心是"约束+验证"，产出物 AI 直接消费</text></svg>
-      <svg class="dim-svg" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="思考模型：从描述型思维，到约束型思维"><rect width="320" height="200" rx="10" fill="#fff" stroke="#e7e5e4" stroke-width="1"/><text x="20" y="30" font-size="13" font-weight="700" fill="#1c1917">思考模型</text><rect x="16" y="46" width="288" height="52" rx="7" fill="rgba(190,18,60,0.04)" stroke="rgba(190,18,60,0.2)" stroke-width="1"/><text x="26" y="62" font-size="11" fill="#be123c" font-weight="700">旧</text><text x="48" y="62" font-size="11" fill="#57534e">描述型思维——"用户应该能做什么"</text><text x="48" y="77" font-size="10" fill="#a8a29e">PRD 描述功能列表、用户故事描述需求</text><text x="160" y="115" text-anchor="middle" font-size="20" fill="#c2410c">↓</text><rect x="16" y="128" width="288" height="52" rx="7" fill="rgba(13,148,136,0.04)" stroke="rgba(13,148,136,0.2)" stroke-width="1"/><text x="26" y="144" font-size="11" fill="#0d9488" font-weight="700">新</text><text x="48" y="144" font-size="11" fill="#57534e">约束型思维——"系统不允许做什么 + 必须遵守什么"</text><text x="48" y="159" font-size="10" fill="#a8a29e">围栏比方向更重要——AI 自己会想怎么做，你定义什么不能做</text></svg>
+  <div class="tf-dim-grid">
+    <div class="tf-dim-card">
+      <div class="tf-dim-head"><span class="tf-dim-ic">💹</span><span class="tf-dim-num">01</span><h4 class="tf-dim-title">价值模型</h4></div>
+      <div class="tf-dim-line"><span class="tf-dim-k old">旧</span><p>抓住心智入口 → 边际成本趋近 0 → 后期商业化<br><em>先免费做大规模，用户即资产</em></p></div>
+      <div class="tf-dim-line"><span class="tf-dim-k new">新</span><p>场景落地深度 → 边际成本正相关 → 即时价值交付<br><em>AI 调用有成本，每个用户必须即时产生价值</em></p></div>
+    </div>
+    <div class="tf-dim-card">
+      <div class="tf-dim-head"><span class="tf-dim-ic">📉</span><span class="tf-dim-num">02</span><h4 class="tf-dim-title">边际成本</h4></div>
+      <div class="tf-dim-line"><span class="tf-dim-k old">旧</span><p>边际成本 → 0，软件复制无限份<br><em>用户越多，单位成本越低，规模效应越强</em></p></div>
+      <div class="tf-dim-line"><span class="tf-dim-k new">新</span><p>边际成本 ∝ 使用量<br><em>每次调用消耗 Token/算力，必须确保价值 &gt; 成本</em></p></div>
+    </div>
+    <div class="tf-dim-card">
+      <div class="tf-dim-head"><span class="tf-dim-ic">🗄️</span><span class="tf-dim-num">03</span><h4 class="tf-dim-title">资产定义</h4></div>
+      <div class="tf-dim-line"><span class="tf-dim-k old">旧</span><p>用户量 = 资产，DAU/MAU 是核心指标<br><em>用户数据可后期变现，先圈地后赚钱</em></p></div>
+      <div class="tf-dim-line"><span class="tf-dim-k new">新</span><p>数据 + 落地场景 = 资产<br><em>独家数据让 AI 越用越准，场景嵌入让 AI 不可替代</em></p></div>
+    </div>
+    <div class="tf-dim-card">
+      <div class="tf-dim-head"><span class="tf-dim-ic">🔗</span><span class="tf-dim-num">04</span><h4 class="tf-dim-title">壁垒来源</h4></div>
+      <div class="tf-dim-line"><span class="tf-dim-k old">旧</span><p>网络效应 + 规模效应<br><em>用户越多价值越高、成本越低，双轮飞轮</em></p></div>
+      <div class="tf-dim-line"><span class="tf-dim-k new">新</span><p>数据飞轮 + 场景嵌入深度 + 工作流锁定<br><em>没有数据和场景的 AI 产品，模型一升级就归零</em></p></div>
+    </div>
+    <div class="tf-dim-card">
+      <div class="tf-dim-head"><span class="tf-dim-ic">🎯</span><span class="tf-dim-num">05</span><h4 class="tf-dim-title">PM 核心能力</h4></div>
+      <div class="tf-dim-line"><span class="tf-dim-k old">旧</span><p>需求洞察 + 沟通协调 + 项目管理<br><em>核心是"描述+协调"，产出物给人看</em></p></div>
+      <div class="tf-dim-line"><span class="tf-dim-k new">新</span><p>问题框定 + 约束定义 + 验证判断 + 迭代节奏<br><em>核心是"约束+验证"，产出物 AI 直接消费</em></p></div>
+    </div>
+    <div class="tf-dim-card">
+      <div class="tf-dim-head"><span class="tf-dim-ic">🧠</span><span class="tf-dim-num">06</span><h4 class="tf-dim-title">思考模型</h4></div>
+      <div class="tf-dim-line"><span class="tf-dim-k old">旧</span><p>描述型思维——"用户应该能做什么"<br><em>PRD 描述功能列表、用户故事描述需求</em></p></div>
+      <div class="tf-dim-line"><span class="tf-dim-k new">新</span><p>约束型思维——"系统不允许做什么 + 必须遵守什么"<br><em>围栏比方向更重要——AI 自己会想怎么做，你定义什么不能做</em></p></div>
     </div>
   </div>
 </section>
-
 <!-- ====== STATION 3: 文件资产 ====== -->
 <section class="section" id="station-3" aria-labelledby="s3-title">
   <h2 class="station-title" id="s3-title">文件资产</h2>
@@ -566,6 +457,24 @@ tbody tr:hover td { background: var(--raised); }
   </a>
 </section>
 
+<!-- ====== 提示词手册入口 ====== -->
+<section class="section" id="prompt-kit" aria-labelledby="pk-title">
+  <h2 class="station-title" id="pk-title">提示词手册</h2>
+  <div class="station-why"><p>理论是"知道怎么写"，提示词是<strong>"直接抄着用"</strong>。这本手册把方法论里的需求分析、架构梳理、重构审查、测试设计、文档沉淀全部沉淀成 <strong>99 条精选提示词</strong>，按场景分 12 类，点击卡片即可复制，拿去就能指挥 AI。</p></div>
+  <a class="pk-entry" href="prompts/">
+    <div class="pk-entry-main">
+      <div class="pk-entry-ic">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#c2410c"/><rect x="5" y="4" width="14" height="16" rx="2" fill="#faf8f5" opacity="0.95"/><rect x="7" y="7" width="10" height="1.5" rx="0.75" fill="#c2410c" opacity="0.8"/><rect x="7" y="10" width="8" height="1.5" rx="0.75" fill="#c2410c" opacity="0.6"/><rect x="7" y="13" width="9" height="1.5" rx="0.75" fill="#c2410c" opacity="0.4"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="#0d9488"/></svg>
+      </div>
+      <div class="pk-entry-text">
+        <h3>AI 提示词手册</h3>
+        <p>12 类场景 · 99 条精选提示词 · 支持搜索 · 一键复制</p>
+      </div>
+    </div>
+    <span class="pk-entry-go">进入手册 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+  </a>
+</section>
+
 <!-- ====== STATION 5: 模仿改进 ====== -->
 <section class="section" id="station-5" aria-labelledby="s5-title">
   <h2 class="station-title" id="s5-title">模仿改进</h2>
@@ -599,20 +508,8 @@ tbody tr:hover td { background: var(--raised); }
   </div>
 </section>
 
-<!-- ====== ADVANCED ====== -->
-<section class="section" id="advanced" aria-labelledby="adv-title">
-  <h2 class="station-title" id="adv-title">进阶参考</h2>
-  <div class="station-label">进阶参考</div>
-  <div class="template-accordion">
-    <div class="template-item"><div class="template-header" onclick="toggleTemplate(this)" role="button" tabindex="0" aria-expanded="false"><span class="th-num">A1</span><span class="th-title">三层管控模型</span><span class="th-tag anchor">基准</span><svg class="th-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div><div class="template-body"><div class="template-content"><div class="layer-stack"><div class="layer layer-anchor"><div class="layer-header"><span class="layer-icon">A</span><h3>不变的基准</h3><span class="layer-meta">2-3次/项目</span></div><p style="color:var(--t2);font-size:13px;">定义项目身份。变更触发全局重新检查。</p><div class="layer-items"><span class="layer-item">问题框定</span><span class="layer-item">AGENTS.md</span><span class="layer-item">设计参数</span><span class="layer-item">ADR</span></div></div><div class="layer layer-progress"><div class="layer-header"><span class="layer-icon">P</span><h3>在增长的</h3><span class="layer-meta">每迭代追加</span></div><p style="color:var(--t2);font-size:13px;">随功能推进增加。已有条目不改——改存量等于改需求。</p><div class="layer-items"><span class="layer-item">意图卡</span><span class="layer-item">验收单</span><span class="layer-item">BDD场景</span><span class="layer-item">异常态矩阵</span></div></div><div class="layer layer-execution"><div class="layer-header"><span class="layer-icon">E</span><h3>每轮在变的</h3><span class="layer-meta">每次对话</span></div><p style="color:var(--t2);font-size:13px;">日常交互产物。定期把有效信息提炼到进度层。</p><div class="layer-items"><span class="layer-item">对话日志</span><span class="layer-item">代码版本</span><span class="layer-item">走查发现</span></div></div></div></div></div></div>
-    <div class="template-item"><div class="template-header" onclick="toggleTemplate(this)" role="button" tabindex="0" aria-expanded="false"><span class="th-num">A2</span><span class="th-title">5 个防偏移机制</span><span class="th-tag progress">进度</span><svg class="th-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div><div class="template-body"><div class="template-content"><div class="table-wrap"><table><thead><tr><th>机制</th><th>触发</th><th>做法</th><th>防什么</th></tr></thead><tbody><tr><td style="font-weight:600;">基准校验</td><td>基准文件变更</td><td>AI 逐项检查已完成代码</td><td>约束跑了</td></tr><tr><td style="font-weight:600;">BDD回归</td><td>每次代码变更</td><td>行为场景自动转测试</td><td>行为跑了</td></tr><tr><td style="font-weight:600;">快照对比</td><td>每里程碑</td><td>保存全链路快照对比</td><td>任何层面跑了</td></tr><tr><td style="font-weight:600;">设计走查</td><td>每屏完成</td><td>对照参数检查视觉</td><td>视觉跑了</td></tr><tr><td style="font-weight:600;">验收追溯</td><td>每功能完成</td><td>验收单逐条标注</td><td>功能没做完</td></tr></tbody></table></div></div></div></div>
-    <div class="template-item"><div class="template-header" onclick="toggleTemplate(this)" role="button" tabindex="0" aria-expanded="false"><span class="th-num">A3</span><span class="th-title">Eval 质量评估</span><span class="th-tag progress">进度</span><svg class="th-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div><div class="template-body"><div class="template-content"><div class="table-wrap"><table><thead><tr><th>维度</th><th>方式</th><th>频率</th><th>标准</th></tr></thead><tbody><tr><td style="font-weight:600;">代码质量</td><td>ESLint+复杂度</td><td>每次生成</td><td>0错误，&lt;15</td></tr><tr><td style="font-weight:600;">UI还原度</td><td>对照参数检查</td><td>每屏</td><td>偏差&lt;3项</td></tr><tr><td style="font-weight:600;">交互体验</td><td>人工可用性测试</td><td>每里程碑</td><td>完成率&gt;80%</td></tr><tr><td style="font-weight:600;">安全性</td><td>自动扫描</td><td>每次生成</td><td>0高危</td></tr></tbody></table></div></div></div></div>
-    <div class="template-item"><div class="template-header" onclick="toggleTemplate(this)" role="button" tabindex="0" aria-expanded="false"><span class="th-num">A4</span><span class="th-title">什么时候必须人来拍板</span><span class="th-tag progress">进度</span><svg class="th-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div><div class="template-body"><div class="template-content"><div class="table-wrap"><table><thead><tr><th>节点</th><th>触发</th><th>审查</th><th>不审</th></tr></thead><tbody><tr><td style="font-weight:600;">基准变更</td><td>项目规则修改</td><td>影响范围 — 必审</td><td>全下游偏移</td></tr><tr><td style="font-weight:600;">代码生成后</td><td>每次生成</td><td>测试通过 — 自动+确认</td><td>不知是否优雅</td></tr><tr><td style="font-weight:600;">每屏完成</td><td>设计走查</td><td>视觉+交互 — 自动+走查</td><td>不知体验好坏</td></tr><tr><td style="font-weight:600;">里程碑</td><td>快照对比</td><td>全量+方向 — 必审</td><td>只有人能判方向</td></tr></tbody></table></div></div></div></div>
-  </div>
-</section>
-
 <footer class="footer">
-  <div class="footer-brand">AI PM 工作手册 · v6.0</div>
+  <div class="footer-brand">PM Coding 手册 · v6.0</div>
   <p><a href="prompts/" style="color:var(--amber);text-decoration:none;font-weight:600;">提示词手册（99 条 · 12 类）</a></p>
   <p>学习路径：理论框架 → 文件资产 → 案例模板 → 模仿改进</p>
   <p style="margin-top:8px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
@@ -623,7 +520,6 @@ tbody tr:hover td { background: var(--raised); }
 </footer>
 
 <button class="back-to-top" id="backToTop" aria-label="返回顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-<div class="copy-toast" id="copyToast"></div>
 
 <script>
 const backBtn=document.getElementById('backToTop');
@@ -632,12 +528,8 @@ addEventListener('scroll',()=>{backBtn.classList.toggle('show',scrollY>400)});
 const hamburger=document.querySelector('.hamburger'),mobileNav=document.getElementById('mobile-nav');
 hamburger.addEventListener('click',()=>{const o=mobileNav.classList.toggle('show');hamburger.classList.toggle('open',o);hamburger.setAttribute('aria-expanded',o)});
 mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileNav.classList.remove('show');hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded','false')}));
-function toggleTemplate(h){const i=h.closest('.template-item');if(!i)return;i.classList.toggle('open');h.setAttribute('aria-expanded',i.classList.contains('open'))}
-function copyHeroSnippet(b){doCopy(b,'我要做 ____，给 ____ 用，解决 ____ 的问题。做对了的标准是 1、2、3。这次不做 ____。你先复述一遍，别动手。')}
 function copyPhrase(b){doCopy(b,b.parentElement.querySelector('.phrase-text').innerText)}
-function kitCopy(b){const p=b.closest('.template-item').querySelector('pre');if(!p)return;doCopy(b,p.innerText)}
-function doCopy(b,t){const o=v=>{b.textContent=v?'已复制':'复制';b.classList.toggle('copied',v);setTimeout(()=>{b.textContent=b.dataset.orig||'复制';b.classList.remove('copied')},2000)};if(!b.dataset.orig)b.dataset.orig=b.textContent;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>o(true),()=>o(false))}else{try{const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);o(true)}catch(e){o(false)}}
-const toast=document.getElementById('copyToast');toast.textContent='已复制到剪贴板';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2000)}
+function doCopy(b,t){const o=v=>{b.textContent=v?'已复制':'复制';b.classList.toggle('copied',v);setTimeout(()=>{b.textContent=b.dataset.orig||'复制';b.classList.remove('copied')},2000)};if(!b.dataset.orig)b.dataset.orig=b.textContent;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>o(true),()=>o(false))}else{try{const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);o(true)}catch(e){o(false)}}}
 // Modal functions removed in v5.0 — templates moved to /templates/
 </script>
 </body>
