@@ -61,7 +61,7 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
 .book { flex:1; min-width:0; }
 .cat-sec { margin-bottom:52px; scroll-margin-top:88px; }
 .cat-head { display:flex; align-items:center; gap:14px; padding-bottom:14px; margin-bottom:22px; border-bottom:1px solid var(--rule); }
-.cat-ic { width:40px; height:40px; border-radius:11px; background:var(--paper-2); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.cat-ic { width:40px; height:40px; border-radius:11px; background:var(--paper-2); display:none; align-items:center; justify-content:center; flex-shrink:0; }
 .cat-ic .icon { width:21px; height:21px; }
 .cat-name { font-size:1.32rem; font-weight:800; letter-spacing:-.01em; line-height:1.2; }
 .cat-desc { color:var(--ink-2); font-size:.84rem; margin-top:2px; }
@@ -71,7 +71,7 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
 .pcard { display:flex; flex-direction:column; gap:10px; padding:20px 22px; background:#fff; border:1px solid var(--rule); border-radius:12px; box-shadow:0 1px 3px rgba(28,25,23,.05); cursor:pointer; transition:transform .18s,box-shadow .18s,border-color .18s; height:100%; }
 .pcard:hover, .pcard:focus-visible { transform:translateY(-3px); box-shadow:0 10px 30px rgba(28,25,23,.1); border-color:var(--rule-2); outline:none; }
 .pcard-top { display:flex; align-items:center; justify-content:space-between; }
-.pcard-ic { width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; }
+.pcard-ic { width:36px; height:36px; border-radius:10px; display:none; align-items:center; justify-content:center; }
 .pcard-ic .icon { width:19px; height:19px; }
 .pcard-copy { border:none; background:transparent; color:var(--ink-3); padding:5px; border-radius:7px; cursor:pointer; transition:.12s; display:inline-flex; opacity:0; }
 .pcard:hover .pcard-copy { opacity:1; }
@@ -157,7 +157,7 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
 <body>
 <header class="masthead">
   <div class="masthead-inner">
-    <a class="mh-brand" href="../index.html" title="返回 AI PM 手册">
+    <a class="mh-brand" href="../index.html" title="返回 PM Coding 手册">
       <span class="mh-logo"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="24" height="24" rx="5" fill="#c2410c"/><rect x="5" y="4" width="14" height="16" rx="2" fill="#faf8f5" opacity="0.95"/><rect x="7" y="7" width="10" height="1.5" rx="0.75" fill="#c2410c" opacity="0.8"/><rect x="7" y="10" width="8" height="1.5" rx="0.75" fill="#c2410c" opacity="0.6"/><rect x="7" y="13" width="9" height="1.5" rx="0.75" fill="#c2410c" opacity="0.4"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="#0d9488"/></svg></span>
       <span>
         <span class="mh-title">AI 提示词手册</span>
@@ -1239,7 +1239,7 @@ body { background:var(--paper); color:var(--ink); font-family:var(--font); line-
 <footer class="colophon">
   <a href="../index.html">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    返回 AI PM 手册
+    返回 PM Coding 手册
   </a>
   <span>AI 提示词手册 · 99 条 · 12 类</span>
 </footer>
