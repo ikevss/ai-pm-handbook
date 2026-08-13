@@ -4,6 +4,7 @@ import * as React from "react";
 import Fuse from "fuse.js";
 import { Search } from "lucide-react";
 
+import { CategoryIcon } from "@/components/category-icon";
 import { CopyButton } from "@/components/copy-button";
 import { MarkdownContent } from "@/components/markdown-content";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,7 +15,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { CategoryDef, Prompt } from "@/lib/data";
 
 const ALL_KEY = "__all__";
@@ -27,6 +27,7 @@ export function PromptGallery({
   categories: CategoryDef[];
 }) {
   const [query, setQuery] = React.useState("");
+  const [activeCat, setActiveCat] = React.useState<string>(ALL_KEY);
   const [selected, setSelected] = React.useState<Prompt | null>(null);
 
   const fuse = React.useMemo(() => {
@@ -48,7 +49,7 @@ export function PromptGallery({
   }, [prompts]);
 
   const renderList = (items: Prompt[]) => (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-3 sm:grid-cols-2">
       {items.map((p) => (
         <Card
           key={p.index}
@@ -70,52 +71,90 @@ export function PromptGallery({
     </div>
   );
 
-  return (
-    <div className="mt-8">
-      <div className="relative mb-6 max-w-md">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-        <Input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="搜索提示词…"
-          className="pl-9"
-          aria-label="搜索提示词"
-        />
-      </div>
+  const listForCat = React.useMemo(() => {
+    if (filteredByQuery) return { items: filteredByQuery, label: `搜索结果` };
+    if (activeCat === ALL_KEY)
+      return { items: prompts, label: "全部提示词" };
+    return {
+      items: prompts.filter((p) => p.category === activeCat),
+      label: categories.find((c) => c.key === activeCat)?.label ?? "",
+    };
+  }, [filteredByQuery, activeCat, prompts, categories]);
 
-      {filteredByQuery ? (
-        filteredByQuery.length > 0 ? (
-          <div>
-            <p className="mb-4 text-sm text-muted-foreground">
-              找到 {filteredByQuery.length} 条结果
-            </p>
-            {renderList(filteredByQuery)}
+  return (
+    <div className="mt-8 flex flex-col gap-8 lg:flex-row">
+      {/* 左侧分类导航 */}
+      <aside className="lg:w-56 lg:shrink-0">
+        <div className="lg:sticky lg:top-20">
+          <div className="relative mb-4">
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="搜索提示词…"
+              className="pl-9"
+              aria-label="搜索提示词"
+            />
           </div>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            分类导航
+          </p>
+          <nav className="flex flex-col gap-1">
+            <button
+              onClick={() => setActiveCat(ALL_KEY)}
+              className={`flex items-center justify-between rounded-md px-3 py-2 text-left text-sm transition-colors ${
+                activeCat === ALL_KEY
+                  ? "bg-primary/10 text-primary"
+                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+              }`}
+            >
+              <span>全部</span>
+              <span className="text-xs text-muted-foreground">
+                {prompts.length}
+              </span>
+            </button>
+            {categories.map((c) => (
+              <button
+                key={c.key}
+                onClick={() => {
+                  setQuery("");
+                  setActiveCat(c.key);
+                }}
+                className={`flex items-center gap-2 rounded-md px-3 py-2 text-left text-sm transition-colors ${
+                  activeCat === c.key
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                }`}
+              >
+                <CategoryIcon icon={c.icon} className="h-4 w-4 shrink-0" />
+                <span className="flex-1">{c.label}</span>
+                <span className="text-xs text-muted-foreground">
+                  {catCount.get(c.key) ?? 0}
+                </span>
+              </button>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+      {/* 右侧内容 */}
+      <div className="min-w-0 flex-1">
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-lg font-semibold">
+            {listForCat.label}
+            <span className="ml-2 text-sm font-normal text-muted-foreground">
+              {listForCat.items.length} 条
+            </span>
+          </h2>
+        </div>
+        {listForCat.items.length > 0 ? (
+          renderList(listForCat.items)
         ) : (
           <p className="py-12 text-center text-muted-foreground">
             未找到匹配的提示词，试试其他关键词
           </p>
-        )
-      ) : (
-        <Tabs defaultValue={ALL_KEY}>
-          <TabsList className="mb-6 flex flex-wrap h-auto">
-            <TabsTrigger value={ALL_KEY}>全部 ({prompts.length})</TabsTrigger>
-            {categories.map((c) => (
-              <TabsTrigger key={c.key} value={c.key}>
-                {c.emoji} {c.label} ({catCount.get(c.key) ?? 0})
-              </TabsTrigger>
-            ))}
-          </TabsList>
-          <TabsContent value={ALL_KEY}>{renderList(prompts)}</TabsContent>
-          {categories.map((c) => (
-            <TabsContent key={c.key} value={c.key}>
-              {renderList(
-                prompts.filter((p) => p.category === c.key)
-              )}
-            </TabsContent>
-          ))}
-        </Tabs>
-      )}
+        )}
+      </div>
 
       <Dialog
         open={!!selected}

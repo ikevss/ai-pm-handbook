@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -17,10 +18,6 @@ import {
 
 const NAV_ITEMS = [
   { href: "/", label: "首页" },
-  { href: "/#theory", label: "理论框架" },
-  { href: "/#assets", label: "文件资产" },
-  { href: "/#templates-index", label: "案例模板" },
-  { href: "/#imitation", label: "模仿改进" },
   { href: "/templates", label: "模板库" },
   { href: "/prompts", label: "提示词手册" },
 ];
@@ -33,6 +30,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center">
         <Link href="/" className="mr-6 flex items-center space-x-2">
+          <Logo className="h-7 w-7" />
           <span className="font-bold">AI PM Coding 手册</span>
         </Link>
         <nav className="hidden items-center space-x-4 md:flex">
@@ -41,10 +39,7 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               className={`text-sm font-medium transition-colors hover:text-primary ${
-                (item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href)) ||
-                (item.href.startsWith("/#") && pathname === "/")
+                (item.href === "/" ? pathname === "/" : pathname.startsWith(item.href))
                   ? "text-primary"
                   : "text-muted-foreground"
               }`}

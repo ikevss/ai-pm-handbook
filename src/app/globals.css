@@ -4,48 +4,48 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 60 9% 98%;
+    --foreground: 24 10% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 24 10% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 12 74% 49%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 12 74% 49%;
-    --radius: 0.5rem;
+    --popover-foreground: 24 10% 10%;
+    --primary: 165 64% 44%;
+    --primary-foreground: 24 10% 10%;
+    --secondary: 60 5% 92%;
+    --secondary-foreground: 24 10% 10%;
+    --muted: 60 5% 94%;
+    --muted-foreground: 30 6% 45%;
+    --accent: 60 5% 92%;
+    --accent-foreground: 24 10% 10%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 60 9% 98%;
+    --border: 30 6% 88%;
+    --input: 30 6% 88%;
+    --ring: 165 64% 44%;
+    --radius: 1rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 12 85% 60%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 50.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 12 85% 60%;
+    --background: 24 6% 8%;
+    --foreground: 60 9% 94%;
+    --card: 24 6% 11%;
+    --card-foreground: 60 9% 94%;
+    --popover: 24 6% 11%;
+    --popover-foreground: 60 9% 94%;
+    --primary: 165 65% 55%;
+    --primary-foreground: 24 10% 10%;
+    --secondary: 24 5% 16%;
+    --secondary-foreground: 60 9% 94%;
+    --muted: 24 5% 15%;
+    --muted-foreground: 30 6% 60%;
+    --accent: 24 5% 16%;
+    --accent-foreground: 60 9% 94%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 60 9% 94%;
+    --border: 24 5% 18%;
+    --input: 24 5% 18%;
+    --ring: 165 65% 55%;
   }
 }
 
@@ -53,7 +53,54 @@
   * {
     @apply border-border;
   }
+  html {
+    font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv01";
+    background-image: radial-gradient(
+      hsl(var(--muted-foreground) / 0.04) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
+  }
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
+  }
+}
+
+@layer utilities {
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-up {
+    animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .stagger > * {
+    animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .stagger > *:nth-child(1) { animation-delay: 0.05s; }
+  .stagger > *:nth-child(2) { animation-delay: 0.12s; }
+  .stagger > *:nth-child(3) { animation-delay: 0.19s; }
+  .stagger > *:nth-child(4) { animation-delay: 0.26s; }
+  .stagger > *:nth-child(5) { animation-delay: 0.33s; }
+  .stagger > *:nth-child(6) { animation-delay: 0.4s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-up,
+    .stagger > * {
+      animation: none;
+    }
   }
 }

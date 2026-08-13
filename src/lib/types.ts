@@ -17,5 +17,6 @@ export interface TemplateGroup {
   key: string;
   label: string;
   description: string;
+  icon: string;
   ids: string[];
 }

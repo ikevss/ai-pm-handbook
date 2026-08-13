@@ -1,16 +1,8 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  BookOpen,
-  Boxes,
-  Copy,
-  FileText,
-  Layers,
-  Search,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRight, Boxes, Sparkles } from "lucide-react";
 
 import { getPromptCategories, getPrompts, getTemplates } from "@/lib/data";
+import { Reveal } from "@/components/motion/reveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -115,64 +107,125 @@ export default async function Home() {
   ];
 
   return (
-    <div className="container py-12 space-y-16">
+    <div className="pb-16">
       {/* Hero */}
-      <section id="hero" className="text-center py-8">
-        <Badge className="mb-4">AI 新范式 · PM Coding 手册</Badge>
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          产品经理直接驱动 AI 编码
-        </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-          从定义产品、定义验收标准，到让 AI 交付可验收的成果。
-          这里帮你识别 <strong>3 个核心思维转变</strong>。
-        </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Button asChild size="lg">
-            <Link href="#theory">理论框架</Link>
-          </Button>
-          <Button asChild size="lg" variant="outline">
-            <Link href="#assets">文件资产</Link>
-          </Button>
-          <Button asChild size="lg" variant="outline">
-            <Link href="#templates-index">案例模板</Link>
-          </Button>
-          <Button asChild size="lg" variant="outline">
-            <Link href="#imitation">模仿改进</Link>
-          </Button>
+      <section id="hero" className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,#f2faf7_0%,#e9f5f0_50%,#f4f9f6_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(40,184,148,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(40,184,148,0.05)_1px,transparent_1px)] bg-[size:44px_44px]" />
+        <div className="absolute -right-24 -top-32 h-[28rem] w-[28rem] rounded-full bg-[#28B894]/15 blur-3xl" />
+        <div className="absolute -bottom-20 left-1/3 h-64 w-64 rounded-full bg-[#28B894]/10 blur-3xl" />
+
+        {/* 同心圆环装饰 */}
+        <svg
+          className="absolute right-8 top-1/2 hidden h-[30rem] w-[30rem] -translate-y-1/2 lg:block"
+          viewBox="0 0 200 200"
+          fill="none"
+          aria-hidden="true"
+        >
+          <circle cx="100" cy="100" r="95" stroke="rgba(40,184,148,0.12)" strokeWidth="1" />
+          <circle cx="100" cy="100" r="72" stroke="rgba(40,184,148,0.16)" strokeWidth="1" />
+          <circle cx="100" cy="100" r="49" stroke="rgba(40,184,148,0.35)" strokeWidth="1.5" />
+          <circle cx="100" cy="100" r="26" stroke="rgba(40,184,148,0.2)" strokeWidth="1" />
+          <circle cx="100" cy="100" r="4" fill="rgba(40,184,148,0.8)" />
+        </svg>
+
+        {/* 散落光点 */}
+        <div className="absolute left-[42%] top-24 h-2 w-2 rounded-full bg-[#28B894]/50" />
+        <div className="absolute left-[55%] top-40 h-1.5 w-1.5 rounded-full bg-[#28B894]/30" />
+        <div className="absolute left-[30%] bottom-24 h-2 w-2 rounded-full bg-[#28B894]/30" />
+
+        <div className="relative container py-20 md:py-28">
+          <div className="max-w-3xl">
+            <div className="stagger">
+              <Badge className="mb-6 border-primary/20 bg-primary/10 text-primary">
+                AI 新范式 · PM Coding 手册
+              </Badge>
+              <h1 className="text-4xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-5xl md:text-6xl">
+                产品经理直接驱动
+                <br />
+                <span className="text-primary">AI 编码</span>
+              </h1>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+                从定义产品、定义验收标准，到让 AI 交付可验收的成果。
+                这里帮你识别 3 个核心思维转变。
+              </p>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <Button asChild size="lg">
+                  <Link href="#theory">开始学习</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href="#assets">文件资产</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href="#templates-index">案例模板</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href="#imitation">模仿改进</Link>
+                </Button>
+              </div>
+            </div>
+
+            <div className="mt-16 grid max-w-md grid-cols-3 gap-6 border-t border-border pt-8">
+              <div>
+                <p className="font-mono text-3xl font-semibold text-foreground">
+                  {templates.length}
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">份模板</p>
+              </div>
+              <div>
+                <p className="font-mono text-3xl font-semibold text-foreground">
+                  {prompts.length}
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">条提示词</p>
+              </div>
+              <div>
+                <p className="font-mono text-3xl font-semibold text-foreground">
+                  {categories.length}
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">类场景</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
+      <div className="container space-y-16 pt-16">
+
       {/* 理论框架 */}
-      <section id="theory" className="scroll-mt-24">
-        <div className="mb-6 flex items-center gap-2">
-          <BookOpen className="h-6 w-6 text-primary" />
-          <h2 className="text-2xl font-bold">理论框架</h2>
+      <Reveal>
+        <section id="theory" className="scroll-mt-24">
+        <div className="mb-6 flex items-center gap-3">
+          <span className="h-7 w-1 rounded-full bg-primary" />
+          <h2 className="text-2xl font-bold tracking-tight">理论框架</h2>
         </div>
         <p className="mb-8 max-w-3xl text-muted-foreground">
           很多 PM 拿着 AI 工具，但思维还是传统的「写需求→评审→排期」。
           AI 时代 PM 的核心竞争力不是「会用工具」，而是
           <strong>「能判断 AI 做对了没有」</strong>。
         </p>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="divide-y divide-border border-y border-border">
           {shifts.map((s) => (
-            <Card key={s.num}>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <span className="text-primary">{s.num}</span>
-                  {s.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm">
-                <div className="rounded-md bg-red-50 p-3 text-red-700 dark:bg-red-950/50 dark:text-red-300">
-                  <p className="mb-1 text-xs font-semibold">过去</p>
-                  {s.old}
-                </div>
-                <div className="rounded-md bg-green-50 p-3 text-green-700 dark:bg-green-950/50 dark:text-green-300">
-                  <p className="mb-1 text-xs font-semibold">现在</p>
-                  {s.now}
-                </div>
-              </CardContent>
-            </Card>
+            <div
+              key={s.num}
+              className="grid gap-4 py-6 md:grid-cols-[80px_1fr_1fr] md:gap-8"
+            >
+              <span className="font-mono text-sm font-semibold text-primary">
+                {s.num}
+              </span>
+              <div>
+                <p className="mb-2 text-base font-semibold">{s.title}</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  过去
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">{s.old}</p>
+              </div>
+              <div className="border-l-2 border-primary/40 pl-4 md:pl-6">
+                <p className="text-xs font-semibold uppercase tracking-wide text-primary">
+                  现在
+                </p>
+                <p className="mt-1 text-sm">{s.now}</p>
+              </div>
+            </div>
           ))}
         </div>
         <div className="mt-6 rounded-lg border bg-muted/50 p-5">
@@ -182,23 +235,30 @@ export default async function Home() {
             「写清楚要什么」转移到了「说清楚什么算对，并且能查出它错没错」。
           </p>
         </div>
-      </section>
+        </section>
+      </Reveal>
 
       {/* 文件资产 */}
-      <section id="assets" className="scroll-mt-24">
-        <div className="mb-6 flex items-center gap-2">
-          <Layers className="h-6 w-6 text-primary" />
-          <h2 className="text-2xl font-bold">文件资产</h2>
+      <Reveal>
+        <section id="assets" className="scroll-mt-24">
+        <div className="mb-6 flex items-center gap-3">
+          <span className="h-7 w-1 rounded-full bg-primary" />
+          <h2 className="text-2xl font-bold tracking-tight">文件资产</h2>
         </div>
         <p className="mb-8 max-w-3xl text-muted-foreground">
           AI 时代的文档<strong>写给 AI 看</strong>——结构化、无歧义、可直接当
           Prompt。文档不再是「沟通工具」，而是 AI 的输入指令和自己的干活记录。
         </p>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2">
           {fileAssets.map((f) => (
-            <Card key={f.name}>
+            <Card
+              key={f.name}
+              className="group transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg"
+            >
               <CardHeader>
-                <CardTitle className="text-base">{f.name}</CardTitle>
+                <CardTitle className="text-base group-hover:text-primary">
+                  {f.name}
+                </CardTitle>
                 <CardDescription>{f.tier}</CardDescription>
               </CardHeader>
               <CardContent>
@@ -208,12 +268,14 @@ export default async function Home() {
           ))}
         </div>
       </section>
+      </Reveal>
 
       {/* 案例模板 */}
-      <section id="templates-index" className="scroll-mt-24">
-        <div className="mb-6 flex items-center gap-2">
-          <FileText className="h-6 w-6 text-primary" />
-          <h2 className="text-2xl font-bold">案例模板</h2>
+      <Reveal>
+        <section id="templates-index" className="scroll-mt-24">
+        <div className="mb-6 flex items-center gap-3">
+          <span className="h-7 w-1 rounded-full bg-primary" />
+          <h2 className="text-2xl font-bold tracking-tight">案例模板</h2>
         </div>
         <p className="mb-6 max-w-3xl text-muted-foreground">
           每一份都是给 AI 的输入指令和协作契约。覆盖调研立项、产品设计、项目执行、
@@ -221,8 +283,10 @@ export default async function Home() {
         </p>
         <Card>
           <CardContent className="flex flex-col items-start justify-between gap-4 p-6 sm:flex-row sm:items-center">
-            <div className="flex items-center gap-3">
-              <Boxes className="h-8 w-8 text-primary" />
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary">
+                <Boxes className="h-6 w-6 text-white" />
+              </div>
               <div>
                 <p className="font-semibold">
                   {templates.length} 份可复制模板
@@ -241,13 +305,17 @@ export default async function Home() {
           </CardContent>
         </Card>
       </section>
+      </Reveal>
 
       {/* 提示词手册入口 */}
-      <section id="prompts-index" className="scroll-mt-24">
+      <Reveal>
+        <section id="prompts-index" className="scroll-mt-24">
         <Card>
           <CardContent className="flex flex-col items-start justify-between gap-4 p-6 sm:flex-row sm:items-center">
-            <div className="flex items-center gap-3">
-              <Sparkles className="h-8 w-8 text-primary" />
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary">
+                <Sparkles className="h-6 w-6 text-white" />
+              </div>
               <div>
                 <p className="font-semibold">
                   {prompts.length} 条精选提示词 · {categories.length} 类场景
@@ -266,12 +334,14 @@ export default async function Home() {
           </CardContent>
         </Card>
       </section>
+      </Reveal>
 
       {/* 模仿改进 */}
-      <section id="imitation" className="scroll-mt-24">
-        <div className="mb-6 flex items-center gap-2">
-          <Copy className="h-6 w-6 text-primary" />
-          <h2 className="text-2xl font-bold">模仿改进</h2>
+      <Reveal>
+        <section id="imitation" className="scroll-mt-24">
+        <div className="mb-6 flex items-center gap-3">
+          <span className="h-7 w-1 rounded-full bg-primary" />
+          <h2 className="text-2xl font-bold tracking-tight">模仿改进</h2>
         </div>
         <div className="grid gap-8 lg:grid-cols-2">
           <div>
@@ -302,6 +372,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
+      </Reveal>
+      </div>
     </div>
   );
 }

@@ -22,25 +22,38 @@ export interface Prompt {
   content: string;
 }
 
+export type CategoryIcon =
+  | 'search'
+  | 'package'
+  | 'network'
+  | 'code'
+  | 'refresh'
+  | 'flask'
+  | 'file'
+  | 'rocket'
+  | 'users'
+  | 'pen'
+  | 'chart';
+
 export interface CategoryDef {
   key: PromptCategory;
   label: string;
-  emoji: string;
+  icon: CategoryIcon;
 }
 
 /** 11 类提示词分类定义（与 content/prompts.json 数据一致） */
 export const CATEGORY_DEFS: CategoryDef[] = [
-  { key: 'market', label: '市场研究', emoji: '🔍' },
-  { key: 'product', label: '产品定义', emoji: '🧩' },
-  { key: 'architecture', label: '代码架构与仓库分析', emoji: '🏗️' },
-  { key: 'coding', label: '代码编写与开发范式', emoji: '⚙️' },
-  { key: 'refactor', label: '重构与代码审查', emoji: '🔄' },
-  { key: 'testing', label: '测试设计', emoji: '🧪' },
-  { key: 'docs', label: '文档与知识沉淀', emoji: '📚' },
-  { key: 'devops', label: '发布与运维', emoji: '🚀' },
-  { key: 'agents', label: '多智能体与并行协作', emoji: '🤖' },
-  { key: 'prompting', label: '提示词工程与风格', emoji: '✍️' },
-  { key: 'visual', label: '可视化与特殊输出', emoji: '📊' },
+  { key: 'market', label: '市场研究', icon: 'search' },
+  { key: 'product', label: '产品定义', icon: 'package' },
+  { key: 'architecture', label: '代码架构与仓库分析', icon: 'network' },
+  { key: 'coding', label: '代码编写与开发范式', icon: 'code' },
+  { key: 'refactor', label: '重构与代码审查', icon: 'refresh' },
+  { key: 'testing', label: '测试设计', icon: 'flask' },
+  { key: 'docs', label: '文档与知识沉淀', icon: 'file' },
+  { key: 'devops', label: '发布与运维', icon: 'rocket' },
+  { key: 'agents', label: '多智能体与并行协作', icon: 'users' },
+  { key: 'prompting', label: '提示词工程与风格', icon: 'pen' },
+  { key: 'visual', label: '可视化与特殊输出', icon: 'chart' },
 ];
 
 const TEMPLATE_GROUPS: TemplateGroup[] = [
@@ -48,36 +61,42 @@ const TEMPLATE_GROUPS: TemplateGroup[] = [
     key: 'root',
     label: '根目录文件',
     description: 'AI 和开发者进仓库第一眼看到的文件',
+    icon: 'home',
     ids: ['changelog', 'readme', 'agents'],
   },
   {
     key: 'product',
     label: '产品定义',
     description: '产品需求与 AI 行为约束',
+    icon: 'package',
     ids: ['brd', 'car', 'poc', 'spec', 'prompt'],
   },
   {
     key: 'project',
     label: '项目管理',
     description: '项目计划定方向，风险登记防意外',
+    icon: 'clipboard',
     ids: ['plan', 'risk', 'kanban', 'raci', 'cost'],
   },
   {
     key: 'qa',
     label: '测试与验收',
     description: 'PM 自己验收，不依赖测试团队',
+    icon: 'check',
     ids: ['uat', 'eval', 'metrics', 'issue'],
   },
   {
     key: 'ai',
     label: 'AI 自动产出',
     description: 'AI 自动产出文档，PM Review 确认',
+    icon: 'sparkles',
     ids: ['solution', 'prototype', 'adr'],
   },
   {
     key: 'process',
     label: '过程资产',
     description: '会议记录、工作笔记、参考资料',
+    icon: 'notebook',
     ids: ['notes', 'scratch', 'ref'],
   },
 ];
