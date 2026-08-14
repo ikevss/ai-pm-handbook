@@ -1,9 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
 
-// 与 next.config.mjs 中 repoName 一致，即 GitHub Pages 子路径前缀。
-// 测试必须显式导航到这个子路径，才能真实复现线上部署场景。
-const BASE = "/ai-pm-handbook";
-
 const HOME_SECTIONS = [
   "hero",
   "theory",
@@ -25,7 +21,7 @@ async function checkPage(page: Page, path: string, opts: {
   });
   page.on("pageerror", (e) => pageErrors.push(String(e)));
 
-  await page.goto(`${BASE}${path}`, { waitUntil: "networkidle" });
+  await page.goto(path, { waitUntil: "networkidle" });
   await page.waitForTimeout(400);
 
   const slug = path === "/" ? "home" : path.replace(/\//g, "_");

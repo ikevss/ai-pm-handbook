@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.svg",
   },
-  metadataBase: new URL("https://ikevss.github.io/ai-pm-handbook"),
+  metadataBase: new URL("https://p.ikev.top"),
   openGraph: {
     title: "AI PM Coding 手册 · 产品经理驱动 AI 编码",
     description:

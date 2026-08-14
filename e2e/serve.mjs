@@ -2,8 +2,9 @@ import http from "http";
 import fs from "fs";
 import path from "path";
 
+// 根路径静态服务器：模拟自定义域名 p.ikev.top 的部署形态。
+// 站点产物（out/）直接挂在根路径，无子路径前缀。
 const ROOT = path.resolve("out");
-const PREFIX = "/ai-pm-handbook";
 const PORT = 4173;
 const TYPES = {
   ".html": "text/html; charset=utf-8",
@@ -22,15 +23,6 @@ const TYPES = {
 
 const server = http.createServer((req, res) => {
   let urlPath = decodeURIComponent((req.url || "/").split("?")[0]);
-
-  // 严格模拟 GitHub Pages 子路径：只有 /ai-pm-handbook/ 前缀内的请求才放行。
-  // 若产物未注入 basePath（资源引用根路径 /_next/...），此处直接 404，
-  // 让 E2E 能抓住「子路径资源丢失 → 页面错乱」这类回归。
-  if (!urlPath.startsWith(PREFIX)) {
-    res.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
-    return res.end(`404 not found (outside basePath "${PREFIX}")`);
-  }
-  urlPath = urlPath.slice(PREFIX.length) || "/";
   if (urlPath === "/") urlPath = "/index.html";
 
   let filePath = path.join(ROOT, urlPath);
@@ -59,5 +51,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () =>
-  console.log(`serving ${ROOT} at http://localhost:${PORT}${PREFIX}`)
+  console.log(`serving ${ROOT} at http://localhost:${PORT}`)
 );

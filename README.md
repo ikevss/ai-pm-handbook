@@ -2,7 +2,7 @@
 
 > 从传统 PM 到 AI 原生 PM 的转型指南
 
-📖 **在线阅读：** https://ikevss.github.io/ai-pm-handbook/
+📖 **在线阅读：** https://p.ikev.top
 
 ## 这是什么
 
@@ -58,8 +58,10 @@ npm run lint      # 代码检查
 ## 部署
 
 - GitHub Actions 在 `main` 分支推送时自动构建并部署到 GitHub Pages
+- 自定义域名：`p.ikev.top`（通过 `public/CNAME` 绑定，根路径部署）
 - 见 `.github/workflows/deploy.yml`
 - 仓库需在 Settings → Pages 中启用「GitHub Actions」作为发布来源
+- DNS 需配置 CNAME：`p` → `ikevss.github.io`
 
 ## 版本历史
 

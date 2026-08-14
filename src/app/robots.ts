@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://ikevss.github.io/ai-pm-handbook/sitemap.xml",
+    sitemap: "https://p.ikev.top/sitemap.xml",
   };
 }

@@ -10,7 +10,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:e2e": "node e2e/build-prod.mjs && playwright test",
+    "test:e2e": "npm run build && playwright test",
     "export": "next build && next export",
     "predev": "node scripts/prepare-content.mjs"
   },
